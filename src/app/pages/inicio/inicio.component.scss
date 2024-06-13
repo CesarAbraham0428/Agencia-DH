@@ -15,3 +15,12 @@
     margin-top: 0.2em;
     border-bottom: 3px solid rgb(101, 147, 222);
 }
+
+.events{
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+
+    &__title{
+        text-align: center;
+    }
+}

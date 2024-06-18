@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from "./pages/inicio/inicio.component";
 import { PredeterminadoComponent } from './pages/paquetes/predeterminado/predeterminado.component';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados/paquetes-personalizados.component';
 
 const appRouting: Routes=[
   {path:'', component:InicioComponent },
   {path:'paquetes', component:PredeterminadoComponent},
+  {path: 'paquetes-personalizados', component:PaquetesPersonalizadosComponent}
 
 ]
 
@@ -16,7 +18,8 @@ const appRouting: Routes=[
   declarations: [
     AppComponent,
     InicioComponent,
-    PredeterminadoComponent
+    PredeterminadoComponent,
+    PaquetesPersonalizadosComponent
   ],
   imports: [
     BrowserModule,

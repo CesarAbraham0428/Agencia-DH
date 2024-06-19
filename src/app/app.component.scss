@@ -75,6 +75,22 @@ img{
     }
 }
 
+.login{
+    padding: 4px 20px;
+
+    border-radius: 15px;
+    color:#fff;
+
+    background-color: rgb(49, 70, 134);
+}
+
+.modal-dialog {
+    display: table;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+  }
+
 .footer{
     display: flex;
     justify-content: center;

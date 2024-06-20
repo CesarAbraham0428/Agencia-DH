@@ -1,24 +1,34 @@
-*{
+/* Resetear estilos por defecto */
+
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
     overflow: hidden;
-    
+
 }
 
-img{
+img {
     max-width: 100%;
     width: 100%;
 }
 
-.link{
+/* Variables de la ṕagina principal */
+
+$color-nav: #332205;
+$color-footer: rgb(12, 23, 59);
+
+
+
+
+.link {
     text-decoration: none;
     padding: 0;
 }
 
-.nav{
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,30 +37,60 @@ img{
 
     padding: 0 5em;
 
-    background-color: #332205;
+    background-color: $color-nav;
 
-    &__logo{
+    &__logo {
         display: flex;
         align-items: center;
     }
 
 
-    &__menu{
+    &__menu {
         display: flex;
         gap: 3em;
     }
 
+    @media (max-width:764px) {
+        flex-direction: column;
+        height: 100vh;
+
+        justify-content: center;
+
+        &__logo {
+            display: none;
+        }
+
+        &__menu {
+
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @media (max-width:100px) {
+        justify-content: space-around;
+
+
+        &__menu {
+            display: none;
+        }
+
+    }
+
+
+
 }
 
-.nav__logo{
-    &__img{
+.nav__logo {
+    &__img {
         width: 50px;
-        height: 50px;
+        margin-bottom: 20px;
 
         border-radius: 50%;
     }
 
-    &__nombre{
+    &__nombre {
         padding: 0.6em;
 
         font-size: 2rem;
@@ -59,39 +99,59 @@ img{
     }
 }
 
-.nav__menu{
-    &__item{
+.nav__menu {
+    &__item {
         list-style: none;
     }
 
-    &__link{
+    &__link {
         text-decoration: none;
 
         color: #fff;
 
-        &:hover{
-            color: #0a58ca;
+        @media (hover: hover) {
+
+            &:hover {
+                color: #0a58ca;
+            }
+
+            color: #fff;
         }
+
     }
 }
 
-.login{
-    padding: 4px 20px;
+.login {
 
-    border-radius: 15px;
-    color:#fff;
 
-    background-color: rgb(49, 70, 134);
+    color: #fff;
+
+
+    @media (min-width:764px) {
+        padding: 4px 20px;
+
+        border-radius: 15px;
+        color: #fff;
+
+        background-color: rgb(49, 70, 134);
+    }
 }
 
-.modal-dialog {
-    display: table;
-    overflow-y: auto;
-    overflow-x: auto;
-    width: auto;
-  }
+.img-menu {
+    @media (min-width:1000px) {
+        width: 35px;
 
-.footer{
+        filter: invert(1);
+        cursor: pointer;
+    }
+
+
+    @media (min-width:764px) {
+        display: none;
+    }
+}
+
+.footer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,5 +161,7 @@ img{
 
     color: #fff;
 
-    background-color: rgb(12, 23, 59);
+    background-color: $color-footer;
 }
+
+/* --host=0.0.0.0 --disable-host-check */

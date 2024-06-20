@@ -16,6 +16,23 @@
     border-bottom: 3px solid rgb(101, 147, 222);
 }
 
+.carousel{
+    height: 700px;
+    max-height: 700px;
+}
+
+
+.carousel-inner {
+    height: 700px;
+    max-height: 700px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    
+}
+
+
 .events{
     display: grid;
     grid-template-columns: 4fr 3fr;

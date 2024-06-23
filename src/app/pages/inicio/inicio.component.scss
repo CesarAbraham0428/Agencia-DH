@@ -1,43 +1,70 @@
-.main{
+.main {
     padding: 0 3em;
 }
 
-.title{
+.title {
     display: inline-block;
 
     margin-top: 1.2em;
     margin-bottom: 0.8em;
-    
+
     border-bottom: 3px solid rebeccapurple;
 }
 
-.title--sub{
-    margin-top: 0.2em;
+.title--sub {
+    margin-bottom: 0.5em;
     border-bottom: 3px solid rgb(101, 147, 222);
 }
 
-/* .carousel{
-    height: 700px;
-    max-height: 700px;
+.title--events {
+    margin: 1em 0 2em; 
+    border-bottom: 3px solid rgb(115, 190, 92);
 }
 
-
-.carousel-inner {
-    height: 700px;
-    max-height: 700px;
+.atractivos{
+    margin-bottom: 3em;
+    columns: 3 250px;
 }
+.events {
+    margin-bottom: 3em;
+    margin-left: auto;
+    margin-right: auto;
 
-.carousel-inner img {
-    width: 100%;
-    
-} */
+    columns: 3 350px;
+    column-gap: 0.3em;
 
+    &__item {
+        position: relative;
 
-.events{
-    display: grid;
-    grid-template-columns: 4fr 3fr;
+        &:hover {
+            p {
+                display: none;
+            }
+        }
+    }
 
-    &__title{
+    &__title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: bold;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+
+        margin-bottom: 0.3em;
+
+        border-radius: 5px;
     }
 }

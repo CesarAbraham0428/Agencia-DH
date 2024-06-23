@@ -1,47 +1,28 @@
-<div class="carrusel">
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="./assets/img/iglesia.jpg"
-          class="d-block w-100"
-          alt="Imagen Dolores"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="./assets/img/dolores.jpg"
-          class="d-block w-100"
-          alt="Imagen Dolores"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="./assets/img/nieves.jpg"
-          class="d-block w-100"
-          alt="Imagen Dolores"
-        />
-      </div>
-    </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExample"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExample"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./assets/img/iglesia.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/img/dolores.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/img/nieves.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <main class="main">
@@ -88,7 +69,7 @@
     </p>
 
     <h3 class="title title--sub">Atractivos.</h3>
-    <ul>
+    <ul class="atractivos">
       <li>Casa de Abasolo</li>
       <li>Casa-Museo José Alfredo Jiménez</li>
       <li>Casa de Visitas</li>
@@ -108,13 +89,44 @@
     </ul>
   </section>
 
+  <h3 class="title title--events">Principales eventos de la localidad.</h3>
+
   <section class="events">
+    
     <div class="events__item">
-      <h2>Futuros Eventos.</h2>
-      <input type="date" name="" id="" />
+      <p class="events__title">Dia de la Independencia </p>
+      <img src="./assets/img/grito.jpg" alt="" class="events__img">
     </div>
+
     <div class="events__item">
-      <h3 class="events__title">Descripción del evento</h3>
+      <p class="events__title">Dia de la Muertos </p>
+      <img src="./assets/img/muertos.jpg" alt="" class="events__img">
     </div>
+
+    <div class="events__item">
+      <p class="events__title">Procesion del santisimo </p>
+      <img src="./assets/img/vigilia.jpg" alt="" class="events__img">
+    </div>
+
+    <div class="events__item">
+      <p class="events__title">Feria de las Nieves </p>
+      <img src="./assets/img/feriaNieves.jpg" alt="" class="events__img">
+    </div>
+
+    <div class="events__item">
+      <p class="events__title">Festival de José Alfredo Jiménez </p>
+      <img src="./assets/img/joseAlfredo.jpg" alt="" class="events__img">
+    </div>
+
+    <div class="events__item">
+      <p class="events__title">Charreada</p>
+      <img src="./assets/img/charreada.jpg" alt="" class="events__img">
+    </div>
+
+    <div class="events__item">
+      <p class="events__title">Navidad</p>
+      <img src="./assets/img/navidad.jpg" alt="" class="events__img">
+    </div>
+
   </section>
 </main>

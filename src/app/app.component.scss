@@ -17,6 +17,8 @@ img {
 $color-nav: #332205;
 $color-footer: rgb(12, 23, 59);
 
+/*Reseteo de links*/
+
 .link {
     text-decoration: none;
     padding: 0;
@@ -97,7 +99,7 @@ $color-footer: rgb(12, 23, 59);
 .login {
     color: #fff;
 
-    @media (min-width: 764px) {
+    @media (min-width: 1000px) {
         padding: 4px 20px;
         border-radius: 15px;
         background-color: rgb(49, 70, 134);

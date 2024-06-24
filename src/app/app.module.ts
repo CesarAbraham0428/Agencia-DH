@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from "./pages/inicio/inicio.component";
 import { PredeterminadoComponent } from './pages/paquetes/predeterminado/predeterminado.component';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const appRouting: Routes=[
   {path:'', component:InicioComponent },
@@ -16,7 +18,8 @@ const appRouting: Routes=[
   declarations: [
     AppComponent,
     InicioComponent,
-    PredeterminadoComponent
+    PredeterminadoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ const appRouting: Routes=[
     RouterModule.forRoot(appRouting)
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

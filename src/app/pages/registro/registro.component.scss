@@ -1,0 +1,36 @@
+.cascading-right {
+  margin-right: -80px;
+}
+
+@media (max-width: 991.98px) {
+  .cascading-right {
+    margin-right: 0;
+  }
+}
+
+@media (width < 764px) {
+  .imagen-registro{
+    display: none;
+  }
+}
+
+section{
+  background-color: #262020;
+}
+
+// .card-body{
+
+// }
+
+.link{
+  text-decoration: none;
+  color: #1a2537;
+  font-weight: 500;
+}
+
+.btn{
+  background-color: #1a2537;
+  border-radius: 16px;
+}
+
+

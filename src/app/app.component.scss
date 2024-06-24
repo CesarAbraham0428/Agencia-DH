@@ -5,7 +5,7 @@
 body{
     margin: 0;
     overflow: hidden;
-    
+
 }
 
 img{
@@ -66,9 +66,7 @@ img{
 
     &__link{
         text-decoration: none;
-
         color: #fff;
-
         &:hover{
             color: #0a58ca;
         }
@@ -79,11 +77,9 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: auto;
     height: 100px;
-
     color: #fff;
-
     background-color: rgb(12, 23, 59);
+    position: relative;
 }

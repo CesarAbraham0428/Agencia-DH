@@ -20,7 +20,7 @@
                     <a href="#" class="link login" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a>
                 </li>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -49,7 +49,7 @@
                                     </div>
                                 </form>
                                 <p class="my-2" id="#"><a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a></p>
-                                <a class="btn btn-register btn-danger" href="#">Registrarse</a>
+                               <button class="btn btn-danger " data-bs-dismiss="modal" (click)="registrarse()" >Registrarse</button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,13 @@
     </header>
 
     <!-- Esta madre no la modifiquen ni eliminen -->
+     
     <router-outlet></router-outlet>
+
+
+
+<!--  -->
+
 
     <footer class="footer">
         © UTNG 2024 GDS0631.

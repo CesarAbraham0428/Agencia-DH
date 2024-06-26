@@ -3,18 +3,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-error',
   template: `
-    <h1>
+    <p>
       Error 404 Página no encontrada.
-    </h1>
+    </p>
   `,
   styles: `
-    h1{
+    p{
       margin: 3em 0;
 
       color:red;
 
       font-size:3rem;
       text-align:center;
+      
     }
 
   `

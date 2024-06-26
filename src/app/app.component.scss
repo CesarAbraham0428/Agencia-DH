@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    overflow: hidden;
+
 }
 
 img {
@@ -67,7 +67,7 @@ $color-footer: rgb(12, 23, 59);
 .nav__logo {
     &__img {
         width: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         border-radius: 50%;
     }
 

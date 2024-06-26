@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,12 @@ export class AppComponent {
   toggleMenu() {
     this.menuActive = !this.menuActive;
   }
+
+
+  constructor (private router:Router ) {}
+
+  registrarse(){
+    this.router.navigate(['registro'])
+  }
+
 }

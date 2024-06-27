@@ -7,13 +7,15 @@ import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ErrorComponent } from './pages/error/error.component';
 
+import { LoginComponent } from './pages/login/login.component';
+
 const routes: Routes = [
   {path:'', component:InicioComponent },
   {path:'paquetes', component:PredeterminadoComponent},
   {path: 'paquetes-personalizados', component:PaquetesPersonalizadosComponent},
 
+  {path: 'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
-
 
 
 

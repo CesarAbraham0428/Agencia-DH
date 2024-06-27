@@ -1,77 +1,36 @@
-
-    <header class="header">
-      <nav [class.nav--activate]="menuActive" class="nav">
-            <a href="" class="nav__logo link">
-                <img src="./assets/img/logo.jpg" alt="Logo Pagina" class="nav__logo__img" />
-                <p class="nav__logo__nombre">Senderos DH</p>
-            </a>
-
-            <div class="nav__menu">
-                <li class="nav__menu__item">
-                    <a href="" class="nav__menu__link link">Inicio</a>
-                </li>
-                <li class="nav__menu__item">
-                    <a href="/paquetes" class="nav__menu__link link">Paquetes</a>
-                </li>
-                <li class="nav__menu__item">
-                    <a href="/paquetes-personalizados" class="nav__menu__link link">Paquetes Personalizados</a>
-                </li>
-                <li class="nav__menu__item">
-                    <a href="#" class="link login" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a>
-                </li>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Iniciar Sesión</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="signup-form" action="#" method="POST" role="form" id="form-login">
-                                    <input type="hidden" name="logintoken" value="login" />
-                                    <label for="username"> Nombre de usuario </label>
-                                    <div class="input-group" id="form-input">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-envelope add-on"></i>
-                                        </div>
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required />
-                                    </div>
-                                    <label for="password">Contraseña</label>
-                                    <div class="input-group" id="form-input">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-lock add-on"></i>
-                                        </div>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required />
-                                    </div>
-                                    <div class="sign-up-btn py-2">
-                                        <button type="submit" class="btn btn-success">Iniciar sesión (ingresar)</button>
-                                    </div>
-                                </form>
-                                <p class="my-2" id="#"><a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a></p>
-                               <button class="btn btn-danger " data-bs-dismiss="modal" (click)="registrarse()" >Registrarse</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <img src="./assets/icons/list.svg" alt="menu" class="img-nav" (click)="toggleMenu()" />
-
-            <img src="./assets/icons/x-lg.svg" alt="menu" class="img-nav-cerrar" (click)="toggleMenu()">
-        </nav>
-    </header>
-
-    <!-- Esta madre no la modifiquen ni eliminen -->
-     
-    <router-outlet></router-outlet>
-
-
-
-<!--  -->
-
-
-    <footer class="footer">
-        © UTNG 2024 GDS0631.
-    </footer>
-    <script src="script.js"></script>
+<header class="header">
+    <nav [class.nav--activate]="menuActive" class="nav">
+      <a href="" class="nav__logo link">
+        <img src="./assets/img/logo.jpg" alt="Logo Pagina" class="nav__logo__img" />
+        <p class="nav__logo__nombre">Senderos DH</p>
+      </a>
+      <div class="nav__menu">
+        <li class="nav__menu__item">
+          <a href="" class="nav__menu__link link">Inicio</a>
+        </li>
+        <li class="nav__menu__item">
+          <a href="/paquetes" class="nav__menu__link link">Paquetes</a>
+        </li>
+        <li class="nav__menu__item">
+          <a href="/paquetes-personalizados" class="nav__menu__link link">Paquetes Personalizados</a>
+        </li>
+        <li class="nav__menu__item">
+          <a href="#" class="link login" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a>
+        </li>
+      </div>
+      <img src="./assets/icons/list.svg" alt="menu" class="img-nav" (click)="toggleMenu()" />
+      <img src="./assets/icons/x-lg.svg" alt="menu" class="img-nav-cerrar" (click)="toggleMenu()">
+    </nav>
+  </header>
+  
+  <router-outlet></router-outlet>
+  
+  <!-- Modal Component -->
+  <app-login></app-login>
+  
+  <footer class="footer">
+    © UTNG 2024 GDS0631.
+  </footer>
+  
+  <script src="script.js"></script>
+  

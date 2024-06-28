@@ -21,6 +21,8 @@ export class AppComponent {
     
   }
   
+  // Código de para ocultar y visualizar el menu
+
   menuActive: boolean = false;
 
   toggleMenu() {

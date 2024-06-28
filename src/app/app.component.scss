@@ -1,17 +1,4 @@
 /* Resetear estilos por defecto */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-
-}
-
-img {
-    max-width: 100%;
-    width: 100%;
-}
 
 /* Variables de la página principal */
 $color-nav: #332205;
@@ -98,7 +85,7 @@ $color-footer: rgb(12, 23, 59);
 
 .login {
     color: #fff;
-
+    
     @media (min-width: 1000px) {
         padding: 4px 20px;
         border-radius: 15px;

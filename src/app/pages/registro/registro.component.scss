@@ -1,5 +1,6 @@
+
 .cascading-right {
-  margin-right: -80px;
+  margin-right: -150px;
 }
 
 @media (max-width: 991.98px) {
@@ -18,10 +19,6 @@ section{
   background-color: #262020;
 }
 
-// .card-body{
-
-// }
-
 .link{
   text-decoration: none;
   color: #1a2537;
@@ -33,4 +30,6 @@ section{
   border-radius: 16px;
 }
 
-
+.fw-bold{
+  font-size: 30px;
+}

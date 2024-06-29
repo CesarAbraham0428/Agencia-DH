@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-
-import  firebase  from "firebase/compat/app";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,14 +10,6 @@ import  firebase  from "firebase/compat/app";
 export class AppComponent {
   title = 'agencia-dh';
 
-  ngOnInit(): void {
-    firebase.initializeApp({
-      apiKey: "AIzaSyCkZ_mgpJnvZ2OgbxJw46QJVEA5pGjogR0",
-      authDomain: "agencia-dh.firebaseapp.com",
-  })
-    
-  }
-  
   // Código de para ocultar y visualizar el menu
 
   menuActive: boolean = false;

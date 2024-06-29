@@ -1,3 +1,14 @@
+.contenedor-padre{
+  margin-bottom: 2em;
+}
+
+hr{
+  border: 2px solid royalblue;
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 /* Títulos principales y subtítulos */
 .main-title {
   font-size: 3em;
@@ -9,11 +20,10 @@
 }
 
 .sub-title {
-  font-size: 1.5em;
+  font-size: 2em;
   color: #000000;
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
-  margin-left: 8%;
   font-weight: 600;
 }
 

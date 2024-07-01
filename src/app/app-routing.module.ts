@@ -6,13 +6,14 @@ import { PredeterminadoComponent } from './pages/paquetes/predeterminado/predete
 import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados/paquetes-personalizados.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.component';
 
 
 const routes: Routes = [
   {path:'', component:InicioComponent },
   {path:'paquetes', component:PredeterminadoComponent},
   {path: 'paquetes-personalizados', component:PaquetesPersonalizadosComponent},
-
+  {path:'parte2', component:Parte2Component},
 
   {path:'registro', component:RegistroComponent},
 

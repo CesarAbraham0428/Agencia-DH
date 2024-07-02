@@ -1,26 +1,47 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-constructor (private router:Router ) {}
+  formReg: FormGroup;
 
-  registrarse(){
-    this.router.navigate(['registro'])
+
+  constructor (
+    private UserService: UserService,
+    private router:Router
+  ){
+    this.formReg = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+
+    });
   }
 
-  login(form:NgForm){
 
-    const email= form.value.email
+  ngOnInit(): void {
+    
+  }
+  
+  onSubmit(){
+    this.UserService.login(this.formReg.value)
+    .then(response => {
+      console.log(response);
+    })
 
-    const password = form.value.password
+    this.router.navigate([''])
 
+    .catch(error => console.log(error))
+  }
+
+  registrarse(){
+    this.router.navigate(['/registro'])
   }
 
 }

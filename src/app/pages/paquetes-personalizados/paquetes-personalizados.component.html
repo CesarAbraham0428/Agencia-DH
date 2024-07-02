@@ -1,142 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Crea tu paquete</title>
-        <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5; /* Fondo gris claro */
-            margin: 0;
-            padding: 0;
-        }
-        .body-container{
-            display: flex;
-        }
-        .img-container img{
-            margin: 50px auto;
-            margin-right: 50px;
-            width: 700px;
-            height: 600px;
-            border-radius: 30px;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc; /* Borde gris claro */
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff; /* Fondo blanco */
-        }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333; /* Color del texto gris oscuro */
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555; /* Color del texto gris medio */
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc; /* Borde gris claro */
-            border-radius: 5px;
-            background-color: #f9f9f9; /* Fondo gris muy claro */
-        }
-        .form-group .half-width {
-            width: calc(50% - 10px);
-            display: inline-block;
-        }
-        .form-group .half-width input {
-            width: 100%;
-        }
-        .form-group .half-width:first-child {
-            margin-right: 20px;
-        }
-        .button-group {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .button-group a, .button-group button {
-            text-decoration: none;
-            color: #fff; /* Texto blanco */
-            background-color: #007bff; /* Fondo azul */
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 0 10px;
-            border: none;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .button-group a:hover, .button-group button:hover {
-            background-color: #0056b3; /* Fondo azul oscuro */
-        }
-    </style>
-    </head>
-    <body>
-
-        <div class="body-container">
-
-            <div class="form-container">
-                <form action="https://formspree.io/f/xyzggwkg" method="post">
-                    <h2>Crea tu paquete</h2>
-                    <div class="form-group">
-                        <label for="arrival">Llegada</label>
-                        <input type="date" id="arrival" name="arrival">
-                    </div>
-                    <div class="form-group">
-                        <label for="departure">Salida</label>
-                        <input type="date" id="departure" name="departure">
-                    </div>
-                    <div class="form-group">
-                        <label for="adults-female">Cantidad de Adultos</label>
-                        <div class="half-width">
-                            <label for="adults-female">Mujeres</label>
-                            <input type="number" id="adults-female"
-                                name="adults-female">
-                        </div>
-                        <div class="half-width">
-                            <label for="adults-male">Hombres</label>
-                            <input type="number" id="adults-male"
-                                name="adults-male">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="children-female">Cantidad de Niños</label>
-                        <div class="half-width">
-                            <label for="children-female">Niños</label>
-                            <input type="number" id="children-female"
-                                name="children-female">
-                        </div>
-                        <div class="half-width">
-                            <label for="children-male">Niñas</label>
-                            <input type="number" id="children-male"
-                                name="children-male">
-                        </div>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="nav_menu_link link">Atrás</a>
-
-                        <a href="/parte2"
-                            class="nav_menu_link link">Siguiente</a>
-                    </div>
-                </form>
-            </div>
-            <div class="img-container">
-                    <img src="https://lacapillahotel.com/wp-content/uploads/2021/06/Parroquia_de_Nuestra_Senora_de_los_Dolores_Jardin_del_Grande_Dolores_Hidalgo_Guanajuato-_Nuestra_Senora_de_los_Dolores_parish_24023404070.jpg" alt="">
-            </div>
+<div class="body-container">
+  <div class="form-container">
+    <form action="https://formspree.io/f/xyzggwkg" method="post">
+      <h2>Crea tu paquete</h2>
+      <div class="form-group">
+        <label for="arrival">Llegada</label>
+        <input type="date" id="arrival" name="arrival" />
+      </div>
+      <div class="form-group">
+        <label for="departure">Salida</label>
+        <input type="date" id="departure" name="departure" />
+      </div>
+      <div class="form-group">
+        <label for="adults-female">Cantidad de Adultos</label>
+        <div class="half-width">
+          <label for="adults-female">Mujeres</label>
+          <input type="number" id="adults-female" name="adults-female" />
         </div>
-    </body>
-</html>
-     
-  
+        <div class="half-width">
+          <label for="adults-male">Hombres</label>
+          <input type="number" id="adults-male" name="adults-male" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="children-female">Cantidad de Niños</label>
+        <div class="half-width">
+          <label for="children-female">Niños</label>
+          <input type="number" id="children-female" name="children-female" />
+        </div>
+        <div class="half-width">
+          <label for="children-male">Niñas</label>
+          <input type="number" id="children-male" name="children-male" />
+        </div>
+      </div>
+      <div class="button-group">
+        <a href="" class="nav_menu_link link">Atrás</a>
 
- 
+        <a href="/parte2" class="nav_menu_link link">Siguiente</a>
+      </div>
+    </form>
+  </div>
+  <div class="img-container">
+    <img
+      src="https://lacapillahotel.com/wp-content/uploads/2021/06/Parroquia_de_Nuestra_Senora_de_los_Dolores_Jardin_del_Grande_Dolores_Hidalgo_Guanajuato-_Nuestra_Senora_de_los_Dolores_parish_24023404070.jpg"
+      alt=""
+    />
+  </div>
+</div>

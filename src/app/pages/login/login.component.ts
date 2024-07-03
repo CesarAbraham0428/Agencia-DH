@@ -12,16 +12,19 @@ import { UserService } from '../../user.service';
 export class LoginComponent implements OnInit {
 
   formLog: FormGroup;
+  
+  email: string = '';
+  password: string= '';
 
 
   constructor (
-    private UserService: UserService,
+    private userService: UserService,
     private router:Router,
     private form: FormBuilder
   ){
     this.formLog = this.form.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
 
     });
 
@@ -30,6 +33,10 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.formLog.patchValue({
+      email: this.email,
+      password: this.password
+    })
     
   }
 
@@ -38,18 +45,20 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit(){
-    this.UserService.login(this.formLog.value)
+    this.userService.login(this.formLog.value)
     .then(response => {
       console.log(response);
       this.router.navigate([''])
+
     })
 
-
-    .catch(error => console.log(error))
+    .catch(error => console.log(error));
   }
 
   registrarse(){
-    this.router.navigate(['/registro'])
+    this.router.navigate(['/registro']);
   }
+
+
 
 }

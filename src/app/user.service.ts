@@ -5,7 +5,10 @@ import { Auth,createUserWithEmailAndPassword,
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
+
+  logueado?: boolean;
 
   constructor(private auth: Auth) { }
 
@@ -20,7 +23,9 @@ export class UserService {
   }
 
   logout(){
-      return signOut(this.auth)
+    return signOut(this.auth);
+      
   }
+
 
 }

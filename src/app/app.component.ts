@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'agencia-dh';
 
-  // Código de para ocultar y visualizar el menu
+  // Código para ocultar y visualizar el menu de navegación
 
   menuActive: boolean = false;
 
@@ -20,5 +18,9 @@ export class AppComponent {
     this.menuActive = !this.menuActive;
   }
 
+
+  closeMenu() {
+    this.menuActive = false;
+  }
 
 }

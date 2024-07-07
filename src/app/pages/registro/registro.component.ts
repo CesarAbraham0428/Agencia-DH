@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistroService } from '../../services/auth.service';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { firstValueFrom } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',

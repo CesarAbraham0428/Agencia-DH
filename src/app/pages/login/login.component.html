@@ -1,44 +1,41 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                    Iniciar Sesión
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="signup-form" action="#" method="POST" role="form" id="form-login" [formGroup]="formReg" (ngSubmit)="onSubmit()">
-                    <input type="hidden" name="logintoken" value="login" />
-                    <label for="username"> Correo electronico </label>
-                    <div class="input-group" id="form-input">
-                        <div class="input-group-addon">
-                            <i class="fa fa-envelope add-on"></i>
-                        </div>
-                        <input type="email" class="form-control" id="username" name="username"
-                            placeholder="Correo electronico" required formControlName="email"/>
-                    </div>
-                    <label for="password">Contraseña</label>
-                    <div class="input-group" id="form-input">
-                        <div class="input-group-addon">
-                            <i class="fa fa-lock add-on"></i>
-                        </div>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Contraseña" required formControlName="password"/>
-                    </div>
-                    <div class="sign-up-btn py-2">
-                        <button type="submit" class="btn btn-success">
-                            Iniciar sesión (ingresar)
-                        </button>
-                    </div>
-                </form>
-                <p class="my-2" id="#">
-                    <a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a>
-                </p>
-                <button class="btn btn-danger" data-bs-dismiss="modal" (click)="registrarse()">
-                    Registrarse
-                </button>
-            </div>
+<section class="text-center text-lg-start mx-auto">
+<form [formGroup]="formLog" class="form">
+    <h2 class="login-title">Iniciar Sesión</h2>
+    <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input [ngClass]="{
+        'is-invalid':
+          hasErrors('email', 'required') || hasErrors('email', 'email')
+      }" type="email" class="form-control" id="email" placeholder="Correo Electrónico" formControlName="email" />
+        <div class="text-danger" *ngIf="hasErrors('email', 'email')">
+            Email formato inválido.
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('email', 'required')">
+            Campo requerido.
         </div>
     </div>
-</div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+
+        <input [ngClass]="{
+        'is-invalid':
+          hasErrors('password', 'required') ||
+          hasErrors('password', 'minlength')
+      }" type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password"/>
+        <div class="text-danger" *ngIf="hasErrors('password', 'required')">
+            Campo requerido.
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('password', 'minlength')">
+            La Contraseña debe tener mínimo 6 carácteres.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary py-2">Iniciar Sesión</button>
+    <p class="my-2" id="#">
+        <a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a>
+    </p>
+    <button class="btn btn-danger" type="submit" data-bs-dismiss="modal">
+        Registrarse
+    </button>
+
+</form>
+</section>

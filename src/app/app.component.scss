@@ -1,5 +1,3 @@
-/* Resetear estilos por defecto */
-
 /* Variables de la página principal */
 $color-nav: #332205;
 $color-footer: rgb(12, 23, 59);
@@ -146,11 +144,16 @@ $color-footer: rgb(12, 23, 59);
 }
 
 .footer {
+    position: absolute;
+    bottom: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
+
+    width: 100%;
     height: 100px;
+    
     color: #fff;
     background-color: $color-footer;
 }

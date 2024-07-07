@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from '../../user.service';
-
 
 @Component({
   selector: 'app-login',
@@ -18,8 +15,6 @@ export class LoginComponent implements OnInit {
 
 
   constructor (
-    private userService: UserService,
-    private router:Router,
     private form: FormBuilder
   ){
     this.formLog = this.form.group({
@@ -27,8 +22,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
 
     });
-
-    
   }
 
 
@@ -44,21 +37,6 @@ export class LoginComponent implements OnInit {
     return this.formLog.get(controlName)?.hasError(errorType) && this.formLog.get(controlName)?.touched
   }
   
-  onSubmit(){
-    this.userService.login(this.formLog.value)
-    .then(response => {
-      console.log(response);
-      this.router.navigate([''])
-
-    })
-
-    .catch(error => console.log(error));
-  }
-
-  registrarse(){
-    this.router.navigate(['/registro']);
-  }
-
 
 
 }

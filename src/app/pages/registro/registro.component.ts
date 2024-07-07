@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../../user.service';
-import { response } from 'express';
-import { error } from 'console';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +12,6 @@ export class RegistroComponent implements OnInit{
   formReg: FormGroup;
 
   constructor (
-    private UserService: UserService,
     private router:Router
   ){
     this.formReg = new FormGroup({
@@ -27,17 +23,5 @@ export class RegistroComponent implements OnInit{
 
   ngOnInit(): void {
   }
-
-  onSubmit(){
-    this.UserService.register(this.formReg.value)
-    .then(response => {
-      console.log(response);
-
-      this.router.navigate([''])
-
-    })
-    .catch(error => console.log(error))
-  }
-
 
 }

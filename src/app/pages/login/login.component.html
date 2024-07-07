@@ -1,5 +1,5 @@
 <section class="text-center text-lg-start mx-auto">
-<form [formGroup]="formLog" (ngSubmit)="onSubmit()" class="form">
+<form [formGroup]="formLog" class="form">
     <h2 class="login-title">Iniciar Sesión</h2>
     <div class="mb-3">
         <label for="email" class="form-label">Correo Electrónico</label>
@@ -33,7 +33,7 @@
     <p class="my-2" id="#">
         <a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a>
     </p>
-    <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" (click)="registrarse()">
+    <button class="btn btn-danger" type="submit" data-bs-dismiss="modal">
         Registrarse
     </button>
 

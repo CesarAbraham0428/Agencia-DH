@@ -10,7 +10,6 @@ import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.c
 
 import { RegistroComponent } from './pages/registro/registro.component';
 
-import { canActivate,redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
 
   { path: 'paquetes-personalizados',
     component:PaquetesPersonalizadosComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['registro']))},
+  },
 
   {path:'parte2', component:Parte2Component},
 

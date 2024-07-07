@@ -11,6 +11,7 @@ import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.c
 import { RegistroComponent } from './pages/registro/registro.component';
 
 import { LoginComponent } from './pages/login/login.component';
+import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
 
 const routes: Routes = [
   {path:'', component:InicioComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
 
   {path:'registro', component:RegistroComponent},
 
-
+  {path:'admin-personalizados', component:AdminPaquetesPersoComponent},
 
   {path:'**', pathMatch: 'full', redirectTo:''}
 ];

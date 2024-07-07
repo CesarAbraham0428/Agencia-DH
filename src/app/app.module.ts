@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
 
 
 
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    AdminPaquetesPersoComponent
 
   ],
   imports: [

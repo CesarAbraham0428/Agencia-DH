@@ -10,28 +10,28 @@
     <div class="nav__menu">
 
       <li class="nav__menu__item">
-        <a routerLink="" class="nav__menu__link link">Inicio</a>
+        <a routerLink="" class="nav__menu__link link " (click)="closeMenu()">Inicio</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/paquetes" class="nav__menu__link link">Paquetes</a>
+        <a routerLink="/paquetes" class="nav__menu__link link" (click)="closeMenu()">Paquetes</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/paquetes-personalizados" class="nav__menu__link link">Paquetes Personalizados</a>
+        <a routerLink="/paquetes-personalizados" class="nav__menu__link link" (click)="closeMenu()">Paquetes Personalizados</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/login" class="login link">Iniciar Sesión</a>
+        <a routerLink="/login" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
       </li>
 
-      <div class="dropdown nav__menu__item" >
+    <!--   <div class="dropdown nav__menu__item" >
         <a class="dropdown-toggle link login login--logout" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Sesión Activa
         </a>
 
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="">Editar Cuenta</a></li>
-          <li><a class="dropdown-item" routerLink="" (click)="CerrarSesion()">Cerrar Sesión</a></li>
+          <li><a class="dropdown-item" routerLink="" (click)="closeMenu()">Editar Cuenta</a></li>
+          <li><a class="dropdown-item" routerLink="" (click)="CerrarSesion()" (click)="closeMenu()">Cerrar Sesión</a></li>
         </ul>
-      </div>
+      </div> -->
 
     </div>
 
@@ -39,7 +39,6 @@
     <img src="./assets/icons/x-lg.svg" alt="menu" class="img-nav-cerrar" (click)="toggleMenu()">
 
   </nav>
-
 </header>
 
 <router-outlet />

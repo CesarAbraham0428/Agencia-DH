@@ -6,27 +6,28 @@
           <div class="card-body p-4 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Registrate</h2>
 
-            <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registroForm" (ngSubmit)="registrarUsuario()">
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
-                    <label class="form-label" for="form3Example1">Nombre</label>
-                    <input type="text" id="form3Example1" class="form-control"  placeholder="Nombre" required/>
+                    <label class="form-label" for="nom_usr">Nombre</label>
+                    <input type="text" id="nom_usr" class="form-control" formControlName="nom_usr" placeholder="Nombre" required>
                   </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
-                    <label class="form-label" for="form3Example4">Apellido(s)</label>
-                    <input type="text" id="form3Example4" class="form-control" required/>
+                    <label class="form-label" for="app_usr">Apellido(s)</label>
+                    <input type="text" id="app_usr" class="form-control" formControlName="app_usr" placeholder="Apellido(s)" required>
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 mb-4">
-                  <select class="form-select" aria-label="Selecciona" required>
-                    <option value="" selected>Selecciona tu País</option>
+                  <select class="form-select" aria-label="Selecciona" formControlName="nacionalidad_usr" required>
+                    <option value="" selected disabled>Selecciona tu País</option>
+                    <!-- Opciones del select de países -->
                     <option value="AF">Afganistán</option>
                     <option value="AL">Albania</option>
                     <option value="DZ">Argelia</option>
@@ -223,37 +224,48 @@
                   </select>
                 </div>
                 <div class="col-md-6 mb-4">
-                  <select class="form-select"  aria-label="Sexo" required>
-                    <option value="" selected>Sexo</option>
+                  <select class="form-select" aria-label="Sexo" formControlName="sexo_usr" required>
+                    <option value="" selected disabled>Selecciona tu Sexo</option>
                     <option value="Hombre">Hombre</option>
                     <option value="Mujer">Mujer</option>
                   </select>
                 </div>
               </div>
 
-<!--               <div data-mdb-input-init class="form-outline">
-                <label class="form-label" for="form3Example5">Usuario</label>
-                <input type="text" id="form3Example5" class="form-control"  placeholder="Nombre Usuario" required/>
-              </div> -->
-              <br>
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example2">Email</label>
-                <input type="email" id="form3Example2" class="form-control" formControlName="email" placeholder="Correo electronico" required/>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="form-label" for="edad_usr">Edad</label>
+                    <input type="number" id="edad_usr" class="form-control" formControlName="edad_usr" placeholder="Edad" required>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="id_ciudad">Ciudad</label>
+                    <select id="id_ciudad" class="form-select" aria-label="Selecciona tu Ciudad" formControlName="id_ciudad" required>
+                      <option value="" selected disabled>Selecciona tu Ciudad</option>
+                      <option value="1" selected>Dolores Hidalgo</option>
+                    </select>
+                </div>
               </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Contraseña</label>
-                <input type="password" id="form3Example3" class="form-control" formControlName="password" placeholder="Contraseña" required/>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="form-label" for="email_usr">Email</label>
+                    <input type="email" id="email_usr" class="form-control" formControlName="email_usr" placeholder="Correo electrónico" required>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="form-label" for="passwd_usr">Contraseña</label>
+                    <input type="password" id="passwd_usr" class="form-control" formControlName="passwd_usr" placeholder="Contraseña" required>
+                  </div>
+                </div>
               </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Confirmar Contraseña</label>
-                <input type="password" id="form3Example3" class="form-control"  placeholder="Confirmar Contraseña" required/>
-              </div>
               <div class="col-12">
-                <button class="btn btn-primary" type="submit" >Crear Cuenta</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!registroForm.valid">Crear Cuenta</button>
               </div>
-
             </form>
           </div>
         </div>

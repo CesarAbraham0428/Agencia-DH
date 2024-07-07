@@ -8,7 +8,13 @@ import { LoginComponent } from './pages/login/login.component';
 
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+/* Parte del administrador */
+
 import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
+import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenido-paquete/contenido-paquete.component';
+import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
+import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
 
 
 
@@ -18,7 +24,10 @@ import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    AdminPaquetesPersoComponent
+    AdminPaquetesPersoComponent,
+    ContenidoPaqueteComponent,
+    AcordeonPaqueteComponent,
+    AcordeonExperienciasComponent
 
   ],
   imports: [

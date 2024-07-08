@@ -5,10 +5,20 @@
     </div>
 
     <div class="contenidoPaquete__body">
+        <ul>
+            <li *ngFor="let item of selectedItems">
+              <hr>
+              <h3>{{ item.name }}</h3>
+              <p><strong>Dirección:</strong> {{ item.address }}</p>
+              <p><strong>Teléfono:</strong> {{ item.phone }}</p>
+              <p><strong>Horarios:</strong> {{ item.schedule }}</p>
+              <p><strong>Descripción:</strong> {{ item.description }}</p>
+            </li>
+          </ul>
     </div>
 
     <div class="contenidoPaquete__buttons">
-        <button>Limpiar</button>
-        <button>Aceptar</button>
+        <button class="btn btn-warning mx-3" (click)="clearItems()">Limpiar</button>
+        <button class="btn btn-danger">Aceptar</button>
     </div>
 </div>

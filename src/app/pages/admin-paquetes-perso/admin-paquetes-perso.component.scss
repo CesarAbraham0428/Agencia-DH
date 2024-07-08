@@ -1,11 +1,17 @@
 h1{
-    margin: 2em 0;
+    margin: 2em 0 1em;
 
     text-align: center;
 }
 
-h2{
-    text-align: center;
+hr{
+    border: 3px solid purple;
+}
+
+p{
+    margin-left: 2em;
+    font-size: 2em;
+    color: rosybrown;
 }
 
 .container__accordion{
@@ -13,4 +19,16 @@ h2{
     grid-template-columns: 3fr 2fr;
 
     margin: 20px;
+}
+
+.seleccion{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    
+    &__buttons{
+        padding-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

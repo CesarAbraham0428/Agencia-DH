@@ -263,7 +263,21 @@
                 </div>
               </div>
 
+
+              <div class="row">
+                <div class="col-12">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="form-label" for="confirm_passwd_usr">Confirmar Contraseña</label>
+                    <input type="password" id="confirm_passwd_usr" class="form-control" formControlName="confirm_passwd_usr" placeholder="Confirmar Contraseña" required>
+                    <div *ngIf="registroForm.get('confirm_passwd_usr')?.errors?.['mustMatch']">
+                      Las contraseñas deben coincidir.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-12">
+                <br>
                 <button type="submit" class="btn btn-primary" [disabled]="!registroForm.valid">Crear Cuenta</button>
               </div>
             </form>

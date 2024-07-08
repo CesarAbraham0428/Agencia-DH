@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { PredeterminadoComponent } from './pages/paquetes/predeterminado/predeterminado.component';
 import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados/paquetes-personalizados.component';

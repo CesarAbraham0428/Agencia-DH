@@ -1,0 +1,24 @@
+
+/*Lado derecho */
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background-color: #332205;
+  color: white;
+}
+
+.nav__logo {
+  &__img {
+      width: 50px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+  }
+}
+
+.nombre{
+  padding: 0.6em;
+  font-size: 2rem;
+  color: #fff;
+}

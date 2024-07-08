@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistroService } from '../../services/auth.service';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { firstValueFrom } from 'rxjs';
-import { MustMatch } from '../../validators/must-match.validator'; // Correct import pathCL
+import { MustMatch } from '../../validators/must-match.validator';
+import { COUNTRY_CITY_DATA} from '../../data/country-city-data';
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +13,10 @@ import { MustMatch } from '../../validators/must-match.validator'; // Correct im
 })
 export class RegistroComponent implements OnInit {
   registroForm!: FormGroup;
+  countries: string[] = Object.keys(COUNTRY_CITY_DATA);
+  cities: string[] = [];
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -26,12 +31,21 @@ export class RegistroComponent implements OnInit {
       confirm_passwd_usr: ['', Validators.required],
       nacionalidad_usr: ['', Validators.required],
       sexo_usr: ['', Validators.required],
-      edad_usr: ['', Validators.required],
+      edad_usr: ['', [Validators.required, Validators.min(5)]],
       email_usr: ['', [Validators.required, Validators.email]],
-      id_ciudad: ['', Validators.required]
+      ciudad_usr: ['', Validators.required]
     },{
       validators: MustMatch('passwd_usr', 'confirm_passwd_usr')
     });
+
+    this.registroForm.get('nacionalidad_usr')?.valueChanges.subscribe(country => {
+      this.updateCities(country);
+    });
+  }
+
+  updateCities(country: string): void {
+    this.cities = COUNTRY_CITY_DATA[country] || [];
+    this.registroForm.get('id_ciudad')?.setValue('');
   }
 
   async registrarUsuario(): Promise<void> {

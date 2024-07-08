@@ -6,5 +6,5 @@ export interface Usuario{
   sexo_usr:string;
   edad_usr:number;
   email_usr:string;
-  id_ciudad:number;
+  ciudad_usr:string;
 }

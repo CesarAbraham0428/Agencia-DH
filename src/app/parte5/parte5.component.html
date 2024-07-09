@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lugares para Visitar en Dolores Hidalgo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav_menu_link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            background-color: #333;
+        }
+        .place-item {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .place-item h2 {
+            margin-top: 0;
+        }
+        .place-description {
+            margin-top: 10px;
+            color: #666;
+        }
+        .place-schedule {
+            margin-top: 8px;
+            color: #888;
+        }
+        .select-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .select-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-btn:hover {
+            background-color: #555;
+        }
+        .icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Lugares para Visitar en Dolores Hidalgo</h1>
+            <a href="/parte4" class="nav_menu_link">Regresar</a>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="parroquia" name="place" value="parroquia">
+            <label for="parroquia"><h2>Parroquia de Nuestra Señora de Dolores</h2></label>
+            <p class="place-description">
+                La Parroquia de Nuestra Señora de Dolores es un símbolo histórico de la independencia de México. Fue aquí donde Miguel Hidalgo dio el famoso Grito de Dolores en 1810.
+            </p>
+            <p class="place-schedule">
+                Horarios: Lunes a Domingo de 9:00 AM a 6:00 PM
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="casa_hidalgo" name="place" value="casa_hidalgo">
+            <label for="casa_hidalgo"><h2>Casa de Hidalgo</h2></label>
+            <p class="place-description">
+                La Casa de Hidalgo es donde el padre de la patria, Miguel Hidalgo y Costilla, vivió y planificó la lucha por la independencia de México.
+            </p>
+            <p class="place-schedule">
+                Horarios: Martes a Sábado de 10:00 AM a 5:00 PM
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="museo_diego" name="place" value="museo_diego">
+            <label for="museo_diego"><h2>Museo Casa de Diego Rivera</h2></label>
+            <p class="place-description">
+                La casa donde nació Diego Rivera, uno de los muralistas más famosos de México, ahora es un museo que alberga una colección de sus obras y recuerdos personales.
+            </p>
+            <p class="place-schedule">
+                Horarios: Martes a Domingo de 9:00 AM a 4:00 PM
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="mercado" name="place" value="mercado">
+            <label for="mercado"><h2>Mercado de Dolores Hidalgo</h2></label>
+            <p class="place-description">
+                El mercado local ofrece una variedad de productos tradicionales y comida típica de la región. Es un lugar ideal para explorar la cultura local.
+            </p>
+            <p class="place-schedule">
+                Horarios: Lunes a Domingo de 7:00 AM a 7:00 PM
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="callejones" name="place" value="callejones">
+            <label for="callejones"><h2>Callejones de Dolores Hidalgo</h2></label>
+            <p class="place-description">
+                Los callejones del centro histórico de Dolores Hidalgo son famosos por su arquitectura colonial y sus tiendas de artesanías locales.
+            </p>
+            <p class="place-schedule">
+                Horarios: Abierto todo el día
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="plaza_principal" name="place" value="plaza_principal">
+            <label for="plaza_principal"><h2>Plaza Principal</h2></label>
+            <p class="place-description">
+                La Plaza Principal es el corazón de Dolores Hidalgo, rodeada de edificios históricos y cafés. Es un lugar perfecto para relajarse y disfrutar del ambiente local.
+            </p>
+            <p class="place-schedule">
+                Horarios: Abierto todo el día
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="templo_virgen_dolores" name="place" value="templo_virgen_dolores">
+            <label for="templo_virgen_dolores"><h2>Templo de la Virgen de los Dolores</h2></label>
+            <p class="place-description">
+                Este templo es uno de los más antiguos de Dolores Hidalgo y está dedicado a la Virgen de los Dolores. Su arquitectura barroca y su historia lo hacen destacar.
+            </p>
+            <p class="place-schedule">
+                Horarios: Lunes a Domingo de 8:00 AM a 6:00 PM
+            </p>
+        </div>
+
+        <div class="place-item">
+            <input type="checkbox" id="exhacienda_san_antonio" name="place" value="exhacienda_san_antonio">
+            <label for="exhacienda_san_antonio"><h2>Exhacienda de San Antonio</h2></label>
+            <p class="place-description">
+                Esta exhacienda restaurada ofrece un vistazo a la vida rural del siglo XVIII en México, con jardines y una arquitectura impresionante.
+            </p>
+            <p class="place-schedule">
+                Horarios: Martes a Domingo de 10:00 AM a 5:00 PM
+            </p>
+        </div>
+
+        <!-- Puedes seguir añadiendo más lugares con descripciones y horarios aquí -->
+
+        <button class="select-btn">Seleccionar Lugares</button>
+        <a href="/parte4" class="back-btn">Regresar</a>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -18,6 +18,9 @@ import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-
 import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenido-paquete/contenido-paquete.component';
 import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
 import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
+import { Parte3Component } from './parte3/parte3.component';
+import { Parte4Component } from './parte4/parte4.component';
+import { Parte5Component } from './parte5/parte5.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acor
     AdminPaquetesPersoComponent,
     ContenidoPaqueteComponent,
     AcordeonPaqueteComponent,
-    AcordeonExperienciasComponent
+    AcordeonExperienciasComponent,
+    Parte3Component,
+    Parte4Component,
+    Parte5Component
   ],
   imports: [
     BrowserModule,

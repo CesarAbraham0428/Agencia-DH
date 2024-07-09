@@ -12,9 +12,6 @@ import { RegistroComponent } from './pages/registro/registro.component';
 
 import { LoginComponent } from './pages/login/login.component';
 import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
-import { Parte3Component } from './parte3/parte3.component';
-import { Parte4Component } from './parte4/parte4.component';
-import { Parte5Component } from './parte5/parte5.component';
 
 const routes: Routes = [
   {path:'', component:InicioComponent },
@@ -25,9 +22,6 @@ const routes: Routes = [
   },
 
   {path:'parte2', component:Parte2Component},
-  {path:'parte3', component:Parte3Component},
-  {path:'parte4', component:Parte4Component},
-  {path:'parte5', component:Parte5Component},
 
   {path:'login', component:LoginComponent},
 

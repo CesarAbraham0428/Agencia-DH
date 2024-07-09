@@ -1,50 +1,37 @@
 <div class="body-container">
-  <form id="custom-package-form" action="/parte3" method="GET">
-      <h2>Crea tu paquete</h2>
-      
-      <label for="additional-question2">¿De qué lugar nos visitas?</label>
-      <input type="text" id="additional-question2" name="additional-question2" 
-             pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" 
-             title="Solo se aceptan letras y espacios" required>
-      
-      <label for="travel-with">Con quién viaja</label>
-      <select id="travel-with" name="travel-with" required>
-          <option value="" disabled selected>Seleccione una opción</option>
-          <option value="alone">Solo</option>
-          <option value="with-family">Con Familia</option>
-          <option value="with-partner">Con pareja</option>
-      </select>
-      
-      <label for="budget">Tu presupuesto</label>
-      <select id="budget" name="budget" required>
-          <option value="" disabled selected>Seleccione una opción</option>
-          <option value="4000-6000">4000-6000</option>
-          <option value="6000-8000">6000-8000</option>
-          <option value="8000-10000">8000-10000</option>
-          <option value="10000-14000">10000-14000</option>
-      </select>
-      
-      <!-- Preguntas adicionales -->
-      <label for="additional-question1">¿Qué tipo de actividades te gustan?</label>
-      <input type="text" id="additional-question1" name="additional-question1" 
-             pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" 
-             title="Solo se aceptan letras y espacios" required>
-      
-      <label for="additional-question3">¿Hay algún lugar o fecha específica que desees visitar?</label>
-      <input type="text" id="additional-question3" name="additional-question3" 
-             pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" 
-             title="Solo se aceptan letras y espacios" required>
-      <!-- Fin de preguntas adicionales -->
-      
-      <div class="form-actions">
-          <a href="/paquetes-personalizados" class="nav_menu_link link">Atrás</a>
-          <button type="submit" class="nav_menu_link link">elije tu paquete</button>
-      </div>
+  <form action="https://formspree.io/f/xjkbvbnr" method="post">
+    <label for="tour-type">Tipo de tour</label>
+    <select id="tour-type" name="tour-type">
+      <option value="culture-history">Cultura e Historia</option>
+      <option value="honeymoon">Luna de miel</option>
+      <option value="business-trip">Viaje de negocios</option>
+      <option value="holiday-vacations">Vacaciones de navidad</option>
+    </select>
+
+    <label for="travel-with">Con quien viaja</label>
+    <select id="travel-with" name="travel-with">
+      <option value="alone">Solo</option>
+      <option value="with-family">Con Familia</option>
+      <option value="with-partner">Con pareja</option>
+    </select>
+
+    <label for="budget">Tu presupuesto</label>
+    <select id="budget" name="budget">
+      <option value="4000-6000">4000-6000</option>
+      <option value="6000-8000">6000-8000</option>
+      <option value="8000-10000">8000-10000</option>
+      <option value="10000-14000">10000-14000</option>
+    </select>
+
+    <div class="form-actions">
+      <a href="/paquetes-personalizados" class="nav_menu_link link">Atrás</a>
+      <input type="submit" value="Enviar" />
+    </div>
   </form>
-  
   <div class="img-container">
-      <img src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000"
-           alt="Imagen de Dolores Hidalgo">
+    <img
+      src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000"
+      alt=""
+    />
   </div>
 </div>
-

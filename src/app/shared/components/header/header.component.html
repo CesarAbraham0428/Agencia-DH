@@ -1,0 +1,30 @@
+<!-- src/app/shared/header/header.component.html -->
+<header class="header">
+  <nav [class.nav--activate]="menuActive" class="nav">
+    <a routerLink="" class="nav__logo link">
+      <img src="./assets/img/logo.jpg" alt="Logo Pagina" class="nav__logo__img" />
+      <p class="nav__logo__nombre">Senderos DH</p>
+    </a>
+
+    <div class="nav__menu">
+      <li class="nav__menu__item">
+        <a routerLink="" class="nav__menu__link link " (click)="closeMenu()">Inicio</a>
+      </li>
+      <li class="nav__menu__item">
+        <a routerLink="/paquetes" class="nav__menu__link link" (click)="closeMenu()">Paquetes</a>
+      </li>
+      <li class="nav__menu__item">
+        <a routerLink="/paquetes-personalizados" class="nav__menu__link link" (click)="closeMenu()">Paquetes Personalizados</a>
+      </li>
+      <li class="nav__menu__item">
+        <a routerLink="/login" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
+      </li>
+      <li class="nav__menu__item">
+        <a routerLink="/admin-personalizados" class="nav__menu__link link" (click)="closeMenu()">Admin-Paquetes</a>
+      </li>
+    </div>
+
+    <img src="./assets/icons/list.svg" alt="menu" class="img-nav" (click)="toggleMenu()" />
+    <img src="./assets/icons/x-lg.svg" alt="menu" class="img-nav-cerrar" (click)="toggleMenu()">
+  </nav>
+</header>

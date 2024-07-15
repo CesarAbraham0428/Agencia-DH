@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistroService } from '../../services/auth.service';
+import { RegistroService } from '../../core/services/auth.service';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { firstValueFrom } from 'rxjs';
 import { MustMatch } from '../../validators/must-match.validator';

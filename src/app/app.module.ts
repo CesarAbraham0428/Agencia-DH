@@ -10,7 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { RegistroService } from '../app/services/auth.service';
+import { RegistroService } from './core/services/auth.service';
 
 /* Parte del administrador */
 
@@ -18,6 +18,10 @@ import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-
 import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenido-paquete/contenido-paquete.component';
 import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
 import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
+import { UsuarioModule } from './usuario/usuario.module';
+import { AdminModule } from './admin/admin.module';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,16 @@ import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acor
     AdminPaquetesPersoComponent,
     ContenidoPaqueteComponent,
     AcordeonPaqueteComponent,
-    AcordeonExperienciasComponent
+    AcordeonExperienciasComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UsuarioModule,
+    AdminModule
   ],
   providers: [
     RegistroService,

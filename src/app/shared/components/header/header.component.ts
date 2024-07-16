@@ -13,6 +13,7 @@ export class HeaderComponent {
   router = inject(Router);
   loginService = inject(LoginService);
 
+ // Código para ocultar y visualizar el menu de navegación
   toggleMenu() {
     this.menuActive = !this.menuActive;
   }

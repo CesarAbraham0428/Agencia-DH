@@ -15,17 +15,15 @@ const routes: Routes = [
   {path:'registro', component:RegistroComponent},
   {path:'login', component:LoginComponent},
   {path:'paquetes', component:PredeterminadoComponent},
-
-  {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent},//poner guards de usuario
-
-  {path:'parte2', component:Parte2Component}, //poner guards de usuario
+  {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,} ,
+  {path:'parte2', component:Parte2Component,},
 
   {path:'admin-personalizados', component:AdminPaquetesPersoComponent}, //poner guards de admin
 
   {path:'404', component:Error404PageComponent},
   {path:'**',redirectTo:'404'},
-  {path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  {path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule)},
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)}
 ];
 
 @NgModule({

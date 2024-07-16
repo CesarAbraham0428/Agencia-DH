@@ -1,41 +1,26 @@
 <section class="text-center text-lg-start mx-auto">
-<form [formGroup]="formLog" class="form">
+  <form [formGroup]="formLog" class="form" (ngSubmit)="onSubmit()">
     <h2 class="login-title">Iniciar Sesión</h2>
     <div class="mb-3">
-        <label for="email" class="form-label">Correo Electrónico</label>
-        <input [ngClass]="{
-        'is-invalid':
-          hasErrors('email', 'required') || hasErrors('email', 'email')
-      }" type="email" class="form-control" id="email" placeholder="Correo Electrónico" formControlName="email" />
-        <div class="text-danger" *ngIf="hasErrors('email', 'email')">
-            Email formato inválido.
-        </div>
-        <div class="text-danger" *ngIf="hasErrors('email', 'required')">
-            Campo requerido.
-        </div>
+      <label for="email_usr" class="form-label">Correo Electrónico</label>
+      <input [ngClass]="{
+        'is-invalid': hasErrors('email_usr', 'required') || hasErrors('email_usr', 'email')
+      }" type="email" class="form-control" id="email_usr" placeholder="Correo Electrónico" formControlName="email_usr" />
+      <div class="text-danger" *ngIf="hasErrors('email_usr', 'email')">Email formato inválido.</div>
+      <div class="text-danger" *ngIf="hasErrors('email_usr', 'required')">Campo requerido.</div>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Contraseña</label>
-
-        <input [ngClass]="{
-        'is-invalid':
-          hasErrors('password', 'required') ||
-          hasErrors('password', 'minlength')
-      }" type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password"/>
-        <div class="text-danger" *ngIf="hasErrors('password', 'required')">
-            Campo requerido.
-        </div>
-        <div class="text-danger" *ngIf="hasErrors('password', 'minlength')">
-            La Contraseña debe tener mínimo 6 carácteres.
-        </div>
+      <label for="passwd_usr" class="form-label">Contraseña</label>
+      <input [ngClass]="{
+        'is-invalid': hasErrors('passwd_usr', 'required') || hasErrors('passwd_usr', 'minlength')
+      }" type="password" class="form-control" id="passwd_usr" placeholder="Contraseña" formControlName="passwd_usr"/>
+      <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'required')">Campo requerido.</div>
+      <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
     </div>
     <button type="submit" class="btn btn-primary py-2">Iniciar Sesión</button>
     <p class="my-2" id="#">
-        <a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a>
+      <a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a>
     </p>
-    <button routerLink="/registro" class="btn btn-danger" type="submit" data-bs-dismiss="modal">
-        Registrarse
-    </button>
-
-</form>
+    <button routerLink="/registro" class="btn btn-danger" type="button" data-bs-dismiss="modal">Registrarse</button>
+  </form>
 </section>

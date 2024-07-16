@@ -8,19 +8,20 @@
 
     <div class="nav__menu">
       <li class="nav__menu__item">
-        <a routerLink="" class="nav__menu__link link " (click)="closeMenu()">Inicio</a>
+        <a [routerLink]="['/inicio']" class="nav__menu__link link " (click)="closeMenu()">Inicio</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/paquetes" class="nav__menu__link link" (click)="closeMenu()">Paquetes</a>
+        <a [routerLink]="['/paquetes']" class="nav__menu__link link" (click)="closeMenu()">Paquetes</a>
+      </li>
+      <!-- *ngIf="isAuthenticated" -->
+      <li class="nav__menu__item" >
+        <a [routerLink]="['/paquetes-personalizados']" class="nav__menu__link link" (click)="closeMenu()">Paquetes Personalizados</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/paquetes-personalizados" class="nav__menu__link link" (click)="closeMenu()">Paquetes Personalizados</a>
+        <a [routerLink]="['/login']" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
       </li>
       <li class="nav__menu__item">
-        <a routerLink="/login" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
-      </li>
-      <li class="nav__menu__item">
-        <a routerLink="/admin-personalizados" class="nav__menu__link link" (click)="closeMenu()">Admin-Paquetes</a>
+        <a [routerLink]="['/admin-personalizados']" class="nav__menu__link link" (click)="closeMenu()">Admin-Paquetes</a>
       </li>
     </div>
 

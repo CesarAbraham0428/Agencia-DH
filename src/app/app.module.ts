@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MaterialModule } from './material/material.module';
 
 import { RegistroService } from './core/services/auth.service';
 
@@ -25,6 +21,8 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { AdminModule } from './admin/admin.module';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { MaterialModule } from './material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -36,19 +34,22 @@ import { HeaderComponent } from './shared/components/header/header.component';
     AcordeonPaqueteComponent,
     AcordeonExperienciasComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LayoutPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     UsuarioModule,
-    AdminModule
+    AdminModule,
+    MaterialModule,
   ],
   providers: [
     RegistroService,
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

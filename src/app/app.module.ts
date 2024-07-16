@@ -9,6 +9,9 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MaterialModule } from './material/material.module';
 
 import { RegistroService } from './core/services/auth.service';
 

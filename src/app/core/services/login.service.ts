@@ -24,5 +24,13 @@ export class LoginService {
         })
       );
 
-    }
   }
+
+  isLogged(): boolean {
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('authToken');
+      return token ? true : false;
+    }
+    return false;
+  }
+}

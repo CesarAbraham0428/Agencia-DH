@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
       const { email_usr, passwd_usr } = this.formLog.value;
       this.loginService.loginUsuario(email_usr, passwd_usr).subscribe(
         response => {
-          console.log('Login successful', response);
+          // console.log('Login successful', response);
           // Navegar a otra ruta en caso de éxito, por ejemplo, a la página principal
           this.router.navigate(['/inicio']);
         },
         error => {
-          console.error('Login failed', error);
+          // console.error('Login failed', error);
           // Manejar el error, mostrar un mensaje al usuario, etc.
         }
       );

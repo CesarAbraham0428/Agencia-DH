@@ -8,6 +8,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
+import { loginGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path: 'inicio', component: InicioComponent },
@@ -15,8 +16,8 @@ const routes: Routes = [
   {path:'registro', component:RegistroComponent},
   {path:'login', component:LoginComponent},
   {path:'paquetes', component:PredeterminadoComponent},
-  {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,} ,
-  {path:'parte2', component:Parte2Component,},
+  {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,canActivate: [loginGuard]} ,
+  {path:'parte2', component:Parte2Component,canActivate: [loginGuard]},
 
   {path:'admin-personalizados', component:AdminPaquetesPersoComponent}, //poner guards de admin
 

@@ -1,5 +1,6 @@
 // src/app/shared/header/header.component.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   menuActive = false;
+ loginService = inject(LoginService);
 
   toggleMenu() {
     this.menuActive = !this.menuActive;

@@ -1,6 +1,7 @@
 // src/app/shared/header/header.component.ts
 import { Component, inject } from '@angular/core';
 import { LoginService } from '../../../core/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { LoginService } from '../../../core/services/login.service';
 })
 export class HeaderComponent {
   menuActive = false;
- loginService = inject(LoginService);
+  router = inject(Router);
+  loginService = inject(LoginService);
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
@@ -17,5 +19,13 @@ export class HeaderComponent {
 
   closeMenu() {
     this.menuActive = false;
+  }
+
+  onClickLogOut(){
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('authToken');
+    }
+
+    this.router.navigate(['/inicio']);
   }
 }

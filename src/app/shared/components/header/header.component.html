@@ -20,6 +20,10 @@
       <li class="nav__menu__item" *ngIf="!loginService.isLogged()">
         <a [routerLink]="['/login']" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
       </li>
+      <li class="nav__menu__item" *ngIf="loginService.isLogged()">
+        <!-- salir del logout -->
+        <a class="nav__menu__link link" (click)="onClickLogOut()">Cerrar sesión</a>
+      </li>
       <li class="nav__menu__item">
         <a [routerLink]="['/admin-personalizados']" class="nav__menu__link link" (click)="closeMenu()">Admin-Paquetes</a>
       </li>

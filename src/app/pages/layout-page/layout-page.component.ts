@@ -15,7 +15,6 @@ export class LayoutPageComponent {
     { label: 'Hoteles', icon: 'home_work', url: ''},
     {label: 'Paquetes', icon: 'source_environment', url: ''},
     {label: 'Paquetes Pree', icon: 'edit_square', url: ''},
-    {label: 'Itinerarios', icon: 'wysiwyg', url: ''},
     {label: 'Guias', icon: 'contacts', url:''},
     {label: 'Atractivos', icon: 'temple_buddhist', url:''},
     {label: 'Ciudad', icon: 'location_on', url:''}

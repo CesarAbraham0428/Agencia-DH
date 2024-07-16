@@ -22,7 +22,7 @@
       </li>
       <li class="nav__menu__item" *ngIf="loginService.isLogged()">
         <!-- salir del logout -->
-        <a class="nav__menu__link link" (click)="onClickLogOut()">Cerrar sesión</a>
+        <a [routerLink]="[]" class="login link" (click)="onClickLogOut()">Cerrar sesión</a>
       </li>
       <li class="nav__menu__item">
         <a [routerLink]="['/admin-personalizados']" class="nav__menu__link link" (click)="closeMenu()">Admin-Paquetes</a>

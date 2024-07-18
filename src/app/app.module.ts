@@ -6,7 +6,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
+import { LayoutPageComponent } from './admin/pages/layout-page/layout-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { RegistroService } from './core/services/auth.service';

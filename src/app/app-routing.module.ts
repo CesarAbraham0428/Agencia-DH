@@ -6,7 +6,7 @@ import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados
 import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
+import { AdminPaquetesPersoComponent } from './admin/pages/admin-paquetes-perso/admin-paquetes-perso.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { loginGuard } from './guard/auth.guard';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,canActivate: [loginGuard]} ,
   {path:'parte2', component:Parte2Component,canActivate: [loginGuard]},
 
-  {path:'admin-personalizados', component:AdminPaquetesPersoComponent}, //poner guards de admin
+  // {path:'admin-personalizados', component:AdminPaquetesPersoComponent},
 
   {path:'404', component:Error404PageComponent},
   {path:'**',redirectTo:'404'},

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PackageDataService } from "../../../core/services/admin-crear-paquete.service";
+import { PackageDataService } from "../../../../core/services/admin-crear-paquete.service";
 
 @Component({
   selector: 'app-acordeon-paquete',

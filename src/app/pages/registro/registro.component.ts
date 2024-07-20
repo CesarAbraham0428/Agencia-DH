@@ -5,6 +5,7 @@ import { Usuario } from '../../interfaces/usuario.interface';
 import { firstValueFrom } from 'rxjs';
 import { MustMatch } from '../../validators/must-match.validator';
 import { COUNTRY_CITY_DATA} from '../../data/country-city-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -20,7 +21,8 @@ export class RegistroComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private registroService: RegistroService
+    private registroService: RegistroService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class RegistroComponent implements OnInit {
       nom_usr: ['', Validators.required],
       app_usr: ['', Validators.required],
       passwd_usr: ['', Validators.required],
-      confirm_passwd_usr: ['', Validators.required],
+      confirm_passwd_usr: ['', Validators.required,],
       nacionalidad_usr: ['', Validators.required],
       sexo_usr: ['', Validators.required],
       edad_usr: ['', [Validators.required, Validators.min(5)]],
@@ -53,14 +55,20 @@ export class RegistroComponent implements OnInit {
       const usuario: Usuario = this.registroForm.value;
       try {
         const response = await firstValueFrom(this.registroService.registrarUsuario(usuario));
-        console.log('Usuario registrado:', response);
+        // console.log('Usuario registrado:', response);
+        alert('Usuario registrado, confirmar correo');
         this.registroForm.reset();
+        this.router.navigate(['/inicio']);
       } catch (error) {
-        console.error('Error al registrar usuario:', error);
+        // console.error('Error al registrar usuario:', error);
+        alert('Error al registrar usuario');
       }
     } else {
-      console.error('Formulario inválido. Revise los campos.');
+      // console.error('Formulario inválido. Revise los campos.');
+      alert('Formulario inválido. Revise los campos.');
       this.registroForm.markAllAsTouched();
     }
   }
+
 }
+

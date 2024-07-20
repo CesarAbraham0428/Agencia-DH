@@ -12,7 +12,7 @@ export class LayoutPageComponent {
   public sidebarItems=[
     {label:'Usuarios',icon: 'manage_accounts', url: ''},
     {label: 'Transportistas', icon: 'airport_shuttle', url:''},
-    { label: 'Hoteles', icon: 'home_work', url: ''},
+    {label: 'Hoteles', icon: 'home_work', url: ''},
     {label: 'Paquetes', icon: 'source_environment', url: ''},
     {label: 'Paquetes Pree', icon: 'edit_square', url: ''},
     {label: 'Guias', icon: 'contacts', url:''},

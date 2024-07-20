@@ -11,31 +11,39 @@
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" for="nom_usr">Nombre</label>
-                    <input type="text" id="nom_usr" class="form-control" formControlName="nom_usr" placeholder="Nombre" required>
+                    <input [ngClass]="{'is-invalid': hasErrors('nom_usr', 'required')}"
+                    type="text" id="nom_usr" class="form-control" formControlName="nom_usr" placeholder="Nombre" required>
+                    <div class="text-danger" *ngIf="hasErrors('nom_usr', 'required')">Campo requerido.</div>
                   </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" for="app_usr">Apellido(s)</label>
-                    <input type="text" id="app_usr" class="form-control" formControlName="app_usr" placeholder="Apellido(s)" required>
+                    <input [ngClass]="{'is-invalid': hasErrors('app_usr', 'required')}"
+                    type="text" id="app_usr" class="form-control" formControlName="app_usr" placeholder="Apellido(s)" required>
+                    <div class="text-danger" *ngIf="hasErrors('app_usr', 'required')">Campo requerido.</div>
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 mb-4">
-                  <select class="form-select" aria-label="Selecciona" formControlName="nacionalidad_usr" required>
+                  <select [ngClass]="{'is-invalid': hasErrors('nacionalidad_usr', 'required')}"
+                  class="form-select" aria-label="Selecciona" formControlName="nacionalidad_usr" required>
                     <option value="" selected disabled>Selecciona tu País</option>
                     <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
                   </select>
+                  <div class="text-danger" *ngIf="hasErrors('nacionalidad_usr', 'required')">Campo requerido.</div>
                 </div>
                 <div class="col-md-6 mb-4">
-                  <select class="form-select" aria-label="Sexo" formControlName="sexo_usr" required>
+                  <select [ngClass]="{'is-invalid': hasErrors('sexo_usr', 'required')}"
+                  class="form-select" aria-label="Sexo" formControlName="sexo_usr" required>
                     <option value="" selected disabled>Selecciona tu Sexo</option>
                     <option value="Hombre">Hombre</option>
                     <option value="Mujer">Mujer</option>
                   </select>
+                  <div class="text-danger" *ngIf="hasErrors('sexo_usr', 'required')">Campo requerido.</div>
                 </div>
               </div>
 
@@ -43,15 +51,19 @@
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" for="edad_usr">Edad</label>
-                    <input type="number" min="5" id="edad_usr" class="form-control" formControlName="edad_usr" placeholder="Edad" required>
+                    <input [ngClass]="{'is-invalid': hasErrors('edad_usr', 'required')}"
+                    type="number" min="5" id="edad_usr" class="form-control" formControlName="edad_usr" placeholder="Edad" required>
+                    <div class="text-danger" *ngIf="hasErrors('edad_usr', 'required')">Campo requerido.</div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <label class="form-label" for="ciudad_usr">Ciudad</label>
-                  <select class="form-select" id="ciudad_usr" aria-label="Selecciona tu Ciudad" formControlName="ciudad_usr" required>
+                  <select [ngClass]="{'is-invalid': hasErrors('ciudad_usr', 'required')}"
+                  class="form-select" id="ciudad_usr" aria-label="Selecciona tu Ciudad" formControlName="ciudad_usr" required>
                     <option value="" selected disabled>Selecciona tu Ciudad</option>
                     <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
                   </select>
+                  <div class="text-danger" *ngIf="hasErrors('ciudad_usr', 'required')">Campo requerido.</div>
                 </div>
               </div>
 
@@ -59,13 +71,18 @@
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" for="email_usr">Email</label>
-                    <input type="email" id="email_usr" class="form-control" formControlName="email_usr" placeholder="Correo electrónico" required>
+                    <input [ngClass]="{'is-invalid': hasErrors('email_usr', 'required')}"
+                    type="email" id="email_usr" class="form-control" formControlName="email_usr" placeholder="Correo electrónico">
+                    <div class="text-danger" *ngIf="hasErrors('email_usr', 'required')">Campo requerido.</div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" for="passwd_usr">Contraseña</label>
-                    <input type="password" id="passwd_usr" class="form-control" formControlName="passwd_usr" placeholder="Contraseña" required>
+                    <input [ngClass]="{'is-invalid': hasErrors('passwd_usr', 'required') || hasErrors('passwd_usr', 'minlength')}"
+                      type="password" id="passwd_usr" class="form-control" formControlName="passwd_usr" placeholder="Contraseña" minlength="6">
+                    <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'required')">Campo requerido.</div>
+                    <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
                   </div>
                 </div>
               </div>
@@ -77,7 +94,7 @@
                     <label class="form-label" for="confirm_passwd_usr">Confirmar Contraseña</label>
                     <input type="password" id="confirm_passwd_usr" class="form-control" formControlName="confirm_passwd_usr" placeholder="Confirmar Contraseña" required>
                     <div *ngIf="registroForm.get('confirm_passwd_usr')?.errors?.['mustMatch']">
-                      Las contraseñas deben coincidir.
+                      <span class="red">Las contraseñas deben coincidir.</span>
                     </div>
                   </div>
                 </div>
@@ -98,5 +115,4 @@
     </div>
   </div>
 </section>
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">

@@ -17,12 +17,15 @@ import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-
 import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenido-paquete/contenido-paquete.component';
 import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
 import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
-import { UsuarioModule } from './usuario/usuario.module';
 import { AdminModule } from './admin/admin.module';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
 
+//Parte del Dialogos de Registro
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [
@@ -35,15 +38,16 @@ import { MaterialModule } from './material/material.module';
     AcordeonExperienciasComponent,
     HeaderComponent,
     FooterComponent,
-    LayoutPageComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    UsuarioModule,
     AdminModule,
     MaterialModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     RegistroService,

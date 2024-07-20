@@ -11,6 +11,7 @@ import { Error404PageComponent } from './shared/pages/error404-page/error404-pag
 import { loginGuard } from './guard/auth.guard';
 
 const routes: Routes = [
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'inicio', component: InicioComponent },
   {path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {path:'registro', component:RegistroComponent},
@@ -23,8 +24,6 @@ const routes: Routes = [
 
   {path:'404', component:Error404PageComponent},
   {path:'**',redirectTo:'404'},
-  {path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule)},
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)}
 ];
 
 @NgModule({

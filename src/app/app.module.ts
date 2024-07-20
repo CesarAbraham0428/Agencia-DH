@@ -22,6 +22,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MaterialModule } from './material/material.module';
 
+//Parte del Dialogos de Registro
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { MaterialModule } from './material/material.module';
     AcordeonPaqueteComponent,
     AcordeonExperienciasComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,8 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     AdminModule,
     MaterialModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     RegistroService,

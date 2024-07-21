@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { PackageDataService } from "../../../../core/services/admin-crear-paquete.service";
+import { PackageDataService } from '../../../../core/services/admin-crear-paquete.service';
+
 
 @Component({
   selector: 'app-contenido-paquete',
   templateUrl: './contenido-paquete.component.html',
-  styleUrl: './contenido-paquete.component.scss'
+  styleUrls: ['./contenido-paquete.component.scss']
 })
 export class ContenidoPaqueteComponent implements OnInit {
-    selectedItems: any[] = [];
+  selectedItems: any[] = [];
 
-    constructor(private packageDataService: PackageDataService) {}
+  constructor(private packageDataService: PackageDataService) {}
 
-    ngOnInit() {
-      this.packageDataService.selectedItems$.subscribe(items => {
-        this.selectedItems = items;
-      });
-    }
+  ngOnInit() {
+    this.packageDataService.selectedItems$.subscribe(items => {
+      this.selectedItems = items;
+    });
+  }
 
-    clearItems() {
-      this.packageDataService.clearItems();
-    }
+  clearItems() {
+    this.packageDataService.clearItems();
+  }
+
+  removeItem(item: any) {
+    this.packageDataService.removeItem(item);
+  }
 }

@@ -11,12 +11,19 @@ hr{
 
 /* Títulos principales y subtítulos */
 .main-title {
-  font-size: 3em;
-  color: #000000;
+  width: 100%;
+  color: transparent;
   text-align: center;
-  margin-bottom: 70px;
-  font-weight: 600;
-  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 41px;
+  font-weight: bolder;
+  letter-spacing: 5px;
+  background-image: url('./imagenes/montanas-de-chile-compressor.jpg');
+  background-size: cover;
+  background-position-y: bottom;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sub-title {
@@ -27,13 +34,10 @@ hr{
   font-weight: 600;
 }
 
-
 .card {
   background-color: #ffffff;
   color: #000000;
-  padding: 15px;
-  border-radius: 10px;
-  margin: 15px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +48,6 @@ hr{
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 10px;
   height: 200px;
 }
 
@@ -52,7 +55,7 @@ hr{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 .card-title {
@@ -65,8 +68,8 @@ hr{
 .card-text {
   font-size: 15px;
   margin-bottom: 10px;
-  text-align: center;
 }
+
 
 .btn-primary {
   display: block;
@@ -85,8 +88,57 @@ hr{
   border-radius: 20px;
   margin-top: 25px;
   padding: 10px 30px;
-  margin: 0 auto;
 }
+
+.btn-tercero{
+  background-color: #000000;
+  border: none;
+  border-radius: 20px;
+  padding: 3px 25px;
+  margin-top: 25px;
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.modal-description{
+  text-align: center;
+}
+
+//Tablas
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table caption {
+  caption-side: top;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px 0;
+}
+.table th, .table td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+.table th {
+  background-color: #c5c5c5;
+  color: black;
+  text-align: left;
+}
+.table tr:nth-child(even) {
+  background-color: #000000;
+}
+
+.table tbody tr th {
+  background-color: #ffffff;
+}
+
+/*.table img {
+  max-width: 200px;
+  height: auto;
+}*/
 
 .gradient-brand-color {
   background-image: -webkit-linear-gradient(0deg, #376be6 0%, #6470ef 100%);

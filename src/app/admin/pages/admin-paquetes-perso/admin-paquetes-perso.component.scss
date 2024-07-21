@@ -1,32 +1,36 @@
-h1{
-    margin: 2em 0 1em;
+.container-title {
 
-    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    h1 {
+        display: inline-block;
+        margin: 2em 0 1.2em;
+
+        padding: 0.5em;
+
+        background-color: rgb(240, 146, 129);
+
+        border-radius: 15px;
+    }
 }
 
-hr{
-    border: 3px solid purple;
-}
 
-p{
-    margin-left: 2em;
-    font-size: 2em;
-    color: rosybrown;
-}
 
-.container__accordion{
+.container__accordion {
     display: grid;
     grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto 1fr;
 
     margin: 20px;
 }
 
-.seleccion{
+.seleccion {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2em;
-    
-    &__buttons{
+    gap: 1.5em;
+
+    &__buttons {
         padding-bottom: 0.5em;
         margin-left: auto;
         margin-right: auto;

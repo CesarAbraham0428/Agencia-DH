@@ -1,22 +1,30 @@
-<h1>Creación de Paquetes</h1>
+<div class="container-title">
+  <h1>Creación de Paquetes</h1>
+</div>
 <hr />
 
-<p>Paso {{paso}}</p>
+<app-pasos-navegacion [currentStep]="currentStep" />
 
 <section class="container__accordion">
 
   <div class="seleccion">
+    
+    <ng-container [ngSwitch]="currentStep">
+      <app-acordeon-paquete *ngSwitchCase="1" />
+      <app-acordeon-experiencias *ngSwitchCase="2" />
+      <app-crear-itinerario *ngSwitchCase="3" />
 
-    <app-acordeon-paquete />
-    <div class="seleccion__buttons">
-      <button class="btn btn-primary mx-3">Atrás</button>
-      <button class="btn btn-primary">Siguiente</button>
+      <div class="seleccion__buttons">
 
-    </div>
+        <button class="btn btn-secondary mx-3" (click)="previousStep()">Atrás</button>
+        <button class="btn btn-primary" (click)="nextStep()">Siguiente</button>
+
+      </div>
+    </ng-container>
 
   </div>
 
-  <!-- Registro -->
+  <!-- Lista del contenido del Paquete Personalizado -->
   <app-contenido-paquete />
 
 </section>

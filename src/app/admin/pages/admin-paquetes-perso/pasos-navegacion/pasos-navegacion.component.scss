@@ -1,0 +1,41 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+  }
+  
+  .step-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    gap: 3em;
+  }
+  
+  .step-navigation {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .step {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: rgb(180, 172, 172);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+    }
+    
+    .step.active {
+      background-color: royalblue;
+    }
+    
+    .step-description {
+     margin-left: 0.8em;
+      font-size: 1.6em;
+      color: rgb(0, 0, 0);
+    }
+    

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../core/services/login.service';
 import { Router } from '@angular/router';
+import { DialogContentExampleDialog } from '../../shared/directives/dialog-content/dialog-content.component';
+import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor (
     private form: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ){}
 
 
@@ -27,22 +32,39 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.formLog.valid) {
       const { email_usr, passwd_usr } = this.formLog.value;
-      this.loginService.loginUsuario(email_usr, passwd_usr).subscribe(
-        response => {
-          // console.log('Login successful', response);
-          // Navegar a otra ruta en caso de éxito, por ejemplo, a la página principal
+      try {
+        await firstValueFrom(this.loginService.loginUsuario(email_usr, passwd_usr));
+        const userRole = localStorage.getItem('userRole');
+        this.formLog.reset();
+
+        this.dialog.open(DialogContentExampleDialog, {
+          width: '250px',
+          data: { message: 'Inicio de sesión exitoso' }
+        });
+
+        if (userRole === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
           this.router.navigate(['/inicio']);
-        },
-        error => {
-          // console.error('Login failed', error);
-          // Manejar el error, mostrar un mensaje al usuario, etc.
         }
-      );
+      } catch (error) {
+        this.dialog.open(DialogContentExampleDialog, {
+          width: '250px',
+          data: { message: 'Contraseña o correo incorrectos' }
+        });
+      }
+    } else {
+      this.dialog.open(DialogContentExampleDialog, {
+        width: '250px',
+        data: { message: 'Formulario inválido. Revise los campos.' }
+      });
+      this.formLog.markAllAsTouched();
     }
   }
+
 
   hasErrors(controlName: string, errorName: string): boolean {
     const control = this.formLog.get(controlName);

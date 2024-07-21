@@ -17,7 +17,9 @@ export class LayoutPageComponent {
     {label: 'Paquetes Pers', icon: 'edit_square', url: './admin-personalizados'},
     {label: 'Guias', icon: 'contacts', url:''},
     {label: 'Atractivos', icon: 'temple_buddhist', url:''},
-    {label: 'Ciudad', icon: 'location_on', url:''}
+    {label: 'Ciudad', icon: 'location_on', url:''},
+    {label: 'Inicio', icon: 'door_front', url:'/inicio'}
+
   ]
 
 }

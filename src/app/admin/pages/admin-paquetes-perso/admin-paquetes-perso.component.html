@@ -17,7 +17,8 @@
       <div class="seleccion__buttons">
 
         <button class="btn btn-secondary mx-3" (click)="previousStep()">Atrás</button>
-        <button class="btn btn-primary" (click)="nextStep()">Siguiente</button>
+        <button class="btn btn-primary" *ngIf="currentStep!=3" (click)="nextStep()">Siguiente</button>
+        <button class="btn btn-primary" *ngIf="currentStep>=3">Crear Paquete</button>
 
       </div>
     </ng-container>

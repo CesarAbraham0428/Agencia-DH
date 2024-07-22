@@ -3,21 +3,28 @@
     flex-direction: column;
 
     margin-left: 2em;
-    padding: 1em;
 
     border: 1px solid #000;
 
     border-radius: 5px;
 
     &__title {
+        margin-top: 1em;
         text-align: center;
+        border-bottom: 1px solid #000;
     }
 
-    &__body {}
+    &__body {
+        padding: 1em;
+    }
 
     &__buttons {
-        margin-top: 0.5em;
-        margin-left: auto;
-        margin-right: auto;
+        margin:0 auto 1em auto;
     }
+}
+
+.contenidoPaquete__Servicios h2,
+.contenidoPaquete__Experiencias h2
+{
+    border-bottom: 1px solid rosybrown;
 }

@@ -4,17 +4,37 @@
     </div>
 
     <div class="contenidoPaquete__body">
-        <ul>
-            <li *ngFor="let item of selectedItems">
-                <hr>
-                <h3>{{ item.name }}</h3>
-                <p><strong>Dirección:</strong> {{ item.address }}</p>
-                <p><strong>Teléfono:</strong> {{ item.phone }}</p>
-                <p><strong>Horarios:</strong> {{ item.schedule }}</p>
-                <p><strong>Descripción:</strong> {{ item.description }}</p>
-                <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
-            </li>
-        </ul>
+
+        <div class="contenidoPaquete__Servicios">
+            <h2>Servicios</h2>
+            <ul>
+               <!--  <li *ngFor="let item of selectedItems">
+                    <hr>
+                    <h3>{{ item.name }}</h3>
+                    <p><strong>Dirección:</strong> {{ item.address }}</p>
+                    <p><strong>Teléfono:</strong> {{ item.phone }}</p>
+                    <p><strong>Horarios:</strong> {{ item.schedule }}</p>
+                    <p><strong>Descripción:</strong> {{ item.description }}</p>
+                    <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
+                </li> -->
+            </ul>
+        </div>
+
+        <div class="contenidoPaquete__Experiencias">
+            <h2>Experiencias</h2>
+            <ul>
+               <!--  <li *ngFor="let item of selectedItems">
+                    <hr>
+                    <h3>{{ item.name }}</h3>
+                    <p><strong>Dirección:</strong> {{ item.address }}</p>
+                    <p><strong>Teléfono:</strong> {{ item.phone }}</p>
+                    <p><strong>Horarios:</strong> {{ item.schedule }}</p>
+                    <p><strong>Descripción:</strong> {{ item.description }}</p>
+                    <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
+                </li> -->
+            </ul>
+        </div>
+
     </div>
 
     <div class="contenidoPaquete__buttons">

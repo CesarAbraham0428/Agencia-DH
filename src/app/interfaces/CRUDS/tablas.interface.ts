@@ -1,11 +1,11 @@
 export interface Hotel { //Para la tabla Hotel
-    id: number;
+    id_hotel: number;
     nombre: string;
     // ... otros campos
   }
   
   export interface Restaurante { //Para la tabla Restaurante
-    id: number;
+    id_restaurante: number;
     nombre: string;
     // ... otros campos
   }

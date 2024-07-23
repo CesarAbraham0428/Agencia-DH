@@ -29,7 +29,7 @@
           <p *ngIf="item.telefono"><strong>Teléfono:</strong> {{ item.telefono }}</p>
           <p *ngIf="item.horarios"><strong>Horarios:</strong> {{ item.horarios }}</p>
           <p *ngIf="item.tipo_vehiculo"><strong>Tipo de Vehículo:</strong> {{ item.tipo_vehiculo }}</p>
-          <button class="btn btn-danger" (click)="removeItem('servicio', item)">Eliminar</button>
+          <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
           <hr>
         </li>
       </ul>
@@ -39,3 +39,4 @@
     <button class="btn btn-warning " (click)="clearItems()">Limpiar Contenido</button>
   </div>
 </div>
+ 

@@ -6,7 +6,7 @@ import { Hotel, Restaurante } from '../../../../interfaces/CRUDS/tablas.interfac
 @Component({
   selector: 'app-acordeon-paquete',
   templateUrl: './acordeon-paquete.component.html',
-  styleUrl: './acordeon-paquete.component.scss'
+  styleUrls: ['./acordeon-paquete.component.scss']
 })
 export class AcordeonPaqueteComponent implements OnInit {
   Hotel: Hotel[] = [];
@@ -19,7 +19,6 @@ export class AcordeonPaqueteComponent implements OnInit {
     private packageDataService: PackageDataService,
     private genericService: ServicioGenericoCRUD
   ) {}
-
 
   ngOnInit() {
     this.cargarHoteles();
@@ -52,13 +51,10 @@ export class AcordeonPaqueteComponent implements OnInit {
   }
   
   selectItem(item: any) {
-    this.packageDataService.addItem('servicio', item);
+    this.packageDataService.addItem(item);
   }
-  
   
   deselectItem(item: any) {
-    this.packageDataService.removeItem('servicio', item);
-
+    this.packageDataService.removeItem(item);
   }
-
 }

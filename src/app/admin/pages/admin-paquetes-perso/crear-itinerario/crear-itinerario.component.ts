@@ -7,12 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./crear-itinerario.component.scss']
 })
 export class CrearItinerarioComponent {
-  startDate: string | undefined;
-  endDate: string | undefined;
-  activities: { time: string, description: string }[] = [];
+
+  activities: [] = [];
 
   addActivity() {
-    this.activities.push({ time: '', description: '' });
+    this.activities.push();
   }
 
   removeActivity(index: number) {

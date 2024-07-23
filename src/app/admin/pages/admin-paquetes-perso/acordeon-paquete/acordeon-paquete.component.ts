@@ -1,42 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { PackageDataService } from '../../../../core/services/admin-crear-paquete.service';
-import { HotelService } from '../../../../core/services/CRUDS/crud-hoteles.service';
-
+import { ServicioGenericoCRUD } from '../../../../core/services/CRUDS/crud-servicio.service';
+import { Hotel, Restaurante } from '../../../../interfaces/CRUDS/tablas.interface';
 
 @Component({
   selector: 'app-acordeon-paquete',
   templateUrl: './acordeon-paquete.component.html',
   styleUrl: './acordeon-paquete.component.scss'
 })
-export class AcordeonPaqueteComponent implements OnInit{
+export class AcordeonPaqueteComponent implements OnInit {
+  Hotel: Hotel[] = [];
+  Restaurante: Restaurante[] = [];
 
-  hoteles: any[] = [];
+  hoteles: any;
+  restaurantes: any;
 
   constructor(
     private packageDataService: PackageDataService,
-    private hotelService: HotelService
+    private genericService: ServicioGenericoCRUD
   ) {}
 
 
   ngOnInit() {
-    this.hotelService.getHoteles().subscribe(
+    this.cargarHoteles();
+    this.cargarRestaurantes();
+  }
+
+  cargarHoteles() {
+    this.genericService.getAll<Hotel>('Hotel').subscribe(
       data => {
         this.hoteles = data;
       },
       error => {
         console.error('Error al obtener hoteles:', error);
+        if (error.error && error.error.error) {
+          console.error('Mensaje de error del servidor:', error.error.error);
+        }
+      }
+    );
+  }
+
+  cargarRestaurantes() {
+    this.genericService.getAll<Restaurante>('Restaurante').subscribe(
+      data => {
+        this.restaurantes = data;
+      },
+      error => {
+        console.error('Error al obtener Restaurantes:', error);
       }
     );
   }
   
-  selectItem(hotel: any) {
-    this.packageDataService.addItem('servicio', hotel);
+  selectItem(item: any) {
+    this.packageDataService.addItem('servicio', item);
   }
   
   
-  deselectItem(hotel: any) {
-    this.packageDataService.removeItem('servicio', hotel);
+  deselectItem(item: any) {
+    this.packageDataService.removeItem('servicio', item);
+
   }
-  
 
 }

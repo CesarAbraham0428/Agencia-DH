@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -29,4 +29,4 @@ export class HotelService {
   deleteHotel(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
-}
+} */

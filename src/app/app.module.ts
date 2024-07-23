@@ -3,6 +3,8 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+
+
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';

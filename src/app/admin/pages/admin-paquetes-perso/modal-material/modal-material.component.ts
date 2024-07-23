@@ -2,12 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-export interface DialogData {
-  nombre: string;
-  costo: number;
-  tipo: string;
-}
-
 @Component({
   selector: 'app-modal-material',
   templateUrl: './modal-material.component.html',
@@ -18,13 +12,13 @@ export class ModalMaterialComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalMaterialComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      nombre: [data.nombre, Validators.required],
-      costo: [data.costo, [Validators.required, Validators.min(0)]],
-      tipo: [data.tipo, Validators.required]
+      nombre: ['', Validators.required],
+      costo: [0, [Validators.required, Validators.min(0)]],
+      tipo: ['', Validators.required]
     });
   }
 

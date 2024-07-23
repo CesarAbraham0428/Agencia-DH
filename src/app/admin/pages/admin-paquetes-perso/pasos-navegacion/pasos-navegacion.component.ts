@@ -11,8 +11,7 @@ export class PasosNavegacionComponent {
 
   steps = [
     { number: 1, description: 'Paso 1: Servicios' },
-    { number: 2, description: 'Paso 2: Experiencias' },
-    { number: 3, description: 'Paso 3: Creación de Itinerario' }
+    { number: 2, description: 'Paso 2: Creación de Itinerario' }
   ];
 
   get currentStepDescription(): string {

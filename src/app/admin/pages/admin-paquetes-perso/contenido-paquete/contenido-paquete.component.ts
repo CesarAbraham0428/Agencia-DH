@@ -17,16 +17,13 @@ export class ContenidoPaqueteComponent implements OnInit {
       this.servicios = servicios;
     });
 
-    this.packageDataService.experiencias$.subscribe(experiencias => {
-      this.experiencias = experiencias;
-    });
   }
 
   clearItems() {
     this.packageDataService.clearItems();
   }
 
-  removeItem(type: 'servicio' | 'experiencia', item: any) {
+  removeItem(type: 'servicio' , item: any) {
     this.packageDataService.removeItem(type, item);
   }
 }

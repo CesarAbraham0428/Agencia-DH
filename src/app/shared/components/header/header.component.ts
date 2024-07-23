@@ -25,6 +25,7 @@ export class HeaderComponent {
   onClickLogOut(){
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('userRole');
     }
 
     this.router.navigate(['/inicio']);

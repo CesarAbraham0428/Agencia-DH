@@ -14,9 +14,13 @@ export class LayoutPageComponent {
     {label: 'Paquetes', icon: 'source_environment', url: './admin-paquetes'},
     {label: 'Transportistas', icon: 'airport_shuttle', url:''},
     {label: 'Hoteles', icon: 'home_work', url: ''},
+    {label: 'Paquetes', icon: 'source_environment', url: ''},
+    {label: 'Paquetes Pree', icon: 'edit_square', url: ''},
     {label: 'Guias', icon: 'contacts', url:''},
     {label: 'Atractivos', icon: 'temple_buddhist', url:''},
-    {label: 'Ciudad', icon: 'location_on', url:''}
+    {label: 'Ciudad', icon: 'location_on', url:''},
+    {label: 'Inicio', icon: 'door_front', url:'/inicio'}
+
   ]
 
 }

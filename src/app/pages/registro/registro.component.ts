@@ -57,9 +57,8 @@ export class RegistroComponent implements OnInit {
     if (this.registroForm.valid) {
       const usuario: Usuario = this.registroForm.value;
       try {
-        const response = await firstValueFrom(this.registroService.registrarUsuario(usuario));
-        // console.log('Usuario registrado:', response);
-        // alert('Usuario registrado, confirmar correo');
+        await firstValueFrom(this.registroService.registrarUsuario(usuario));
+
         this.dialog.open(DialogContentExampleDialog, {
           width: '250px',
           data: { message: 'Usuario registrado, confirmar correo' }
@@ -67,16 +66,12 @@ export class RegistroComponent implements OnInit {
         this.registroForm.reset();
         this.router.navigate(['/inicio']);
       } catch (error) {
-        // console.error('Error al registrar usuario:', error);
-        // alert('Error al registrar usuario');
         this.dialog.open(DialogContentExampleDialog, {
           width: '250px',
           data: { message: 'Error al registrar usuario, el correo está en uso' }
         });
       }
     } else {
-      // console.error('Formulario inválido. Revise los campos.');
-      // alert('Formulario inválido. Revise los campos.');
       this.dialog.open(DialogContentExampleDialog, {
         width: '250px',
         data: { message: 'Formulario inválido. Revise los campos.' }

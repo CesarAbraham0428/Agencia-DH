@@ -1,10 +1,11 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-export const loginGuard = () => {
+
+export const userGuard = () => {
 
   const router = inject(Router);
-
-  if (typeof localStorage !== 'undefined' && localStorage.getItem('authToken')) {
+  //se puso usuario
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('authToken') && localStorage.getItem('userRole') == 'usuario') {
     return true;
   } else {
     router.navigate(['/login']);

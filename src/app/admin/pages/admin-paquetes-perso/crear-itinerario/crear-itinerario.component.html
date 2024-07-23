@@ -1,22 +1,45 @@
-<div class="itinerario">
+<div class="paquete">
 
-    <h2>Lista de Actividades a realizar.</h2>
-    <hr>
+    <div>
+        <h2>Información del Paquete</h2>
 
-    <div class="itinerario__actividades">
+        <label for="">Fecha de Inicio:</label>
+        <input type="date" [(ngModel)]="startDate">
+        
+        <label for="">Número de días que se quedará el Turista:</label>
+        <input type="number" [(ngModel)]="numberOfDays">
 
-        <div class="itinerario__body">
-            <div *ngFor="let activity of activities; let i = index" class="itinerario__item">
-                <label>Nombre:</label>
-                <input type="text" placeholder="Nombre de la actividad">
-                <label>Descripción:</label>
-                <input type="text">
-                <button class="btn btn-danger" (click)="removeActivity(i)">Eliminar</button>
+        <button class="btn btn-primary" (click)="generateDays()">Generar Itinerario</button>
+    </div>
+
+    <div class="paquete__actividades" *ngIf="days.length > 0">
+
+        <div *ngFor="let day of days; let i = index">
+            <h3>Día {{ i + 1 }} - {{ day.date }}</h3>
+            <div class="paquete__body">
+                <div *ngFor="let activity of day.activities; let j = index" class="paquete__item">
+                    <label for="">Hora</label>
+                    <input type="time" [(ngModel)]="activity.time">
+                    <label>Nombre:</label>
+                    <input type="text" placeholder="Nombre de la actividad" [(ngModel)]="activity.name">
+                    <label>Descripción:</label>
+                    <input type="text" [(ngModel)]="activity.description">
+                    <button class="btn btn-danger" (click)="removeActivity(i, j)">Eliminar</button>
+                </div>
             </div>
+            <div class="agregar">
+                <button class="btn btn-success" (click)="addActivity(i)">Agregar Actividad</button>
+            </div>
+            <hr>
         </div>
-        <div class="agregar">
-            <button class="btn btn-success" (click)="addActivity()">Agregar Actividad</button>
-        </div>
+    </div>
+
+    <div class="paquete-tipo">
+        <label for="">Tipo de Paquete</label>
+        <select name="select">
+            <option value="value1">Predeterminado</option>
+            <option value="value2" selected>Personalizado</option>
+        </select>
     </div>
 
 </div>

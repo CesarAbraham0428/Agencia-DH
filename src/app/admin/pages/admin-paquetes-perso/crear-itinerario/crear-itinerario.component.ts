@@ -1,5 +1,15 @@
-
 import { Component } from '@angular/core';
+
+interface Activity {
+  time: string;
+  name: string;
+  description: string;
+}
+
+interface Day {
+  date: string;
+  activities: Activity[];
+}
 
 @Component({
   selector: 'app-crear-itinerario',
@@ -8,14 +18,34 @@ import { Component } from '@angular/core';
 })
 export class CrearItinerarioComponent {
 
-  activities: [] = [];
+  startDate: string = '';
+  endDate: string = '';
+  numberOfDays: number = 0;
+  days: Day[] = [];
 
-  addActivity() {
-    this.activities.push();
+  generateDays() {
+    this.days = [];
+    let start = new Date(this.startDate);
+    for (let i = 0; i < this.numberOfDays; i++) {
+      let currentDate = new Date(start);
+      currentDate.setDate(start.getDate() + i);
+      this.days.push({
+        date: currentDate.toISOString().split('T')[0],
+        activities: []
+      });
+    }
   }
 
-  removeActivity(index: number) {
-    this.activities.splice(index, 1);
+  addActivity(dayIndex: number) {
+    const newActivity: Activity = {
+      time: '',
+      name: '',
+      description: ''
+    };
+    this.days[dayIndex].activities.push(newActivity);
+  }
+
+  removeActivity(dayIndex: number, activityIndex: number) {
+    this.days[dayIndex].activities.splice(activityIndex, 1);
   }
 }
- 

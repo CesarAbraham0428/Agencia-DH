@@ -25,7 +25,6 @@ import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenid
 import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
 import { CrearItinerarioComponent } from './pages/admin-paquetes-perso/crear-itinerario/crear-itinerario.component';
 import { PasosNavegacionComponent } from './pages/admin-paquetes-perso/pasos-navegacion/pasos-navegacion.component';
-import { ModalMaterialComponent } from './pages/admin-paquetes-perso/modal-material/modal-material.component';
 
 
 
@@ -37,7 +36,6 @@ import { ModalMaterialComponent } from './pages/admin-paquetes-perso/modal-mater
     AcordeonPaqueteComponent,
     CrearItinerarioComponent,
     PasosNavegacionComponent,
-    ModalMaterialComponent,
   ],
   imports: [
     CommonModule,

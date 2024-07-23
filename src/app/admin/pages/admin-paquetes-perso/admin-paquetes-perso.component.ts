@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-/* import { PaqueteService } from '../../../core/services/CRUDS/paquete.service'; */
-
-import { ModalMaterialComponent } from './modal-material/modal-material.component';
 
 @Component({
   selector: 'app-admin-paquetes-perso',
@@ -12,10 +8,7 @@ import { ModalMaterialComponent } from './modal-material/modal-material.componen
 export class AdminPaquetesPersoComponent {
   currentStep: number = 1;
 
-  constructor(
-    private dialog: MatDialog,
-/*     private paqueteService: PaqueteService */
-  ) {}
+  constructor() {}
 
   nextStep() {
     if (this.currentStep < 3) {
@@ -29,10 +22,4 @@ export class AdminPaquetesPersoComponent {
     }
   }
 
-  openModal() {
-    const dialogRef = this.dialog.open(ModalMaterialComponent, {
-      width: '300px',
-      data: {},
-    });
-  }
 }

@@ -24,14 +24,15 @@ export class AcordeonPaqueteComponent implements OnInit{
         this.hoteles = data;
       },
       error => {
-        console.error('Error al obtener Hoteles:', error);
+        console.error('Error al obtener hoteles:', error);
       }
     );
   }
-
+  
   selectItem(hotel: any) {
     this.packageDataService.addItem('servicio', hotel);
   }
+  
   
   deselectItem(hotel: any) {
     this.packageDataService.removeItem('servicio', hotel);

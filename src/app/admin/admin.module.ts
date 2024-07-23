@@ -3,8 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
+/* Importaciones de Angular Material */
+
 import { MaterialModule } from '../material/material.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; 
+
 
 /* Parte de Paquetes personalizados */
 
@@ -14,6 +26,7 @@ import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-
 import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
 import { CrearItinerarioComponent } from './pages/admin-paquetes-perso/crear-itinerario/crear-itinerario.component';
 import { PasosNavegacionComponent } from './pages/admin-paquetes-perso/pasos-navegacion/pasos-navegacion.component';
+import { ModalMaterialComponent } from './pages/admin-paquetes-perso/modal-material/modal-material.component';
 
 
 
@@ -26,12 +39,19 @@ import { PasosNavegacionComponent } from './pages/admin-paquetes-perso/pasos-nav
     AcordeonExperienciasComponent,
     CrearItinerarioComponent,
     PasosNavegacionComponent,
+    ModalMaterialComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule,
     MaterialModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule 
   ]
 })
 export class AdminModule { }

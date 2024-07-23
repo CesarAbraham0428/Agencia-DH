@@ -23,15 +23,15 @@ export class AcordeonExperienciasComponent implements OnInit {
         this.restaurantes = data;
       },
       error => {
-        console.error('Error al obtener Restaurantes:', error);
+        console.error('Error al obtener restaurantes:', error);
       }
     );
-  }
+  }  
 
   selectItem(restaurante: any) {
     this.packageDataService.addItem('experiencia', restaurante);
   }
-  
+    
   deselectItem(restaurante: any) {
     this.packageDataService.removeItem('experiencia', restaurante);
   }

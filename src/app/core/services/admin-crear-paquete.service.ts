@@ -1,32 +1,3 @@
-/* import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class PackageDataService {
-  private selectedItemsSource = new BehaviorSubject<any[]>([]);
-  selectedItems$ = this.selectedItemsSource.asObservable();
-
-  constructor() { }
-
-  addItem(item: any) {
-    const currentItems = this.selectedItemsSource.value;
-    this.selectedItemsSource.next([...currentItems, item]);
-  }
-
-  removeItem(item: any) {
-    const currentItems = this.selectedItemsSource.value;
-    this.selectedItemsSource.next(currentItems.filter(i => i !== item));
-  }
-
-  clearItems() {
-    this.selectedItemsSource.next([]);
-  }
-}
-
- */
-
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -34,30 +5,39 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class PackageDataService {
-  private serviciosSource = new BehaviorSubject<any[]>([]);
-  private experienciasSource = new BehaviorSubject<any[]>([]);
+  private serviciosSubject = new BehaviorSubject<any[]>([]);
+  private experienciasSubject = new BehaviorSubject<any[]>([]);
 
-  servicios$ = this.serviciosSource.asObservable();
-  experiencias$ = this.experienciasSource.asObservable();
+  servicios$ = this.serviciosSubject.asObservable();
+  experiencias$ = this.experienciasSubject.asObservable();
+
+  private servicios: any[] = [];
+  private experiencias: any[] = [];
 
   addItem(type: 'servicio' | 'experiencia', item: any) {
     if (type === 'servicio') {
-      this.serviciosSource.next([...this.serviciosSource.getValue(), item]);
-    } else {
-      this.experienciasSource.next([...this.experienciasSource.getValue(), item]);
+      this.servicios.push(item);
+      this.serviciosSubject.next(this.servicios);
+    } else if (type === 'experiencia') {
+      this.experiencias.push(item);
+      this.experienciasSubject.next(this.experiencias);
     }
   }
 
   removeItem(type: 'servicio' | 'experiencia', item: any) {
     if (type === 'servicio') {
-      this.serviciosSource.next(this.serviciosSource.getValue().filter(i => i !== item));
-    } else {
-      this.experienciasSource.next(this.experienciasSource.getValue().filter(i => i !== item));
+      this.servicios = this.servicios.filter(i => i !== item);
+      this.serviciosSubject.next(this.servicios);
+    } else if (type === 'experiencia') {
+      this.experiencias = this.experiencias.filter(i => i !== item);
+      this.experienciasSubject.next(this.experiencias);
     }
   }
 
   clearItems() {
-    this.serviciosSource.next([]);
-    this.experienciasSource.next([]);
+    this.servicios = [];
+    this.experiencias = [];
+    this.serviciosSubject.next(this.servicios);
+    this.experienciasSubject.next(this.experiencias);
   }
 }

@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Crear Paquete</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre del Paquete</mat-label>
+      <input matInput placeholder="Nombre del Paquete" formControlName="nombre">
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Costo del Paquete</mat-label>
+      <input matInput type="number" placeholder="Costo del Paquete" formControlName="costo">
+      <mat-error *ngIf="form.get('costo')?.hasError('required')">
+        El costo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="form.get('costo')?.hasError('min')">
+        El costo debe ser positivo.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Paquete</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option value="Personalizado">Personalizado</mat-option>
+        <mat-option value="Predeterminado">Predeterminado</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('tipo')?.hasError('required')">
+        El tipo de paquete es obligatorio.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onCreate()" [disabled]="!form.valid" cdkFocusInitial>Crear</button>
+</mat-dialog-actions>

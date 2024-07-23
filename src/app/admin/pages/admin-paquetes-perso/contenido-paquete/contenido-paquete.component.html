@@ -1,42 +1,46 @@
 <div class="contenidoPaquete">
-    <div class="contenidoPaquete__title">
-      <h1>Contenido del Paquete</h1>
+  <div class="contenidoPaquete__title">
+    <h1>Contenido del Paquete</h1>
+  </div>
+
+  <div class="contenidoPaquete__body">
+    <div class="contenidoPaquete__Servicios">
+      <h2>Servicios</h2>
+      <ul>
+        <li *ngFor="let item of servicios">
+          <hr>
+          <h3>{{ item.nombre_hotel || item.nombre_transporte || item.nombre_guia || item.nombre_servicio }}</h3>
+          <p *ngIf="item.descripcion_hotel || item.descripcion_transporte || item.descripcion_guia || item.descripcion_servicio">
+            <strong>Descripción:</strong> {{ item.descripcion_hotel || item.descripcion_transporte || item.descripcion_guia || item.descripcion_servicio }}
+          </p>
+          <p *ngIf="item.direccion"><strong>Dirección:</strong> {{ item.direccion }}</p>
+          <p *ngIf="item.telefono"><strong>Teléfono:</strong> {{ item.telefono }}</p>
+          <p *ngIf="item.horarios"><strong>Horarios:</strong> {{ item.horarios }}</p>
+          <p *ngIf="item.tipo_vehiculo"><strong>Tipo de Vehículo:</strong> {{ item.tipo_vehiculo }}</p>
+          <button class="btn btn-danger" (click)="removeItem('servicio', item)">Eliminar</button>
+        </li>
+      </ul>
     </div>
-  
-    <div class="contenidoPaquete__body">
-      <div class="contenidoPaquete__Servicios">
-        <h2>Servicios</h2>
-        <ul>
-          <li *ngFor="let item of servicios">
-          
-            <h3>{{ item.nombre }}</h3>
-            <p><strong>Dirección:</strong> {{ item.address }}</p>
-            <p><strong>Teléfono:</strong> {{ item.phone }}</p>
-            <p><strong>Horarios:</strong> {{ item.schedule }}</p>
-            <p><strong>Descripción:</strong> {{ item.description }}</p>
-            <button class="btn btn-danger" (click)="removeItem('servicio', item)">Eliminar</button>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="contenidoPaquete__Experiencias">
-        <h2>Experiencias</h2>
-        <ul>
-          <li *ngFor="let item of experiencias">
-            <hr>
-            <h3>{{ item.name }}</h3>
-            <p><strong>Dirección:</strong> {{ item.address }}</p>
-            <p><strong>Teléfono:</strong> {{ item.phone }}</p>
-            <p><strong>Horarios:</strong> {{ item.schedule }}</p>
-            <p><strong>Descripción:</strong> {{ item.description }}</p>
-            <button class="btn btn-danger" (click)="removeItem('experiencia', item)">Eliminar</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="contenidoPaquete__buttons">
-      <button class="btn btn-warning mx-3" (click)="clearItems()">Limpiar Contenido</button>
+
+    <div class="contenidoPaquete__Experiencias">
+      <h2>Experiencias</h2>
+      <ul>
+        <li *ngFor="let item of experiencias">
+          <hr>
+          <h3>{{ item.nombre_restaurante || item.nombre_museo || item.nombre_vinedo || item.nombre_lugar_turistico }}</h3>
+          <p *ngIf="item.descripcion_restaurante || item.descripcion_museo || item.descripcion_vinedo || item.descripcion_lugar_turistico">
+            <strong>Descripción:</strong> {{ item.descripcion_restaurante || item.descripcion_museo || item.descripcion_vinedo || item.descripcion_lugar_turistico }}
+          </p>
+          <p *ngIf="item.direccion"><strong>Dirección:</strong> {{ item.direccion }}</p>
+          <p *ngIf="item.telefono"><strong>Teléfono:</strong> {{ item.telefono }}</p>
+          <p *ngIf="item.horarios"><strong>Horarios:</strong> {{ item.horarios }}</p>
+          <button class="btn btn-danger" (click)="removeItem('experiencia', item)">Eliminar</button>
+        </li>
+      </ul>
     </div>
   </div>
-  
+
+  <div class="contenidoPaquete__buttons">
+    <button class="btn btn-warning mx-3" (click)="clearItems()">Limpiar Contenido</button>
+  </div>
+</div>

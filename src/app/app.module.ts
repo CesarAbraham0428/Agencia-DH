@@ -7,6 +7,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { FormsModule } from '@angular/forms';
 
 import { RegistroService } from './core/services/auth.service';
 
@@ -24,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,7 @@ import { DialogContentExampleDialog } from './shared/directives/dialog-content/d
     RegistroComponent,
     HeaderComponent,
     FooterComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import { DialogContentExampleDialog } from './shared/directives/dialog-content/d
     AdminModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaterialTimepickerModule,
+    FormsModule
   ],
   providers: [
     RegistroService,

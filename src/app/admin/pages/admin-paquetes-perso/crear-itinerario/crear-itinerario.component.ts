@@ -1,4 +1,5 @@
 
+// crear-itinerario.component.ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,14 +10,13 @@ import { Component } from '@angular/core';
 export class CrearItinerarioComponent {
   startDate: string | undefined;
   endDate: string | undefined;
-  activities: { time: string, description: string }[] = [];
+  activities: { date: string, time: string, description: string }[] = [];
 
   addActivity() {
-    this.activities.push({ time: '', description: '' });
+    this.activities.push({ date: '', time: '', description: '' });
   }
 
   removeActivity(index: number) {
     this.activities.splice(index, 1);
   }
 }
- 

@@ -1,14 +1,13 @@
 <div class="container-title">
   <h1>Creación de Paquetes</h1>
 </div>
-<hr />
 
 <app-pasos-navegacion [currentStep]="currentStep" />
 
 <section class="container__accordion">
 
   <div class="seleccion">
-    
+
     <ng-container [ngSwitch]="currentStep">
       <app-acordeon-paquete *ngSwitchCase="1" />
       <app-acordeon-experiencias *ngSwitchCase="2" />

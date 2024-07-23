@@ -1,0 +1,52 @@
+<div class="title">
+  <h1>Experiencias</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Tipo de Experiencia</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                  <button class="btn btn-warning btn-smr-2" (click)="edit(i)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteRow(i)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <h2>Experiencias</h2>
+      <form class="form">
+        <label>Tipo de Experiencia</label>
+        <select class="form-control" [(ngModel)]="producto" name="producto">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Hotel">Atractivo Turistico</option>
+          <option value="Transporte">Restaurante</option>
+          <option value="Guía">Viñedo</option>
+        </select>
+        <label>Descripción</label>
+        <input type="text" class="form-control" [(ngModel)]="description" name="description">
+        <div class="row mt-3">
+          <button type="button" class="btn btn-success" (click)="agregar()" *ngIf="!isEditing">Agregar</button>
+          <button type="button" class="btn btn-success" (click)="save()" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

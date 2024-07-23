@@ -24,20 +24,26 @@
             phone: '+52 418 182 0123',
             schedule: 'Entrada: 3:00 PM | Salida: 12:00 PM',
             description: 'Un hotel céntrico con servicios de alta calidad y cómodas habitaciones.'
-          })">Seleccionar</button>          
+          })">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 2 -->
         <div class="hotel">
           <h2>Hotel Posada Cocomacan</h2>
           <p><strong>Dirección:</strong> Calle Hidalgo 23, Centro, 37800 Dolores Hidalgo, GTO.</p>
           <p><strong>Teléfono:</strong> +52 418 182 0456</p>
-          <p><strong>Horarios:</strong> Entrada: 2:00 PM | Salida: 11:00 AM</p>
+          <p><strong>Horarios:</strong> Entrada: 2:00 PM | Salida: 11:00 PM</p>
           <p><strong>Descripción:</strong> Posada tradicional con un ambiente acogedor y excelente servicio al
             cliente.</p>
-          <button type="submit" class="select-btn" name="hotel" value="Hotel Posada Cocomacan">Seleccionar</button>
+          <button type="submit" class="select-btn" (click)="selectItem({
+            name: 'Hotel Posada Cocomacan',
+            address: 'Calle Hidalgo 23, Centro, 37800 Dolores Hidalgo, GTO.',
+            phone: '+52 418 182 0456',
+            schedule: 'Entrada: 2:00 PM | Salida: 11:00 PM',
+            description: 'Posada tradicional con un ambiente acogedor y excelente servicio al cliente'
+          })">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 3 -->
         <div class="hotel">
           <h2>Hotel La Santísima Trinidad</h2>
@@ -48,7 +54,7 @@
           <button type="submit" class="select-btn" name="hotel"
             value="Hotel La Santísima Trinidad">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 4 -->
         <div class="hotel">
           <h2>Hotel San Diego</h2>
@@ -59,7 +65,7 @@
           </p>
           <button type="submit" class="select-btn" name="hotel" value="Hotel San Diego">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 5 -->
         <div class="hotel">
           <h2>Hotel El Relicario</h2>
@@ -69,7 +75,7 @@
           <p><strong>Descripción:</strong> Hotel histórico con habitaciones elegantes y ubicación privilegiada.</p>
           <button type="submit" class="select-btn" name="hotel" value="Hotel El Relicario">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 6 -->
         <div class="hotel">
           <h2>Hotel Don Porfirio</h2>
@@ -79,7 +85,7 @@
           <p><strong>Descripción:</strong> Alojamiento con encanto en el corazón de Dolores Hidalgo.</p>
           <button type="submit" class="select-btn" name="hotel" value="Hotel Don Porfirio">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 7 -->
         <div class="hotel">
           <h2>Hotel Boutique Casa Chiquita</h2>
@@ -90,7 +96,7 @@
           <button type="submit" class="select-btn" name="hotel"
             value="Hotel Boutique Casa Chiquita">Seleccionar</button>
         </div>
-
+        <br>
         <!-- Hotel 8 -->
         <div class="hotel">
           <h2>Hotel Casa Don Quijote</h2>
@@ -175,5 +181,5 @@
     </div>
   </div>
 
-  
+
 </div>

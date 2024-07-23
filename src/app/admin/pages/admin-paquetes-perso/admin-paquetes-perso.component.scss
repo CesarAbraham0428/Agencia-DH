@@ -4,14 +4,18 @@
     justify-content: center;
 
     h1 {
+        font-size: 4.2rem;
         display: inline-block;
         margin: 2em 0 1.2em;
-
         padding: 0.5em;
-
-        background-color: rgb(240, 146, 129);
-
+        color: #000;
         border-radius: 15px;
+        font-weight: bold;
+        margin: 1rem 0;
+        background: linear-gradient(135deg, #28153c, #341613, #544a65); // Gradiente con múltiples colores
+        -webkit-background-clip: text; // Aplica el gradiente al texto
+        -webkit-text-fill-color: transparent; // Hace el color del texto transparente para mostrar el gradiente
+        background-clip: text; // Aplica el gradiente al texto
     }
 }
 
@@ -21,7 +25,6 @@
     display: grid;
     grid-template-columns: 3fr 2fr;
     grid-template-rows: auto 1fr;
-
     margin: 20px;
 }
 
@@ -35,4 +38,34 @@
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #5a6268, #6c757d);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #0056b3, #007bff);
+      transform: translateY(-2px);
+    }
+  }
 }

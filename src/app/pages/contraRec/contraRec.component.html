@@ -1,0 +1,17 @@
+<section class="text-center">
+  <div class="contenedor-login">
+    <form class="form"  [formGroup]="contraRecForm" (ngSubmit)="onSubmit()">
+      <h2 class="login-title">Cambiar Contraseña</h2>
+      <div class="mb-3">
+        <label for="newPassword" class="form-label">Nueva Contraseña</label>
+        <input formControlName="newPassword" [ngClass]="{'is-invalid': hasErrors('newPassword', 'required') || hasErrors('newPassword', 'minlength')}"
+        type="password" class="form-control" id="newPassword" placeholder="Contraseña" minlength="6"/>
+        <div class="text-danger" *ngIf="hasErrors('newPassword', 'required')">Campo requerido.</div>
+        <div class="text-danger" *ngIf="hasErrors('newPassword', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
+      </div>
+      <button type="submit" class="btn btn-primary py-2">Confirmar</button>
+      <p class="my-2" id="#">
+      </p>
+    </form>
+  </div>
+  </section>

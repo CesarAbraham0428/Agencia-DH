@@ -1,0 +1,38 @@
+.login-title {
+    text-align: center;
+}
+
+section {
+    min-height: 100vh;
+
+    background-color: #262020;
+}
+
+.contenedor-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 500px;
+
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(https://verestmagazine.com/wp-content/uploads/2023/10/Dolores-Hidalgo-Guanajuato-1.jpg);
+
+    @media (width<600px) {
+        background-image: none;
+    }
+}
+
+
+.form {
+    position: absolute;
+    width: 400px;
+
+    margin-top: 2em;
+    padding: 1.5em;
+
+    border: solid 1px #000;
+    border-radius: 10px;
+    background-color: #fff;
+}

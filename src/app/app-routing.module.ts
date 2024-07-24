@@ -9,6 +9,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { userGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';
+import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
+import { ContraRecComponent } from './pages/contraRec/contraRec.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
   {path:'registro', component:RegistroComponent},
   {path:'login', component:LoginComponent},
   {path:'paquetes', component:PredeterminadoComponent},
+  {path:'enviar-correo-recuperacion', component:RecuperarPComponent},
+  {path:'reestablecer-contraseña', component:ContraRecComponent},
+
   {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,canActivate: [userGuard]} ,
   {path:'parte2', component:Parte2Component,canActivate: [userGuard]},
 

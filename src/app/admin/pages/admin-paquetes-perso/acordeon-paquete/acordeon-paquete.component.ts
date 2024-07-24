@@ -31,7 +31,7 @@ export class AcordeonPaqueteComponent implements OnInit {
         this.hoteles = data;
       },
       error => {
-        console.error('Error al obtener hoteles:', error);
+        console.error('Error al obtener Hoteles:', error);
         if (error.error && error.error.error) {
           console.error('Mensaje de error del servidor:', error.error.error);
         }

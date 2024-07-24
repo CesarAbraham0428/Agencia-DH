@@ -26,7 +26,7 @@
   
     <div class="paquete__actividades" *ngIf="days.length > 0">
   
-      <div *ngFor="let day of days; let i = index">
+<!--       <div *ngFor="let day of days; let i = index">
         <h3>Día {{ i + 1 }} - {{ day.date }}</h3>
         <div class="paquete__body">
           <div *ngFor="let activity of day.activities; let j = index" class="paquete__item">
@@ -43,7 +43,32 @@
           <button class="btn btn-success" (click)="addActivity(i)">Agregar Actividad</button>
         </div>
         <hr>
+      </div> -->
+
+      <div *ngFor="let day of days; let i = index">
+        <h3>Día {{ i + 1 }} - {{ day.date }}</h3>
+        <div class="paquete__body">
+        <div *ngFor="let activity of day.activities; let j = index">
+          <label for="">Hora</label>
+          <input type="time" [(ngModel)]="activity.time">
+          <label>Nombre:</label>
+          <input type="text" placeholder="Nombre de la actividad" [(ngModel)]="activity.name">
+          <label>Descripción:</label>
+          <input type="text" [(ngModel)]="activity.description">
+          <button class="btn btn-danger" (click)="removeActivity(i, j)">Eliminar</button>
+          <select [(ngModel)]="activity.servicioAsociado">
+            <option [ngValue]="null">Seleccione un servicio</option>
+            <option *ngFor="let servicio of selectedPackage.servicios" [ngValue]="servicio">
+              {{ servicio.nombre_hotel || servicio.nombre_restaurante }} ({{ servicio.tipo }})
+            </option>
+          </select>
+        </div>
+          <div class="agregar">
+            <button class="btn btn-success" (click)="addActivity(i)">Agregar Actividad</button>
+          </div>
+        </div>
       </div>
+
     </div>
   
     <button class="btn btn-primary" (click)="createPackage()" [disabled]="!areFieldsFilled()">Crear Paquete</button>

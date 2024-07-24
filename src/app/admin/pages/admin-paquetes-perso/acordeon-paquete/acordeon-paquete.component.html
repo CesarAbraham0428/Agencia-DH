@@ -16,7 +16,7 @@
           <p><strong>Costo:</strong> {{ hotel.costo_hotel }}</p>
           <p><strong>Servicios:</strong> {{ hotel.servicios_hotel }}</p>
           <p><strong>Típologia:</strong> {{ hotel.tipologia_hotel }}</p>
-          <button type="button" class="select-btn" (click)="selectItem(hotel)">Seleccionar</button>
+          <button type="button" class="select-btn" (click)="selectItem(hotel, 'Hotel')">Seleccionar</button>
           <hr>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <p><strong>Costo:</strong> {{ restaurante.costo_restaurante }}</p>
           <p><strong>Descripción:</strong> {{ restaurante.descrip_restaurante }}</p>
           <p><strong>Servicios:</strong> {{ restaurante.servicios_restaurante }}</p>
-          <button type="button" class="select-btn" (click)="selectItem(restaurante)">Seleccionar</button>
+          <button type="button" class="select-btn" (click)="selectItem(restaurante, 'Hotel')">Seleccionar</button>
           <hr>
         </div>
       </div>

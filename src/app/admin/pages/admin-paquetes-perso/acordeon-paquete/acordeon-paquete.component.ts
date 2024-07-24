@@ -50,8 +50,10 @@ export class AcordeonPaqueteComponent implements OnInit {
     );
   }
   
-  selectItem(item: any) {
-    this.packageDataService.addItem(item);
+  selectItem(item: any, tipo: string) {
+    const servicioConTipo = { ...item, tipo };
+    this.packageDataService.addItem(servicioConTipo);
+    console.log('Servicio seleccionado:', servicioConTipo);
   }
   
   deselectItem(item: any) {

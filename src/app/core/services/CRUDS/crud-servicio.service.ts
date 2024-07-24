@@ -18,10 +18,12 @@ export class ServicioGenericoCRUD {
     return this.http.get<any>(`${this.apiUrl}/${entityName}/${id}`);
   }
 
+ 
+
   create(entityName: string, entity: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${entityName}`, entity);
   }
-
+  
   update(entityName: string, id: number, entity: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${entityName}/${id}`, entity);
   }
@@ -30,3 +32,5 @@ export class ServicioGenericoCRUD {
     return this.http.delete<any>(`${this.apiUrl}/${entityName}/${id}`);
   }
 }
+
+ /* Esto es para que funcione lo de CREAR Paquete no lo borrren! */

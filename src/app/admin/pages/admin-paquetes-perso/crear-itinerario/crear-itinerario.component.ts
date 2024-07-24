@@ -3,6 +3,7 @@ import { PackageDataService } from '../../../../core/services/admin-crear-paquet
 import { ServicioGenericoCRUD } from '../../../../core/services/CRUDS/crud-servicio.service';
 
 interface Activity {
+  tipo: any;
   time: string;
   name: string;
   description: string;
@@ -39,12 +40,12 @@ export class CrearItinerarioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.packageDataService.selectedPackage$.subscribe(selectedPackage => {
-      this.selectedPackage = selectedPackage;
-      console.log('Selected package:', this.selectedPackage); // Verifica aquí
+    this.packageDataService.servicios$.subscribe(servicios => {
+      console.log('Servicios actualizados en CrearItinerarioComponent:', servicios);
+      this.selectedPackage = { ...this.selectedPackage, servicios };
     });
   }
-  
+
   generateDays() {
     this.days = [];
     let start = new Date(this.startDate);
@@ -63,7 +64,8 @@ export class CrearItinerarioComponent implements OnInit {
       time: '',
       name: '',
       description: '',
-      date: this.days[dayIndex].date
+      date: this.days[dayIndex].date,
+      tipo: undefined
     };
     this.days[dayIndex].activities.push(newActivity);
   }
@@ -95,31 +97,54 @@ export class CrearItinerarioComponent implements OnInit {
         costo_paquete: this.packageCost,
         id_usr: this.id_usr,
         id_agencia: this.id_agencia,
-        activities: this.days.flatMap(day => day.activities),
-        servicios: this.selectedPackage ? this.selectedPackage.servicios.map((s: any) => ({
+        activities: this.days.flatMap(day => day.activities.map(act => ({
+          nombre_actividad: act.name,
+          fecha_actividad: act.date,
+          hora_actividad: act.time,
+          descripcion_actividad: act.description,
+          id_servicio: this.getServiceId(this.selectedPackage.servicios.find((s: { tipo: any; }) => s.tipo === act.tipo)),
+          tipo_servicio: act.tipo
+        }))),
+        servicios: this.selectedPackage.servicios.map((s: { tipo: any; }) => ({
           id: this.getServiceId(s),
-          tipo: this.getServiceType(s)
-        })) : []
+          tipo: s.tipo
+        }))
       };
+  
       console.log('Datos del paquete a enviar:', packageData);
-      this.servicioGenericoCRUD.create('Paquete', packageData).subscribe(response => {
-        console.log('Paquete creado exitosamente:', response);
-      }, error => {
-        console.error('Error al crear el paquete:', error);
-      });
+      
+      this.servicioGenericoCRUD.create('Paquete', packageData).subscribe(
+        response => {
+          console.log('Paquete creado exitosamente:', response);
+        },
+        error => {
+          console.error('Error al crear el paquete:', error);
+        }
+      );
+    } else {
+      console.log('Campos no llenos o incompletos');
     }
   }
   
   getServiceId(servicio: any): number {
-    return servicio.id_hotel || servicio.id_restaurante || servicio.id_transporte || servicio.id_guia || servicio.id;
+    if (!servicio) return 0;
+    switch(servicio.tipo) {
+      case 'Hotel':
+        return servicio.id_hotel;
+      case 'Restaurante':
+        return servicio.id_restaurante;
+      // Añade más casos según sea necesario
+      default:
+        return servicio.id || 0;
+    }
   }
   
   getServiceType(servicio: any): string {
-    if (servicio.id_hotel) return 'hotel';
-    if (servicio.id_restaurante) return 'restaurante';
-    if (servicio.id_transporte) return 'transporte';
-    if (servicio.id_guia) return 'guia';
-    return 'otro';
+    if (!servicio) return 'Otro'; // Cambiamos 'desconocido' por 'Otro'
+    if (servicio.id_hotel) return 'Hotel';
+    if (servicio.id_restaurante) return 'Restaurante';
+    if (servicio.id_guia) return 'Guia';
+    return 'Otro';
   }
   
 

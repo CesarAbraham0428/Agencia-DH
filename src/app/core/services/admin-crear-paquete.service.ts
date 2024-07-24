@@ -29,9 +29,12 @@ export class PackageDataService {
 
   addItem(item: any) {
     const itemId = this.getItemId(item);
-    if (!this.servicios.some(servicio => this.getServicioId(servicio) === itemId && this.getServicioTipo(servicio) === this.getServicioTipo(item))) {
+    const itemTipo = item.tipo;
+    if (!this.servicios.some(servicio => this.getServicioId(servicio) === itemId && servicio.tipo === itemTipo)) {
       this.servicios.push(item);
       this.serviciosSubject.next(this.servicios);
+      console.log('Servicio añadido:', item);
+      console.log('Servicios actuales:', this.servicios);
     }
   }
 

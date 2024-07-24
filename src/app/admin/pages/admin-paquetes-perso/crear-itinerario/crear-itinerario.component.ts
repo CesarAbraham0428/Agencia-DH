@@ -96,7 +96,10 @@ export class CrearItinerarioComponent implements OnInit {
         id_usr: this.id_usr,
         id_agencia: this.id_agencia,
         activities: this.days.flatMap(day => day.activities),
-        servicios: this.selectedPackage ? this.selectedPackage.servicios.map((s: any) => ({ id: s.id, tipo: s.tipo })) : [] // Incluye ID y tipo de servicio
+        servicios: this.selectedPackage ? this.selectedPackage.servicios.map((s: any) => ({
+          id: this.getServiceId(s),
+          tipo: this.getServiceType(s)
+        })) : []
       };
       console.log('Datos del paquete a enviar:', packageData);
       this.servicioGenericoCRUD.create('Paquete', packageData).subscribe(response => {
@@ -107,6 +110,17 @@ export class CrearItinerarioComponent implements OnInit {
     }
   }
   
+  getServiceId(servicio: any): number {
+    return servicio.id_hotel || servicio.id_restaurante || servicio.id_transporte || servicio.id_guia || servicio.id;
+  }
+  
+  getServiceType(servicio: any): string {
+    if (servicio.id_hotel) return 'hotel';
+    if (servicio.id_restaurante) return 'restaurante';
+    if (servicio.id_transporte) return 'transporte';
+    if (servicio.id_guia) return 'guia';
+    return 'otro';
+  }
   
 
   getDuration() {

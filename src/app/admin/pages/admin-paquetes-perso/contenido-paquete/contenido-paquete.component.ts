@@ -10,7 +10,6 @@ import { PackageDataService } from '../../../../core/services/admin-crear-paquet
 
 export class ContenidoPaqueteComponent implements OnInit {
   servicios: any[] = [];
-  experiencias: any[] = [];
 
   constructor(private packageDataService: PackageDataService) {}
 

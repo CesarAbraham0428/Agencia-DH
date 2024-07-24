@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { PackageDataService } from '../../../../core/services/admin-crear-paquete.service';
 import { ServicioGenericoCRUD } from '../../../../core/services/CRUDS/crud-servicio.service';
@@ -7,6 +6,7 @@ interface Activity {
   time: string;
   name: string;
   description: string;
+  date: string;
 }
 
 interface Day {
@@ -26,11 +26,11 @@ export class CrearItinerarioComponent implements OnInit {
   packageName: string = '';
   packageType: string = 'Personalizado';
   packageCost: number = 0;
-  id_usr: number = 1; // Asume un id_usr válido para la prueba
-  id_agencia: number = 1; // Asume un id_agencia válido para la prueba
-  id_guia: number = 1; // Asume un id_guia válido para la prueba
-  id_hotel: number = 1; // Asume un id_hotel válido para la prueba
-  id_restaurante: number = 1; // Asume un id_restaurante válido para la prueba
+  id_usr: number = 1; 
+  id_agencia: number = 1; 
+  id_guia: number = 1; 
+  id_hotel: number = 1; 
+  id_restaurante: number = 1; 
   selectedPackage: any;
 
   constructor(
@@ -41,9 +41,10 @@ export class CrearItinerarioComponent implements OnInit {
   ngOnInit() {
     this.packageDataService.selectedPackage$.subscribe(selectedPackage => {
       this.selectedPackage = selectedPackage;
+      console.log('Selected package:', this.selectedPackage); // Verifica aquí
     });
   }
-
+  
   generateDays() {
     this.days = [];
     let start = new Date(this.startDate);
@@ -61,7 +62,8 @@ export class CrearItinerarioComponent implements OnInit {
     const newActivity: Activity = {
       time: '',
       name: '',
-      description: ''
+      description: '',
+      date: this.days[dayIndex].date
     };
     this.days[dayIndex].activities.push(newActivity);
   }
@@ -76,13 +78,14 @@ export class CrearItinerarioComponent implements OnInit {
     }
     for (let day of this.days) {
       for (let activity of day.activities) {
-        if (!activity.time || !activity.name || !activity.description) {
+        if (!activity.time || !activity.name || !activity.description || !activity.date) {
           return false;
         }
       }
     }
     return true;
   }
+
 
   createPackage() {
     if (this.areFieldsFilled()) {
@@ -92,17 +95,26 @@ export class CrearItinerarioComponent implements OnInit {
         costo_paquete: this.packageCost,
         id_usr: this.id_usr,
         id_agencia: this.id_agencia,
-        id_guia: this.id_guia,
-        id_hotel: this.id_hotel,
-        id_restaurante: this.id_restaurante,
-        activities: this.days,
-        servicios: this.selectedPackage ? this.selectedPackage.servicios : []
+        activities: this.days.flatMap(day => day.activities),
+        servicios: this.selectedPackage ? this.selectedPackage.servicios.map((s: any) => ({ id: s.id, tipo: s.tipo })) : [] // Incluye ID y tipo de servicio
       };
+      console.log('Datos del paquete a enviar:', packageData);
       this.servicioGenericoCRUD.create('Paquete', packageData).subscribe(response => {
         console.log('Paquete creado exitosamente:', response);
       }, error => {
         console.error('Error al crear el paquete:', error);
       });
     }
+  }
+  
+  
+
+  getDuration() {
+    if (!this.startDate || this.days.length === 0) return 0;
+    const startDate = new Date(this.startDate);
+    const endDate = new Date(this.days[this.days.length - 1].date);
+    const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Adding 1 to include the start date
+    return diffDays;
   }
 }

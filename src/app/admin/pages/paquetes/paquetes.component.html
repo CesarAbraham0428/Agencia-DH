@@ -1,0 +1,59 @@
+<h1>Paquetes Existentes</h1>
+
+<section class="container-paquete">
+
+<article class="paquete" *ngFor="let paquete of paquetes">
+  <div class="paquete__title">
+    <h2>Paquete: {{paquete.nom_paquete}}</h2>
+    <hr>
+  </div>
+  <div class="paquete__info">
+    <p>Información del paquete:</p>
+    <p> <strong>Nombre del paquete:</strong> {{paquete.nom_paquete}}</p>
+    <p> <strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
+    <p> <strong>Costo:</strong> {{paquete.costo_paquete}}</p>
+  </div>
+  <hr>
+  <div class="paquete__services">
+    <h3>Servicios que ofrece:</h3>
+    <ul>
+      <li *ngFor="let servicio of paquete.servicios">
+        Tipo: {{servicio.tipo_servicio}} - Nombre: {{servicio.nombre}}
+      </li>
+    </ul>
+    <div class="paquete__activities">
+      <hr>
+      <h3>Itinerario:</h3>
+      <ul>
+        <li *ngFor="let actividad of paquete.actividades">
+
+              <p>Nombre del Servicio: {{actividad.nombre_servicio}}</p>
+
+             <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Descripción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><p>{{actividad.fecha_actividad}}</p></td>
+                    <td><p>{{actividad.hora_actividad}}</p></td>
+                    <td><p>{{actividad.descripcion_actividad}}</p></td>
+                  </tr>
+                </tbody>
+              </table>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="paquete__buttons">
+        <button type="button" class="btn btn-warning">Editar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+  </div>
+</article>
+
+</section>

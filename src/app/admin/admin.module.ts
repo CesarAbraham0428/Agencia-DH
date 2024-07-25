@@ -18,24 +18,26 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
 
 
-/* Parte de Paquetes personalizados */
+/* Parte de Craer Paquetes  */
 
-import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
-import { ContenidoPaqueteComponent } from './pages/admin-paquetes-perso/contenido-paquete/contenido-paquete.component';
-import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-paquete/acordeon-paquete.component';
-import { CrearItinerarioComponent } from './pages/admin-paquetes-perso/crear-itinerario/crear-itinerario.component';
-import { PasosNavegacionComponent } from './pages/admin-paquetes-perso/pasos-navegacion/pasos-navegacion.component';
+import { CraerPaquetesComponent } from './pages/crear-paquetes/crear-paquetes.component';
+import { ContenidoPaqueteComponent } from './pages/crear-paquetes/contenido-paquete/contenido-paquete.component';
+import { AcordeonPaqueteComponent } from './pages/crear-paquetes/acordeon-paquete/acordeon-paquete.component';
+import { CrearItinerarioComponent } from './pages/crear-paquetes/crear-itinerario/crear-itinerario.component';
+import { PasosNavegacionComponent } from './pages/crear-paquetes/pasos-navegacion/pasos-navegacion.component';
+import { PaquetesComponent } from './pages/paquetes/paquetes.component';
 
 
 
 @NgModule({
   declarations: [
     LayoutPageComponent,
-    AdminPaquetesPersoComponent,
+    CraerPaquetesComponent,
     ContenidoPaqueteComponent,
     AcordeonPaqueteComponent,
     CrearItinerarioComponent,
     PasosNavegacionComponent,
+    PaquetesComponent,
   ],
   imports: [
     CommonModule,

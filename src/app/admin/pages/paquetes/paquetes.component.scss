@@ -1,0 +1,47 @@
+h1{
+    text-align: center;
+}
+
+.container-paquete{
+    margin: 0 2em;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 2em;
+}
+
+.paquete{
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5em 1em ;
+
+    border: 1px solid #000;
+    border-radius: 8px;
+
+    &__title{
+
+        h2{
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-align: center;
+        }
+        
+    }
+
+    &__info p:first-child{
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: red ;
+    }
+
+    &__buttons{
+       display: flex;
+       justify-content: space-evenly;
+    }
+}
+
+h3{
+    font-weight: bold;
+}

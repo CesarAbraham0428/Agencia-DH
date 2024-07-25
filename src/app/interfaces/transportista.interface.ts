@@ -1,4 +1,5 @@
 export interface Transportista{
+  id_trans: number,
   nom_trans: string;
   apellidos_trans: string;
   alcance_trans: string;

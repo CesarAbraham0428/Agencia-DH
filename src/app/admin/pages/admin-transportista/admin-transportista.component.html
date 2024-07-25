@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let transportista of transportistas">
+      <tr *ngFor="let transportista of transportistas; let i = index">
         <td>{{ transportista.nom_trans }}</td>
         <td>{{ transportista.apellidos_trans }}</td>
         <td>{{ transportista.alcance_trans }}</td>
@@ -23,44 +23,44 @@
         <td>{{ transportista.servicios_trans }}</td>
         <td>{{ transportista.tel_trans }}</td>
         <td>
-          <button (click)="editTransportista(transportista)">Editar</button>
-          <button (click)="deleteTransportista(transportista.id)">Eliminar</button>
+          <button (click)="edit(i)">Editar</button>
+          <button (click)="deleteRow(i)">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <h2>{{ selectedTransportista ? 'Editar Transportista' : 'Agregar Transportista' }}</h2>
-  <form (ngSubmit)="saveTransportista()">
+  <h2>{{ isEditing ? 'Editar Transportista' : 'Agregar Transportista' }}</h2>
+  <form [formGroup]="transportistaForm" (ngSubmit)="save()">
     <div>
       <label>Nombre:</label>
-      <input [(ngModel)]="selectedTransportista?.nom_trans" name="nom_trans" required />
+      <input formControlName="nom_trans" />
     </div>
     <div>
       <label>Apellidos:</label>
-      <input [(ngModel)]="selectedTransportista?.apellidos_trans" name="apellidos_trans" required />
+      <input formControlName="apellidos_trans" />
     </div>
     <div>
       <label>Alcance:</label>
-      <input [(ngModel)]="selectedTransportista?.alcance_trans" name="alcance_trans" required />
+      <input formControlName="alcance_trans" />
     </div>
     <div>
       <label>Email:</label>
-      <input [(ngModel)]="selectedTransportista?.email_trans" name="email_trans" type="email" required />
+      <input formControlName="email_trans" type="email" />
     </div>
     <div>
       <label>Tarifa:</label>
-      <input [(ngModel)]="selectedTransportista?.tarifa_trans" name="tarifa_trans" type="number" required />
+      <input formControlName="tarifa_trans" type="number" />
     </div>
     <div>
       <label>Servicios:</label>
-      <input [(ngModel)]="selectedTransportista?.servicios_trans" name="servicios_trans" required />
+      <input formControlName="servicios_trans" />
     </div>
     <div>
       <label>Teléfono:</label>
-      <input [(ngModel)]="selectedTransportista?.tel_trans" name="tel_trans" required />
+      <input formControlName="tel_trans" />
     </div>
-    <button type="submit">{{ selectedTransportista ? 'Actualizar' : 'Agregar' }}</button>
-    <button type="button" (click)="cancelEdit()">Cancelar</button>
+    <button type="submit">{{ isEditing ? 'Actualizar' : 'Agregar' }}</button>
+    <button type="button" (click)="clearForm()">Cancelar</button>
   </form>
 </div>

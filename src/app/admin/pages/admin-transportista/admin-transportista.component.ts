@@ -67,7 +67,7 @@ export class AdminTransportistaComponent implements OnInit {
   deleteRow(index: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este transportista?')) {
       const transportista = this.transportistas[index];
-      const id = transportista;
+      const id = transportista.id_trans;
       this.transportistaService.deleteTransportista(id).subscribe(() => {
         this.transportistas.splice(index, 1);
       });

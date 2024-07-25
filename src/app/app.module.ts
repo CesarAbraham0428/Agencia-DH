@@ -25,7 +25,8 @@ import { MaterialModule } from './material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
-
+import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
+import { ContraRecComponent } from './pages/contraRec/contraRec.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { DialogContentExampleDialog } from './shared/directives/dialog-content/d
     HeaderComponent,
     FooterComponent,
     DialogContentExampleDialog,
+    RecuperarPComponent,
+    ContraRecComponent
   ],
   imports: [
     BrowserModule,

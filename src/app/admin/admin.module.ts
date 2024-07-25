@@ -15,8 +15,11 @@ import { AcordeonPaqueteComponent } from './pages/admin-paquetes-perso/acordeon-
 import { AcordeonExperienciasComponent } from './pages/admin-paquetes-perso/acordeon-experiencias/acordeon-experiencias.component';
 import { CrearItinerarioComponent } from './pages/admin-paquetes-perso/crear-itinerario/crear-itinerario.component';
 import { PasosNavegacionComponent } from './pages/admin-paquetes-perso/pasos-navegacion/pasos-navegacion.component';
-import { AdminExperienciasComponent } from './pages/admin-experiencias/admin-experiencias.component';
-import { AdminServiciosComponent } from './pages/admin-servicios/admin-servicios.component';
+import { AdminTransportistaComponent } from './pages/admin-transportista/admin-transportista.component';
+import { AdminHosteleriaComponent } from './pages/admin-hosteleria/admin-hosteleria.component';
+import { AdminGuiasComponent } from './pages/admin-guias/admin-guias.component';
+import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/admin-atractivos-turist.component';
+
 
 
 @NgModule({
@@ -28,8 +31,10 @@ import { AdminServiciosComponent } from './pages/admin-servicios/admin-servicios
     AcordeonExperienciasComponent,
     CrearItinerarioComponent,
     PasosNavegacionComponent,
-    AdminExperienciasComponent,
-    AdminServiciosComponent,
+    AdminTransportistaComponent,
+    AdminHosteleriaComponent,
+    AdminGuiasComponent,
+    AdminAtractivosTuristComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,78 @@
+<div class="title">
+  <h1>Guías</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Calle</th>
+              <th>Número de Calle</th>
+              <th>Comunidad</th>
+              <th>Categoría</th>
+              <th>Teléfono</th>
+              <th>Costo</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellidos }}</td>
+              <td>{{ item.calle }}</td>
+              <td>{{ item.numeroCalle }}</td>
+              <td>{{ item.comunidad }}</td>
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.telefono }}</td>
+              <td>{{ item.costo }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="edit(i)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteRow(i)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Guias</h2>
+      <form class="form">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" class="form-control" id="apellidos" [(ngModel)]="apellidos" name="apellidos">
+        <label for="calle">Calle</label>
+        <input type="text" class="form-control" id="calle" [(ngModel)]="calle" name="calle">
+        <label for="numeroCalle">Número de Calle</label>
+        <input type="text" class="form-control" id="numeroCalle" [(ngModel)]="numeroCalle" name="numeroCalle">
+        <label for="comunidad">Comunidad</label>
+        <input type="text" class="form-control" id="comunidad" [(ngModel)]="comunidad" name="comunidad">
+        <label for="categoria">Categoría</label>
+        <input type="text" class="form-control" id="categoria" [(ngModel)]="categoria" name="categoria">
+        <label for="telefono">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" [(ngModel)]="telefono" name="telefono">
+        <label for="costo">Costo</label>
+        <input type="text" class="form-control" id="costo" [(ngModel)]="costo" name="costo">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" [(ngModel)]="email" name="email">
+        <div class="row mt-3">
+          <button type="button" class="btn btn-success" (click)="agregar()" *ngIf="!isEditing">Agregar</button>
+          <button type="button" class="btn btn-success" (click)="save()" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>
+

@@ -12,15 +12,11 @@ export class LayoutPageComponent {
   public sidebarItems=[
     {label:'Usuarios',icon: 'manage_accounts', url: ''},
     {label: 'Paquetes', icon: 'source_environment', url: './admin-paquetes'},
-    {label: 'Transportistas', icon: 'airport_shuttle', url:''},
-    {label: 'Hoteles', icon: 'home_work', url: ''},
-    {label: 'Paquetes', icon: 'source_environment', url: ''},
-    {label: 'Paquetes Pree', icon: 'edit_square', url: ''},
-    {label: 'Guias', icon: 'contacts', url:''},
-    {label: 'Atractivos', icon: 'temple_buddhist', url:''},
-    {label: 'Ciudad', icon: 'location_on', url:''},
+    {label: 'Transportistas', icon: 'airport_shuttle', url:'./admin-transportista'},
+    {label: 'Hosteleria', icon: 'home_work', url: './admin-hosteleria'},
+    {label: 'Guias', icon: 'contacts', url:'./admin-guias'},
+    {label: 'Atractivos', icon: 'temple_buddhist', url:'./admin-atractivos'},
     {label: 'Inicio', icon: 'door_front', url:'/inicio'}
-
   ]
 
 }

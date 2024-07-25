@@ -1,0 +1,85 @@
+<div class="title">
+  <h1>Hostelería</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Atractivo</th>
+              <th>Accesibilidad</th>
+              <th>Descripción</th>
+              <th>Calle</th>
+              <th>Número de Calle</th>
+              <th>Localidad</th>
+              <th>Tipología</th>
+              <th>Número de Visitantes</th>
+              <th>Categoría</th>
+              <th>Servicios</th>
+              <th>Costo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ item.atractivo }}</td>
+              <td>{{ item.accesibilidad }}</td>
+              <td>{{ item.descripcion }}</td>
+              <td>{{ item.calle }}</td>
+              <td>{{ item.numeroCalle }}</td>
+              <td>{{ item.localidad }}</td>
+              <td>{{ item.tipologia }}</td>
+              <td>{{ item.numeroVisitantes }}</td>
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.servicios }}</td>
+              <td>{{ item.costo }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="edit(i)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteRow(i)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Hostelería</h2>
+      <form class="form">
+        <label for="atractivo">Atractivo</label>
+        <input type="text" class="form-control" id="atractivo" [(ngModel)]="atractivo" name="atractivo">
+        <label for="accesibilidad">Accesibilidad</label>
+        <input type="text" class="form-control" id="accesibilidad" [(ngModel)]="accesibilidad" name="accesibilidad">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" [(ngModel)]="descripcion" name="descripcion">
+        <label for="calle">Calle</label>
+        <input type="text" class="form-control" id="calle" [(ngModel)]="calle" name="calle">
+        <label for="numeroCalle">Número de Calle</label>
+        <input type="text" class="form-control" id="numeroCalle" [(ngModel)]="numeroCalle" name="numeroCalle">
+        <label for="localidad">Localidad</label>
+        <input type="text" class="form-control" id="localidad" [(ngModel)]="localidad" name="localidad">
+        <label for="tipologia">Tipología</label>
+        <input type="text" id="tipologia" name="tipologia" [(ngModel)]="tipologia" class="form-control">
+        <label for="numeroVisitantes">Número de Visitantes</label>
+        <input type="text" id="numeroVisitantes" name="numeroVisitantes" [(ngModel)]="numeroVisitantes" class="form-control">
+        <label for="categoria">Categoría</label>
+        <input type="text" class="form-control" id="categoria" [(ngModel)]="categoria" name="categoria">
+        <label for="servicios">Servicios</label>
+        <input type="text" class="form-control" id="servicios" [(ngModel)]="servicios" name="servicios">
+        <label for="costo">Costo</label>
+        <input type="text" class="form-control" id="costo" [(ngModel)]="costo" name="costo">
+        <div class="row mt-3">
+          <button type="button" class="btn btn-success" (click)="agregar()" *ngIf="!isEditing">Agregar</button>
+          <button type="button" class="btn btn-success" (click)="save()" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

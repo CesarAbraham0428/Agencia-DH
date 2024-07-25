@@ -6,7 +6,6 @@ import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados
 import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AdminPaquetesPersoComponent } from './admin/pages/admin-paquetes-perso/admin-paquetes-perso.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { userGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';

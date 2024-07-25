@@ -1,0 +1,66 @@
+<div>
+  <h2>Transportistas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Alcance</th>
+        <th>Email</th>
+        <th>Tarifa</th>
+        <th>Servicios</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transportista of transportistas">
+        <td>{{ transportista.nom_trans }}</td>
+        <td>{{ transportista.apellidos_trans }}</td>
+        <td>{{ transportista.alcance_trans }}</td>
+        <td>{{ transportista.email_trans }}</td>
+        <td>{{ transportista.tarifa_trans }}</td>
+        <td>{{ transportista.servicios_trans }}</td>
+        <td>{{ transportista.tel_trans }}</td>
+        <td>
+          <button (click)="editTransportista(transportista)">Editar</button>
+          <button (click)="deleteTransportista(transportista.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>{{ selectedTransportista ? 'Editar Transportista' : 'Agregar Transportista' }}</h2>
+  <form (ngSubmit)="saveTransportista()">
+    <div>
+      <label>Nombre:</label>
+      <input [(ngModel)]="selectedTransportista?.nom_trans" name="nom_trans" required />
+    </div>
+    <div>
+      <label>Apellidos:</label>
+      <input [(ngModel)]="selectedTransportista?.apellidos_trans" name="apellidos_trans" required />
+    </div>
+    <div>
+      <label>Alcance:</label>
+      <input [(ngModel)]="selectedTransportista?.alcance_trans" name="alcance_trans" required />
+    </div>
+    <div>
+      <label>Email:</label>
+      <input [(ngModel)]="selectedTransportista?.email_trans" name="email_trans" type="email" required />
+    </div>
+    <div>
+      <label>Tarifa:</label>
+      <input [(ngModel)]="selectedTransportista?.tarifa_trans" name="tarifa_trans" type="number" required />
+    </div>
+    <div>
+      <label>Servicios:</label>
+      <input [(ngModel)]="selectedTransportista?.servicios_trans" name="servicios_trans" required />
+    </div>
+    <div>
+      <label>Teléfono:</label>
+      <input [(ngModel)]="selectedTransportista?.tel_trans" name="tel_trans" required />
+    </div>
+    <button type="submit">{{ selectedTransportista ? 'Actualizar' : 'Agregar' }}</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
+  </form>
+</div>

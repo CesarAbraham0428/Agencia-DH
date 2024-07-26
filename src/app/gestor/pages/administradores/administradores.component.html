@@ -1,0 +1,61 @@
+<div class="title">
+  <h1>Administradores</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Correo</th>
+              <th>Role</th>
+              <th>Agencia</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellidos }}</td>
+              <td>{{ item.correo }}</td>
+              <td>{{ item.role }}</td>
+              <td>{{ item.agencia }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="edit(i)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteRow(i)">Eliminar</button>
+               </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Admins</h2>
+      <form class="form">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" class="form-control" id="apellidos" [(ngModel)]="apellidos" name="apellidos">
+        <label for="correo">Correo</label>
+        <input type="text" class="form-control" id="correo" [(ngModel)]="correo" name="correo">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" [(ngModel)]="role" class="form-control">
+        <label for="agencia">Agencia</label>
+        <input type="text" id="agencia" name="agencia" [(ngModel)]="agencia" class="form-control">
+        <div class="row mt-3">
+          <button type="button" class="btn btn-success" (click)="agregar()" *ngIf="!isEditing">Agregar</button>
+          <button type="button" class="btn btn-success" (click)="save()" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

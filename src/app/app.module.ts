@@ -37,7 +37,7 @@ import { ContraRecComponent } from './pages/contraRec/contraRec.component';
     FooterComponent,
     DialogContentExampleDialog,
     RecuperarPComponent,
-    ContraRecComponent
+    ContraRecComponent,
   ],
   imports: [
     BrowserModule,

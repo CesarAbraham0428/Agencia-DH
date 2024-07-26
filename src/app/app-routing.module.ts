@@ -14,7 +14,8 @@ import { ContraRecComponent } from './pages/contraRec/contraRec.component';
 
 
 const routes: Routes = [
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate:[adminGuard]}, //proteger ruta
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate:[adminGuard]},
+  {path: 'gestor', loadChildren: () => import('./gestor/gestor.module').then(m => m.GestorModule),},
   {path: 'inicio', component: InicioComponent },
   {path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {path:'registro', component:RegistroComponent},

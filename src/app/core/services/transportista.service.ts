@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Transportista } from '../../interfaces/transportista.interface';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,24 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TransportistaService {
-  private baseUrl: string = environment.baseUrl;
+  private apiUrl = `${environment.baseUrl}/admin/transportista`;
 
   constructor(private http: HttpClient) {}
 
-  insertarTransportista(transportista: Transportista): Observable<any> {
-    return this.http.post(`${this.baseUrl}/admin/transportista`, transportista);
+  createTransportista(transportistaData: any): Observable<any> {
+    return this.http.post(this.apiUrl, transportistaData);
   }
 
-  deleteTransportista(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/admin/transportista/${id}`);
+  getAllTransportistas(): Observable<any> {
+    return this.http.get(`${this.apiUrl}`);
   }
 
-  updateTransportista(id: number, updates: Partial<Transportista>): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/admin/transportista/${id}`, updates);
+  getTransportistaById(id_trans: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id_trans}`);
   }
 
-  getTransportista(id: number): Observable<Transportista> {
-    return this.http.get<Transportista>(`${this.baseUrl}/admin/transportista/${id}`);
+  updateTransportista(transportistaData: any): Observable<any> {
+    return this.http.put(this.apiUrl, transportistaData);
   }
+
+  deleteTransportista(id_trans: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id_trans}`);
+  }
+
 
 };

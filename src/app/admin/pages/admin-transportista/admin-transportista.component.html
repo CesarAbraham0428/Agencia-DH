@@ -1,66 +1,69 @@
-<div>
-  <h2>Transportistas</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Alcance</th>
-        <th>Email</th>
-        <th>Tarifa</th>
-        <th>Servicios</th>
-        <th>Teléfono</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let transportista of transportistas; let i = index">
-        <td>{{ transportista.nom_trans }}</td>
-        <td>{{ transportista.apellidos_trans }}</td>
-        <td>{{ transportista.alcance_trans }}</td>
-        <td>{{ transportista.email_trans }}</td>
-        <td>{{ transportista.tarifa_trans }}</td>
-        <td>{{ transportista.servicios_trans }}</td>
-        <td>{{ transportista.tel_trans }}</td>
-        <td>
-          <button (click)="edit(i)">Editar</button>
-          <button (click)="deleteRow(i)">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="title">
+  <h1>Transportistas</h1>
+</div>
 
-  <h2>{{ isEditing ? 'Editar Transportista' : 'Agregar Transportista' }}</h2>
-  <form [formGroup]="transportistaForm" (ngSubmit)="save()">
-    <div>
-      <label>Nombre:</label>
-      <input formControlName="nom_trans" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Alcance</th>
+              <th>Email</th>
+              <th>Tarifa</th>
+              <th>Servicios</th>
+              <th>Teléfono</th>
+              <th>Acciónes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of transportistas; let i = index">
+              <td>{{ item.nom_trans }}</td>
+              <td>{{ item.apellidos_trans }}</td>
+              <td>{{ item.alcance_trans }}</td>
+              <td>{{ item.email_trans }}</td>
+              <td>{{ item.tarifa_trans }}</td>
+              <td>{{ item.servicios_trans }}</td>
+              <td>{{ item.tel_trans }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-sm" (click)="editTransportista(item)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteTransportista(item.id_trans)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div>
-      <label>Apellidos:</label>
-      <input formControlName="apellidos_trans" />
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Transportistas</h2>
+      <form [formGroup]="transportistaForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom_trans">Nombre</label>
+          <input type="text" class="form-control" id="nom_trans" formControlName="nom_trans">
+          <label for="apellidos_trans">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos_trans" formControlName="apellidos_trans">
+          <label for="alcance_trans">Alcance</label>
+          <input type="text" class="form-control" formControlName="alcance_trans" id="alcance_trans">
+          <label for="email_trans">Email</label>
+          <input type="email" class="form-control" formControlName="email_trans" id="email_trans">
+          <label for="tarifa_trans">Tarifa</label>
+          <input type="number" class="form-control" formControlName="tarifa_trans" id="tarifa_trans">
+          <label for="servicios_trans">Servicios</label>
+          <input type="text" class="form-control" formControlName="servicios_trans" id="servicios_trans">
+          <label for="tel_trans">Teléfono</label>
+          <input type="text" class="form-control" formControlName="tel_trans" id="tel_trans">
+        </div>
+        <div class="row mt-3">
+          <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>
+          <button type="submit" class="btn btn-success" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <label>Alcance:</label>
-      <input formControlName="alcance_trans" />
-    </div>
-    <div>
-      <label>Email:</label>
-      <input formControlName="email_trans" type="email" />
-    </div>
-    <div>
-      <label>Tarifa:</label>
-      <input formControlName="tarifa_trans" type="number" />
-    </div>
-    <div>
-      <label>Servicios:</label>
-      <input formControlName="servicios_trans" />
-    </div>
-    <div>
-      <label>Teléfono:</label>
-      <input formControlName="tel_trans" />
-    </div>
-    <button type="submit">{{ isEditing ? 'Actualizar' : 'Agregar' }}</button>
-    <button type="button" (click)="clearForm()">Cancelar</button>
-  </form>
+  </div>
 </div>

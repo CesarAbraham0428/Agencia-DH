@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PackageDataService } from '../../../../core/services/admin-crear-paquete.service';
 import { ServicioGenericoCRUD } from '../../../../core/services/CRUDS/crud-servicio.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Activity {
   date: string;
@@ -36,7 +37,8 @@ export class CrearItinerarioComponent implements OnInit {
 
   constructor(
     private servicioGenericoCRUD: ServicioGenericoCRUD,
-    private packageDataService: PackageDataService
+    private packageDataService: PackageDataService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -114,6 +116,8 @@ export class CrearItinerarioComponent implements OnInit {
       this.servicioGenericoCRUD.create('Paquete', packageData).subscribe(
         response => {
           console.log('Paquete creado exitosamente:', response);
+          this.snackBar.open('Paquete creado', 'Cerrar', { duration: 3000 }); // Mostrar alerta
+          this.resetForm(); // Limpiar formulario y servicios seleccionados
         },
         error => {
           console.error('Error al crear el paquete:', error);
@@ -152,5 +156,21 @@ export class CrearItinerarioComponent implements OnInit {
     const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Adding 1 to include the start date
     return diffDays;
+  }
+
+  resetForm() {
+    this.startDate = '';
+    this.numberOfDays = 0;
+    this.days = [];
+    this.packageName = '';
+    this.packageType = 'Personalizado';
+    this.packageCost = 0;
+    this.id_usr = 1; 
+    this.id_agencia = 1; 
+    this.id_guia = 1; 
+    this.id_hotel = 1; 
+    this.id_restaurante = 1; 
+    this.selectedPackage = null;
+    this.packageDataService.clearItems(); // Limpiar los servicios seleccionados
   }
 }

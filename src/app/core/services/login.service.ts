@@ -51,4 +51,12 @@ export class LoginService {
     }
     return false;
   }
+
+  isGestor(): boolean {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('userRole') == 'gestor') {
+      const token = localStorage.getItem('authToken');
+      return token ? true : false;
+    }
+    return false;
+  }
 }

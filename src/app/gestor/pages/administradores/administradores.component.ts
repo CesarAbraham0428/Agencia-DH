@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../../core/services/crearAdmin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
 
 @Component({
   selector: 'app-administradores',
@@ -16,7 +18,8 @@ export class AdministradoresComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private adminService: AdminService) {
+    private adminService: AdminService,
+    public dialog: MatDialog) {
     this.agenciaForm = this.fb.group({
       id_usr: [null],
       nom_usr: ['', Validators.required],
@@ -69,10 +72,16 @@ export class AdministradoresComponent implements OnInit{
   }
 
   deleteAdmin(id_usr: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este administrador?')) {
-      this.adminService.deleteAdmin(id_usr).subscribe(() => {
-        this.loadAdmins();
-      });
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Continuar con la acción?' }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.adminService.deleteAdmin(id_usr).subscribe(() => {
+          this.loadAdmins();
+        });
+      }
+    });
   }
 }

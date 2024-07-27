@@ -1,115 +1,102 @@
-import { Component } from '@angular/core';
-
-interface Hosteleria {
-  id: number;
-  nombre: string;
-  apellidos: string;
-  calle: string;
-  numeroCalle: string;
-  comunidad: string;
-  categoria: string;
-  telefono: string;
-  costo: string;
-  email: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GuiaService } from '../../../core/services/guia.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-guias',
   templateUrl: './admin-guias.component.html',
-  styleUrl: './admin-guias.component.scss'
+  styleUrls: ['./admin-guias.component.scss']
 })
-export class AdminGuiasComponent {
-  nombre: string = '';
-  apellidos: string = '';
-  calle: string = '';
-  numeroCalle: string = '';
-  comunidad: string = '';
-  categoria: string = '';
-  telefono: string = '';
-  costo: string = '';
-  email: string = '';
-  data: Hosteleria[] = [];
-  currentEditIndex: number | null = null;
-  isEditing: boolean = false;
-  nextId: number = 1;
+export class AdminGuiasComponent implements OnInit {
+  guiaForm: FormGroup;
+  guia: any[] = [];
+  isEditing = false;
+  editingGuiaId: number | null = null;
 
-  agregar(): void {
-    if (this.validateForm()) {
-      this.data.push({
-        id: this.nextId++,
-        nombre: this.nombre,
-        apellidos: this.apellidos,
-        calle: this.calle,
-        numeroCalle: this.numeroCalle,
-        comunidad: this.comunidad,
-        categoria: this.categoria,
-        telefono: this.telefono,
-        costo: this.costo,
-        email: this.email
+  constructor(private fb: FormBuilder, private guiaService: GuiaService,
+    public dialog: MatDialog) {
+    this.guiaForm = this.fb.group({
+      nom_guia: ['', Validators.required],
+      apellido_guia: ['', Validators.required],
+      nomcalle_guia: ['', Validators.required],
+      numcalle_guia: ['', Validators.required],
+      comunidad_guia: ['', Validators.required],
+      categoria_guia: ['', Validators.required],
+      telefono_guia: ['', Validators.required],
+      costo_guia: ['', Validators.required],
+      email_guia: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadGuias();
+  }
+
+  loadGuias(): void {
+    this.guiaService.getAllGuias().subscribe((data) => {
+      this.guia = data;
+    });
+  }
+
+  onSubmit(): void {
+    if (this.isEditing) {
+      this.updateGuia();
+    } else {
+      this.createGuia();
+    }
+  }
+
+  createGuia(): void {
+    if (this.guiaForm.valid) {
+      this.guiaService.createGuia(this.guiaForm.value).subscribe(() => {
+        this.loadGuias();
+        this.guiaForm.reset();
       });
-      this.clearForm();
-    } else {
-      console.error('Todos los campos deben ser completados.');
     }
   }
 
-  clearForm(): void {
-    this.nombre = '';
-    this.apellidos = '';
-    this.calle = '';
-    this.numeroCalle = '';
-    this.comunidad = '';
-    this.categoria = '';
-    this.telefono = '';
-    this.costo = '';
-    this.email = '';
-    this.isEditing = false;
-    this.currentEditIndex = null;
-  }
-
-  edit(index: number): void {
-    const hosteleria = this.data[index];
-    this.nombre = hosteleria.nombre;
-    this.apellidos = hosteleria.apellidos;
-    this.calle = hosteleria.calle;
-    this.numeroCalle = hosteleria.numeroCalle;
-    this.comunidad = hosteleria.comunidad;
-    this.categoria = hosteleria.categoria;
-    this.telefono = hosteleria.telefono;
-    this.costo = hosteleria.costo;
-    this.email = hosteleria.email;
+  editGuia(guia: any): void {
     this.isEditing = true;
-    this.currentEditIndex = index;
+    this.editingGuiaId = guia.id_guia;
+    this.guiaForm.setValue({
+      nom_guia: guia.nom_guia,
+      apellido_guia: guia.apellido_guia,
+      nomcalle_guia: guia.nomcalle_guia,
+      numcalle_guia: guia.numcalle_guia,
+      comunidad_guia: guia.comunidad_guia,
+      categoria_guia: guia.categoria_guia,
+      telefono_guia: guia.telefono_guia,
+      costo_guia: guia.costo_guia,
+      email_guia: guia.email_guia
+    });
   }
 
-  save(): void {
-    if (this.currentEditIndex !== null && this.validateForm()) {
-      this.data[this.currentEditIndex] = {
-        ...this.data[this.currentEditIndex],
-        nombre: this.nombre,
-        apellidos: this.apellidos,
-        calle: this.calle,
-        numeroCalle: this.numeroCalle,
-        comunidad: this.comunidad,
-        categoria: this.categoria,
-        telefono: this.telefono,
-        costo: this.costo,
-        email: this.email
-      };
-      this.clearForm();
-    } else {
-      console.error('Todos los campos deben ser completados para guardar.');
+  updateGuia(): void {
+    if (this.guiaForm.valid && this.editingGuiaId !== null) {
+      const updatedGuia = { ...this.guiaForm.value, id_guia: this.editingGuiaId };
+      this.guiaService.updateGuia(updatedGuia).subscribe(() => {
+        this.loadGuias();
+        this.guiaForm.reset();
+        this.isEditing = false;
+        this.editingGuiaId = null;
+      });
     }
   }
 
-  deleteRow(index: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar a este Guía?')) {
-      this.data.splice(index, 1);
-    }
-  }
+  deleteGuia(id_guia: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Deseas continuar?' }
+    });
 
-  validateForm(): boolean {
-    return [this.nombre, this.apellidos, this.calle, this.numeroCalle, this.comunidad, this.categoria, this.telefono, this.costo, this.email]
-      .every(field => field && field.trim().length > 0);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.guiaService.deleteGuia(id_guia).subscribe(() => {
+          this.loadGuias();
+        });
+      }
+    });
   }
 }

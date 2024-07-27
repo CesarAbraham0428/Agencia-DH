@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransportistaService } from '../../../core/services/transportista.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class AdminTransportistaComponent implements OnInit {
       apellidos_trans: ['', Validators.required],
       alcance_trans: ['', Validators.required],
       email_trans: ['', [Validators.required, Validators.email]],
-      tarifa_trans: ['', [Validators.required, Validators.min(1)]],
+      tarifa_trans: ['',Validators.required],
       servicios_trans: ['', Validators.required],
       tel_trans: ['', Validators.required]
     });

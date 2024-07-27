@@ -57,7 +57,6 @@
 }
 
 .form {
-
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
   border: 1px solid #000; /* Borde negro */
   padding: 1.5rem; /* Añade relleno al formulario */
@@ -89,12 +88,13 @@
 }
 
 button {
+
   padding: 0.5rem 1rem; /* Reduce el padding */
   font-size: 0.875rem; /* Reduce el tamaño de la fuente */
   border: none;
   border-radius: 4px; /* Ajusta el radio de borde si es necesario */
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-right: 0.5rem;
+  margin: auto;
 
   &.btn-success {
     background: linear-gradient(135deg, #0ba622, #198107);

@@ -1,70 +1,112 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
 
-.body-container{
+.body-container {
     display: flex;
-}
-.img-container img{
-    margin: 50px auto;
-    margin-right: 50px;
-    width: 700px;
-    height: 600px;
-    border-radius: 30px;
-}
-.form-container {
-    max-width: 600px;
-    margin: 50px auto;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
     padding: 20px;
-    border: 1px solid #ccc; /* Borde gris claro */
+}
+
+.content {
+    background-color: #fff;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin-right: 20px; /* Espacio entre el formulario y la imagen */
 }
-.form-container h2 {
+
+.img-container {
+    flex: 1; /* La imagen ocupa el espacio restante */
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen */
+    margin-left: 20px; /* Espacio entre la imagen y el formulario */
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333; /* Color del texto gris oscuro */
+    color: #333;
 }
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #555; /* Color del texto gris medio */
+    color: #555;
 }
+
 .form-group input {
-    width: 100%;
+    width: calc(100% - 20px); /* Ajusta el ancho del input teniendo en cuenta el padding */
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc; /* Borde gris claro */
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9; /* Fondo gris muy claro */
+    box-sizing: border-box;
 }
-.form-group .half-width {
-    width: calc(50% - 10px);
+
+.half-width {
+    width: calc(50% - 5px); /* Ajusta el ancho de los campos mitad */
     display: inline-block;
 }
-.form-group .half-width input {
-    width: 100%;
+
+.half-width + .half-width {
+    margin-left: 10px; /* Espacio entre los campos mitad */
 }
-.form-group .half-width:first-child {
-    margin-right: 20px;
-}
+
 .button-group {
     text-align: center;
-    margin-top: 20px;
 }
-.button-group a, .button-group button {
-    text-decoration: none;
-    color: #fff; /* Texto blanco */
-    background-color: #007bff; /* Fondo azul */
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 0 10px;
-    border: none;
+
+.nav_menu_link {
     display: inline-block;
-    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
 }
-.button-group a:hover, .button-group button:hover {
-    background-color: #0056b3; /* Fondo azul oscuro */
+
+.nav_menu_link:hover {
+    background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+    .body-container {
+        flex-direction: column; /* Cambia el diseño a columna en pantallas más pequeñas */
+        align-items: center; /* Centra los elementos verticalmente */
+    }
+
+    .img-container {
+        margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+        margin-top: 20px; /* Espacio superior para la imagen */
+    }
+
+    .content {
+        margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+        margin-bottom: 10px; /* Espacio inferior para el formulario */
+    }
+}
+.example-stepper {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  
 

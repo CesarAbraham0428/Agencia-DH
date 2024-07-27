@@ -9,6 +9,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { userGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';
+import { Parte3Component } from './pages/paquetes-personalizados/parte3/parte3.component';
+
+import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.component';
+import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.component';
 
 
 const routes: Routes = [
@@ -20,7 +24,9 @@ const routes: Routes = [
   {path:'paquetes', component:PredeterminadoComponent},
   {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,canActivate: [userGuard]} ,
   {path:'parte2', component:Parte2Component,canActivate: [userGuard]},
-
+  {path:'parte3', component:Parte3Component},
+  {path:'parte4', component:Parte4Component},
+  {path:'parte5', component:Parte5Component},
   // {path:'admin-personalizados', component:AdminPaquetesPersoComponent},
 
   {path:'404', component:Error404PageComponent},

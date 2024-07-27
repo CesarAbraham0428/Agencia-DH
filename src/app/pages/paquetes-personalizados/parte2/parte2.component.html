@@ -1,37 +1,78 @@
 <div class="body-container">
-  <form action="https://formspree.io/f/xjkbvbnr" method="post">
-    <label for="tour-type">Tipo de tour</label>
-    <select id="tour-type" name="tour-type">
-      <option value="culture-history">Cultura e Historia</option>
-      <option value="honeymoon">Luna de miel</option>
-      <option value="business-trip">Viaje de negocios</option>
-      <option value="holiday-vacations">Vacaciones de navidad</option>
-    </select>
-
+  <form id="travel-form" onsubmit="return validateForm()">
     <label for="travel-with">Con quien viaja</label>
-    <select id="travel-with" name="travel-with">
+    <select id="travel-with" name="travel-with" required>
+      <option value="">Selecciona una opción</option>
       <option value="alone">Solo</option>
       <option value="with-family">Con Familia</option>
       <option value="with-partner">Con pareja</option>
     </select>
+    <div id="travel-with-error" class="error-message"></div>
 
     <label for="budget">Tu presupuesto</label>
-    <select id="budget" name="budget">
-      <option value="4000-6000">4000-6000</option>
-      <option value="6000-8000">6000-8000</option>
-      <option value="8000-10000">8000-10000</option>
-      <option value="10000-14000">10000-14000</option>
+    <select id="budget" name="budget" required>
+      <option value="">Selecciona una opción</option>
+      <option value="4000-6000">$4000 - $6000</option>
+      <option value="6000-8000">$6000 - $8000</option>
+      <option value="8000-10000">$8000 - $10000</option>
+      <option value="10000-14000">$10000 - $14000</option>
     </select>
+    <div id="budget-error" class="error-message"></div>
+
+    <label for="activities">¿Qué tipo de actividades te gustan?</label>
+    <input type="text" id="activities" name="activities">
+
+    <label for="specific-place">¿Ya hay algún lugar o fecha en específico que desees visitar?</label>
+    <input type="text" id="specific-place" name="specific-place">
 
     <div class="form-actions">
-      <a href="/paquetes-personalizados" class="nav_menu_link link">Atrás</a>
-      <input type="submit" value="Enviar" />
+      <button type="button" onclick="window.location.href='/paquetes-personalizados'">ATRÁS</button>
+      <a href="/parte3" class="nav_menu_link link" id="nextButton">Siguiente</a>
     </div>
   </form>
   <div class="img-container">
-    <img
-      src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000"
-      alt=""
-    />
+    <img src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000" alt="Imagen de Guanajuato" />
   </div>
 </div>
+
+<script>
+  function validateForm() {
+    var isValid = true;
+
+    // Validar campo "Con quien viaja"
+    var travelWith = document.getElementById("travel-with").value;
+    if (travelWith === "") {
+      document.getElementById("travel-with-error").textContent = "Por favor selecciona una opción.";
+      isValid = false;
+    } else {
+      document.getElementById("travel-with-error").textContent = "";
+    }
+
+    // Validar campo "Tu presupuesto"
+    var budget = document.getElementById("budget").value;
+    if (budget === "") {
+      document.getElementById("budget-error").textContent = "Por favor selecciona una opción.";
+      isValid = false;
+    } else {
+      document.getElementById("budget-error").textContent = "";
+    }
+
+    // Validar campo "¿Qué tipo de actividades te gustan?"
+    var activities = document.getElementById("activities").value.trim();
+    // No es obligatorio, por lo que no se muestra error si está vacío
+
+    // Validar campo "¿Ya hay algún lugar o fecha en específico que desees visitar?"
+    var specificPlace = document.getElementById("specific-place").value.trim();
+    // No es obligatorio, por lo que no se muestra error si está vacío
+
+    // Devolver true si todos los campos son válidos, de lo contrario false
+    return isValid;
+  
+</script>
+
+
+
+
+
+
+

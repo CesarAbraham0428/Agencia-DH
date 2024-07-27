@@ -23,6 +23,9 @@ import { MaterialModule } from './material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
+import { Parte3Component } from './pages/paquetes-personalizados/parte3/parte3.component';
+import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.component';
+import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { DialogContentExampleDialog } from './shared/directives/dialog-content/d
     RegistroComponent,
     HeaderComponent,
     FooterComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    Parte3Component,
+    Parte4Component,
+    Parte5Component
   ],
   imports: [
     BrowserModule,

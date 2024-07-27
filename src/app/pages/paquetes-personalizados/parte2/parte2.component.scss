@@ -1,74 +1,110 @@
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9; /* Fondo gris claro */
-    color: #333; /* Color de texto gris oscuro */
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
-form {
-    max-width: 500px;
-    width: 500px;
-    margin: 100px;
-    padding: 20px;
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: #fff; /* Fondo blanco */
-}
-label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-    font-weight: bold;
-}
-input[type="text"], select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1em;
-}
-textarea {
-    resize: vertical;
-}
+
 .body-container {
-    display: flex;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
 }
-.img-container img {
-    margin: 50px auto;
-    margin-right: 50px;
-    width: 700px;
-    border-radius: 30px;
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px; /* Ajustar el ancho total según tus necesidades */
+  display: flex;
 }
+
+.form-container {
+  flex: 1; /* El formulario ocupa todo el espacio restante */
+  padding-right: 20px; /* Espacio entre el formulario y la imagen */
+}
+
+.form-container form {
+  width: 100%; /* El formulario ocupa todo el espacio disponible */
+}
+
+.img-container {
+  flex: 1; /* La imagen ocupa todo el espacio restante */
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+}
+
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+}
+
 .form-actions {
-    text-align: right;
-    margin-top: 15px;
+  text-align: right;
 }
-.form-actions a, .form-actions input[type="submit"] {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff; /* Fondo azul */
-    border: none;
-    border-radius: 5px;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
+
+.form-actions button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
 }
-.form-actions a:hover, .form-actions input[type="submit"]:hover {
-    background-color: #0056b3; /* Fondo azul más oscuro */
+
+.form-actions button:hover {
+  background-color: #0056b3;
 }
+
 @media (max-width: 768px) {
-    form {
-        max-width: 100%;
-    }
-    .form-actions {
-        text-align: center;
-    }
-    .form-actions a, .form-actions input[type="submit"] {
-        margin: 5px 0;
-    }
+  .content {
+    flex-direction: column; /* Cambia el diseño a columna en pantallas más pequeñas */
+  }
+
+
+}
+.img-container {
+  flex: 1; /* La imagen ocupa todo el espacio restante */
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+  overflow: hidden; /* Para que la imagen no desborde del contenedor */
+}
+
+.img-container img {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  height: auto; /* La altura se ajusta automáticamente */
+  max-height: 100%; /* Altura máxima igual al contenedor */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

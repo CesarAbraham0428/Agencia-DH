@@ -3,7 +3,7 @@ import { url } from 'node:inspector';
 import { last } from 'rxjs';
 
 @Component({
-  selector: 'app-layout-page',
+  selector: 'app-layout-page-gestor',
   templateUrl: './layout-page.component.html',
   styleUrl: './layout-page.component.scss'
 })

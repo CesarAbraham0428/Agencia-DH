@@ -26,7 +26,7 @@ export class ServicioGenericoCRUD {
     return this.http.post<any>(`${this.apiUrl}/${entityName}`, entity);
   }
 
-  update(entityName: string, id: number, entity: any): Observable<any> {
+  update<T>(entityName: string, id: number, entity: T): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${entityName}/${id}`, entity);
   }
 

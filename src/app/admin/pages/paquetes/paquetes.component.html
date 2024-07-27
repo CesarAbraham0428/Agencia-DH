@@ -51,8 +51,10 @@
     </div>
   </div>
   <div class="paquete__buttons">
-    <button type="button" class="btn btn-warning" (click)="editarPaquete(paquete)">Editar</button>
-    <button type="button" class="btn btn-danger">Eliminar</button>
+    <div class="paquete__buttons">
+      <button type="button" class="btn btn-warning" (click)="editarPaquete(paquete)">Editar</button>
+      <button type="button" class="btn btn-danger" (click)="eliminarPaquete(paquete)">Eliminar</button>
+    </div>
   </div>
 </article>
 </section>

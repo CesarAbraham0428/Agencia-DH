@@ -51,9 +51,36 @@
     </div>
   </div>
   <div class="paquete__buttons">
-        <button type="button" class="btn btn-warning">Editar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+    <button type="button" class="btn btn-warning" (click)="editarPaquete(paquete)">Editar</button>
+    <button type="button" class="btn btn-danger">Eliminar</button>
   </div>
 </article>
-
 </section>
+
+<!-- Formulario de edición -->
+<div *ngIf="showEditForm" class="modal">
+  <div class="modal-content">
+    <h2>Editar Paquete</h2>
+    <form [formGroup]="paqueteForm" (ngSubmit)="actualizarPaquete()">
+      <div class="form-group">
+        <label for="nom_paquete">Nombre del Paquete:</label>
+        <input type="text" id="nom_paquete" formControlName="nom_paquete" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="tipo_paquete">Tipo de Paquete:</label>
+        <select id="tipo_paquete" formControlName="tipo_paquete" class="form-control">
+          <option value="Predeterminado">Predeterminado</option>
+          <option value="Personalizado">Personalizado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="costo_paquete">Costo del Paquete:</label>
+        <input type="number" id="costo_paquete" formControlName="costo_paquete" class="form-control">
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="btn btn-primary" [disabled]="!paqueteForm.valid">Guardar</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

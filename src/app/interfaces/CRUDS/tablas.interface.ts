@@ -1,9 +1,8 @@
 export interface Paquete{
-
   id_paquete: number;
-  nombre: string;
-  costo: number;
-  tipo: string
+  nom_paquete: string;
+  tipo_paquete: string
+  costo_paquete: number;
 }
 
 export interface Hotel { //Para la tabla Hotel

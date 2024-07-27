@@ -16,7 +16,7 @@ export class TransportistaService {
   }
 
   getAllTransportistas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get(`${this.apiUrl}s`);
   }
 
   getTransportistaById(id_trans: number): Observable<any> {

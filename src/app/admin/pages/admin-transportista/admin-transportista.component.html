@@ -16,11 +16,11 @@
               <th>Tarifa</th>
               <th>Servicios</th>
               <th>Teléfono</th>
-              <th>Acciónes</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of transportistas; let i = index">
+            <tr *ngFor="let item of transportista; let i=index">
               <td>{{ item.nom_trans }}</td>
               <td>{{ item.apellidos_trans }}</td>
               <td>{{ item.alcance_trans }}</td>
@@ -30,7 +30,7 @@
               <td>{{ item.tel_trans }}</td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-warning btn-sm" (click)="editTransportista(item)">Editar</button>
+                  <button class="btn btn-warning btn-rm" (click)="editTransportista(item)">Editar</button>
                   <button class="btn btn-danger btn-sm" (click)="deleteTransportista(item.id_trans)">Eliminar</button>
                 </div>
               </td>
@@ -67,3 +67,4 @@
     </div>
   </div>
 </div>
+<br><br>

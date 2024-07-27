@@ -1,132 +1,108 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AtractivosService } from '../../../core/services/atractivos.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
 
-interface Atractivos {
-  id: number;
-  atractivo: string;
-  accesibilidad: string;
-  descripcion: string;
-  calle: string;
-  numeroCalle: string;
-  localidad: string;
-  tipologia: string;
-  numeroVisitantes: string;
-  categoria: string;
-  servicios: string;
-  costo: string;
-  idCiudad: number;
-}
 
 @Component({
   selector: 'app-admin-atractivos-turist',
   templateUrl: './admin-atractivos-turist.component.html',
   styleUrl: './admin-atractivos-turist.component.scss'
 })
-export class AdminAtractivosTuristComponent {
+export class AdminAtractivosTuristComponent implements OnInit {
+  atraccionForm: FormGroup;
+  atracciones: any[] = [];
+  isEditing = false;
+  editingAtraccionId: number | null = null;
 
-  atractivo: string = '';
-  accesibilidad: string = '';
-  descripcion: string = '';
-  calle: string = '';
-  numeroCalle: string = '';
-  localidad: string = '';
-  tipologia: string = '';
-  numeroVisitantes: string = '';
-  categoria: string = '';
-  servicios: string = '';
-  costo: string = '';
-  data: Atractivos[] = [];
-  currentEditIndex: number | null = null;
-  isEditing: boolean = false;
-  nextId: number = 1;
-  idCiudad: number = 1;
+  constructor(private fb: FormBuilder, private atractivosService: AtractivosService,
+    public dialog: MatDialog) {
+    this.atraccionForm = this.fb.group({
+      nom_actur: ['', Validators.required],
+      accesbilidad_actur: ['', Validators.required],
+      descripcion_actur: ['', Validators.required],
+      nom_calle_actur: ['', Validators.required],
+      num_calle_actur: ['', Validators.required],
+      localidad_actur: ['', Validators.required],
+      tipologia_actur: ['', Validators.required],
+      num_visitantes_actur: ['', Validators.required],
+      categoria_actur: ['', Validators.required],
+      servicios_actur: ['', Validators.required],
+      costo_actur: ['', Validators.required]
+    });
+  }
 
-  agregar(): void {
-    if (this.validateForm()) {
-      this.data.push({
-        id: this.nextId++,
-        atractivo: this.atractivo,
-        accesibilidad: this.accesibilidad,
-        descripcion: this.descripcion,
-        calle: this.calle,
-        numeroCalle: this.numeroCalle,
-        localidad: this.localidad,
-        tipologia: this.tipologia,
-        numeroVisitantes: this.numeroVisitantes,
-        categoria: this.categoria,
-        servicios: this.servicios,
-        costo: this.costo,
-        idCiudad: this.idCiudad
+  ngOnInit(): void {
+    this.loadAtracciones();
+  }
+
+  loadAtracciones(): void {
+    this.atractivosService.getAllAtractivos().subscribe((data) => {
+      this.atracciones = data;
+    });
+  }
+
+  onSubmit(): void {
+    if (this.isEditing) {
+      this.updateAtraccion();
+    } else {
+      this.createAtraccion();
+    }
+  }
+
+  createAtraccion(): void {
+    if (this.atraccionForm.valid) {
+      this.atractivosService.createAtractivo(this.atraccionForm.value).subscribe(() => {
+        this.loadAtracciones();
+        this.atraccionForm.reset();
       });
-      this.clearForm();
-    } else {
-      console.error('Todos los campos deben ser completados.');
     }
   }
 
-  clearForm(): void {
-    this.atractivo = '';
-    this.accesibilidad = '';
-    this.descripcion = '';
-    this.calle = '';
-    this.numeroCalle = '';
-    this.localidad = '';
-    this.tipologia = '';
-    this.numeroVisitantes = '';
-    this.categoria = '';
-    this.servicios = '';
-    this.costo = '';
-    this.isEditing = false;
-    this.currentEditIndex = null;
-  }
-
-  edit(index: number): void {
-    const hosteleria = this.data[index];
-    this.atractivo = hosteleria.atractivo;
-    this.accesibilidad = hosteleria.accesibilidad;
-    this.descripcion = hosteleria.descripcion;
-    this.calle = hosteleria.calle;
-    this.numeroCalle = hosteleria.numeroCalle;
-    this.localidad = hosteleria.localidad;
-    this.tipologia = hosteleria.tipologia;
-    this.numeroVisitantes = hosteleria.numeroVisitantes;
-    this.categoria = hosteleria.categoria;
-    this.servicios = hosteleria.servicios;
-    this.costo = hosteleria.costo;
+  editAtraccion(atraccion: any): void {
     this.isEditing = true;
-    this.currentEditIndex = index;
+    this.editingAtraccionId = atraccion.id_atracTuris;
+    this.atraccionForm.setValue({
+      nom_actur: atraccion.nom_actur,
+      accesbilidad_actur: atraccion.accesbilidad_actur,
+      descripcion_actur: atraccion.descripcion_actur,
+      nom_calle_actur: atraccion.nom_calle_actur,
+      num_calle_actur: atraccion.num_calle_actur,
+      localidad_actur: atraccion.localidad_actur,
+      tipologia_actur: atraccion.tipologia_actur,
+      num_visitantes_actur: atraccion.num_visitantes_actur,
+      categoria_actur: atraccion.categoria_actur,
+      servicios_actur: atraccion.servicios_actur,
+      costo_actur: atraccion.costo_actur
+    });
   }
 
-  save(): void {
-    if (this.currentEditIndex !== null && this.validateForm()) {
-      this.data[this.currentEditIndex] = {
-        ...this.data[this.currentEditIndex],
-        atractivo: this.atractivo,
-        accesibilidad: this.accesibilidad,
-        descripcion: this.descripcion,
-        calle: this.calle,
-        numeroCalle: this.numeroCalle,
-        localidad: this.localidad,
-        tipologia: this.tipologia,
-        numeroVisitantes: this.numeroVisitantes,
-        categoria: this.categoria,
-        servicios: this.servicios,
-        costo: this.costo
-      };
-      this.clearForm();
-    } else {
-      console.error('Todos los campos deben ser completados para guardar.');
+  updateAtraccion(): void {
+    if (this.atraccionForm.valid && this.editingAtraccionId !== null) {
+      const updatedAtraccion = { ...this.atraccionForm.value, id_atracTuris: this.editingAtraccionId };
+      this.atractivosService.updateAtractivo(updatedAtraccion).subscribe(() => {
+        this.loadAtracciones();
+        this.atraccionForm.reset();
+        this.isEditing = false;
+        this.editingAtraccionId = null;
+      });
     }
   }
 
-  deleteRow(index: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este Atractivo Turistico?')) {
-      this.data.splice(index, 1);
-    }
-  }
+  deleteAtraccion(id_atracTuris: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Deseas continuar?' }
+    });
 
-  validateForm(): boolean {
-    return [this.atractivo, this.accesibilidad, this.descripcion, this.calle, this.numeroCalle, this.localidad, this.tipologia, this.numeroVisitantes, this.categoria, this.servicios, this.costo]
-      .every(field => field && field.trim().length > 0);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.atractivosService.deleteAtractivo(id_atracTuris).subscribe(() => {
+          this.loadAtracciones();
+        });
+      }
+    });
   }
 }
 

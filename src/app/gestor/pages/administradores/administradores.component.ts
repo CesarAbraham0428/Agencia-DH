@@ -1,95 +1,87 @@
-import { Component } from '@angular/core';
-
-
-interface Administrador {
-  id: number;
-  nombre: string;
-  apellidos: string;
-  correo: string;
-  role: string;
-  agencia: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../../core/services/crearAdmin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
 
 @Component({
   selector: 'app-administradores',
   templateUrl: './administradores.component.html',
   styleUrl: './administradores.component.scss'
 })
-export class AdministradoresComponent {
+export class AdministradoresComponent implements OnInit{
+  admins: any[] = [];
+  agencias: any[] = []; // Asegúrate de definir esto
+  agenciaForm: FormGroup;
+  isEditing = false;
+  selectedAdmin: any;
 
-  nombre: string = '';
-  apellidos: string = '';
-  correo: string = '';
-  role: string = '';
-  agencia: string = '';
-  data: Administrador[] = [];
-  currentEditIndex: number | null = null;
-  isEditing: boolean = false;
-  nextId: number = 1;
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService,
+    public dialog: MatDialog) {
+    this.agenciaForm = this.fb.group({
+      id_usr: [null],
+      nom_usr: ['', Validators.required],
+      app_usr: ['', Validators.required],
+      email_usr: ['', [Validators.required, Validators.email]],
+      passwd_usr: ['', Validators.required],
+      nom_ag: ['', Validators.required]
+    });
+  }
 
-  agregar(): void {
-    if (this.validateForm()) {
-      this.data.push({
-        id: this.nextId++,
-        nombre: this.nombre,
-        apellidos: this.apellidos,
-        correo: this.correo,
-        role: this.role,
-        agencia: this.agencia
-      });
-      this.clearForm();
-    } else {
-      // Aquí podrías agregar una notificación de error si la validación falla
-      console.error('Todos los campos deben ser completados.');
+  ngOnInit(): void {
+    this.loadAdmins();
+    this.loadAgencias(); // Cargar agencias para el select
+  }
+
+  loadAdmins(): void {
+    this.adminService.getAllAdmins().subscribe(data => {
+      this.admins = data;
+    });
+  }
+
+  loadAgencias(): void {
+    // Asumiendo que tienes un servicio que obtiene las agencias
+    this.adminService.getAllAgencias().subscribe(data => {
+      this.agencias = data;
+    });
+  }
+
+  onSubmit(): void {
+    if (this.agenciaForm.valid) {
+      if (this.isEditing) {
+        this.adminService.updateAdmin(this.agenciaForm.value).subscribe(() => {
+          this.loadAdmins();
+          this.agenciaForm.reset();
+          this.isEditing = false;
+        });
+      } else {
+        this.adminService.createAdmin(this.agenciaForm.value).subscribe(() => {
+          this.loadAdmins();
+          this.agenciaForm.reset();
+        });
+      }
     }
   }
 
-  clearForm(): void {
-    this.nombre = '';
-    this.apellidos = '';
-    this.correo = '';
-    this.role = '';
-    this.agencia = '';
-    this.isEditing = false;
-    this.currentEditIndex = null;
-  }
-
-  edit(index: number): void {
-    const agencia = this.data[index];
-    this.nombre = agencia.nombre;
-    this.apellidos = agencia.apellidos;
-    this.correo = agencia.correo;
-    this.role = agencia.role;
-    this.agencia = agencia.agencia;
+  editAdmin(admin: any): void {
     this.isEditing = true;
-    this.currentEditIndex = index;
+    this.selectedAdmin = admin;
+    this.agenciaForm.patchValue(admin);
   }
 
-  save(): void {
-    if (this.currentEditIndex !== null && this.validateForm()) {
-      this.data[this.currentEditIndex] = {
-        ...this.data[this.currentEditIndex],
-        nombre: this.nombre,
-        apellidos: this.apellidos,
-        correo: this.correo,
-        role: this.role,
-        agencia: this.agencia
-      };
-      this.clearForm();
-    } else {
-      // Aquí podrías agregar una notificación de error si la validación falla
-      console.error('Todos los campos deben ser completados para guardar.');
-    }
-  }
-
-  deleteRow(index: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar esta Hosteleria?')) {
-      this.data.splice(index, 1);
-    }
-  }
-
-  validateForm(): boolean {
-    return [this.nombre, this.apellidos, this.correo, this.role, this.agencia]
-      .every(field => field && field.trim().length > 0);
+  deleteAdmin(id_usr: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Continuar con la acción?' }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.adminService.deleteAdmin(id_usr).subscribe(() => {
+          this.loadAdmins();
+        });
+      }
+    });
   }
 }

@@ -15,7 +15,10 @@ export class AgenciasComponent implements OnInit{
   isEditing = false;
   editingAgenciaId: number | null = null;
 
-  constructor(private fb: FormBuilder, private agenciaService: AgenciaService, public dialog: MatDialog) {
+  constructor(
+    private fb: FormBuilder,
+    private agenciaService: AgenciaService,
+    public dialog: MatDialog) {
     this.agenciaForm = this.fb.group({
       nom_ag: ['', Validators.required]
     });

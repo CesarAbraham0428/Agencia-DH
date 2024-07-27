@@ -9,13 +9,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { userGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';
+import { gestorGuard } from './guard/gestor.guard';
 import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
 import { ContraRecComponent } from './pages/contraRec/contraRec.component';
 
 
 const routes: Routes = [
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate:[adminGuard]},
-  {path: 'gestor', loadChildren: () => import('./gestor/gestor.module').then(m => m.GestorModule),},
+  {path: 'gestor', loadChildren: () => import('./gestor/gestor.module').then(m => m.GestorModule), canActivate:[gestorGuard]},
   {path: 'inicio', component: InicioComponent },
   {path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {path:'registro', component:RegistroComponent},

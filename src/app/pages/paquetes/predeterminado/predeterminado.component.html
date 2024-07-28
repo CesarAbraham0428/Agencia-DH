@@ -99,9 +99,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['enoturismo']" id="paypal-button-container-enoturismo" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('enoturismo')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Enoturismo</a>
+              </button>
             </div>
           </div>
         </div>
@@ -181,12 +183,14 @@
                   </tbody>
                 </table>
               </div>
-              
+
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['maikati']" id="paypal-button-container-maikati" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('maikati')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Maikati</a>
+              </button>
             </div>
           </div>
         </div>
@@ -276,9 +280,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['sierraBrava']" id="paypal-button-container-sierraBrava" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('sierraBrava')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Eco Adventure</a>
+              </button>
             </div>
           </div>
         </div>
@@ -379,9 +385,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['enoturismoEsk']" id="paypal-button-container-enoturismoEsk" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('enoturismoEsk')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Enoturismo</a>
+              </button>
             </div>
           </div>
         </div>
@@ -471,9 +479,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['sierraBravaEsk']" id="paypal-button-container-sierraBravaEsk" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('sierraBravaEsk')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Eco Adventure</a>
+              </button>
             </div>
           </div>
         </div>
@@ -558,9 +568,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['maikatiEsk']" id="paypal-button-container-maikatiEsk" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('maikatiEsk')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Maikati</a>
+              </button>
             </div>
           </div>
         </div>
@@ -659,9 +671,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['enoturismoDro']" id="paypal-button-container-enoturismoDro" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('enoturismoDro')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Enoturismo</a>
+              </button>
             </div>
           </div>
         </div>
@@ -752,9 +766,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['sierraBravaDro']" id="paypal-button-container-sierraBravaDro" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('sierraBravaDro')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Eco Adventure</a>
+              </button>
             </div>
           </div>
         </div>
@@ -839,9 +855,11 @@
 
             </div>
             <div class="modal-footer">
+              <div *ngIf="showPayPalButton['maikatiDro']" id="paypal-button-container-maikatiDro" class="paypal-button-container"></div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-tercero"><a routerLink="" class="btn btn-link">Obtener
-                  Paquete</a></button>
+              <button type="button" class="btn btn-tercero" (click)="obtenerPaquete('maikatiDro')">
+                <a routerLink="" class="btn btn-link">Obtener Paquete Maikati</a>
+              </button>
             </div>
           </div>
         </div>

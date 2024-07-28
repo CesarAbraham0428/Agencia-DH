@@ -31,6 +31,7 @@ import { ContraRecComponent } from './pages/contraRec/contraRec.component';
 //enviar al header
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { PredeterminadoModule } from './pages/paquetes/predeterminado/predeterminado.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
     BrowserAnimationsModule,
     MatDialogModule,
     NgxMaterialTimepickerModule,
-    FormsModule
+    FormsModule,
+    PredeterminadoModule
   ],
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),

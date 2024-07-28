@@ -5,6 +5,7 @@ import { DialogContentExampleDialog } from '../../shared/directives/dialog-conte
 import { MatDialog } from '@angular/material/dialog';
 import { ReasignarService } from '../../core/services/reasignar.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -36,16 +37,18 @@ export class ContraRecComponent implements OnInit{
     if (this.contraRecForm.valid) {
       this.reasignarService.resetPassword(this.token, this.contraRecForm.value.newPassword).subscribe(
         response => {
-          this.dialog.open(DialogContentExampleDialog, {
-            width: '250px',
-            data: { message: 'Contraseña actualizada' }
+          Swal.fire({
+            title: "!Hecho!",
+            text: "Contraseña actualizada.",
+            icon: "success"
           });
           this.router.navigate(['/login']);
         },
         error => {
-          this.dialog.open(DialogContentExampleDialog, {
-            width: '250px',
-            data: { message: 'Error al actualizar la contraseña' }
+          Swal.fire({
+            title: "Error!",
+            text: "Error al actualizar la contraseña.",
+            icon: "error"
           });
         }
       );

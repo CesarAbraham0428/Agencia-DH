@@ -53,7 +53,11 @@
         </div>
         <div class="form-group">
           <label for="passwd_usr">Contraseña</label>
-          <input type="password" class="form-control" id="passwd_usr" formControlName="passwd_usr">
+          <input [ngClass]="{
+            'is-invalid': hasErrors('passwd_usr', 'required') || hasErrors('passwd_usr', 'minlength')
+          }" type="password" class="form-control" id="passwd_usr" formControlName="passwd_usr" minlength="6">
+          <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'required')">Campo requerido.</div>
+          <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
         </div>
         <div class="form-group">
           <label for="nom_ag">Agencia</label>

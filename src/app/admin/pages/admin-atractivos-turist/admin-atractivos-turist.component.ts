@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AtractivosService } from '../../../core/services/atractivos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-atractivos-turist',
@@ -57,6 +57,11 @@ export class AdminAtractivosTuristComponent implements OnInit {
         this.loadAtracciones();
         this.atraccionForm.reset();
       });
+      Swal.fire({
+        title: "!Hecho!",
+        text: "Registro exitoso.",
+        icon: "success"
+      });
     }
   }
 
@@ -91,13 +96,21 @@ export class AdminAtractivosTuristComponent implements OnInit {
   }
 
   deleteAtraccion(id_atracTuris: number): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: '¿Deseas continuar?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡No serás capaz de revertir está acción!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, borrar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "!Borrado!",
+          text: "Tu registro ha sido borrado.",
+          icon: "success"
+        });
         this.atractivosService.deleteAtractivo(id_atracTuris).subscribe(() => {
           this.loadAtracciones();
         });

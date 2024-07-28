@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AgenciaService } from '../../../core/services/agencia.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/directives/dialog-content/confirm-dialog.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agencias',
@@ -48,6 +49,11 @@ export class AgenciasComponent implements OnInit{
         this.loadAgencias();
         this.agenciaForm.reset();
       });
+      Swal.fire({
+        title: "!Hecho!",
+        text: "Registro exitoso.",
+        icon: "success"
+      });
     }
   }
 
@@ -72,17 +78,26 @@ export class AgenciasComponent implements OnInit{
   }
 
   deleteAgencia(id_agencia: number): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: { message: '¿Continuar con la acción?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡No serás capaz de revertir está acción!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, borrar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "!Borrado!",
+          text: "Tu registro ha sido borrado.",
+          icon: "success"
+        });
         this.agenciaService.deleteAgencia(id_agencia).subscribe(() => {
           this.loadAgencias();
         });
       }
     });
   }
+
 }

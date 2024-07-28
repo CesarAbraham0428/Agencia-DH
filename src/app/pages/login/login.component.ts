@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../core/services/login.service';
 import { Router } from '@angular/router';
-import { DialogContentExampleDialog } from '../../shared/directives/dialog-content/dialog-content.component';
+import { DialogContentExampleDialog } from '../../shared/directives/dialog-content/dialog-content.component';//Se remplazo por Swal
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -40,9 +41,10 @@ export class LoginComponent implements OnInit {
         const userRole = localStorage.getItem('userRole');
         this.formLog.reset();
 
-        this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message: 'Inicio de sesión exitoso' }
+        Swal.fire({
+          title: "¡Hecho!",
+          text: "Inicio de sesión exitoso",
+          icon: "success"
         });
 
         if (userRole === 'admin') {
@@ -60,15 +62,17 @@ export class LoginComponent implements OnInit {
         else {
         }
       } catch (error) {
-        this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message: 'Contraseña o correo incorrectos' }
+        Swal.fire({
+          title: "Error!",
+          text: "Contraseña o correo incorrectos",
+          icon: "error"
         });
       }
     } else {
-      this.dialog.open(DialogContentExampleDialog, {
-        width: '250px',
-        data: { message: 'Formulario inválido. Revise los campos.' }
+      Swal.fire({
+        title: "Error!",
+        text: "Formulario inválido. Revise los campos.",
+        icon: "error"
       });
       this.formLog.markAllAsTouched();
     }

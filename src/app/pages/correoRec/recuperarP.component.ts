@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ReasignarService } from '../../core/services/reasignar.service';
 import { DialogContentExampleDialog } from '../../shared/directives/dialog-content/dialog-content.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-recuperarP',
@@ -27,9 +29,10 @@ export class RecuperarPComponent{
     if (this.correoRecForm.valid) {
       this.reasignarService.requestPasswordReset(this.correoRecForm.value.email).subscribe(
         response => {
-          this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message: 'Email de restablecimiento enviado' }
+        Swal.fire({
+          title: "!Hecho!",
+          text: "Email de restablecimiento enviado.",
+          icon: "success"
         });
       },
       error => {
@@ -37,9 +40,10 @@ export class RecuperarPComponent{
         if (error.status === 429) {
           message = 'Por favor, espere una hora antes de solicitar nuevamente.';
         }
-        this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message }
+        Swal.fire({
+          title: "Error!",
+          text: message,
+          icon: "error"
         });}
       );
     }

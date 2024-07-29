@@ -5,6 +5,7 @@ import { AdminTransportistaComponent } from './pages/admin-transportista/admin-t
 import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/admin-atractivos-turist.component';
 import { AdminGuiasComponent } from './pages/admin-guias/admin-guias.component';
 import { AdminHosteleriaComponent } from './pages/admin-hosteleria/admin-hosteleria.component';
+import { AdminUsuarioComponent } from './pages/admin-usuario/admin-usuario.component';
 
 
 

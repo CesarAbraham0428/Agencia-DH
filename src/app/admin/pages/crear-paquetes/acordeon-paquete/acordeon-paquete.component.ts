@@ -19,10 +19,6 @@ export class AcordeonPaqueteComponent implements OnInit {
   transportistas: any[] = [];
   guias: any[] = [];
 
-  hosteleria: any;
-  transportista: any;
-  guia: any
-
   constructor(
     private packageDataService: PackageDataService,
     private hosteleriaService: HosteleriaService,

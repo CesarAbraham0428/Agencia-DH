@@ -1,0 +1,47 @@
+.title {
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-size: 4.2rem;
+    display: inline-block;
+    margin: 2em 0 1.2em;
+    padding: 0.5em;
+    color: #000;
+    border-radius: 15px;
+    font-weight: bold;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #28153c, #341613, #544a65);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto; /* Añade desplazamiento horizontal si es necesario */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Colapsa los bordes para un diseño más limpio */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade sombra a la tabla */
+
+}
+
+.table th, .table td {
+  padding: 1rem; /* Espaciado interno de las celdas */
+  text-align: left;
+  border-bottom: 1px solid #b9b8b8; /* Línea sutil entre filas */
+}
+
+.table thead th {
+  background-color: #0c365f; /* Color de fondo para el encabezado */
+  font-weight: bold;
+  color: #ffffff; /* Color del texto del encabezado */
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* Fondo sutil al pasar el cursor sobre las filas */
+}

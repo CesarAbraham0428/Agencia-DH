@@ -1,0 +1,36 @@
+<div class="title">
+  <h1>Usuarios</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Nacionalidad</th>
+              <th>Sexo</th>
+              <th>Edad</th>
+              <th>Email</th>
+              <th>Ciudad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of usuarios">
+              <td>{{ item.nom_usr }}</td>
+              <td>{{ item.app_usr }}</td>
+              <td>{{ item.nacionalidad_usr }}</td>
+              <td>{{ item.sexo_usr }}</td>
+              <td>{{ item.edad_usr }}</td>
+              <td>{{ item.email_usr }}</td>
+              <td>{{ item.ciudad_usr }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

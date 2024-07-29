@@ -19,6 +19,7 @@ import { AdminTransportistaComponent } from './pages/admin-transportista/admin-t
 import { AdminHosteleriaComponent } from './pages/admin-hosteleria/admin-hosteleria.component';
 import { AdminGuiasComponent } from './pages/admin-guias/admin-guias.component';
 import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/admin-atractivos-turist.component';
+import { AdminUsuarioComponent } from './pages/admin-usuario/admin-usuario.component';
 
 
 
@@ -35,6 +36,7 @@ import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/
     AdminHosteleriaComponent,
     AdminGuiasComponent,
     AdminAtractivosTuristComponent,
+    AdminUsuarioComponent,
   ],
   imports: [
     CommonModule,

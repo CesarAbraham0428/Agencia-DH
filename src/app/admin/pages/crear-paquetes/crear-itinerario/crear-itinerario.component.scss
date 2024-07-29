@@ -1,4 +1,4 @@
-.itinerario {
+.paquete {
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
@@ -78,14 +78,7 @@
       border-bottom: 1px solid #ccc;
       padding-bottom: 10px;
       margin-bottom: 10px;
-
-      &__date{
-        display: flex;
-        gap: 2em;
-        justify-content: center;
-        align-items: center;
-      }
-
+  
     }
   }
 
@@ -103,9 +96,9 @@
       background: #ddd;
     }
 
-    .itinerario__actividades {
-      .itinerario__body {
-        .itinerario__item {
+    .paquete__actividades {
+      .paquete__body {
+        .paquete__item {
           display: flex;
           flex-direction: column;
           padding: 20px;

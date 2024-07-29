@@ -1,0 +1,42 @@
+<div class="contenidoPaquete">
+  <div class="contenidoPaquete__title">
+    <h1>Contenido del Paquete</h1>
+  </div>
+
+  <div class="contenidoPaquete__body">
+    <div class="contenidoPaquete__Servicios">
+      <h2>Servicios</h2>
+      <ul>
+        <li *ngFor="let item of servicios">
+          <h3>
+          {{ 
+            item.nombre_hotesteleria || item.nombre_transportista || item.nombre_guia ||
+            item.nombre_museo || item.nombre_vinedo || item.nombre_lugar_turistico
+          }}
+        </h3>
+          <p 
+          *ngIf="
+          item.descripcion_hs || item.descripcion_transportista || item.descripcion_guia || item.descripcion_servicio ||
+          item.descripcion_museo || item.descripcion_vinedo || item.descripcion_lugar_turistico
+          ">
+            <strong>Descripción:</strong> 
+            {{ 
+              item.descripcion_hs || item.descripcion_transportista || item.descripcion_guia || item.descripcion_servicio ||
+              item.descripcion_museo || item.descripcion_vinedo || item.descripcion_lugar_turistico
+            }}
+          </p>
+          <p *ngIf="item.direccion"><strong>Dirección:</strong> {{ item.direccion }}</p>
+          <p *ngIf="item.telefono"><strong>Teléfono:</strong> {{ item.telefono }}</p>
+          <p *ngIf="item.horarios"><strong>Horarios:</strong> {{ item.horarios }}</p>
+          <p *ngIf="item.tipo_vehiculo"><strong>Tipo de Vehículo:</strong> {{ item.tipo_vehiculo }}</p>
+          <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
+          <hr>
+        </li>
+      </ul>
+    </div>
+
+  <div class="contenidoPaquete__buttons">
+    <button class="btn btn-warning " (click)="clearItems()">Limpiar Contenido</button>
+  </div>
+</div>
+ 

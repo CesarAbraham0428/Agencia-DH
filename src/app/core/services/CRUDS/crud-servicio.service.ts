@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environments';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,27 +7,35 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicioGenericoCRUD {
-  private apiUrl = 'http://localhost:8090'; //  URL Generica a la base de datos
+  private apiUrl = `${environment.baseUrl}/admin/paquete`;
 
   constructor(private http: HttpClient) { }
 
-  getAll<T>(entityName: string): Observable<T[]> {
-    return this.http.get<T[]>(`${this.apiUrl}/${entityName}`);
+  getAll<T>(p0: string): Observable<T[]> {
+    return this.http.get<T[]>(`${this.apiUrl}`);
   }
 
-  getOne(entityName: string, id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${entityName}/${id}`);
+  getOne(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  create(entityName: string, entity: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${entityName}`, entity);
+  getPaqueteCompleto(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}/completo`);
   }
 
-  update(entityName: string, id: number, entity: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${entityName}/${id}`, entity);
+  getServiceId(servicio: any): number | null {
+    return servicio && servicio.id ? servicio.id : null;
   }
 
-  delete(entityName: string, id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${entityName}/${id}`);
+  create(entity: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, entity);
+  }
+
+  update<T>(id: number, entity: T): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, entity);
+  }
+
+  delete(p0: string, id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }

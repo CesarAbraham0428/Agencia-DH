@@ -1,0 +1,55 @@
+<div class="paquete">
+
+  <div>
+    <h2>Información del Paquete</h2>
+
+    <label for="">Nombre del Paquete:</label>
+    <input type="text" [(ngModel)]="packageName">
+
+    <label for="">Tipo de Paquete:</label>
+    <select [(ngModel)]="packageType">
+      <option value="Predeterminado">Predeterminado</option>
+      <option value="Personalizado" selected>Personalizado</option>
+    </select>
+
+    <label for="">Costo del Paquete:</label>
+    <input type="number" [(ngModel)]="packageCost">
+
+    <label for="">Fecha de Inicio:</label>
+    <input type="date" [(ngModel)]="startDate">
+
+    <label for="">Número de días que se quedará el Turista:</label>
+    <input type="number" [(ngModel)]="numberOfDays">
+
+    <button class="btn btn-primary" (click)="generateDays()">Generar Itinerario</button>
+  </div>
+
+  <div class="paquete__actividades" *ngIf="days.length > 0">
+
+    <div *ngFor="let day of days; let i = index">
+      <h3>Día {{ i + 1 }} - {{ day.date }}</h3>
+      <div class="paquete__body">
+        <div *ngFor="let activity of day.activities; let j = index">
+          <label for="">Hora</label>
+          <ngx-timepicker-field [(ngModel)]="activity.time"></ngx-timepicker-field>
+          <label>Descripción:</label>
+          <input type="text" [(ngModel)]="activity.description">
+          <button class="btn btn-danger" (click)="removeActivity(i, j)">Eliminar</button>
+          <select [(ngModel)]="activity.servicioAsociado">
+            <option [ngValue]="null">Seleccione un servicio</option>
+            <option *ngFor="let servicio of selectedPackage.servicios" [ngValue]="servicio">
+              {{ servicio.nom_hosteleria || servicio.nom_guia }} || {{servicio.nom_trans}} ({{ servicio.tipo }})
+            </option>
+          </select>
+        </div>
+        <div class="agregar">
+          <button class="btn btn-success" (click)="addActivity(i)">Agregar Actividad</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary" (click)="createPackage()" [disabled]="!areFieldsFilled()">Crear Paquete</button>
+
+</div>

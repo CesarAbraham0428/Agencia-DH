@@ -1,0 +1,121 @@
+<div class="accordion" id="accordionExample">
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="false" aria-controls="collapseOne">
+        Hosteleria
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="hotel" *ngFor="let hosteleria of hostelerias">
+          <h2>{{ hosteleria.nom_hs }}</h2>
+          <p><strong>Capacidad:</strong> {{ hosteleria.capacidad_hs }}</p>
+          <p><strong>Descripción:</strong> {{ hosteleria.descripcion_hs }}</p>
+          <p><strong>Costo:</strong> {{ hosteleria.costo_hs }}</p>
+          <p><strong>Servicios:</strong> {{ hosteleria.servicios }}</p>
+          <p><strong>Típologia:</strong> {{ hosteleria.tipologia_hs }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(hosteleria, 'Hosteleria')">Seleccionar</button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+        aria-expanded="false" aria-controls="collapseThree">
+        Transportistas
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="hotel" *ngFor="let transportista of transportistas">
+          <h2>{{ transportista.nom_trans }}</h2>
+          <p><strong>Nombre:</strong> {{ transportista.nom_trans }}</p>
+          <p><strong>Apellidos:</strong> {{ transportista.apellidos_trans }}</p>
+          <p><strong>Tarifa:</strong> {{ transportista.tarifa_trans }}</p>
+          <p><strong>Alcance:</strong> {{ transportista.alcance_trans }}</p>
+          <p><strong>Servicios:</strong> {{ transportista.servicios_trans }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(transportista, 'Transportista')">Seleccionar</button>
+          <hr>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo">
+        Guias
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="hotel" *ngFor="let guia of guias">
+          <h2>{{ guia.nom_guia }}</h2>
+          <p><strong>Nombre:</strong> {{ guia.nom_guia }}</p>
+          <p><strong>Apellidos:</strong> {{ guia.apellido_guia }}</p>
+          <p><strong>Costo:</strong> {{  guia.costo_guia }}</p>
+          <p><strong>Categoria:</strong> {{ guia.categoria_guia }}</p>
+          <p><strong>Telefono:</strong> {{ guia.telefono_guia }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(guia, 'Guia')">Seleccionar</button>
+          <hr>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+        aria-expanded="false" aria-controls="collapseFive">
+        Museos
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+        aria-expanded="false" aria-controls="collapseSix">
+        Viñedos
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+        aria-expanded="false" aria-controls="collapseSeven">
+        Lugares Turisticos
+      </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

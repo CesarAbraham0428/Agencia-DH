@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
-import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
 import { AdminTransportistaComponent } from './pages/admin-transportista/admin-transportista.component';
 import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/admin-atractivos-turist.component';
 import { AdminGuiasComponent } from './pages/admin-guias/admin-guias.component';
@@ -9,16 +8,21 @@ import { AdminHosteleriaComponent } from './pages/admin-hosteleria/admin-hostele
 
 
 
+import { CraerPaquetesComponent } from './pages/crear-paquetes/crear-paquetes.component';
+import { PaquetesComponent } from './pages/paquetes/paquetes.component';
 
 const routes: Routes = [
   { path: '', component:LayoutPageComponent,
   children:[
-    {path: 'admin-personalizados',component:AdminPaquetesPersoComponent},
     {path: 'admin-transportista',component:AdminTransportistaComponent},
     {path: 'admin-atractivos',component:AdminAtractivosTuristComponent},
     {path: 'admin-guias',component:AdminGuiasComponent},
     {path: 'admin-hosteleria',component:AdminHosteleriaComponent},
-    {path:'**',redirectTo:'admin-personalizados'},
+
+    {path: 'crear-paquetes',component:CraerPaquetesComponent},
+    {path:'paquetes', component:PaquetesComponent},
+    
+    {path:'**',redirectTo:'crear-paquetes'},
   ]}
 ];
 

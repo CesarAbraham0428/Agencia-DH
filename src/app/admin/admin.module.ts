@@ -34,6 +34,7 @@ import { ContenidoPaqueteComponent } from './pages/crear-paquetes/contenido-paqu
 import { AcordeonPaqueteComponent } from './pages/crear-paquetes/acordeon-paquete/acordeon-paquete.component';
 import { CrearItinerarioComponent } from './pages/crear-paquetes/crear-itinerario/crear-itinerario.component';
 import { PasosNavegacionComponent } from './pages/crear-paquetes/pasos-navegacion/pasos-navegacion.component';
+import { CustomTimePipe } from './pages/paquetes/time.pipe';
 
 
 
@@ -51,6 +52,7 @@ import { PasosNavegacionComponent } from './pages/crear-paquetes/pasos-navegacio
     AdminAtractivosTuristComponent,
     PaquetesComponent,
     AdminUsuarioComponent,
+    CustomTimePipe
   ],
   imports: [
     CommonModule,

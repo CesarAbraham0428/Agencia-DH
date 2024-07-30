@@ -10,12 +10,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./paquetes.component.scss']
 })
 export class PaquetesComponent implements OnInit {
-
   paquetes: any[] = [];
   paqueteForm!: FormGroup;
   editingPaquete: Paquete | null = null;
   showEditForm: boolean = false;
-
   constructor(
     private genericService: ServicioGenericoCRUD,
     private fb: FormBuilder
@@ -26,11 +24,9 @@ export class PaquetesComponent implements OnInit {
       costo_paquete: ['', [Validators.required, Validators.min(1)]]
     });
   }
-
   ngOnInit(): void {
     this.cargarPaquetes();
   }
-
   cargarPaquetes() {
     this.genericService.getAll<Paquete>('Paquete').subscribe(
       data => {
@@ -53,7 +49,6 @@ export class PaquetesComponent implements OnInit {
       }
     );
   }
-
   editarPaquete(paquete: Paquete) {
     this.editingPaquete = paquete;
     this.paqueteForm.patchValue({
@@ -63,7 +58,6 @@ export class PaquetesComponent implements OnInit {
     });
     this.showEditForm = true;
   }
-
   actualizarPaquete() {
     if (this.paqueteForm.valid && this.editingPaquete) {
       const paqueteActualizado = {
@@ -93,7 +87,6 @@ export class PaquetesComponent implements OnInit {
       );
     }
   }
-
   eliminarPaquete(paquete: Paquete) {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -135,7 +128,6 @@ export class PaquetesComponent implements OnInit {
       }
     });
   }
-
   cancelarEdicion() {
     this.editingPaquete = null;
     this.paqueteForm.reset();

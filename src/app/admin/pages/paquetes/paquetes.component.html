@@ -1,84 +1,89 @@
 <h1>Paquetes Existentes</h1>
 
-<section class="container-paquete">
-
-<article class="paquete" *ngFor="let paquete of paquetes">
-  <div class="paquete__title">
-    <h2>Paquete: {{paquete.nom_paquete}}</h2>
-    <hr>
-  </div>
-  <div class="paquete__info">
-    <p>Información del paquete:</p>
-    <p> <strong>Nombre del paquete:</strong> {{paquete.nom_paquete}}</p>
-    <p> <strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
-    <p> <strong>Costo:</strong> {{paquete.costo_paquete}}</p>
-  </div>
-  <hr>
-  <div class="paquete__services">
-    <h3>Servicios que ofrece:</h3>
-    <ul>
-      <li *ngFor="let servicio of paquete.servicios">
-        Tipo: {{servicio.tipo_servicio}} - ID: {{servicio.id_servicio}}
-        
-        <div class="paquete__activities">
-          <h4>Actividades del servicio:</h4>
-          <ul>
-            <li *ngFor="let actividad of servicio.actividades">
-              <table class="table">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let paquete of paquetes">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title">{{paquete.nom_paquete}}</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
+          <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
+          <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
+          
+          <h3 class="mt-4">Servicios incluidos</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
+              {{servicio.tipo_servicio}}
+            </li>
+          </ul>
+          
+          <h3 class="mt-4">Servicios con actividades</h3>
+          <div *ngFor="let servicio of paquete.servicios">
+            <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
+              <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
+              <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Descripción</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Descripción</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><p>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</p></td>
-                    <td><p>{{actividad.hora_actividad | date:'HH:mm'}}</p></td>
-                    <td><p>{{actividad.descripcion_actividad}}</p></td>
+                  <tr *ngFor="let actividad of servicio.actividades">
+                    <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
+                    <td>{{actividad.hora_actividad | customTime}}</td>
+                    <td>{{actividad.descripcion_actividad}}</td>
                   </tr>
                 </tbody>
               </table>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
-      </li>
-    </ul>
-  </div>
-  <div class="paquete__buttons">
-    <div class="paquete__buttons">
-      <button type="button" class="btn btn-warning" (click)="editarPaquete(paquete)">Editar</button>
-      <button type="button" class="btn btn-danger" (click)="eliminarPaquete(paquete)">Eliminar</button>
+        <div class="card-footer">
+          <button class="btn btn-warning mr-2" (click)="editarPaquete(paquete)">Editar</button>
+          <button class="btn btn-danger" (click)="eliminarPaquete(paquete)">Eliminar</button>
+        </div>
+      </div>
     </div>
   </div>
-</article>
-</section>
+</div>
 
-<!-- Formulario de edición -->
-<div *ngIf="showEditForm" class="modal">
-  <div class="modal-content">
-    <h2>Editar Paquete</h2>
-    <form [formGroup]="paqueteForm" (ngSubmit)="actualizarPaquete()">
-      <div class="form-group">
-        <label for="nom_paquete">Nombre del Paquete:</label>
-        <input type="text" id="nom_paquete" formControlName="nom_paquete" class="form-control">
+<!-- Modal de edición -->
+<div class="modal" [ngClass]="{'show': showEditForm}" tabindex="-1" role="dialog" [ngStyle]="{'display': showEditForm ? 'block' : 'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Paquete</h5>
+        <button type="button" class="close" (click)="cancelarEdicion()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <label for="tipo_paquete">Tipo de Paquete:</label>
-        <select id="tipo_paquete" formControlName="tipo_paquete" class="form-control">
-          <option value="Predeterminado">Predeterminado</option>
-          <option value="Personalizado">Personalizado</option>
-        </select>
+      <div class="modal-body">
+        <form [formGroup]="paqueteForm" (ngSubmit)="actualizarPaquete()">
+          <div class="form-group">
+            <label for="nom_paquete">Nombre del Paquete</label>
+            <input type="text" class="form-control" id="nom_paquete" formControlName="nom_paquete">
+          </div>
+          <div class="form-group">
+            <label for="tipo_paquete">Tipo de Paquete</label>
+            <select class="form-control" id="tipo_paquete" formControlName="tipo_paquete">
+              <option value="Predeterminado">Predeterminado</option>
+              <option value="Personalizado">Personalizado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="costo_paquete">Costo del Paquete</label>
+            <input type="number" class="form-control" id="costo_paquete" formControlName="costo_paquete">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="!paqueteForm.valid">Guardar cambios</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cerrar</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="costo_paquete">Costo del Paquete:</label>
-        <input type="number" id="costo_paquete" formControlName="costo_paquete" class="form-control">
-      </div>
-      <div class="form-buttons">
-        <button type="submit" class="btn btn-primary" [disabled]="!paqueteForm.valid">Guardar</button>
-        <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

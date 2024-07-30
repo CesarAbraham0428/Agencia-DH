@@ -38,8 +38,9 @@ export class PaquetesComponent implements OnInit {
         this.paquetes.forEach(paquete => {
           this.genericService.getPaqueteCompleto(paquete.id_paquete).subscribe(
             paqueteCompleto => {
-              paquete.servicios = paqueteCompleto.servicios;
-              paquete.actividades = paqueteCompleto.actividades;
+              // Asignar directamente el paquete completo
+              Object.assign(paquete, paqueteCompleto);
+              console.log('Paquete completo cargado:', paquete);
             },
             error => {
               console.error('Error al obtener paquete completo:', error);
@@ -49,9 +50,6 @@ export class PaquetesComponent implements OnInit {
       },
       error => {
         console.error('Error al obtener Paquetes:', error);
-        if (error.error && error.error.error) {
-          console.error('Mensaje de error del servidor:', error.error.error);
-        }
       }
     );
   }

@@ -18,18 +18,13 @@
     <h3>Servicios que ofrece:</h3>
     <ul>
       <li *ngFor="let servicio of paquete.servicios">
-        Tipo: {{servicio.tipo_servicio}} - Nombre: {{servicio.nombre}}
-      </li>
-    </ul>
-    <div class="paquete__activities">
-      <hr>
-      <h3>Itinerario:</h3>
-      <ul>
-        <li *ngFor="let actividad of paquete.actividades">
-
-              <p>Nombre del Servicio: {{actividad.nombre_servicio}}</p>
-
-             <table class="table">
+        Tipo: {{servicio.tipo_servicio}} - ID: {{servicio.id_servicio}}
+        
+        <div class="paquete__activities">
+          <h4>Actividades del servicio:</h4>
+          <ul>
+            <li *ngFor="let actividad of servicio.actividades">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Fecha</th>
@@ -39,16 +34,17 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><p>{{actividad.fecha_actividad}}</p></td>
-                    <td><p>{{actividad.hora_actividad}}</p></td>
+                    <td><p>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</p></td>
+                    <td><p>{{actividad.hora_actividad | date:'HH:mm'}}</p></td>
                     <td><p>{{actividad.descripcion_actividad}}</p></td>
                   </tr>
                 </tbody>
               </table>
-
-        </li>
-      </ul>
-    </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
   <div class="paquete__buttons">
     <div class="paquete__buttons">

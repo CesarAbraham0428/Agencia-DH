@@ -31,8 +31,8 @@ export class CrearItinerarioComponent implements OnInit {
   id_usr: number = 1; 
   id_agencia: number = 1; 
   id_guia: number = 1; 
-  id_hotel: number = 1; 
-  id_restaurante: number = 1; 
+  id_hotesteleria: number = 1; 
+  id_trans: number = 1; 
   selectedPackage: any;
 
   constructor(
@@ -82,7 +82,7 @@ export class CrearItinerarioComponent implements OnInit {
     }
     for (let day of this.days) {
       for (let activity of day.activities) {
-        if (!activity.time || !activity.description || !activity.date || !activity.servicioAsociado) {
+        if (!activity.time || !activity.description || !activity.date || !activity.servicioAsociado || this.getServiceId(activity.servicioAsociado) === -1) {
           return false;
         }
       }
@@ -103,12 +103,14 @@ export class CrearItinerarioComponent implements OnInit {
           hora_actividad: act.time,
           descripcion_actividad: act.description,
           id_servicio: this.getServiceId(act.servicioAsociado),
-          tipo_servicio: act.servicioAsociado ? act.servicioAsociado.tipo : 'Otro'
-        }))),
-        servicios: this.selectedPackage.servicios.map((s: { tipo: any; }) => ({
-          id_servicio: this.getServiceId(s),
-          tipo_servicio: s.tipo
-        }))
+          tipo_servicio: act.servicioAsociado ? act.servicioAsociado.tipo : null
+        }))).filter(act => act.id_servicio !== null),
+        servicios: this.selectedPackage.servicios
+          .map((s: { tipo: any; }) => ({
+            id_servicio: this.getServiceId(s),
+            tipo_servicio: s.tipo
+          }))
+          .filter((s: { id_servicio: null; }) => s.id_servicio !== null)
       };
   
       console.log('Datos del paquete a enviar:', packageData);
@@ -134,22 +136,23 @@ export class CrearItinerarioComponent implements OnInit {
   }
 
   getServiceId(servicio: any): number {
-    if (!servicio) return -1; // Devolver un valor distinto de null
+    if (!servicio) return -1;
     switch(servicio.tipo) {
-      case 'Hotel':
-        return servicio.id_hotel;
-      case 'Restaurante':
-        return servicio.id_restaurante;
-      // Añade más casos según sea necesario
+      case 'Hosteleria':
+        return servicio.id_hosteleria || -1;
+      case 'Transportista':
+        return servicio.id_transportista || -1;
+      case 'Guia':
+        return servicio.id_guia || -1;
       default:
-        return servicio.id || -1; // Devolver un valor distinto de null
+        return servicio.id || -1;
     }
   }
   
   getServiceType(servicio: any): string {
     if (!servicio) return 'Otro'; // Cambiamos 'desconocido' por 'Otro'
-    if (servicio.id_hotel) return 'Hotel';
-    if (servicio.id_restaurante) return 'Restaurante';
+    if (servicio.id_hosteleria) return 'Hotel';
+    if (servicio.id_transportista) return 'Transportista';
     if (servicio.id_guia) return 'Guia';
     return 'Otro';
   }
@@ -173,8 +176,8 @@ export class CrearItinerarioComponent implements OnInit {
     this.id_usr = 1; 
     this.id_agencia = 1; 
     this.id_guia = 1; 
-    this.id_hotel = 1; 
-    this.id_restaurante = 1; 
+    this.id_hotesteleria = 1; 
+    this.id_trans = 1; 
     this.selectedPackage = null;
     this.packageDataService.clearItems(); // Limpiar los servicios seleccionados
   }

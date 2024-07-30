@@ -4,13 +4,13 @@
   </div>
 
   <div class="contenidoPaquete__body">
-    <div class="contenidoPaquete__Servicios">
+    <div class="contenidoPaquete__Servicios"> 
       <h2>Servicios</h2>
       <ul>
         <li *ngFor="let item of servicios">
           <h3>
           {{ 
-            item.nombre_hotesteleria || item.nombre_transportista || item.nombre_guia ||
+            item.nom_hs || item.nom_transportista || item.nom_guia ||
             item.nombre_museo || item.nombre_vinedo || item.nombre_lugar_turistico
           }}
         </h3>

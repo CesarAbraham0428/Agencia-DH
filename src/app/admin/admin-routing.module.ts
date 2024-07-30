@@ -21,7 +21,7 @@ const routes: Routes = [
     {path: 'admin-hosteleria',component:AdminHosteleriaComponent},
 
     {path: 'crear-paquetes',component:CraerPaquetesComponent},
-    {path:'paquetes', component:PaquetesComponent},
+    {path:'adminPaquetes', component:PaquetesComponent},
     
     {path:'**',redirectTo:'crear-paquetes'},
   ]}

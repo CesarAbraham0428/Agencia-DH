@@ -11,9 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class PaquetesComponent implements OnInit {
   paquetes: any[] = [];
+  paquetesFiltrados: any[] = [];
   paqueteForm!: FormGroup;
   editingPaquete: Paquete | null = null;
   showEditForm: boolean = false;
+
+  filtroTipo: string = 'todos';
+  filtroCostoMin: number | null = null;
+  filtroCostoMax: number | null = null;
+
   constructor(
     private genericService: ServicioGenericoCRUD,
     private fb: FormBuilder
@@ -27,6 +33,7 @@ export class PaquetesComponent implements OnInit {
   ngOnInit(): void {
     this.cargarPaquetes();
   }
+
   cargarPaquetes() {
     this.genericService.getAll<Paquete>('Paquete').subscribe(
       data => {
@@ -34,7 +41,6 @@ export class PaquetesComponent implements OnInit {
         this.paquetes.forEach(paquete => {
           this.genericService.getPaqueteCompleto(paquete.id_paquete).subscribe(
             paqueteCompleto => {
-              // Asignar directamente el paquete completo
               Object.assign(paquete, paqueteCompleto);
               console.log('Paquete completo cargado:', paquete);
             },
@@ -43,12 +49,23 @@ export class PaquetesComponent implements OnInit {
             }
           );
         });
+        this.filtrarPaquetes();
       },
       error => {
         console.error('Error al obtener Paquetes:', error);
       }
     );
   }
+
+  filtrarPaquetes() {
+    this.paquetesFiltrados = this.paquetes.filter(paquete => {
+      const cumpleTipo = this.filtroTipo === 'todos' || paquete.tipo_paquete === this.filtroTipo;
+      const cumpleCostoMin = this.filtroCostoMin === null || paquete.costo_paquete >= this.filtroCostoMin;
+      const cumpleCostoMax = this.filtroCostoMax === null || paquete.costo_paquete <= this.filtroCostoMax;
+      return cumpleTipo && cumpleCostoMin && cumpleCostoMax;
+    });
+  }
+
   editarPaquete(paquete: Paquete) {
     this.editingPaquete = paquete;
     this.paqueteForm.patchValue({

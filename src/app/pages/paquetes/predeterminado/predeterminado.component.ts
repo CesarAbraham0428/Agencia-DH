@@ -2,6 +2,9 @@ import { Component, Renderer2, ElementRef, AfterViewInit, OnInit } from '@angula
 import { NavigationStart, Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
+import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
+import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
+
 
 declare var paypal: any;
 
@@ -11,6 +14,7 @@ declare var paypal: any;
   styleUrls: ['./predeterminado.component.scss']
 })
 export class PredeterminadoComponent implements OnInit, AfterViewInit {
+  paquetes: any[] = [];
   showPayPalButton: { [key: string]: boolean } = {
     enoturismo: false,
     maikati: false,
@@ -21,6 +25,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     enoturismoDro: false,
     maikatiDro: false,
     sierraBravaDro: false,
+
   };
 
   isButtonClicked: { [key: string]: boolean } = {
@@ -39,7 +44,8 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     private loginService: LoginService,
     private router: Router,
     private renderer: Renderer2,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private genericService: ServicioGenericoCRUD
   ) {}
 
   ngOnInit() {
@@ -49,7 +55,30 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
         this.removeModalBackdrop();
       }
     });
+
+    this.cargarPaquetes();
   }
+
+  cargarPaquetes() {
+    this.genericService.getAll<Paquete>('Paquete').subscribe(
+      data => {
+        this.paquetes = data;
+        this.paquetes.forEach(paquete => {
+          this.genericService.getPaqueteCompleto(paquete.id_paquete).subscribe(
+            paqueteCompleto => {
+              Object.assign(paquete, paqueteCompleto);
+              console.log('Paquete completo cargado:', paquete);
+            },
+            error => {
+              console.error('Error al obtener paquete completo:', error);
+            }
+          );
+        });
+      }
+    );
+  }
+
+
 
   ngAfterViewInit(): void {
     this.loadPayPalScript();

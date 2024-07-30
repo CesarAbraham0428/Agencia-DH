@@ -19,10 +19,11 @@ const routes: Routes = [
     {path: 'admin-atractivos',component:AdminAtractivosTuristComponent},
     {path: 'admin-guias',component:AdminGuiasComponent},
     {path: 'admin-hosteleria',component:AdminHosteleriaComponent},
+    {path: 'admin-usuario',component:AdminUsuarioComponent},
 
     {path: 'crear-paquetes',component:CraerPaquetesComponent},
     {path:'adminPaquetes', component:PaquetesComponent},
-    
+
     {path:'**',redirectTo:'crear-paquetes'},
   ]}
 ];

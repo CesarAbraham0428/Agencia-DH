@@ -3,9 +3,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+interface AsignacionPaquete {
+  id_paquete: number;
+  id_usuario: number;
+}
+
+interface AsignacionResponse {
+  message: string;
+  id_usuario: number;
+  id_paquete: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServicioGenericoCRUD {
   private apiUrl = `${environment.baseUrl}/admin/paquete`;
 
@@ -38,4 +53,9 @@ export class ServicioGenericoCRUD {
   delete(p0: string, id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+
+  asignarUsuarioPaquete(asignacion: AsignacionPaquete): Observable<AsignacionResponse> {
+    return this.http.post<AsignacionResponse>(`${this.apiUrl}/asignar-usuario-paquete`, asignacion);
+  }
+  
 }

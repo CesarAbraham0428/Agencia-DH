@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
+import { UsuariosService } from '../../../core/services/usuarios.service'; // Asegúrate de que la ruta sea correcta
 import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class PaquetesComponent implements OnInit {
   paquetes: any[] = [];
+  usuarios: any[] = []; // Cambiamos el tipo a 'any' para coincidir con la respuesta del servicio
+  
   paquetesFiltrados: any[] = [];
   paqueteForm!: FormGroup;
   editingPaquete: Paquete | null = null;
@@ -22,6 +25,7 @@ export class PaquetesComponent implements OnInit {
 
   constructor(
     private genericService: ServicioGenericoCRUD,
+    private usuariosService: UsuariosService, // Inyectamos el nuevo servicio
     private fb: FormBuilder
   ) {
     this.paqueteForm = this.fb.group({
@@ -32,6 +36,7 @@ export class PaquetesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.cargarPaquetes();
+    this.cargarUsuarios();
   }
 
   cargarPaquetes() {
@@ -57,12 +62,70 @@ export class PaquetesComponent implements OnInit {
     );
   }
 
+  cargarUsuarios() {
+    this.usuariosService.getAllUsuarios().subscribe(
+      data => {
+        this.usuarios = data;
+      },
+      error => {
+        console.error('Error al obtener Usuarios:', error);
+      }
+    );
+  }
+
+
   filtrarPaquetes() {
     this.paquetesFiltrados = this.paquetes.filter(paquete => {
       const cumpleTipo = this.filtroTipo === 'todos' || paquete.tipo_paquete === this.filtroTipo;
       const cumpleCostoMin = this.filtroCostoMin === null || paquete.costo_paquete >= this.filtroCostoMin;
       const cumpleCostoMax = this.filtroCostoMax === null || paquete.costo_paquete <= this.filtroCostoMax;
       return cumpleTipo && cumpleCostoMin && cumpleCostoMax;
+    });
+  }
+
+
+  asignarPaquete(paquete: Paquete) {
+    if (paquete.tipo_paquete !== 'Personalizado') {
+      Swal.fire('Error', 'Solo los paquetes personalizados pueden ser asignados a usuarios.', 'error');
+      return;
+    }
+  
+    Swal.fire({
+      title: 'Asignar Paquete',
+      html: `
+        <select id="usuario" class="swal2-select">
+          ${this.usuarios.map(u => `<option value="${u.id_usr}">${u.nom_usr}</option>`).join('')}
+        </select>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Asignar',
+      cancelButtonText: 'Cancelar',
+      preConfirm: () => {
+        const selectElement = document.getElementById('usuario') as HTMLSelectElement;
+        return selectElement.value;
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const idUsuario = result.value;
+        
+        const asignacion = {
+          id_paquete: paquete.id_paquete,
+          id_usuario: idUsuario
+        };
+  
+        // Usa un nuevo método en tu servicio para esta operación específica
+        this.genericService.asignarUsuarioPaquete(asignacion).subscribe(
+          response => {
+            Swal.fire('Éxito', 'Paquete asignado correctamente', 'success');
+          },
+          error => {
+            console.error('Error completo:', error);
+            console.error('Respuesta del servidor:', error.error);
+            Swal.fire('Error', 'No se pudo asignar el paquete. Revisa la consola para más detalles.', 'error');
+          }
+        );
+        
+      }
     });
   }
 

@@ -28,7 +28,6 @@ export class CrearItinerarioComponent implements OnInit {
   packageName: string = '';
   packageType: string = 'Personalizado';
   packageCost: number = 0;
-  id_usr: number = 1; 
   id_agencia: number = 1; 
   id_guia: number = 1; 
   id_hotesteleria: number = 1; 
@@ -96,7 +95,6 @@ export class CrearItinerarioComponent implements OnInit {
         nom_paquete: this.packageName,
         tipo_paquete: this.packageType,
         costo_paquete: this.packageCost,
-        id_usr: this.id_usr,
         id_agencia: this.id_agencia,
         actividades: this.days.flatMap(day => day.activities.map(act => ({
           fecha_actividad: act.date,
@@ -173,7 +171,6 @@ export class CrearItinerarioComponent implements OnInit {
     this.packageName = '';
     this.packageType = 'Personalizado';
     this.packageCost = 0;
-    this.id_usr = 1; 
     this.id_agencia = 1; 
     this.id_guia = 1; 
     this.id_hotesteleria = 1; 

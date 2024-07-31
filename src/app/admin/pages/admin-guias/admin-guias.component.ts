@@ -21,13 +21,13 @@ export class AdminGuiasComponent implements OnInit {
     this.guiaForm = this.fb.group({
       nom_guia: ['', Validators.required],
       apellido_guia: ['', Validators.required],
-      nomcalle_guia: ['', Validators.required],
-      numcalle_guia: ['', Validators.required],
-      comunidad_guia: ['', Validators.required],
-      categoria_guia: ['', Validators.required],
+      nomcalle_guia: [''],
+      numcalle_guia: [''],
+      comunidad_guia: [''],
+      categoria_guia: [''],
       telefono_guia: ['', Validators.required],
-      costo_guia: ['', Validators.required],
-      email_guia: ['', [Validators.required, Validators.email]]
+      costo_guia: [''],
+      email_guia: ['']
     });
   }
 

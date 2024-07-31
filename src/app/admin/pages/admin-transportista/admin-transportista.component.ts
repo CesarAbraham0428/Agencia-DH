@@ -20,12 +20,12 @@ export class AdminTransportistaComponent implements OnInit {
     public dialog: MatDialog) {
     this.transportistaForm = this.fb.group({
       nom_trans: ['', Validators.required],
-      apellidos_trans: ['', Validators.required],
-      alcance_trans: ['', Validators.required],
-      email_trans: ['', [Validators.required, Validators.email]],
-      tarifa_trans: ['',Validators.required],
-      servicios_trans: ['', Validators.required],
-      tel_trans: ['', Validators.required]
+      apellidos_trans: [''],
+      alcance_trans: [''],
+      email_trans: [''],
+      tarifa_trans: [''],
+      servicios_trans: [''],
+      tel_trans: ['']
     });
   }
 

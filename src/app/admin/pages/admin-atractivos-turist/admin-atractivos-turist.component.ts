@@ -20,16 +20,16 @@ export class AdminAtractivosTuristComponent implements OnInit {
     public dialog: MatDialog) {
     this.atraccionForm = this.fb.group({
       nom_actur: ['', Validators.required],
-      accesbilidad_actur: ['', Validators.required],
+      accesbilidad_actur: [''],
       descripcion_actur: ['', Validators.required],
-      nom_calle_actur: ['', Validators.required],
-      num_calle_actur: ['', Validators.required],
+      nom_calle_actur: [''],
+      num_calle_actur: [''],
       localidad_actur: ['', Validators.required],
-      tipologia_actur: ['', Validators.required],
-      num_visitantes_actur: ['', Validators.required],
-      categoria_actur: ['', Validators.required],
-      servicios_actur: ['', Validators.required],
-      costo_actur: ['', Validators.required]
+      tipologia_actur: [''],
+      num_visitantes_actur: [''],
+      categoria_actur: [''],
+      servicios_actur: [''],
+      costo_actur: ['']
     });
   }
 

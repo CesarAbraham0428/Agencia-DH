@@ -11,6 +11,7 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class LoginService {
   private baseUrl: string = environment.baseUrl;
+  private agenciasUrl = `${environment.baseUrl}/usuario/agencias`; // Añade esta línea
 
   constructor(private http: HttpClient) {}
 
@@ -58,5 +59,9 @@ export class LoginService {
       return token ? true : false;
     }
     return false;
+  }
+
+  getAllAgencias(): Observable<any> {
+    return this.http.get<any>(`${this.agenciasUrl}`);
   }
 }

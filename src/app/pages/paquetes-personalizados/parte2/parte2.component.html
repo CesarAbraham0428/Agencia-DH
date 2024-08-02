@@ -1,29 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crea tu paquete</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-</style>
-</head>
-<body>
-
 <div class="body-container">
   <div class="content">
     <h2>Crea tu paquete</h2>
-    <form id="combinedForm" action="/parte5" method="post" onsubmit="return validateForm()">
+    <form >
       
       <!-- Selección de agencia -->
       <div class="form-group">
-        <label for="agency">Selecciona tu agencia</label>
-        <select id="agency" name="agency" required>
-          <option value="">Elige una opción</option>
-          <option value="agency1">Agencia 1</option>
-          <option value="agency2">Agencia 2</option>
-          <option value="agency3">Agencia 3</option>
+        <label for="nom_ag">Agencia</label>
+        <select id="nom_ag" name="nom_ag">
+          <option *ngFor="let agencia of agencias" [value]="agencia.nom_ag">{{ agencia.nom_ag }}</option>
         </select>
         <div id="agency-error" class="error-message"></div>
       </div>
@@ -157,30 +141,3 @@
     <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2020/08/95095cd263c9d7c5c20a7b6ba9cfe6fc.jpg" alt="Imagen de fondo" />
   </div>
 </div>
-
-<script>
-  function validateForm() {
-    const form = document.getElementById('combinedForm');
-    const fields = form.querySelectorAll('[required]');
-    let isValid = true;
-
-    fields.forEach(field => {
-      if (!field.value || (field.type === 'select-multiple' && field.selectedOptions.length === 0)) {
-        isValid = false;
-        field.style.borderColor = 'red'; // Highlight invalid fields
-      } else {
-        field.style.borderColor = '#ddd'; // Reset border color if valid
-      }
-    });
-
-    if (!isValid) {
-      alert('Por favor, completa todos los campos obligatorios.');
-    }
-
-    return isValid;
-  }
-</script>
-
-</body>
-</html>
-

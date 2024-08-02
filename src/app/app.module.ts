@@ -46,7 +46,7 @@ import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.c
     FooterComponent,
     DialogContentExampleDialog,
     RecuperarPComponent,
-    ContraRecComponent,,
+    ContraRecComponent,
     Parte3Component,
     Parte4Component,
     Parte5Component

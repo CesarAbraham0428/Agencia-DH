@@ -1,0 +1,12 @@
+/* Variables de la página principal */
+$color-footer: rgb(12, 23, 59);
+$color-footer-text: #fff;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  color: $color-footer-text;
+  background-color: $color-footer;
+}

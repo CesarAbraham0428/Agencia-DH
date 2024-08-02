@@ -1,0 +1,46 @@
+<div class="title">
+  <h1>Agencias</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Agencia</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of agencias; let i = index">
+              <td>{{ item.nom_ag }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="editAgencia(item)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteAgencia(item.id_agencia)">Eliminar</button>
+               </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Agencias</h2>
+      <form [formGroup]="agenciaForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom_ag">Nombre</label>
+          <input type="text" class="form-control" id="nom_ag" formControlName="nom_ag">
+        </div>
+        <div class="row mt-3">
+          <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>
+          <button type="submit" class="btn btn-success" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

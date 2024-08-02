@@ -1,0 +1,23 @@
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  
+    &.select-btn {
+      background: linear-gradient(135deg, #000000, #000000);
+      color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  
+      &:hover {
+        background: linear-gradient(135deg, #000000, #000000);
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  .accordion{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }

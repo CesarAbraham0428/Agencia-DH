@@ -1,43 +1,5 @@
-<header class="header">
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+<!-- <app-layout-page></app-layout-page> -->
 
-    <nav [class.nav--activate]="menuActive" class="nav">
-
-      <a href="" class="nav__logo link">
-        <img src="./assets/img/logo.jpg" alt="Logo Pagina" class="nav__logo__img" />
-        <p class="nav__logo__nombre">Senderos DH</p>
-      </a>
-
-      <div class="nav__menu">
-
-        <li class="nav__menu__item">
-          <a routerLink="" class="nav__menu__link link">Inicio</a>
-        </li>
-        <li class="nav__menu__item">
-          <a routerLink="/paquetes" class="nav__menu__link link">Paquetes</a>
-        </li>
-        <li class="nav__menu__item">
-          <a routerLink="/paquetes-personalizados" class="nav__menu__link link">Paquetes Personalizados</a>
-        </li>
-        <li class="nav__menu__item">
-          <a href="#" class="link login" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</a>
-        </li>
-
-      </div>
-
-      <img src="./assets/icons/list.svg" alt="menu" class="img-nav" (click)="toggleMenu()" />
-      <img src="./assets/icons/x-lg.svg" alt="menu" class="img-nav-cerrar" (click)="toggleMenu()">
-
-    </nav>
-
-  </header>
-
-  <router-outlet/>
-
-  <!-- Componente del Modal  -->
-  <app-login/>
-
-  <footer class="footer">
-    © UTNG 2024 GDS0631.
-  </footer>
-
-  <script src="script.js"></script>

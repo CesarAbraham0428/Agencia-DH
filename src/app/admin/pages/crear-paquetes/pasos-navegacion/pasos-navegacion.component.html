@@ -1,0 +1,17 @@
+<div class="grid-container">
+
+  <div class="step-container">
+    <div class="step-navigation">
+      <div class="step" [class.active]="currentStep === 1">1</div>
+      <div class="step" [class.active]="currentStep === 2">2</div>
+    </div>
+    <div class="step-description">
+      <p> {{ currentStepDescription }}</p>
+    </div>
+  </div>
+  
+  <!-- Para que los pasos se centren no borrar -->
+  <div>
+  </div>
+
+</div>

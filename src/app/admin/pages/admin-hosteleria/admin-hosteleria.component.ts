@@ -20,12 +20,13 @@ export class AdminHosteleriaComponent implements OnInit {
     public dialog: MatDialog) {
     this.hosteleriaForm = this.fb.group({
       nom_hs: ['', Validators.required],
-      descripcion_hs: ['', Validators.required],
-      accesibility_infrastr_hs: ['', Validators.required],
-      tipologia_hs: ['', Validators.required],
-      costo_hs: ['', Validators.required],
-      capacidad_hs: ['', Validators.required],
-      servicios: ['', Validators.required]
+      descripcion_hs: [''],
+      accesibility_infrastr_hs: [''],
+      tipologia_hs: [''],
+      costo_hs: [''],
+      capacidad_hs: [''],
+      servicios: [''],
+      tipo_hs: ['']
     });
   }
 
@@ -71,7 +72,8 @@ export class AdminHosteleriaComponent implements OnInit {
       tipologia_hs: hosteleria.tipologia_hs,
       costo_hs: hosteleria.costo_hs,
       capacidad_hs: hosteleria.capacidad_hs,
-      servicios: hosteleria.servicios
+      servicios: hosteleria.servicios,
+      tipo_hs: hosteleria.tipo_hs
     });
   }
 

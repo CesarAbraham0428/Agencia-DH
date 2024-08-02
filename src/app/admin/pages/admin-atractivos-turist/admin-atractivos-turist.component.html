@@ -11,6 +11,7 @@
           <thead>
             <tr>
               <th>Nombre</th>
+              <th>Tipo</th>
               <th>Accesibilidad</th>
               <th>Descripción</th>
               <th>Nombre Calle</th>
@@ -27,6 +28,7 @@
           <tbody>
             <tr *ngFor="let item of atracciones; let i = index">
               <td>{{ item.nom_actur }}</td>
+              <td>{{ item.tipo_actur }}</td>
               <td>{{ item.accesbilidad_actur }}</td>
               <td>{{ item.descripcion_actur }}</td>
               <td>{{ item.nom_calle_actur }}</td>
@@ -56,6 +58,12 @@
         <div class="form-group">
           <label for="nom_actur">Nombre</label>
           <input type="text" class="form-control" id="nom_actur" formControlName="nom_actur">
+          <label for="tipo_actur">Tipo</label>
+          <select class="form-control" id="tipo_actur" formControlName="tipo_actur">
+            <option value="Viñedo">Viñedo</option>
+            <option value="Museo">Museo</option>
+            <option value="Atractivo">Atractivo</option>
+          </select>
           <label for="accesbilidad_actur">Accesibilidad</label>
           <input type="text" class="form-control" id="accesbilidad_actur" formControlName="accesbilidad_actur">
           <label for="descripcion_actur">Descripción</label>

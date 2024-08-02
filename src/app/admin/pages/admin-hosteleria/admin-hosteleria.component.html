@@ -16,6 +16,7 @@
               <th>Costo</th>
               <th>Capacidad</th>
               <th>Servicios</th>
+              <th>Tipo</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -28,6 +29,7 @@
               <td>{{ item.costo_hs }}</td>
               <td>{{ item.capacidad_hs }}</td>
               <td>{{ item.servicios }}</td>
+              <td>{{ item.tipo_hs }}</td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-warning btn-rm" (click)="editHosteleria(item)">Editar</button>
@@ -58,6 +60,11 @@
           <input type="number" class="form-control" id="capacidad_hs" formControlName="capacidad_hs">
           <label for="servicios">Servicios</label>
           <input type="text" class="form-control" id="servicios" formControlName="servicios">
+          <label for="tipo_hs">Tipo</label>
+          <select class="form-control" id="tipo_hs" formControlName="tipo_hs">
+            <option value="Restaurante">Restaurante</option>
+            <option value="Hotel">Hotel</option>
+          </select>
         </div>
         <div class="row mt-3">
           <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>

@@ -20,6 +20,7 @@ export class AdminAtractivosTuristComponent implements OnInit {
     public dialog: MatDialog) {
     this.atraccionForm = this.fb.group({
       nom_actur: ['', Validators.required],
+      tipo_actur: ['', Validators.required],
       accesbilidad_actur: [''],
       descripcion_actur: ['', Validators.required],
       nom_calle_actur: [''],
@@ -70,6 +71,7 @@ export class AdminAtractivosTuristComponent implements OnInit {
     this.editingAtraccionId = atraccion.id_atracTuris;
     this.atraccionForm.setValue({
       nom_actur: atraccion.nom_actur,
+      tipo_actur: atraccion.tipo_actur,
       accesbilidad_actur: atraccion.accesbilidad_actur,
       descripcion_actur: atraccion.descripcion_actur,
       nom_calle_actur: atraccion.nom_calle_actur,

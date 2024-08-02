@@ -9,11 +9,7 @@
   }
 }
 
-.red{
-  color:red;
-}
-
-@media (width < 1024px) {
+@media (width < 764px) {
   .imagen-registro{
     display: none;
   }

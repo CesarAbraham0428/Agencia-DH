@@ -1,28 +1,34 @@
-<section class="text-center">
-  <div class="contenedor-login">
-    <form [formGroup]="formLog" class="form" (ngSubmit)="onSubmit()">
-      <h2 class="login-title">Iniciar Sesión</h2>
-      <div class="mb-3">
-        <label for="email_usr" class="form-label">Correo Electrónico</label>
-        <input [ngClass]="{
-          'is-invalid': hasErrors('email_usr', 'required') || hasErrors('email_usr', 'email')
-        }" type="email" class="form-control" id="email_usr" placeholder="Correo Electrónico" formControlName="email_usr" />
-        <div class="text-danger" *ngIf="hasErrors('email_usr', 'email')">Email formato inválido.</div>
-        <div class="text-danger" *ngIf="hasErrors('email_usr', 'required')">Campo requerido.</div>
-      </div>
-      <div class="mb-3">
-        <label for="passwd_usr" class="form-label">Contraseña</label>
-        <input [ngClass]="{
-          'is-invalid': hasErrors('passwd_usr', 'required') || hasErrors('passwd_usr', 'minlength')
-        }" type="password" class="form-control" id="passwd_usr" placeholder="Contraseña" formControlName="passwd_usr"/>
-        <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'required')">Campo requerido.</div>
-        <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
-      </div>
-      <button type="submit" class="btn btn-primary py-2">Iniciar Sesión</button>
-      <p class="my-2" id="#">
-        <a routerLink="/enviar-correo-recuperacion" id="#">¿Olvidó su contraseña?</a>
-      </p>
-      <button routerLink="/registro" class="btn btn-danger" type="button" data-bs-dismiss="modal">Registrarse</button>
-    </form>
-  </div>
-  </section>
+<div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Iniciar Sesión</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="signup-form" action="#" method="POST" role="form" id="form-login">
+                                    <input type="hidden" name="logintoken" value="login" />
+                                    <label for="username"> Nombre de usuario </label>
+                                    <div class="input-group" id="form-input">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope add-on"></i>
+                                        </div>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required />
+                                    </div>
+                                    <label for="password">Contraseña</label>
+                                    <div class="input-group" id="form-input">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-lock add-on"></i>
+                                        </div>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required />
+                                    </div>
+                                    <div class="sign-up-btn py-2">
+                                        <button type="submit" class="btn btn-success">Iniciar sesión (ingresar)</button>
+                                    </div>
+                                </form>
+                                <p class="my-2" id="#"><a href="#" id="#">¿Olvidó su nombre de usuario o contraseña?</a></p>
+                               <button class="btn btn-danger " data-bs-dismiss="modal" (click)="registrarse()" >Registrarse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

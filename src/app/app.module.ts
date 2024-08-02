@@ -1,67 +1,45 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withFetch, withInterceptors  } from '@angular/common/http';
+
+
+
+import { HttpClientModule } from '@angular/common/http';
+import { DataServices } from './data.services';
 import { LoginComponent } from './pages/login/login.component';
+
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import firebase from 'firebase/compat/app';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { FormsModule } from '@angular/forms';
 
-import { RegistroService } from './core/services/auth.service';
 
-/* Parte del administrador */
 
-import { AdminModule } from './admin/admin.module';
-//footer y header
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-//utilizar material
-import { MaterialModule } from './material/material.module';
-
-//Parte del Dialogos de Registro
-import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
-import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
-import { ContraRecComponent } from './pages/contraRec/contraRec.component';
-
-//enviar al header
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { authInterceptor } from './core/interceptors/auth.interceptor';
-import { PredeterminadoModule } from './pages/paquetes/predeterminado/predeterminado.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent,
-    HeaderComponent,
-    FooterComponent,
-    DialogContentExampleDialog,
-    RecuperarPComponent,
-    ContraRecComponent,
+    RegistroComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    AdminModule,
-    MaterialModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    NgxMaterialTimepickerModule,
-    FormsModule,
-    PredeterminadoModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
-    provideHttpClient(withInterceptors([authInterceptor])),
-    RegistroService,
     provideClientHydration(),
-    provideHttpClient(withFetch()),
-    provideAnimationsAsync()
+    DataServices,
+    provideFirebaseApp(() => initializeApp({"projectId":"agencia-dh","appId":"1:852934717287:web:a3cb9ed8df20dd4fd6c9c2","databaseURL":"https://agencia-dh-default-rtdb.firebaseio.com","storageBucket":"agencia-dh.appspot.com","apiKey":"AIzaSyCkZ_mgpJnvZ2OgbxJw46QJVEA5pGjogR0","authDomain":"agencia-dh.firebaseapp.com","messagingSenderId":"852934717287","measurementId":"G-MX15MM3G5W"})),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth())
+
   ],
   bootstrap: [AppComponent]
 })

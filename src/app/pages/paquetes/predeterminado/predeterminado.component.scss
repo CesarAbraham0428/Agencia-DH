@@ -1,15 +1,142 @@
-.contenedor-padre{
+/* General Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+
+/* Header Styling */
+header {
+  width: 100%;
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  animation: colorChange 5s linear infinite;
+}
+
+/* Navigation Menu Link Styling */
+.nav_menu_link {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #ffc107;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav_menu_link:hover {
+  color: #ffd54f;
+}
+
+/* Container Styling */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Restaurants Section */
+.restaurants {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Restaurant Card Styling */
+.restaurant {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant:hover {
+  transform: rotate(2deg) translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant h2 {
+  margin: 0 0 15px;
+  font-size: 24px;
+  color: #007BFF;
+  font-weight: 500;
+  animation: colorChange 5s linear infinite;
+}
+
+.restaurant img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.restaurant img:hover {
+  transform: scale(1.05);
+}
+
+.restaurant p {
+  margin: 0;
+  font-size: 16px;
+  color: #6c757d;
+  line-height: 1.5;
+  animation: colorChange 5s linear infinite;
+}
+
+.restaurant p span {
+  font-weight: 600;
+  color: #343a40;
+}
+
+/* Map Section */
+.map {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.map img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Additional Styling */
+.contenedor-padre {
   margin-bottom: 2em;
 }
 
-hr{
+hr {
   border: 2px solid royalblue;
   width: 85%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 }
 
-/* Títulos principales y subtítulos */
+/* Main Title and Subtitles */
 .main-title {
   width: 100%;
   color: transparent;
@@ -20,20 +147,24 @@ hr{
   letter-spacing: 5px;
   background-image: url('./imagenes/montanas-de-chile-compressor.jpg');
   background-size: cover;
-  background-position-y: bottom;
+  background-position: bottom;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: textAnimation 3s ease infinite, colorChange 5s linear infinite;
 }
 
+/* Sub Title */
 .sub-title {
   font-size: 2em;
   color: #000000;
   text-align: center;
   margin-top: 10px;
   font-weight: 600;
+  animation: colorChange 5s linear infinite;
 }
 
+/* Card Styling */
 .card {
   background-color: #ffffff;
   color: #000000;
@@ -42,13 +173,18 @@ hr{
   flex-direction: column;
   align-items: center;
   position: relative;
+  transition: transform 0.3s ease;
 }
 
 .card-img-top {
   width: 100%;
-  height: auto;
-  object-fit: cover;
   height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
 }
 
 .card-body {
@@ -63,54 +199,68 @@ hr{
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
+  animation: colorChange 5s linear infinite;
 }
 
 .card-text {
   font-size: 15px;
   margin-bottom: 10px;
+  animation: colorChange 5s linear infinite;
 }
 
-
-.btn-primary {
+/* Button Styles */
+.btn-primary, .btn-secondary, .btn-tercero {
   display: block;
   margin: 0 auto;
-  margin-top: 25px;
-  padding: 10px 30px;
   border: none;
   border-radius: 20px;
+  padding: 10px 30px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary {
   background-color: #000000;
   color: #fff;
 }
 
-.btn-secondary{
+.btn-secondary {
   background-color: #000000;
-  border: none;
-  border-radius: 20px;
-  margin-top: 25px;
-  padding: 10px 30px;
 }
 
-.btn-tercero{
+.btn-tercero {
   background-color: #000000;
-  border: none;
-  border-radius: 20px;
   padding: 3px 25px;
-  margin-top: 25px;
-  a{
-    color: #fff;
-    text-decoration: none;
-  }
 }
 
-.modal-description{
+.btn-primary:hover, .btn-secondary:hover, .btn-tercero:hover {
+  transform: scale(1.05);
+  background-color: #333333;
+}
+
+.btn-tercero a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Modal Description */
+.modal-description {
   text-align: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-//Tablas
+.modal-description.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Table Styling */
 .table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .table caption {
   caption-side: top;
   font-size: 1.5em;
@@ -118,41 +268,84 @@ hr{
   text-align: left;
   padding: 10px 0;
 }
+
 .table th, .table td {
   border: 1px solid #000000;
   padding: 8px;
 }
+
 .table th {
   background-color: #c5c5c5;
   color: black;
   text-align: left;
 }
+
 .table tr:nth-child(even) {
   background-color: #000000;
+  color: #fff;
 }
 
 .table tbody tr th {
   background-color: #ffffff;
 }
 
-/*.table img {
-  max-width: 200px;
-  height: auto;
-}*/
+.table tbody tr:hover {
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
 
+/* Gradient Brand Color */
 .gradient-brand-color {
   background-image: -webkit-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
   background-image: -ms-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
   color: #fff;
+  animation: gradientAnimation 5s ease infinite;
 }
+
+/* Contact Info Wrapper */
 .contact-info__wrapper {
   overflow: hidden;
-  border-radius: .625rem .625rem 0 0
+  border-radius: 0.625rem 0.625rem 0 0;
 }
 
+@media (min-width: 1024px) {
+  .contact-info__wrapper {
+    border-radius: 0 0.625rem 0.625rem 0;
+    padding: 5rem !important;
+  }
+}
+
+.contact-info__list span.position-absolute {
+  left: 0;
+}
+
+/* Contact Wrapper */
+.contact__wrapper {
+  background-color: #000000;
+  border-radius: 0 0 0.625rem 0.625rem;
+}
+
+@media (min-width: 1024px) {
+  .contact__wrapper {
+    border-radius: 0.625rem 0 0.625rem 0.625rem;
+  }
+}
+
+/* Contact Form Wrapper */
+@media (min-width: 1024px) {
+  .contact-form__wrapper {
+    padding: 5rem !important;
+  }
+}
+
+/* Shadow Effects */
+.shadow-lg, .shadow-lg--on-hover:hover {
+  box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+}
+
+/* Additional Styling */
 .fondo {
   background-image: linear-gradient(rgb(93, 141, 238), rgb(110, 108, 187)70%);
-
   padding: 4pc;
 }
 
@@ -161,51 +354,67 @@ hr{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.grandet{
+.grandet {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bolder;
   color: #000000;
   font-size: 2rem;
+  animation: colorChange 5s linear infinite;
 }
 
-a{
+a {
   color: #ffffff;
+  transition: color 0.3s ease;
 }
 
-a:visited{
+a:visited {
   color: rgb(164, 170, 255);
 }
 
-@media (min-width: 1024px) {
-  .contact-info__wrapper {
-      border-radius: 0 .625rem .625rem 0;
-      padding: 5rem !important
-  }
-}
-.contact-info__list span.position-absolute {
-  left: 0
-}
-.z-index-101 {
-  z-index: 101;
-}
-.list-style--none {
-  list-style: none;
-}
-.contact__wrapper {
-  background-color: #000000;
-  border-radius: 0 0 .625rem .625rem
+a:hover {
+  color: #ffd54f;
 }
 
-@media (min-width: 1024px) {
-  .contact__wrapper {
-      border-radius: .625rem 0 .625rem .625rem
+/* Animations */
+@keyframes colorChange {
+  0% { color: #007BFF; }
+  25% { color: #FF5722; }
+  50% { color: #4CAF50; }
+  75% { color: #FFC107; }
+  100% { color: #007BFF; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-@media (min-width: 1024px) {
-  .contact-form__wrapper {
-      padding: 5rem !important
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes textAnimation {
+  0% {
+    color: #000000;
+  }
+  50% {
+    color: #ffffff;
+  }
+  100% {
+    color: #000000;
   }
 }
-.shadow-lg, .shadow-lg--on-hover:hover {
-  box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+
+@keyframes gradientAnimation {
+  0% { background-color: #376be6; }
+  50% { background-color: #6470ef; }
+  100% { background-color: #376be6; }
 }
+

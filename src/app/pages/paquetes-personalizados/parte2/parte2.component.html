@@ -1,78 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea tu paquete</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+</style>
+</head>
+<body>
+
 <div class="body-container">
-  <form id="travel-form" onsubmit="return validateForm()">
-    <label for="travel-with">Con quien viaja</label>
-    <select id="travel-with" name="travel-with" required>
-      <option value="">Selecciona una opción</option>
-      <option value="alone">Solo</option>
-      <option value="with-family">Con Familia</option>
-      <option value="with-partner">Con pareja</option>
-    </select>
-    <div id="travel-with-error" class="error-message"></div>
+  <div class="content">
+    <h2>Crea tu paquete</h2>
+    <form id="combinedForm" action="/parte5" method="post" onsubmit="return validateForm()">
+      
+      <!-- Selección de agencia -->
+      <div class="form-group">
+        <label for="agency">Selecciona tu agencia</label>
+        <select id="agency" name="agency" required>
+          <option value="">Elige una opción</option>
+          <option value="agency1">Agencia 1</option>
+          <option value="agency2">Agencia 2</option>
+          <option value="agency3">Agencia 3</option>
+        </select>
+        <div id="agency-error" class="error-message"></div>
+      </div>
+      
+      <!-- Fechas -->
+      <div class="form-group">
+        <label for="arrival">Llegada</label>
+        <input type="date" id="arrival" name="arrival" required />
+      </div>
+      <div class="form-group">
+        <label for="departure">Salida</label>
+        <input type="date" id="departure" name="departure" required />
+      </div>
+      
+      <!-- Adultos y niños -->
+      <div class="form-group">
+        <div class="half-width">
+          <label for="adults-female">Adultos 18 a 36</label>
+          <input type="number" id="adults-female" name="adults-female" required />
+        </div>
+        <div class="half-width">
+          <label for="adults-male">Adultos 36 a 64</label>
+          <input type="number" id="adults-male" name="adults-male" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="half-width">
+          <label for="children-female">Niños 0 a 8</label>
+          <input type="number" id="children-female" name="children-female" required />
+        </div>
+        <div class="half-width">
+          <label for="children-male">Niños 8 a 17</label>
+          <input type="number" id="children-male" name="children-male" required />
+        </div>
+      </div>
+      
+      <!-- Detalles adicionales -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="travel-with">Con quien viaja</label>
+          <select id="travel-with" name="travel-with" required>
+            <option value="">Selecciona una opción</option>
+            <option value="alone">Solo</option>
+            <option value="with-family">Con Familia</option>
+            <option value="with-partner">Con pareja</option>
+          </select>
+          <div id="travel-with-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+          <label for="budget">Tu presupuesto</label>
+          <select id="budget" name="budget" required>
+            <option value="">Selecciona una opción</option>
+            <option value="4000-6000">$4000 - $6000</option>
+            <option value="6000-8000">$6000 - $8000</option>
+            <option value="8000-10000">$8000 - $10000</option>
+            <option value="10000-14000">$10000 - $14000</option>
+          </select>
+          <div id="budget-error" class="error-message"></div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="activities">¿Qué tipo de actividades te gustan?</label>
+        <input type="text" id="activities" name="activities">
+      </div>
+      
+      <div class="form-group">
+        <label for="specific-place">¿Hay algún lugar o fecha en específico que desees visitar?</label>
+        <input type="text" id="specific-place" name="specific-place">
+      </div>
 
-    <label for="budget">Tu presupuesto</label>
-    <select id="budget" name="budget" required>
-      <option value="">Selecciona una opción</option>
-      <option value="4000-6000">$4000 - $6000</option>
-      <option value="6000-8000">$6000 - $8000</option>
-      <option value="8000-10000">$8000 - $10000</option>
-      <option value="10000-14000">$10000 - $14000</option>
-    </select>
-    <div id="budget-error" class="error-message"></div>
+      <!-- Selección de hoteles -->
+      <div class="form-group">
+        <label for="hotel">Selecciona tu hotel</label>
+        <select id="hotel" name="hotel" required>
+          <option value="">Selecciona un hotel</option>
+          <option value="hotel1">Hotel 1</option>
+          <option value="hotel2">Hotel 2</option>
+          <option value="hotel3">Hotel 3</option>
+          <option value="hotel4">Hotel 4</option>
+          <option value="hotel5">Hotel 5</option>
+          <option value="hotel6">Hotel 6</option>
+          <option value="hotel7">Hotel 7</option>
+          <option value="hotel8">Hotel 8</option>
+          <option value="hotel9">Hotel 9</option>
+        </select>
+      </div>
 
-    <label for="activities">¿Qué tipo de actividades te gustan?</label>
-    <input type="text" id="activities" name="activities">
+      <div class="form-group">
+        <label for="restaurant">Selecciona tu restaurante</label>
+        <select id="restaurant" name="restaurant" required>
+          <option value="">Selecciona un restaurante</option>
+          <option value="restaurant1">Restaurante 1</option>
+          <option value="restaurant2">Restaurante 2</option>
+          <option value="restaurant3">Restaurante 3</option>
+          <option value="restaurant4">Restaurante 4</option>
+          <option value="restaurant5">Restaurante 5</option>
+          <option value="restaurant6">Restaurante 6</option>
+          <option value="restaurant7">Restaurante 7</option>
+          <option value="restaurant8">Restaurante 8</option>
+          <option value="restaurant9">Restaurante 9</option>
+        </select>
+      </div>
 
-    <label for="specific-place">¿Ya hay algún lugar o fecha en específico que desees visitar?</label>
-    <input type="text" id="specific-place" name="specific-place">
+      <div class="form-group">
+        <label for="experience">Selecciona tu experiencia</label>
+        <select id="experience" name="experience" required>
+          <option value="">Selecciona tu experiencia</option>
+          <option value="experience1">Experiencia 1</option>
+          <option value="experience2">Experiencia 2</option>
+          <option value="experience3">Experiencia 3</option>
+          <option value="experience4">Experiencia 4</option>
+          <option value="experience5">Experiencia 5</option>
+          <option value="experience6">Experiencia 6</option>
+          <option value="experience7">Experiencia 7</option>
+          <option value="experience8">Experiencia 8</option>
+          <option value="experience9">Experiencia 9</option>
+        </select>
+      </div>
+      
+      <!-- Botones -->
+      <div class="form-actions">
+        <button type="button" onclick="window.location.href='/parte5'">ATRÁS</button>
+        <button type="submit" id="nextButton">Siguiente</button>
+      </div>
+      
+    </form>
+  </div>
 
-    <div class="form-actions">
-      <button type="button" onclick="window.location.href='/paquetes-personalizados'">ATRÁS</button>
-      <a href="/parte3" class="nav_menu_link link" id="nextButton">Siguiente</a>
-    </div>
-  </form>
   <div class="img-container">
-    <img src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000" alt="Imagen de Guanajuato" />
+    <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2020/08/95095cd263c9d7c5c20a7b6ba9cfe6fc.jpg" alt="Imagen de fondo" />
   </div>
 </div>
 
 <script>
   function validateForm() {
-    var isValid = true;
+    const form = document.getElementById('combinedForm');
+    const fields = form.querySelectorAll('[required]');
+    let isValid = true;
 
-    // Validar campo "Con quien viaja"
-    var travelWith = document.getElementById("travel-with").value;
-    if (travelWith === "") {
-      document.getElementById("travel-with-error").textContent = "Por favor selecciona una opción.";
-      isValid = false;
-    } else {
-      document.getElementById("travel-with-error").textContent = "";
+    fields.forEach(field => {
+      if (!field.value || (field.type === 'select-multiple' && field.selectedOptions.length === 0)) {
+        isValid = false;
+        field.style.borderColor = 'red'; // Highlight invalid fields
+      } else {
+        field.style.borderColor = '#ddd'; // Reset border color if valid
+      }
+    });
+
+    if (!isValid) {
+      alert('Por favor, completa todos los campos obligatorios.');
     }
 
-    // Validar campo "Tu presupuesto"
-    var budget = document.getElementById("budget").value;
-    if (budget === "") {
-      document.getElementById("budget-error").textContent = "Por favor selecciona una opción.";
-      isValid = false;
-    } else {
-      document.getElementById("budget-error").textContent = "";
-    }
-
-    // Validar campo "¿Qué tipo de actividades te gustan?"
-    var activities = document.getElementById("activities").value.trim();
-    // No es obligatorio, por lo que no se muestra error si está vacío
-
-    // Validar campo "¿Ya hay algún lugar o fecha en específico que desees visitar?"
-    var specificPlace = document.getElementById("specific-place").value.trim();
-    // No es obligatorio, por lo que no se muestra error si está vacío
-
-    // Devolver true si todos los campos son válidos, de lo contrario false
     return isValid;
-  
+  }
 </script>
 
-
-
-
-
-
+</body>
+</html>
 

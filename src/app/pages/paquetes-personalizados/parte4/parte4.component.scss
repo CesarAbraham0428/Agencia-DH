@@ -1,98 +1,41 @@
-/* General Body Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333; /* Text color for better readability */
+    background-color: #f4f4f4;
 }
-
-/* Header Styling */
 header {
-    width: 100%;
-    background-color: #343a40;
+    background-color: #333;
     color: #fff;
-    padding: 20px 0; /* Increased padding for a more spacious feel */
+    padding: 10px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky; /* Make header stick to the top */
-    top: 0; /* Ensure it stays at the top */
-    z-index: 1000; /* Ensure it stays above other elements */
 }
-
-header h1 {
-    margin: 0;
-    font-size: 32px; /* Increased font size for better visibility */
-    font-weight: 600; /* Slightly bolder font weight */
-}
-
-/* Navigation Menu Link Styling */
-.nav_menu_link {
-    margin: 0 20px; /* Increased margin for better spacing */
+header a {
+    color: #fff;
     text-decoration: none;
-    color: #ffc107;
-    font-weight: 600; /* Bolder text for emphasis */
-    transition: color 0.3s ease;
+    margin: 0 15px;
+    font-weight: bold;
 }
-
-.nav_menu_link:hover {
-    color: #ffd54f; /* Lighter yellow on hover for a subtle effect */
+header a:hover {
+    text-decoration: underline;
 }
-
-/* Container Styling */
 .container {
-    width: 100%;
-    max-width: 1000px; /* Increased max-width for better readability */
-    padding: 30px; /* Increased padding for better spacing */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
-
-/* Restaurant Card Styling */
 .restaurant {
-    width: 100%;
-    max-width: 600px; /* Set a max-width for the restaurant cards */
     background-color: #fff;
-    padding: 25px; /* Increased padding for a more spacious feel */
-    margin: 20px 0; /* Increased margin for better separation */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px; /* Slightly larger border-radius */
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
-
-.restaurant:hover {
-    transform: translateY(-10px); /* More pronounced hover effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-}
-
-.restaurant h2 {
-    margin: 0 0 20px; /* Increased bottom margin for better spacing */
-    font-size: 30px; /* Slightly increased font size */
-    color: #007BFF; /* Vibrant color for headings */
-    font-weight: 500; /* Medium font weight for a more refined look */
-}
-
 .restaurant img {
     max-width: 100%;
     height: auto;
-    border-radius: 12px; /* Consistent border-radius with the card */
-    margin-bottom: 20px; /* Increased margin for better separation */
+    border-radius: 8px;
 }
-
-.restaurant p {
-    margin: 0;
-    font-size: 18px; /* Increased font size for better readability */
-    color: #6c757d; /* Subtle gray for body text */
-    line-height: 1.5; /* Increased line-height for better readability */
-}
-
-/* Bold Text within Paragraphs */
-.restaurant p span {
-    font-weight: 600; /* Bolder text for emphasis */
-    color: #343a40; /* Darker color for better contrast */
+.restaurant h2 {
+    margin-top: 0;
 }

@@ -1,19 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
-import { AdminPaquetesPersoComponent } from './pages/admin-paquetes-perso/admin-paquetes-perso.component';
-import { Parte3Component } from '../pages/paquetes-personalizados/parte3/parte3.component';
-import { Parte4Component } from '../pages/paquetes-personalizados/parte4/parte4.component';
-import { Parte5Component } from '../pages/paquetes-personalizados/parte5/parte5.component';
+import { AdminTransportistaComponent } from './pages/admin-transportista/admin-transportista.component';
+import { AdminAtractivosTuristComponent } from './pages/admin-atractivos-turist/admin-atractivos-turist.component';
+import { AdminGuiasComponent } from './pages/admin-guias/admin-guias.component';
+import { AdminHosteleriaComponent } from './pages/admin-hosteleria/admin-hosteleria.component';
+import { AdminUsuarioComponent } from './pages/admin-usuario/admin-usuario.component';
+
+
+
+import { CraerPaquetesComponent } from './pages/crear-paquetes/crear-paquetes.component';
+import { PaquetesComponent } from './pages/paquetes/paquetes.component';
 
 const routes: Routes = [
   { path: '', component:LayoutPageComponent,
   children:[
-    {path: 'admin-personalizados',component:AdminPaquetesPersoComponent},
-    {path: 'parte3',component:Parte3Component},
-    {path: 'parte4',component:Parte4Component},
-    {path: 'parte5',component:Parte5Component},
-    {path:'**',redirectTo:'admin-personalizados'},
+    {path: 'admin-transportista',component:AdminTransportistaComponent},
+    {path: 'admin-atractivos',component:AdminAtractivosTuristComponent},
+    {path: 'admin-guias',component:AdminGuiasComponent},
+    {path: 'admin-hosteleria',component:AdminHosteleriaComponent},
+    {path: 'admin-usuario',component:AdminUsuarioComponent},
+
+    {path: 'crear-paquetes',component:CraerPaquetesComponent},
+    {path:'adminPaquetes', component:PaquetesComponent},
+
+    {path:'**',redirectTo:'crear-paquetes'},
   ]}
 ];
 

@@ -1,0 +1,96 @@
+<div class="title">
+  <h1>Atractivos Turísticos</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <!-- Tabla de Atractivos Turísticos -->
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Accesibilidad</th>
+              <th>Descripción</th>
+              <th>Nombre Calle</th>
+              <th>Número Calle</th>
+              <th>Localidad</th>
+              <th>Tipología</th>
+              <th>Número Visitantes</th>
+              <th>Categoría</th>
+              <th>Servicios</th>
+              <th>Costo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of atracciones; let i = index">
+              <td>{{ item.nom_actur }}</td>
+              <td>{{ item.tipo_actur }}</td>
+              <td>{{ item.accesbilidad_actur }}</td>
+              <td>{{ item.descripcion_actur }}</td>
+              <td>{{ item.nom_calle_actur }}</td>
+              <td>{{ item.num_calle_actur }}</td>
+              <td>{{ item.localidad_actur }}</td>
+              <td>{{ item.tipologia_actur }}</td>
+              <td>{{ item.num_visitantes_actur }}</td>
+              <td>{{ item.categoria_actur }}</td>
+              <td>{{ item.servicios_actur }}</td>
+              <td>{{ item.costo_actur }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="editAtraccion(item)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteAtraccion(item.id_atracTuris)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Formulario para Añadir/Editar Atractivo Turístico -->
+    <div class="col-md-3 ml-auto custom-col">
+      <h2>Atractivo Turístico</h2>
+      <form [formGroup]="atraccionForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom_actur">Nombre</label>
+          <input type="text" class="form-control" id="nom_actur" formControlName="nom_actur">
+          <label for="tipo_actur">Tipo</label>
+          <select class="form-control" id="tipo_actur" formControlName="tipo_actur">
+            <option value="Viñedo">Viñedo</option>
+            <option value="Museo">Museo</option>
+            <option value="Atractivo">Atractivo</option>
+          </select>
+          <label for="accesbilidad_actur">Accesibilidad</label>
+          <input type="text" class="form-control" id="accesbilidad_actur" formControlName="accesbilidad_actur">
+          <label for="descripcion_actur">Descripción</label>
+          <input type="text" class="form-control" id="descripcion_actur" formControlName="descripcion_actur">
+          <label for="nom_calle_actur">Nombre Calle</label>
+          <input type="text" class="form-control" id="nom_calle_actur" formControlName="nom_calle_actur">
+          <label for="num_calle_actur">Número Calle</label>
+          <input type="number" class="form-control" id="num_calle_actur" formControlName="num_calle_actur">
+          <label for="localidad_actur">Localidad</label>
+          <input type="text" class="form-control" id="localidad_actur" formControlName="localidad_actur">
+          <label for="tipologia_actur">Tipología</label>
+          <input type="text" class="form-control" id="tipologia_actur" formControlName="tipologia_actur">
+          <label for="num_visitantes_actur">Número Visitantes</label>
+          <input type="number" class="form-control" id="num_visitantes_actur" formControlName="num_visitantes_actur">
+          <label for="categoria_actur">Categoría</label>
+          <input type="text" class="form-control" id="categoria_actur" formControlName="categoria_actur">
+          <label for="servicios_actur">Servicios</label>
+          <input type="text" class="form-control" id="servicios_actur" formControlName="servicios_actur">
+          <label for="costo_actur">Costo</label>
+          <input type="number" class="form-control" id="costo_actur" formControlName="costo_actur">
+        </div>
+        <div class="row mt-3">
+          <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>
+          <button type="submit" class="btn btn-success" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

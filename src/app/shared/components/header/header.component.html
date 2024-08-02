@@ -20,6 +20,9 @@
       <li class="nav__menu__item" *ngIf="loginService.isAdmin()">
         <a [routerLink]="['/admin']" class="nav__menu__link link" (click)="closeMenu()">Permisos de Admin</a>
       </li>
+      <li class="nav__menu__item" *ngIf="loginService.isGestor()">
+        <a [routerLink]="['/gestor']" class="nav__menu__link link" (click)="closeMenu()">Permisos de Gestor</a>
+      </li>
       <li class="nav__menu__item" *ngIf="!loginService.isLogged()">
         <a [routerLink]="['/login']" class="login link" (click)="closeMenu()">Iniciar Sesión</a>
       </li>

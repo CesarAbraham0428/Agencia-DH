@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors  } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { FormsModule } from '@angular/forms';
 
 import { RegistroService } from './core/services/auth.service';
 
@@ -23,6 +25,14 @@ import { MaterialModule } from './material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogContentExampleDialog } from './shared/directives/dialog-content/dialog-content.component';
+import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
+import { ContraRecComponent } from './pages/contraRec/contraRec.component';
+
+//enviar al header
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { PredeterminadoModule } from './pages/paquetes/predeterminado/predeterminado.module';
+
 import { Parte3Component } from './pages/paquetes-personalizados/parte3/parte3.component';
 import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.component';
 import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.component';
@@ -35,6 +45,8 @@ import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.c
     HeaderComponent,
     FooterComponent,
     DialogContentExampleDialog,
+    RecuperarPComponent,
+    ContraRecComponent,,
     Parte3Component,
     Parte4Component,
     Parte5Component
@@ -46,9 +58,13 @@ import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.c
     AdminModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaterialTimepickerModule,
+    FormsModule,
+    PredeterminadoModule
   ],
   providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
     RegistroService,
     provideClientHydration(),
     provideHttpClient(withFetch()),

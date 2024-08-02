@@ -8,6 +8,8 @@ import { COUNTRY_CITY_DATA} from '../../data/country-city-data';
 import { Router } from '@angular/router';
 import { DialogContentExampleDialog } from '../../shared/directives/dialog-content/dialog-content.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-registro',
@@ -58,23 +60,25 @@ export class RegistroComponent implements OnInit {
       const usuario: Usuario = this.registroForm.value;
       try {
         await firstValueFrom(this.registroService.registrarUsuario(usuario));
-
-        this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message: 'Usuario registrado, confirmar correo' }
+        Swal.fire({
+          title: "!Hecho!",
+          text: "Usuario registrado, confirmar correo.",
+          icon: "success"
         });
         this.registroForm.reset();
         this.router.navigate(['/inicio']);
       } catch (error) {
-        this.dialog.open(DialogContentExampleDialog, {
-          width: '250px',
-          data: { message: 'Error al registrar usuario, el correo está en uso' }
+        Swal.fire({
+          title: "Error!",
+          text: "Error al registrar usuario, el correo está en uso.",
+          icon: "error"
         });
       }
     } else {
-      this.dialog.open(DialogContentExampleDialog, {
-        width: '250px',
-        data: { message: 'Formulario inválido. Revise los campos.' }
+      Swal.fire({
+        title: "Error!",
+        text: "Formulario inválido. Revise los campos.",
+        icon: "error"
       });
       this.registroForm.markAllAsTouched();
     }

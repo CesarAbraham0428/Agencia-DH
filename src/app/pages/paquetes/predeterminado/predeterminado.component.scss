@@ -142,7 +142,7 @@ hr {
   color: transparent;
   text-align: center;
   text-transform: uppercase;
-  font-size: 41px;
+  font-size: 30px;
   font-weight: bolder;
   letter-spacing: 5px;
   background-image: url('./imagenes/montanas-de-chile-compressor.jpg');
@@ -164,7 +164,10 @@ hr {
   animation: colorChange 5s linear infinite;
 }
 
-/* Card Styling */
+
+
+
+
 .card {
   background-color: #ffffff;
   color: #000000;
@@ -359,7 +362,8 @@ hr {
   font-weight: bolder;
   color: #000000;
   font-size: 2rem;
-  animation: colorChange 5s linear infinite;
+  animation: colorChange 5s linear infinite; 
+  text-align: center;
 }
 
 a {
@@ -411,10 +415,32 @@ a:hover {
     color: #000000;
   }
 }
+@media (min-width: 1024px) {
+  .contact-form__wrapper {
+      padding: 5rem !important
+  }
+}
+.shadow-lg, .shadow-lg--on-hover:hover {
+  box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+}
+
+
+
+.paypal-button-container {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 400px;
+  text-align: center;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 
 @keyframes gradientAnimation {
   0% { background-color: #376be6; }
   50% { background-color: #6470ef; }
   100% { background-color: #376be6; }
 }
-

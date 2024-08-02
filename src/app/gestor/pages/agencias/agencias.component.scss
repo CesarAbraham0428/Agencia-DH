@@ -1,0 +1,134 @@
+.title {
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-size: 4.2rem;
+    display: inline-block;
+    margin: 2em 0 1.2em;
+    padding: 0.5em;
+    color: #000;
+    border-radius: 15px;
+    font-weight: bold;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #28153c, #341613, #544a65);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto; /* Añade desplazamiento horizontal si es necesario */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Colapsa los bordes para un diseño más limpio */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade sombra a la tabla */
+}
+
+.table th, .table td {
+  padding: 1rem; /* Espaciado interno de las celdas */
+  text-align: left;
+  border-bottom: 1px solid #b9b8b8; /* Línea sutil entre filas */
+}
+
+.table thead th {
+  background-color: #0c365f; /* Color de fondo para el encabezado */
+  font-weight: bold;
+  color: #ffffff; /* Color del texto del encabezado */
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* Fondo sutil al pasar el cursor sobre las filas */
+}
+
+.col-md-8 {
+  flex: 0 0 73%;
+  max-width: 73%;
+}
+
+.custom-col {
+  max-width: 285px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.form {
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+  border: 1px solid #000; /* Borde negro */
+  padding: 1.5rem; /* Añade relleno al formulario */
+}
+
+.form label {
+  font-weight: bold; /* Negrita para las etiquetas */
+}
+
+.form-control {
+  margin-bottom: 2rem; /* Aumenta el espaciado entre campos de formulario */
+  padding: 0.5rem; /* Añade relleno interno */
+  border: 1px solid #c0bebe; /* Borde sutil */
+  transition: border-color 0.3s; /* Transición suave en el borde */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Cambia el borde al enfocar */
+  outline: none; /* Elimina el borde de enfoque predeterminado */
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.3rem; /* Espacio entre botones */
+}
+
+.mt-3 {
+  align-items: center;
+}
+
+button {
+  font-size: 0.875rem; /* Reduce el tamaño de la fuente */
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: auto;
+
+  &.btn-success {
+    background: linear-gradient(135deg, #0ba622, #198107);
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #198107, #0bad23);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-sm {
+    background: linear-gradient(135deg, #ef1818, #a00909);
+    color: #ffffff;
+    padding: 0.25rem 0.4rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #a00909, #ef1818);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-rm {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: #ffffff;
+    padding: 0.25rem 0.4rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Ajusta la sombra si es necesario */
+
+    &:hover {
+      background: linear-gradient(135deg, #5a6268, #6c757d);
+      transform: translateY(-1px); /* Ajusta la transformación si es necesario */
+    }
+  }
+}

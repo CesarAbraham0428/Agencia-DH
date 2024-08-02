@@ -1,0 +1,19 @@
+<section class="text-center">
+  <div class="contenedor-login">
+    <form  class="form" [formGroup]="correoRecForm" (ngSubmit)="onSubmit()">
+      <h2 class="login-title">Recuperar Contraseña</h2>
+      <h4 class="login-title">Ingresa tu contraseña</h4>
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input formControlName="email"  [ngClass]="{'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email')}"
+          type="email" class="form-control" id="email" placeholder="Correo Electrónico"/>
+        <div class="text-danger" *ngIf="hasErrors('email', 'email')">Email formato inválido.</div>
+        <div class="text-danger" *ngIf="hasErrors('email', 'required')">Campo requerido.</div>
+      </div>
+      <button type="submit" class="btn btn-primary py-2">Recuperar</button>
+      <p class="my-2" id="#">
+      </p>
+      <button routerLink="/enviar-correo-recuperacion" class="btn btn-danger" type="button" data-bs-dismiss="modal">Registrarse</button>
+    </form>
+  </div>
+  </section>

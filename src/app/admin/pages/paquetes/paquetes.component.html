@@ -1,0 +1,119 @@
+<div class="container">
+  <h1 class="text-center mb-4">Paquetes Existentes</h1>
+
+  <!-- Filtros -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <select class="form-control" (change)="filtrarPaquetes()" [(ngModel)]="filtroTipo">
+        <option value="todos">Todos los tipos</option>
+        <option value="Predeterminado">Predeterminado</option>
+        <option value="Personalizado">Personalizado</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <input type="number" class="form-control" placeholder="Costo mínimo" [(ngModel)]="filtroCostoMin"
+        (input)="filtrarPaquetes()">
+    </div>
+    <div class="col-md-4">
+      <input type="number" class="form-control" placeholder="Costo máximo" [(ngModel)]="filtroCostoMax"
+        (input)="filtrarPaquetes()">
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let paquete of paquetesFiltrados">
+      <div class="card paquete-card">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title">{{paquete.nom_paquete}}</h2>
+        </div>
+        <div class="card-body paquete-card-body">
+          <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
+          <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
+          <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
+          <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
+
+          <h3 class="mt-4">Servicios incluidos</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
+              {{servicio.tipo_servicio}}
+            </li>
+          </ul>
+
+          <h3 class="mt-4">Servicios con actividades</h3>
+          <div *ngFor="let servicio of paquete.servicios">
+            <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
+              <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                      <th>Descripción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let actividad of servicio.actividades">
+                      <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
+                      <td>{{actividad.hora_actividad | customTime}}</td>
+                      <td>{{actividad.descripcion_actividad}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-warning mr-2" (click)="editarPaquete(paquete)">Editar</button>
+          <button class="btn btn-danger mr-2" (click)="eliminarPaquete(paquete)">Eliminar</button>
+          <button (click)="asignarPaquete(paquete)" *ngIf="paquete.tipo_paquete === 'Personalizado'"
+            class="btn btn-primary">
+            Asignar a usuario
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de edición -->
+<div class="modal" [ngClass]="{'show': showEditForm}" tabindex="-1" role="dialog"
+  [ngStyle]="{'display': showEditForm ? 'block' : 'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Paquete</h5>
+        <button type="button" class="close" (click)="cancelarEdicion()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="paqueteForm" (ngSubmit)="actualizarPaquete()">
+          <div class="form-group">
+            <label for="nom_paquete">Nombre del Paquete</label>
+            <input type="text" class="form-control" id="nom_paquete" formControlName="nom_paquete">
+          </div>
+          <div class="form-group">
+            <label for="tipo_paquete">Tipo de Paquete</label>
+            <select class="form-control" id="tipo_paquete" formControlName="tipo_paquete">
+              <option value="Predeterminado">Predeterminado</option>
+              <option value="Personalizado">Personalizado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="costo_paquete">Costo del Paquete</label>
+            <input type="number" class="form-control" id="costo_paquete" formControlName="costo_paquete">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="!paqueteForm.valid">Guardar cambios</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cerrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

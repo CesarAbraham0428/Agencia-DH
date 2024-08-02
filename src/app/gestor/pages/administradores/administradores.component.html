@@ -1,0 +1,76 @@
+<div class="title">
+  <h1>Administradores</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Correo</th>
+              <th>Role</th>
+              <th>Agencia</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of admins">
+              <td>{{ admin.nom_usr }}</td>
+              <td>{{ admin.app_usr }}</td>
+              <td>{{ admin.email_usr }}</td>
+              <td>{{ admin.role }}</td>
+              <td>{{ admin.nom_ag }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-sm" (click)="editAdmin(admin)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteAdmin(admin.id_usr)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>{{ isEditing ? 'Editar Admin' : 'Agregar Admin' }}</h2>
+      <form [formGroup]="agenciaForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom_usr">Nombre</label>
+          <input type="text" class="form-control" id="nom_usr" formControlName="nom_usr">
+        </div>
+        <div class="form-group">
+          <label for="app_usr">Apellidos</label>
+          <input type="text" class="form-control" id="app_usr" formControlName="app_usr">
+        </div>
+        <div class="form-group">
+          <label for="email_usr">Correo</label>
+          <input type="email" class="form-control" id="email_usr" formControlName="email_usr">
+        </div>
+        <div class="form-group">
+          <label for="passwd_usr">Contraseña</label>
+          <input [ngClass]="{
+            'is-invalid': hasErrors('passwd_usr', 'required') || hasErrors('passwd_usr', 'minlength')
+          }" type="password" class="form-control" id="passwd_usr" formControlName="passwd_usr" minlength="6">
+          <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'required')">Campo requerido.</div>
+          <div class="text-danger" *ngIf="hasErrors('passwd_usr', 'minlength')">La Contraseña debe tener mínimo 6 caracteres.</div>
+        </div>
+        <div class="form-group">
+          <label for="nom_ag">Agencia</label>
+          <select class="form-control" id="nom_ag" formControlName="nom_ag">
+            <!-- Opciones deben ser cargadas dinámicamente -->
+            <option *ngFor="let agencia of agencias" [value]="agencia.nom_ag">{{ agencia.nom_ag }}</option>
+          </select>
+        </div>
+        <div class="row mt-3">
+          <button type="submit" class="btn btn-success">{{ isEditing ? 'Guardar' : 'Agregar' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

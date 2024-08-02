@@ -1,0 +1,22 @@
+<div class="container-title">
+  <h1>Creación de Paquetes</h1>
+</div>
+
+<app-pasos-navegacion [currentStep]="currentStep"></app-pasos-navegacion>
+
+<section class="container__accordion">
+  <div class="seleccion">
+    <ng-container [ngSwitch]="currentStep">
+      <app-acordeon-paquete *ngSwitchCase="1" #serviciosComponent></app-acordeon-paquete>
+      <app-crear-itinerario *ngSwitchCase="2"></app-crear-itinerario>
+
+      <div class="seleccion__buttons">
+        <button class="btn btn-secondary mx-3" (click)="previousStep()">Atrás</button>
+        <button class="btn btn-primary" *ngIf="currentStep != 2" (click)="nextStep()">Siguiente</button>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Lista del contenido del Paquete Personalizado -->
+  <app-contenido-paquete></app-contenido-paquete>
+</section>

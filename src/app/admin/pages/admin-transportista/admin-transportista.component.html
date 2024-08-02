@@ -1,0 +1,70 @@
+<div class="title">
+  <h1>Transportistas</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="table-responsive mt-4">
+        <table class="table table-striped" id="lista">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Alcance</th>
+              <th>Email</th>
+              <th>Tarifa</th>
+              <th>Servicios</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of transportista; let i=index">
+              <td>{{ item.nom_trans }}</td>
+              <td>{{ item.apellidos_trans }}</td>
+              <td>{{ item.alcance_trans }}</td>
+              <td>{{ item.email_trans }}</td>
+              <td>{{ item.tarifa_trans }}</td>
+              <td>{{ item.servicios_trans }}</td>
+              <td>{{ item.tel_trans }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-warning btn-rm" (click)="editTransportista(item)">Editar</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteTransportista(item.id_trans)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-4 ml-auto custom-col">
+      <h2>Transportistas</h2>
+      <form [formGroup]="transportistaForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom_trans">Nombre</label>
+          <input type="text" class="form-control" id="nom_trans" formControlName="nom_trans">
+          <label for="apellidos_trans">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos_trans" formControlName="apellidos_trans">
+          <label for="alcance_trans">Alcance</label>
+          <input type="text" class="form-control" formControlName="alcance_trans" id="alcance_trans">
+          <label for="email_trans">Email</label>
+          <input type="email" class="form-control" formControlName="email_trans" id="email_trans">
+          <label for="tarifa_trans">Tarifa</label>
+          <input type="number" class="form-control" formControlName="tarifa_trans" id="tarifa_trans">
+          <label for="servicios_trans">Servicios</label>
+          <input type="text" class="form-control" formControlName="servicios_trans" id="servicios_trans">
+          <label for="tel_trans">Teléfono</label>
+          <input type="text" class="form-control" formControlName="tel_trans" id="tel_trans">
+        </div>
+        <div class="row mt-3">
+          <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>
+          <button type="submit" class="btn btn-success" *ngIf="isEditing">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br><br>

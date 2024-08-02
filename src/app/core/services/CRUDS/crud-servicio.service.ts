@@ -3,9 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-
 interface AsignacionPaquete {
   id_paquete: number;
   id_usuario: number;
@@ -54,8 +51,9 @@ export class ServicioGenericoCRUD {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-  asignarUsuarioPaquete(asignacion: AsignacionPaquete): Observable<AsignacionResponse> {
-    return this.http.post<AsignacionResponse>(`${this.apiUrl}/asignar-usuario-paquete`, asignacion);
+  asignarUsuarioPaquete(asignacion: { id_paquete: number, id_usr: number }): Observable<any> {
+    console.log('Enviando asignación al servidor:', asignacion); // Añade este log
+    return this.http.post<any>(`${this.apiUrl}/asignar-usuario`, asignacion);
   }
   
 }

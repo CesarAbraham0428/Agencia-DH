@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
 import { UsuariosService } from '../../../core/services/usuarios.service'; // Asegúrate de que la ruta sea correcta
@@ -26,7 +27,8 @@ export class PaquetesComponent implements OnInit {
   constructor(
     private genericService: ServicioGenericoCRUD,
     private usuariosService: UsuariosService, // Inyectamos el nuevo servicio
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
     this.paqueteForm = this.fb.group({
       nom_paquete: ['', Validators.required],
@@ -35,8 +37,8 @@ export class PaquetesComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.cargarPaquetes();
     this.cargarUsuarios();
+    this.cargarPaquetes();
   }
 
   cargarPaquetes() {
@@ -63,14 +65,18 @@ export class PaquetesComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    this.usuariosService.getAllUsuarios().subscribe(
-      data => {
+    this.usuariosService.getAllUsuarios().subscribe({
+      next: (data) => {
         this.usuarios = data;
+        console.log('Usuarios cargados en el componente:', this.usuarios);
+        if (this.usuarios.length === 0) {
+          console.log('No se encontraron usuarios con rol "usuario"');
+        }
       },
-      error => {
+      error: (error) => {
         console.error('Error al obtener Usuarios:', error);
       }
-    );
+    });
   }
 
 
@@ -84,9 +90,10 @@ export class PaquetesComponent implements OnInit {
   }
 
 
-  asignarPaquete(paquete: Paquete) {
-    if (paquete.tipo_paquete !== 'Personalizado') {
-      Swal.fire('Error', 'Solo los paquetes personalizados pueden ser asignados a usuarios.', 'error');
+  asignarPaquete(paquete: any) {
+    if (this.usuarios.length === 0) {
+      console.log('No hay usuarios disponibles para asignar el paquete');
+      // Aquí puedes mostrar un mensaje al usuario si lo deseas
       return;
     }
   
@@ -94,6 +101,7 @@ export class PaquetesComponent implements OnInit {
       title: 'Asignar Paquete',
       html: `
         <select id="usuario" class="swal2-select">
+          <option value="">Seleccione un usuario</option>
           ${this.usuarios.map(u => `<option value="${u.id_usr}">${u.nom_usr}</option>`).join('')}
         </select>
       `,
@@ -102,29 +110,46 @@ export class PaquetesComponent implements OnInit {
       cancelButtonText: 'Cancelar',
       preConfirm: () => {
         const selectElement = document.getElementById('usuario') as HTMLSelectElement;
+        console.log('Elemento select:', selectElement);
+        console.log('Opciones disponibles:', Array.from(selectElement.options).map(opt => ({ value: opt.value, text: opt.text })));
+        console.log('Valor seleccionado:', selectElement.value);
         return selectElement.value;
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        const idUsuario = result.value;
+        console.log('Resultado de la selección:', result.value);
         
+        if (!result.value) {
+          Swal.fire('Error', 'Debe seleccionar un usuario', 'error');
+          return;
+        }
+  
+        const id_usr = parseInt(result.value as string);
+        console.log('id_usr parseado:', id_usr);
+        
+        if (isNaN(id_usr)) {
+          console.error('ID de usuario inválido');
+          Swal.fire('Error', 'ID de usuario inválido', 'error');
+          return;
+        }
+  
         const asignacion = {
           id_paquete: paquete.id_paquete,
-          id_usuario: idUsuario
+          id_usr: id_usr
         };
   
-        // Usa un nuevo método en tu servicio para esta operación específica
+        console.log('Enviando asignación:', asignacion);
+  
         this.genericService.asignarUsuarioPaquete(asignacion).subscribe(
           response => {
+            console.log('Asignación exitosa', response);
             Swal.fire('Éxito', 'Paquete asignado correctamente', 'success');
           },
           error => {
-            console.error('Error completo:', error);
-            console.error('Respuesta del servidor:', error.error);
-            Swal.fire('Error', 'No se pudo asignar el paquete. Revisa la consola para más detalles.', 'error');
+            console.error('Error al asignar paquete:', error);
+            Swal.fire('Error', 'No se pudo asignar el paquete. ' + (error.error?.error || ''), 'error');
           }
         );
-        
       }
     });
   }
@@ -213,5 +238,4 @@ export class PaquetesComponent implements OnInit {
     this.paqueteForm.reset();
     this.showEditForm = false;
   }
-
 }

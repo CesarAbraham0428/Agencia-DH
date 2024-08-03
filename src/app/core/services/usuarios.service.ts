@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, map, of } from 'rxjs';
 
-interface Usuario {
+export interface Usuario {
   id_usr: number;
   nom_usr: string;
   app_usr: string;
@@ -11,7 +11,6 @@ interface Usuario {
   sexo_usr: string;
   edad_usr: string;
   role: string;
-  // ... otros campos según sea necesario
 }
 
 @Injectable({
@@ -32,15 +31,23 @@ export class UsuariosService {
 
     getAllUsuarios(): Observable<Usuario[]> {
       return this.http.get<Usuario[]>(`${this.apiUrl}s`).pipe(
-        tap(usuarios => console.log('Usuarios recibidos:', usuarios)),
         catchError(error => {
           console.error('Error en getAllUsuarios:', error);
-          return throwError(() => new Error('Error al obtener usuarios'));
+          return of([]);
         })
       );
     }
   
-    getUsuarioById(id_usr: number): Observable<Usuario> {  
+    getUsuarioById(id_usr: number): Observable<Usuario> {
       return this.http.get<Usuario>(`${this.apiUrl}/${id_usr}`);
+    }
+  
+    buscarUsuarios(termino: string): Observable<Usuario[]> {
+      return this.getAllUsuarios().pipe(
+        map(usuarios => usuarios.filter(usuario => 
+          usuario.nom_usr.toLowerCase().includes(termino.toLowerCase()) ||
+          usuario.app_usr.toLowerCase().includes(termino.toLowerCase())
+        ))
+      );
     }
 }

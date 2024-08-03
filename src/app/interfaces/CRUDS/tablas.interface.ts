@@ -1,4 +1,5 @@
 export interface Paquete{
+  usuariosAsignados: import("c:/Users/lopez/Desktop/Agencia-DH/src/app/core/services/usuarios.service").Usuario[];
   id_paquete: number;
   nom_paquete: string;
   tipo_paquete: string

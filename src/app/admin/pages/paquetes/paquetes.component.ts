@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
-import { UsuariosService } from '../../../core/services/usuarios.service'; // Asegúrate de que la ruta sea correcta
+import { UsuariosService, Usuario } from '../../../core/services/usuarios.service'; 
 import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-paquetes',
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class PaquetesComponent implements OnInit {
   paquetes: any[] = [];
-  usuarios: any[] = []; // Cambiamos el tipo a 'any' para coincidir con la respuesta del servicio
+  usuarios: any[] = []; 
   
   paquetesFiltrados: any[] = [];
   paqueteForm!: FormGroup;
@@ -24,22 +25,36 @@ export class PaquetesComponent implements OnInit {
   filtroCostoMin: number | null = null;
   filtroCostoMax: number | null = null;
 
+  usuariosBuscados: Usuario[] = [];
+  usuarioSeleccionado: Usuario | null = null;
+
+  private searchTerms = new Subject<string>();
+
   constructor(
     private genericService: ServicioGenericoCRUD,
     private usuariosService: UsuariosService, // Inyectamos el nuevo servicio
     private fb: FormBuilder,
-    private http: HttpClient
   ) {
     this.paqueteForm = this.fb.group({
       nom_paquete: ['', Validators.required],
       tipo_paquete: ['', Validators.required],
       costo_paquete: ['', [Validators.required, Validators.min(1)]]
     });
+
+    this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.usuariosService.buscarUsuarios(term))
+    ).subscribe(usuarios => {
+      this.usuariosBuscados = usuarios;
+    });
   }
+
   ngOnInit(): void {
     this.cargarUsuarios();
     this.cargarPaquetes();
   }
+
 
   cargarPaquetes() {
     this.genericService.getAll<Paquete>('Paquete').subscribe(
@@ -49,6 +64,8 @@ export class PaquetesComponent implements OnInit {
           this.genericService.getPaqueteCompleto(paquete.id_paquete).subscribe(
             paqueteCompleto => {
               Object.assign(paquete, paqueteCompleto);
+              // Cargar usuarios asignados
+              this.cargarUsuariosAsignados(paquete);
               console.log('Paquete completo cargado:', paquete);
             },
             error => {
@@ -63,22 +80,17 @@ export class PaquetesComponent implements OnInit {
       }
     );
   }
-
-  cargarUsuarios() {
-    this.usuariosService.getAllUsuarios().subscribe({
-      next: (data) => {
-        this.usuarios = data;
-        console.log('Usuarios cargados en el componente:', this.usuarios);
-        if (this.usuarios.length === 0) {
-          console.log('No se encontraron usuarios con rol "usuario"');
-        }
+  
+  cargarUsuariosAsignados(paquete: Paquete) {
+    this.genericService.getUsuariosAsignados(paquete.id_paquete).subscribe(
+      usuarios => {
+        paquete.usuariosAsignados = usuarios;
       },
-      error: (error) => {
-        console.error('Error al obtener Usuarios:', error);
+      error => {
+        console.error('Error al cargar usuarios asignados:', error);
       }
-    });
+    );
   }
-
 
   filtrarPaquetes() {
     this.paquetesFiltrados = this.paquetes.filter(paquete => {
@@ -86,71 +98,6 @@ export class PaquetesComponent implements OnInit {
       const cumpleCostoMin = this.filtroCostoMin === null || paquete.costo_paquete >= this.filtroCostoMin;
       const cumpleCostoMax = this.filtroCostoMax === null || paquete.costo_paquete <= this.filtroCostoMax;
       return cumpleTipo && cumpleCostoMin && cumpleCostoMax;
-    });
-  }
-
-
-  asignarPaquete(paquete: any) {
-    if (this.usuarios.length === 0) {
-      console.log('No hay usuarios disponibles para asignar el paquete');
-      // Aquí puedes mostrar un mensaje al usuario si lo deseas
-      return;
-    }
-  
-    Swal.fire({
-      title: 'Asignar Paquete',
-      html: `
-        <select id="usuario" class="swal2-select">
-          <option value="">Seleccione un usuario</option>
-          ${this.usuarios.map(u => `<option value="${u.id_usr}">${u.nom_usr}</option>`).join('')}
-        </select>
-      `,
-      showCancelButton: true,
-      confirmButtonText: 'Asignar',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        const selectElement = document.getElementById('usuario') as HTMLSelectElement;
-        console.log('Elemento select:', selectElement);
-        console.log('Opciones disponibles:', Array.from(selectElement.options).map(opt => ({ value: opt.value, text: opt.text })));
-        console.log('Valor seleccionado:', selectElement.value);
-        return selectElement.value;
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('Resultado de la selección:', result.value);
-        
-        if (!result.value) {
-          Swal.fire('Error', 'Debe seleccionar un usuario', 'error');
-          return;
-        }
-  
-        const id_usr = parseInt(result.value as string);
-        console.log('id_usr parseado:', id_usr);
-        
-        if (isNaN(id_usr)) {
-          console.error('ID de usuario inválido');
-          Swal.fire('Error', 'ID de usuario inválido', 'error');
-          return;
-        }
-  
-        const asignacion = {
-          id_paquete: paquete.id_paquete,
-          id_usr: id_usr
-        };
-  
-        console.log('Enviando asignación:', asignacion);
-  
-        this.genericService.asignarUsuarioPaquete(asignacion).subscribe(
-          response => {
-            console.log('Asignación exitosa', response);
-            Swal.fire('Éxito', 'Paquete asignado correctamente', 'success');
-          },
-          error => {
-            console.error('Error al asignar paquete:', error);
-            Swal.fire('Error', 'No se pudo asignar el paquete. ' + (error.error?.error || ''), 'error');
-          }
-        );
-      }
     });
   }
 
@@ -162,6 +109,8 @@ export class PaquetesComponent implements OnInit {
       costo_paquete: paquete.costo_paquete
     });
     this.showEditForm = true;
+
+    
   }
   actualizarPaquete() {
     if (this.paqueteForm.valid && this.editingPaquete) {
@@ -209,7 +158,7 @@ export class PaquetesComponent implements OnInit {
             if (response && response.message === 'Paquete eliminado exitosamente') {
               Swal.fire(
                 '¡Eliminado!',
-                'El paquete ha sido eliminado correctamente.',
+                'El paquete y sus asignaciones han sido eliminados correctamente.',
                 'success'
               );
               this.cargarPaquetes();
@@ -233,9 +182,114 @@ export class PaquetesComponent implements OnInit {
       }
     });
   }
+
   cancelarEdicion() {
     this.editingPaquete = null;
     this.paqueteForm.reset();
     this.showEditForm = false;
+  }
+
+  buscarUsuarios(term: string): void {
+    this.searchTerms.next(term);
+  }
+
+  seleccionarUsuario(usuario: Usuario): void {
+    this.usuarioSeleccionado = usuario;
+  }
+
+  cargarUsuarios() {
+    this.usuariosService.getAllUsuarios().subscribe({
+      next: (data) => {
+        this.usuarios = data;
+        console.log('Usuarios cargados en el componente:', this.usuarios);
+        if (this.usuarios.length === 0) {
+          console.log('No se encontraron usuarios con rol "usuario"');
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener Usuarios:', error);
+      }
+    });
+  }
+
+ 
+  asignarPaquete(paquete: Paquete) {
+    Swal.fire({
+      title: 'Asignar Paquete',
+      html: `
+        <input id="buscarUsuario" class="swal2-input" placeholder="Buscar usuario">
+        <div id="resultadosBusqueda" style="max-height: 150px; overflow-y: auto;"></div>
+        <p id="usuarioSeleccionado"></p>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Asignar',
+      cancelButtonText: 'Cancelar',
+      didOpen: () => {
+        const input = Swal.getPopup()!.querySelector('#buscarUsuario') as HTMLInputElement;
+        const resultados = Swal.getPopup()!.querySelector('#resultadosBusqueda') as HTMLDivElement;
+        const seleccionado = Swal.getPopup()!.querySelector('#usuarioSeleccionado') as HTMLParagraphElement;
+  
+        input.addEventListener('input', () => {
+          this.buscarUsuarios(input.value);
+        });
+  
+        // Usamos un Subject para manejar las actualizaciones de usuariosBuscados
+        const usuariosSubject = new Subject<Usuario[]>();
+  
+        usuariosSubject.subscribe(usuarios => {
+          resultados.innerHTML = usuarios.map(u => `
+            <div class="usuario-item" data-id="${u.id_usr}">${u.nom_usr} ${u.app_usr}</div>
+          `).join('');
+  
+          resultados.querySelectorAll('.usuario-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+              const userId = (e.target as HTMLElement).getAttribute('data-id');
+              const usuario = usuarios.find(u => u.id_usr.toString() === userId);
+              if (usuario) {
+                this.usuarioSeleccionado = usuario;
+                seleccionado.textContent = `Usuario seleccionado: ${usuario.nom_usr} ${usuario.app_usr}`;
+              }
+            });
+          });
+        });
+  
+        // Actualizamos usuariosSubject cada vez que usuariosBuscados cambia
+        this.searchTerms.pipe(
+          debounceTime(300),
+          distinctUntilChanged(),
+          switchMap((term: string) => this.usuariosService.buscarUsuarios(term))
+        ).subscribe(usuarios => {
+          this.usuariosBuscados = usuarios;
+          usuariosSubject.next(usuarios);
+        });
+      },
+      preConfirm: () => {
+        if (!this.usuarioSeleccionado) {
+          Swal.showValidationMessage('Debe seleccionar un usuario');
+          return false;
+        }
+        return this.usuarioSeleccionado.id_usr;
+      }
+    }).then((result) => {
+      if (result.isConfirmed && this.usuarioSeleccionado) {
+        const asignacion = {
+          id_paquete: paquete.id_paquete,
+          id_usr: this.usuarioSeleccionado.id_usr
+        };
+  
+        this.genericService.asignarUsuarioPaquete(asignacion).subscribe(
+          response => {
+            console.log('Asignación exitosa', response);
+            Swal.fire('Éxito', 'Paquete asignado correctamente', 'success');
+            // Actualizar la lista de usuarios asignados del paquete
+            this.cargarUsuariosAsignados(paquete);
+          },
+          error => {
+            console.error('Error al asignar paquete:', error);
+            Swal.fire('Error', 'No se pudo asignar el paquete. ' + (error.error?.error || ''), 'error');
+          }
+        );
+      }
+    });
   }
 }

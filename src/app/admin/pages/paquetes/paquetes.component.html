@@ -33,14 +33,27 @@
           <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
           <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
           <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
-
+  
+          <!-- Añadimos esta sección para mostrar los usuarios asignados -->
+          <ng-container *ngIf="paquete.tipo_paquete === 'Personalizado'">
+            <h3 class="mt-4">Usuarios Asignados</h3>
+            <ul class="list-group" *ngIf="paquete.usuariosAsignados && paquete.usuariosAsignados.length > 0">
+              <li class="list-group-item" *ngFor="let usuario of paquete.usuariosAsignados">
+                {{usuario.nom_usr}} {{usuario.app_usr}}
+              </li>
+            </ul>
+            <p *ngIf="!paquete.usuariosAsignados || paquete.usuariosAsignados.length === 0">
+              No hay usuarios asignados a este paquete.
+            </p>
+          </ng-container>
+  
           <h3 class="mt-4">Servicios incluidos</h3>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
               {{servicio.tipo_servicio}}
             </li>
           </ul>
-
+  
           <h3 class="mt-4">Servicios con actividades</h3>
           <div *ngFor="let servicio of paquete.servicios">
             <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
@@ -66,18 +79,19 @@
             </div>
           </div>
         </div>
+        
         <div class="card-footer text-center">
           <button class="btn btn-warning mr-2" (click)="editarPaquete(paquete)">Editar</button>
           <button class="btn btn-danger mr-2" (click)="eliminarPaquete(paquete)">Eliminar</button>
           <button (click)="asignarPaquete(paquete)" *ngIf="paquete.tipo_paquete === 'Personalizado'"
-  class="btn btn-primary">
-  Asignar a usuario
-</button>
+            class="btn btn-primary">
+            Asignar a usuario
+          </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+
 
 
 <!-- Modal de edición -->

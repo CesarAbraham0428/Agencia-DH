@@ -19,6 +19,7 @@ export class AdminHosteleriaComponent implements OnInit {
   constructor(private fb: FormBuilder, private hosteleriaService: HosteleriaService,
     public dialog: MatDialog) {
     this.hosteleriaForm = this.fb.group({
+      tipo_hs: [''],
       nom_hs: ['', Validators.required],
       descripcion_hs: [''],
       accesibility_infrastr_hs: [''],
@@ -26,7 +27,7 @@ export class AdminHosteleriaComponent implements OnInit {
       costo_hs: [''],
       capacidad_hs: [''],
       servicios: [''],
-      tipo_hs: ['']
+      img_hs: ['']
     });
   }
 
@@ -66,6 +67,7 @@ export class AdminHosteleriaComponent implements OnInit {
     this.isEditing = true;
     this.editingHosteleriaId = hosteleria.id_hosteleria;
     this.hosteleriaForm.setValue({
+      tipo_hs: hosteleria.tipo_hs,
       nom_hs: hosteleria.nom_hs,
       descripcion_hs: hosteleria.descripcion_hs,
       accesibility_infrastr_hs: hosteleria.accesibility_infrastr_hs,
@@ -73,7 +75,7 @@ export class AdminHosteleriaComponent implements OnInit {
       costo_hs: hosteleria.costo_hs,
       capacidad_hs: hosteleria.capacidad_hs,
       servicios: hosteleria.servicios,
-      tipo_hs: hosteleria.tipo_hs
+      img_hs: hosteleria.img_hs
     });
   }
 

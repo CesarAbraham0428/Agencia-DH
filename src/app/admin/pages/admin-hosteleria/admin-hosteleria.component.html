@@ -9,6 +9,7 @@
         <table class="table table-striped" id="lista">
           <thead>
             <tr>
+              <th>Tipo</th>
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Accesibilidad</th>
@@ -16,12 +17,13 @@
               <th>Costo</th>
               <th>Capacidad</th>
               <th>Servicios</th>
-              <th>Tipo</th>
+              <th>Imagen</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of hosteleria; let i = index">
+              <td>{{ item.tipo_hs }}</td>
               <td>{{ item.nom_hs }}</td>
               <td>{{ item.descripcion_hs }}</td>
               <td>{{ item.accesibility_infrastr_hs }}</td>
@@ -29,7 +31,7 @@
               <td>{{ item.costo_hs }}</td>
               <td>{{ item.capacidad_hs }}</td>
               <td>{{ item.servicios }}</td>
-              <td>{{ item.tipo_hs }}</td>
+              <td>{{ item.img_hs }}</td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-warning btn-rm" (click)="editHosteleria(item)">Editar</button>
@@ -46,6 +48,11 @@
       <h2>Hostelería</h2>
       <form [formGroup]="hosteleriaForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
+          <label for="tipo_hs">Tipo</label>
+          <select class="form-control" id="tipo_hs" formControlName="tipo_hs">
+            <option value="Restaurante">Restaurante</option>
+            <option value="Hotel">Hotel</option>
+          </select>
           <label for="nom_hs">Nombre</label>
           <input type="text" class="form-control" id="nom_hs" formControlName="nom_hs">
           <label for="descripcion_hs">Descripción</label>
@@ -60,11 +67,8 @@
           <input type="number" class="form-control" id="capacidad_hs" formControlName="capacidad_hs">
           <label for="servicios">Servicios</label>
           <input type="text" class="form-control" id="servicios" formControlName="servicios">
-          <label for="tipo_hs">Tipo</label>
-          <select class="form-control" id="tipo_hs" formControlName="tipo_hs">
-            <option value="Restaurante">Restaurante</option>
-            <option value="Hotel">Hotel</option>
-          </select>
+          <label for="img_hs">Imagen</label>
+          <input type="text" class="form-control" id="img_hs" formControlName="img_hs">
         </div>
         <div class="row mt-3">
           <button type="submit" class="btn btn-success" *ngIf="!isEditing">Agregar</button>

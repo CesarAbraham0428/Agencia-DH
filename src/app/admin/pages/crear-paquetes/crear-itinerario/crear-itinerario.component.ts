@@ -27,7 +27,7 @@ export class CrearItinerarioComponent implements OnInit {
   days: Day[] = [];
   packageName: string = '';
   packageType: string = 'Personalizado';
-  packageCost: number = 0;
+  packageCost: number | null = null;
   id_agencia: number = 1; 
   id_guia: number = 1; 
   id_hotesteleria: number = 1; 
@@ -75,22 +75,53 @@ export class CrearItinerarioComponent implements OnInit {
     this.days[dayIndex].activities.splice(activityIndex, 1);
   }
 
-  areFieldsFilled(): boolean {
-    if (!this.startDate || this.numberOfDays <= 0 || !this.packageName || this.packageCost <= 0) {
-      return false;
+  onCostFocus() {
+    if (this.packageCost === 0) {
+      this.packageCost = null;
     }
+  }
+
+  canCreatePackage(): boolean {
+    return this.areFieldsFilled() && this.areAllActivitiesComplete();
+  }
+
+  areFieldsFilled(): boolean {
+    return !!(this.startDate && 
+              this.numberOfDays > 0 && 
+              this.packageName && 
+              this.packageCost !== null && 
+              this.packageCost > 0);
+  }
+
+  hasAtLeastOneActivity(): boolean {
+    return this.days.some(day => day.activities.length > 0);
+  }
+
+  areAllActivitiesComplete(): boolean {
+    if (this.days.length === 0) return false;
+    
     for (let day of this.days) {
+      if (day.activities.length === 0) return false;
+      
       for (let activity of day.activities) {
-        if (!activity.time || !activity.description || !activity.date || !activity.servicioAsociado || this.getServiceId(activity.servicioAsociado) === -1) {
+        if (!this.isActivityComplete(activity)) {
           return false;
         }
       }
     }
+    
     return true;
   }
 
+  isActivityComplete(activity: Activity): boolean {
+    return !!(activity.time &&
+              activity.description &&
+              activity.servicioAsociado &&
+              this.getServiceId(activity.servicioAsociado) !== -1);
+  }
+
   createPackage() {
-    if (this.areFieldsFilled()) {
+    if (this.canCreatePackage()) {
       const packageData = {
         nom_paquete: this.packageName,
         tipo_paquete: this.packageType,
@@ -129,7 +160,8 @@ export class CrearItinerarioComponent implements OnInit {
       );
     } else {
       console.log('Campos no llenos o incompletos');
-      this.snackBar.open('Por favor, complete todos los campos', 'Cerrar', { duration: 3000 });
+      let errorMessage = 'Por favor, complete todos los campos del paquete y asegúrese de que todas las actividades estén completas.';
+      this.snackBar.open(errorMessage, 'Cerrar', { duration: 5000 });
     }
   }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
@@ -55,6 +56,7 @@ import { CustomTimePipe } from './pages/paquetes/time.pipe';
     CustomTimePipe
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     AdminRoutingModule,
     MaterialModule,

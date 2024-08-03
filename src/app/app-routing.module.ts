@@ -33,9 +33,9 @@ const routes: Routes = [
 
   {path: 'paquetes-personalizados',component:PaquetesPersonalizadosComponent,canActivate: [userGuard]} ,
   {path:'parte2', component:Parte2Component,canActivate: [userGuard]},
-  {path:'parte3', component:Parte3Component},
-  {path:'parte4', component:Parte4Component},
-  {path:'parte5', component:Parte5Component},
+  {path:'parte3', component:Parte3Component,canActivate: [userGuard]},
+  {path:'parte4', component:Parte4Component, canActivate: [userGuard]},
+  {path:'parte5', component:Parte5Component, canActivate: [userGuard]},
   // {path:'admin-personalizados', component:AdminPaquetesPersoComponent},
 
   {path:'404', component:Error404PageComponent},

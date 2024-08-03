@@ -2,7 +2,7 @@
   <div class="content">
     <h2>Crea tu paquete</h2>
     <form >
-      
+
       <!-- Selección de agencia -->
       <div class="form-group">
         <label for="nom_ag">Agencia</label>
@@ -11,7 +11,7 @@
         </select>
         <div id="agency-error" class="error-message"></div>
       </div>
-      
+
       <!-- Fechas -->
       <div class="form-group">
         <label for="arrival">Llegada</label>
@@ -21,7 +21,7 @@
         <label for="departure">Salida</label>
         <input type="date" id="departure" name="departure" required />
       </div>
-      
+
       <!-- Adultos y niños -->
       <div class="form-group">
         <div class="half-width">
@@ -43,7 +43,7 @@
           <input type="number" id="children-male" name="children-male" required />
         </div>
       </div>
-      
+
       <!-- Detalles adicionales -->
       <div class="form-row">
         <div class="form-group">
@@ -68,12 +68,12 @@
           <div id="budget-error" class="error-message"></div>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="activities">¿Qué tipo de actividades te gustan?</label>
         <input type="text" id="activities" name="activities">
       </div>
-      
+
       <div class="form-group">
         <label for="specific-place">¿Hay algún lugar o fecha en específico que desees visitar?</label>
         <input type="text" id="specific-place" name="specific-place">
@@ -83,32 +83,14 @@
       <div class="form-group">
         <label for="hotel">Selecciona tu hotel</label>
         <select id="hotel" name="hotel" required>
-          <option value="">Selecciona un hotel</option>
-          <option value="hotel1">Hotel 1</option>
-          <option value="hotel2">Hotel 2</option>
-          <option value="hotel3">Hotel 3</option>
-          <option value="hotel4">Hotel 4</option>
-          <option value="hotel5">Hotel 5</option>
-          <option value="hotel6">Hotel 6</option>
-          <option value="hotel7">Hotel 7</option>
-          <option value="hotel8">Hotel 8</option>
-          <option value="hotel9">Hotel 9</option>
+          <option *ngFor="let hotel of hoteles" [value]="hotel.nom_hs">{{ hotel.nom_hs }}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="restaurant">Selecciona tu restaurante</label>
         <select id="restaurant" name="restaurant" required>
-          <option value="">Selecciona un restaurante</option>
-          <option value="restaurant1">Restaurante 1</option>
-          <option value="restaurant2">Restaurante 2</option>
-          <option value="restaurant3">Restaurante 3</option>
-          <option value="restaurant4">Restaurante 4</option>
-          <option value="restaurant5">Restaurante 5</option>
-          <option value="restaurant6">Restaurante 6</option>
-          <option value="restaurant7">Restaurante 7</option>
-          <option value="restaurant8">Restaurante 8</option>
-          <option value="restaurant9">Restaurante 9</option>
+          <option *ngFor="let resutaurante of resutaurantes" [value]="resutaurante.nom_ag">{{ resutaurante.nom_ag }}</option>
         </select>
       </div>
 
@@ -127,13 +109,13 @@
           <option value="experience9">Experiencia 9</option>
         </select>
       </div>
-      
+
       <!-- Botones -->
       <div class="form-actions">
         <button type="button" onclick="window.location.href='/parte5'">ATRÁS</button>
         <button type="submit" id="nextButton">Siguiente</button>
       </div>
-      
+
     </form>
   </div>
 

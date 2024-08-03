@@ -11,7 +11,10 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class LoginService {
   private baseUrl: string = environment.baseUrl;
-  private agenciasUrl = `${environment.baseUrl}/usuario/agencias`; // Añade esta línea
+  private agenciasUrl = `${environment.baseUrl}/usuario/agencias`;
+  private hotelesUrl = `${environment.baseUrl}/usuario/hoteles`;
+  private restaurantesURL = `${environment.baseUrl}/usuario/restaurantes`;
+
 
   constructor(private http: HttpClient) {}
 
@@ -63,5 +66,13 @@ export class LoginService {
 
   getAllAgencias(): Observable<any> {
     return this.http.get<any>(`${this.agenciasUrl}`);
+  }
+
+  getAllHoteles(): Observable<any>{
+    return this.http.get<any>(`${this.hotelesUrl}`);
+  }
+
+  getAllRestaurantes(): Observable<any>{
+    return this.http.get<any>(`${this.restaurantesURL}`);
   }
 }

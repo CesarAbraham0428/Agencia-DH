@@ -72,8 +72,13 @@ form {
   margin-bottom: 0; /* Elimina el margen inferior */
 }
 
+// .form-group {
+//   margin-bottom: 8px; /* Aumentado el margen inferior de los grupos de formulario */
+// }
+
 .form-group {
-  margin-bottom: 8px; /* Aumentado el margen inferior de los grupos de formulario */
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 .form-group label {
@@ -201,4 +206,21 @@ form {
     margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
     margin-bottom: 10px; /* Espacio inferior para el formulario */
   }
+}
+
+.input-icon {
+  position: relative;
+}
+
+// .input-icon input[type="date"] {
+//   padding-right: 2.5rem;
+// }
+
+.input-icon i {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #999;
 }

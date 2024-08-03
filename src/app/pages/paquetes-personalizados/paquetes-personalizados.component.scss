@@ -1,70 +1,235 @@
 
-.body-container{
-    display: flex;
-}
-.img-container img{
-    margin: 50px auto;
-    margin-right: 50px;
-    width: 700px;
-    height: 600px;
-    border-radius: 30px;
-}
-.form-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* Fondo blanco */
-}
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333; /* Color del texto gris oscuro */
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555; /* Color del texto gris medio */
-}
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 5px;
-    background-color: #f9f9f9; /* Fondo gris muy claro */
-}
-.form-group .half-width {
-    width: calc(50% - 10px);
-    display: inline-block;
-}
-.form-group .half-width input {
-    width: 100%;
-}
-.form-group .half-width:first-child {
-    margin-right: 20px;
-}
-.button-group {
-    text-align: center;
-    margin-top: 20px;
-}
-.button-group a, .button-group button {
-    text-decoration: none;
-    color: #fff; /* Texto blanco */
-    background-color: #007bff; /* Fondo azul */
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 0 10px;
-    border: none;
-    display: inline-block;
-    cursor: pointer;
-}
-.button-group a:hover, .button-group button:hover {
-    background-color: #0056b3; /* Fondo azul oscuro */
+
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: linear-gradient(45deg, #f5f5f5, #d7a07d);
+    animation: backgroundColorChange 10s infinite alternate;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Header Styles */
+header {
+    background: #6f4e37;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    animation: slideInDown 1s ease-out;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Container Styles */
+.container {
+    width: 85%;
+    margin: auto;
+    overflow: hidden;
+    position: relative; /* Position relative for border animation */
+}
+
+/* Animated Contour around the container */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: 5px solid transparent;
+    border-radius: 15px;
+    border-image: linear-gradient(45deg, #a57c5e, #d7a07d, #a57c5e);
+    border-image-slice: 1;
+    z-index: 1;
+    animation: borderColorChange 4s infinite alternate, borderGrow 8s infinite alternate;
+}
+
+/* Content Styles */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Hotel and Restaurant Styles */
+.item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 300px; /* Adjust this value to fit more items in a row */
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 0; /* Start with invisible */
+    transform: translateY(20px); /* Start slightly below */
+    animation: fadeInUp 0.6s forwards; /* Animate on load */
+    animation-delay: 0.2s; /* Delay for a staggered effect */
+}
+.item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid #e0d6cc;
+    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out; /* Smooth transition for zoom effect and blur */
+    transform: scale(1); /* Default scale */
+    filter: brightness(100%); /* Default brightness */
+}
+.item img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    filter: brightness(80%); /* Slightly dim on hover */
+    animation: hoverShadow 0.5s ease-in-out; /* Shadow animation on hover */
+}
+
+/* Map Styles */
+.map {
+    margin: 20px 0;
+    position: relative;
+    animation: pulse 6s infinite alternate, fadeIn 1s ease-out; /* Pulse and fade-in animation */
+}
+.map img {
+    width: 100%;
+    max-width: 800px; /* Reduce the max-width of the map image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Consistent border-radius */
+}
+
+/* Footer Styles */
+footer {
+    background: #6f4e37;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    opacity: 0; /* Start invisible */
+    animation: fadeInUp 0.6s forwards; /* Fade in animation */
+    animation-delay: 1s; /* Delay for a smooth appearance */
+}
+footer p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+/* Navigation Menu Link Styles */
+.nav_menu_link {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #a57c5e;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease-out; /* Fade in effect */
+}
+.nav_menu_link:hover,
+.nav_menu_link:focus {
+    background-color: #8d5b4f;
+    border-color: #6d4c41;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+.nav_menu_link:active {
+    background-color: #6d4c41;
+    transform: scale(1);
+}
+
+/* Keyframes for animations */
+@keyframes borderColorChange {
+    0% {
+        border-image-source: linear-gradient(45deg, #a57c5e, #d7a07d);
+    }
+    100% {
+        border-image-source: linear-gradient(45deg, #d7a07d, #a57c5e);
+    }
+}
+
+@keyframes backgroundColorChange {
+    0% {
+        background: linear-gradient(45deg, #f5f5f5, #d7a07d);
+    }
+    100% {
+        background: linear-gradient(45deg, #d7a07d, #f5f5f5);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.02); /* Slightly zoom effect */
+    }
+}
+
+@keyframes hoverShadow {
+    from {
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); /* Default shadow */
+    }
+    to {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Larger shadow on hover */
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes borderGrow {
+    0% {
+        border-width: 5px;
+    }
+    100% {
+        border-width: 8px; /* Grow effect */
+    }
+}

@@ -33,6 +33,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { PredeterminadoModule } from './pages/paquetes/predeterminado/predeterminado.module';
 
+import { Parte3Component } from './pages/paquetes-personalizados/parte3/parte3.component';
+import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.component';
+import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.component';
+import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +48,11 @@ import { PredeterminadoModule } from './pages/paquetes/predeterminado/predetermi
     DialogContentExampleDialog,
     RecuperarPComponent,
     ContraRecComponent,
+    Parte2Component,
+    Parte3Component,
+    Parte4Component,
+    Parte5Component,
+
   ],
   imports: [
     BrowserModule,

@@ -1,37 +1,125 @@
 <div class="body-container">
-  <form action="https://formspree.io/f/xjkbvbnr" method="post">
-    <label for="tour-type">Tipo de tour</label>
-    <select id="tour-type" name="tour-type">
-      <option value="culture-history">Cultura e Historia</option>
-      <option value="honeymoon">Luna de miel</option>
-      <option value="business-trip">Viaje de negocios</option>
-      <option value="holiday-vacations">Vacaciones de navidad</option>
-    </select>
+  <div class="content">
+    <h2>Crea tu paquete</h2>
+    <form >
 
-    <label for="travel-with">Con quien viaja</label>
-    <select id="travel-with" name="travel-with">
-      <option value="alone">Solo</option>
-      <option value="with-family">Con Familia</option>
-      <option value="with-partner">Con pareja</option>
-    </select>
+      <!-- Selección de agencia -->
+      <div class="form-group">
+        <label for="nom_ag">Agencia</label>
+        <select id="nom_ag" name="nom_ag">
+          <option *ngFor="let agencia of agencias" [value]="agencia.nom_ag">{{ agencia.nom_ag }}</option>
+        </select>
+        <div id="agency-error" class="error-message"></div>
+      </div>
 
-    <label for="budget">Tu presupuesto</label>
-    <select id="budget" name="budget">
-      <option value="4000-6000">4000-6000</option>
-      <option value="6000-8000">6000-8000</option>
-      <option value="8000-10000">8000-10000</option>
-      <option value="10000-14000">10000-14000</option>
-    </select>
+      <!-- Fechas -->
+      <div class="form-group">
+        <label for="arrival">Llegada</label>
+        <input type="date" id="arrival" name="arrival" required />
+      </div>
+      <div class="form-group">
+        <label for="departure">Salida</label>
+        <input type="date" id="departure" name="departure" required />
+      </div>
 
-    <div class="form-actions">
-      <a href="/paquetes-personalizados" class="nav_menu_link link">Atrás</a>
-      <input type="submit" value="Enviar" />
-    </div>
-  </form>
+      <!-- Adultos y niños -->
+      <div class="form-group">
+        <div class="half-width">
+          <label for="adults-female">Adultos 18 a 36</label>
+          <input type="number" id="adults-female" name="adults-female" required />
+        </div>
+        <div class="half-width">
+          <label for="adults-male">Adultos 36 a 64</label>
+          <input type="number" id="adults-male" name="adults-male" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="half-width">
+          <label for="children-female">Niños 0 a 8</label>
+          <input type="number" id="children-female" name="children-female" required />
+        </div>
+        <div class="half-width">
+          <label for="children-male">Niños 8 a 17</label>
+          <input type="number" id="children-male" name="children-male" required />
+        </div>
+      </div>
+
+      <!-- Detalles adicionales -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="travel-with">Con quien viaja</label>
+          <select id="travel-with" name="travel-with" required>
+            <option value="">Selecciona una opción</option>
+            <option value="alone">Solo</option>
+            <option value="with-family">Con Familia</option>
+            <option value="with-partner">Con pareja</option>
+          </select>
+          <div id="travel-with-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+          <label for="budget">Tu presupuesto</label>
+          <select id="budget" name="budget" required>
+            <option value="">Selecciona una opción</option>
+            <option value="4000-6000">$4000 - $6000</option>
+            <option value="6000-8000">$6000 - $8000</option>
+            <option value="8000-10000">$8000 - $10000</option>
+            <option value="10000-14000">$10000 - $14000</option>
+          </select>
+          <div id="budget-error" class="error-message"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="activities">¿Qué tipo de actividades te gustan?</label>
+        <input type="text" id="activities" name="activities">
+      </div>
+
+      <div class="form-group">
+        <label for="specific-place">¿Hay algún lugar o fecha en específico que desees visitar?</label>
+        <input type="text" id="specific-place" name="specific-place">
+      </div>
+
+      <!-- Selección de hoteles -->
+      <div class="form-group">
+        <label for="hotel">Selecciona tu hotel</label>
+        <select id="hotel" name="hotel" required>
+          <option *ngFor="let hotel of hoteles" [value]="hotel.nom_hs">{{ hotel.nom_hs }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurant">Selecciona tu restaurante</label>
+        <select id="restaurant" name="restaurant" required>
+          <option *ngFor="let resutaurante of resutaurantes" [value]="resutaurante.nom_ag">{{ resutaurante.nom_ag }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Selecciona tu experiencia</label>
+        <select id="experience" name="experience" required>
+          <option value="">Selecciona tu experiencia</option>
+          <option value="experience1">Experiencia 1</option>
+          <option value="experience2">Experiencia 2</option>
+          <option value="experience3">Experiencia 3</option>
+          <option value="experience4">Experiencia 4</option>
+          <option value="experience5">Experiencia 5</option>
+          <option value="experience6">Experiencia 6</option>
+          <option value="experience7">Experiencia 7</option>
+          <option value="experience8">Experiencia 8</option>
+          <option value="experience9">Experiencia 9</option>
+        </select>
+      </div>
+
+      <!-- Botones -->
+      <div class="form-actions">
+        <button type="button" onclick="window.location.href='/parte5'">ATRÁS</button>
+        <button type="submit" id="nextButton">Siguiente</button>
+      </div>
+
+    </form>
+  </div>
+
   <div class="img-container">
-    <img
-      src="https://www.miescape.mx/miescape/Portals/0/Resources/Images/Mexico/Guia%20Turistica/Guanajuato/Guanajuato_dolores_hidalgo_home1_960x640.jpg?ver=2015-03-19-000000-000"
-      alt=""
-    />
+    <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2020/08/95095cd263c9d7c5c20a7b6ba9cfe6fc.jpg" alt="Imagen de fondo" />
   </div>
 </div>

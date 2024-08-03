@@ -6,7 +6,8 @@
       <!-- Selección de agencia -->
       <div class="form-group">
         <label for="nom_ag">Agencia</label>
-        <select id="nom_ag" name="nom_ag">
+        <select id="nom_ag" name="nom_ag" required>
+          <option value="" disabled selected>Seleccione una opción</option>
           <option *ngFor="let agencia of agencias" [value]="agencia.nom_ag">{{ agencia.nom_ag }}</option>
         </select>
         <div id="agency-error" class="error-message"></div>
@@ -83,6 +84,7 @@
       <div class="form-group">
         <label for="hotel">Selecciona tu hotel</label>
         <select id="hotel" name="hotel" required>
+          <option value="" disabled selected>Seleccione una opción</option>
           <option *ngFor="let hotel of hoteles" [value]="hotel.nom_hs">{{ hotel.nom_hs }}</option>
         </select>
       </div>
@@ -90,6 +92,7 @@
       <div class="form-group">
         <label for="restaurant">Selecciona tu restaurante</label>
         <select id="restaurant" name="restaurant" required>
+          <option value="" disabled selected>Seleccione una opción</option>
           <option *ngFor="let resutaurante of resutaurantes" [value]="resutaurante.nom_ag">{{ resutaurante.nom_ag }}</option>
         </select>
       </div>
@@ -97,7 +100,7 @@
       <div class="form-group">
         <label for="experience">Selecciona tu experiencia</label>
         <select id="experience" name="experience" required>
-          <option value="">Selecciona tu experiencia</option>
+          <option value="" disabled selected>Seleccione una opción</option>
           <option value="experience1">Experiencia 1</option>
           <option value="experience2">Experiencia 2</option>
           <option value="experience3">Experiencia 3</option>

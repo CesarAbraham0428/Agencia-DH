@@ -57,6 +57,10 @@ export class ServicioGenericoCRUD {
     return this.http.post<any>(`${this.apiUrl}/asignar-usuario`, asignacion);
   }
 
+  desasignarUsuarioPaquete(idPaquete: number, idUsuario: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/desasignar-paquete/${idPaquete}/${idUsuario}`);
+  }
+
   getUsuariosAsignados(idPaquete: number): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/${idPaquete}/usuarios-asignados`);
   }

@@ -23,8 +23,8 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let paquete of paquetesFiltrados">
-      <div class="card paquete-card">
+    <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of paquetesFiltrados">
+      <div class="card paquete-card p-3">
         <div class="card-header bg-primary text-white">
           <h2 class="card-title">{{paquete.nom_paquete}}</h2>
         </div>
@@ -85,7 +85,7 @@
           <button class="btn btn-danger mr-2" (click)="eliminarPaquete(paquete)">Eliminar</button>
           <button (click)="asignarPaquete(paquete)" *ngIf="paquete.tipo_paquete === 'Personalizado'"
             class="btn btn-primary">
-            Asignar a usuario
+            Asignar usuario
           </button>
         </div>
       </div>

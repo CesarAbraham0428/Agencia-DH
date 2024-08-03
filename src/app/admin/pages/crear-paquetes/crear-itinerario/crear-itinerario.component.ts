@@ -23,15 +23,18 @@ interface Day {
 })
 export class CrearItinerarioComponent implements OnInit {
   startDate: string = '';
-  numberOfDays: number = 0;
+  numberOfDays: number | null = null;
+  packageCost: number | null = null;
+  numberOfDaysError: string = '';
+  packageCostError: string = '';
+
   days: Day[] = [];
   packageName: string = '';
   packageType: string = 'Personalizado';
-  packageCost: number | null = null;
-  id_agencia: number = 1; 
-  id_guia: number = 1; 
-  id_hotesteleria: number = 1; 
-  id_trans: number = 1; 
+
+  //id_guia: number = 1; 
+  //id_hotesteleria: number = 1; 
+  //id_trans: number = 1; 
   selectedPackage: any;
 
   constructor(
@@ -47,16 +50,61 @@ export class CrearItinerarioComponent implements OnInit {
     });
   }
 
+  onNumberOfDaysChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    let value = inputElement.value;
+    
+    if (value === '') {
+      this.numberOfDays = null;
+      this.numberOfDaysError = '';
+    } else {
+      let numValue = parseInt(value, 10);
+      if (isNaN(numValue) || numValue < 1) {
+        this.numberOfDaysError = 'El número de días debe ser 1 o mayor';
+        this.numberOfDays = null;
+      } else {
+        this.numberOfDays = numValue;
+        this.numberOfDaysError = '';
+      }
+    }
+  }
+
+  onPackageCostChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    let value = inputElement.value;
+    
+    if (value === '') {
+      this.packageCost = null;
+      this.packageCostError = '';
+    } else {
+      let numValue = parseFloat(value);
+      if (isNaN(numValue) || numValue < 0) {
+        this.packageCostError = 'El costo debe ser 0 o mayor';
+        this.packageCost = null;
+      } else {
+        this.packageCost = numValue;
+        this.packageCostError = '';
+      }
+    }
+  }
+
   generateDays() {
     this.days = [];
-    let start = new Date(this.startDate);
-    for (let i = 0; i < this.numberOfDays; i++) {
-      let currentDate = new Date(start);
-      currentDate.setDate(start.getDate() + i);
-      this.days.push({
-        date: currentDate.toISOString().split('T')[0],
-        activities: []
-      });
+    if (this.startDate && this.numberOfDays !== null && this.numberOfDays > 0) {
+      let start = new Date(this.startDate);
+      for (let i = 0; i < this.numberOfDays; i++) {
+        let currentDate = new Date(start);
+        currentDate.setDate(start.getDate() + i);
+        this.days.push({
+          date: currentDate.toISOString().split('T')[0],
+          activities: []
+        });
+      }
+    } else {
+      // Mostrar un mensaje de error o manejar el caso cuando los datos no son válidos
+      console.error('Fecha de inicio o número de días no válidos');
+      // Opcionalmente, puedes mostrar un mensaje al usuario
+      // this.snackBar.open('Por favor, ingrese una fecha de inicio y un número de días válido', 'Cerrar', { duration: 3000 });
     }
   }
 
@@ -87,10 +135,9 @@ export class CrearItinerarioComponent implements OnInit {
 
   areFieldsFilled(): boolean {
     return !!(this.startDate && 
-              this.numberOfDays > 0 && 
+              this.numberOfDays !== null && this.numberOfDays >= 1 && 
               this.packageName && 
-              this.packageCost !== null && 
-              this.packageCost > 0);
+              this.packageCost !== null && this.packageCost >= 0);
   }
 
   hasAtLeastOneActivity(): boolean {
@@ -126,7 +173,6 @@ export class CrearItinerarioComponent implements OnInit {
         nom_paquete: this.packageName,
         tipo_paquete: this.packageType,
         costo_paquete: this.packageCost,
-        id_agencia: this.id_agencia,
         actividades: this.days.flatMap(day => day.activities.map(act => ({
           fecha_actividad: act.date,
           hora_actividad: act.time,
@@ -203,10 +249,9 @@ export class CrearItinerarioComponent implements OnInit {
     this.packageName = '';
     this.packageType = 'Personalizado';
     this.packageCost = 0;
-    this.id_agencia = 1; 
-    this.id_guia = 1; 
-    this.id_hotesteleria = 1; 
-    this.id_trans = 1; 
+    //this.id_guia = 1; 
+    //this.id_hotesteleria = 1; 
+    //this.id_trans = 1; 
     this.selectedPackage = null;
     this.packageDataService.clearItems(); // Limpiar los servicios seleccionados
   }

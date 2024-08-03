@@ -1,9 +1,23 @@
-/* Estilos generales */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Colores añadidos */
+:root {
+  --color-cafe: hsl(33, 47%, 30%); /* Café */
+  --color-beige: #dfbe2a; /* Beige */
+  --color-verde-oliva: #d9d326; /* Verde oliva */
+  --color-gris-oscuro: #333333; /* Gris oscuro */
+  --color-coral: #ff6f61; /* Coral */
+  --color-azul-marino: #003366; /* Azul marino */
+  --color-azul-claro: #dca32f; /* Azul claro */
+  --color-naranja: #bd7c1a; /* Naranja */
+  --color-naranja-medio-cafe: #8d5b3f; /* Naranja medio café (mezcla) */
+  --color-verde-claro: #a5d6a7; /* Verde claro */
+  --color-gris-claro: #f8cc66; /* Gris claro */
+  --color-rojo: #e53935; /* Rojo */
+}
 
+/* Estilos generales */
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  background: #f4f4f4;
+  background: var(--color-naranja-medio-cafe); /* Usando el nuevo color de fondo */
   margin: 0;
   padding: 0;
 }
@@ -17,10 +31,10 @@ body {
 .content {
   width: 100%;
   max-width: 400px; /* Ancho máximo del formulario */
-  background: #fff;
+  background: var(--color-gris-claro);
   border-radius: 6px;
-  padding: 6px; /* Reducido el padding */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px; /* Aumentado el padding para más espacio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 20px; /* Espacio entre la imagen y el formulario */
   margin-bottom: 0; /* Elimina el margen inferior */
 }
@@ -44,30 +58,30 @@ body {
 }
 
 h2 {
-  font-size: 16px; /* Reducido el tamaño del texto */
-  margin-bottom: 4px; /* Reducido el margen inferior */
-  color: #333;
+  font-size: 18px; /* Aumentado el tamaño del texto */
+  margin-bottom: 8px; /* Aumentado el margen inferior */
+  color: var(--color-naranja-oscuro);
   text-align: center;
 }
 
 form {
-  background: #f9f9f9;
+  background: var(--color-beige);
   border-radius: 4px;
-  padding: 4px; /* Reducido el padding */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px; /* Aumentado el padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 0; /* Elimina el margen inferior */
 }
 
 .form-group {
-  margin-bottom: 2px; /* Reducido el margen inferior de los grupos de formulario */
+  margin-bottom: 8px; /* Aumentado el margen inferior de los grupos de formulario */
 }
 
 .form-group label {
   display: block;
   font-weight: 600;
-  margin-bottom: 2px;
-  color: #555;
-  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--color-cafe);
+  font-size: 14px; /* Aumentado el tamaño de la fuente */
 }
 
 .form-group input[type="date"],
@@ -75,26 +89,26 @@ form {
 .form-group select,
 .form-group input[type="text"] {
   width: 100%;
-  padding: 4px;
-  border: 1px solid #ddd;
+  padding: 8px; /* Aumentado el padding */
+  border: 1px solid #cfbe4e;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px; /* Aumentado el tamaño de la fuente */
   box-sizing: border-box;
   transition: border-color 0.3s ease; /* Transición suave para el borde */
 }
 
 .form-group input[type="date"]::-webkit-calendar-picker-indicator {
-  background: #781693;
+  background: var(--color-azul-marino);
   border-radius: 4px;
   padding: 2px;
   cursor: pointer;
-  height: 14px;
-  width: 14px;
+  height: 16px; /* Aumentado el tamaño del selector */
+  width: 16px;
   transition: background 0.3s ease; /* Transición suave para el selector */
 }
 
 .form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  background: #6c0573;
+  background: var(--color-verde-oliva);
 }
 
 /* Animación para el campo de fecha */
@@ -127,7 +141,7 @@ form {
 .form-row {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px; /* Aumentado el espacio entre columnas */
 }
 
 .form-row .form-group {
@@ -135,46 +149,46 @@ form {
 }
 
 .error-message {
-  color: #d9534f;
-  font-size: 10px;
-  margin-top: 2px;
+  color: var(--color-rojo);
+  font-size: 12px; /* Aumentado el tamaño de la fuente */
+  margin-top: 4px; /* Aumentado el margen superior */
 }
 
 .form-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 4px; /* Reducido el margen superior */
+  margin-top: 8px; /* Aumentado el margen superior */
 }
 
 .form-actions button {
-  background: #a907a9;
+  background: var(--color-cafe);
   border: none;
-  color: #fff;
-  padding: 4px 8px; /* Reducido el padding de los botones */
+  color: #d0ae18;
+  padding: 8px 12px; /* Aumentado el padding de los botones */
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px; /* Aumentado el tamaño de la fuente */
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .form-actions button:hover {
-  background: #921096;
+  background: var(--color-coral);
 }
 
 .form-actions button:last-child {
-  background: #075675;
+  background: var(--color-azul-marino);
 }
 
 .form-actions button:last-child:hover {
-  background: #218838;
+  background: #00274d;
 }
 
 .form-actions button:first-child {
-  background: #6c757d;
+  background: var(--color-naranja);
 }
 
 .form-actions button:first-child:hover {
-  background: #5a6268;
+  background: #e68a00;
 }
 
 @media (max-width: 768px) {
@@ -188,17 +202,3 @@ form {
     margin-bottom: 10px; /* Espacio inferior para el formulario */
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,8 +10,6 @@ export interface Usuario {
   nacionalidad_usr: string;
   sexo_usr: string;
   edad_usr: string;
-  email_usr: string;
-  ciudad_urs:string;
   role: string;
 }
 
@@ -23,9 +21,9 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
- /*  getAllUsuarios(): Observable<any> {
+   getTodosUsuarios(): Observable<any> {
     return this.http.get(`${this.apiUrl}s`);
-  } */
+  }
 
 /*   getUsuarioById(id_usr: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id_usr}`);

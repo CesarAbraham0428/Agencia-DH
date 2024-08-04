@@ -59,7 +59,8 @@
             <select id="servicio{{i}}{{j}}" class="form-control" [(ngModel)]="activity.servicioAsociado">
               <option [ngValue]="null">Seleccione un servicio</option>
               <option *ngFor="let servicio of selectedPackage.servicios" [ngValue]="servicio">
-                {{ servicio.nom_hosteleria || servicio.nom_guia || servicio.nom_trans}} ({{ servicio.tipo }})
+                {{ servicio.nom_hosteleria || servicio.nom_guia || servicio.nom_trans || servicio.nom_actur }} 
+                ({{ getServiceTypeDisplay(servicio) }})
               </option>
             </select>
           </div>

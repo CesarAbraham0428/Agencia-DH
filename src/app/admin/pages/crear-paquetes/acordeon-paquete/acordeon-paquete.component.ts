@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PackageDataService } from '../../../../core/services/admin-crear-paquete.service';
-import { ServicioGenericoCRUD } from '../../../../core/services/CRUDS/crud-servicio.service';
-import { Hosteleleria, Transportista, Guia } from '../../../../interfaces/CRUDS/tablas.interface';
-
 import { HosteleriaService } from '../../../../core/services/hosteleria.service';
 import { TransportistaService } from '../../../../core/services/transportista.service';
 import { GuiaService } from '../../../../core/services/guia.service';
-
+import { AtractivosService } from '../../../../core/services/atractivos.service';
 
 @Component({
   selector: 'app-acordeon-paquete',
@@ -16,30 +13,39 @@ import { GuiaService } from '../../../../core/services/guia.service';
 export class AcordeonPaqueteComponent implements OnInit {
   
   hostelerias: any[] = [];
+  hoteles: any[] = [];
+  restaurantes: any[] = [];
   transportistas: any[] = [];
   guias: any[] = [];
+  museos: any[] = [];
+  vinedos: any[] = [];
+  lugaresTuristicos: any[] = [];
 
   constructor(
     private packageDataService: PackageDataService,
     private hosteleriaService: HosteleriaService,
     private transportistaService: TransportistaService,
-    private guiaService: GuiaService
+    private guiaService: GuiaService,
+    private atractivosService: AtractivosService
   ) {}
 
   ngOnInit() {
-    this.cargarHostelerias();
+    this.cargarHosteleria();
     this.cargarTransportistas();
     this.cargarGuias();
+    this.cargarAtractivos();
   }
 
-  cargarHostelerias() {
+  cargarHosteleria() {
     this.hosteleriaService.getAllHostelerias().subscribe(
       (data) => {
-        this.hostelerias = data;
-        console.log('Hostelerias cargadas:', this.hostelerias);
+        this.hoteles = data.filter((h: { tipo_hs: string; }) => h.tipo_hs === 'Hotel');
+        this.restaurantes = data.filter((h: { tipo_hs: string; }) => h.tipo_hs === 'Restaurante');
+        console.log('Hoteles cargados:', this.hoteles);
+        console.log('Restaurantes cargados:', this.restaurantes);
       },
       (error) => {
-        console.error('Error al cargar hostelerias:', error);
+        console.error('Error al cargar hostelería:', error);
       }
     );
   }
@@ -67,6 +73,22 @@ export class AcordeonPaqueteComponent implements OnInit {
     );
   }
 
+  cargarAtractivos() {
+    this.atractivosService.getAllAtractivos().subscribe(
+      (data) => {
+        this.lugaresTuristicos = data;
+        this.museos = this.lugaresTuristicos.filter((a: { tipo_actur: string; }) => a.tipo_actur === 'Museo');
+        this.vinedos = this.lugaresTuristicos.filter((a: { tipo_actur: string; }) => a.tipo_actur === 'Viñedo');
+        this.lugaresTuristicos = this.lugaresTuristicos.filter((a: { tipo_actur: string; }) => a.tipo_actur === 'Atractivo');
+        console.log('Atractivos cargados:', this.lugaresTuristicos);
+      },
+      (error) => {
+        console.error('Error al cargar atractivos:', error);
+      }
+    );
+  }
+
+
   selectItem(item: any, tipo: string) {
     const servicioConTipo = { ...item, tipo };
     this.packageDataService.addItem(servicioConTipo);
@@ -76,4 +98,5 @@ export class AcordeonPaqueteComponent implements OnInit {
   deselectItem(item: any) {
     this.packageDataService.removeItem(item);
   }
+
 }

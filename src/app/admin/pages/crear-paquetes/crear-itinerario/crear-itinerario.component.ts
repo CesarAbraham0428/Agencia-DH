@@ -7,8 +7,9 @@ interface Activity {
   date: string;
   time: string;
   description: string;
-  servicioAsociado: any; // Este será el servicio completo seleccionado
-  tipo: string; // Añadido a la interfaz
+  servicioAsociado: any;
+  tipo: string;
+  subtipo?: string; // Para diferenciar entre Hotel/Restaurante o Museo/Viñedo/Atractivo
 }
 
 interface Day {
@@ -32,9 +33,6 @@ export class CrearItinerarioComponent implements OnInit {
   packageName: string = '';
   packageType: string = 'Personalizado';
 
-  //id_guia: number = 1; 
-  //id_hotesteleria: number = 1; 
-  //id_trans: number = 1; 
   selectedPackage: any;
 
   constructor(
@@ -178,12 +176,15 @@ export class CrearItinerarioComponent implements OnInit {
           hora_actividad: act.time,
           descripcion_actividad: act.description,
           id_servicio: this.getServiceId(act.servicioAsociado),
-          tipo_servicio: act.servicioAsociado ? act.servicioAsociado.tipo : null
+          tipo_servicio: this.getServiceType(act.servicioAsociado),
+          subtipo_servicio: act.servicioAsociado ? 
+            (act.servicioAsociado.tipo_hs || act.servicioAsociado.tipo_actur) : null
         }))).filter(act => act.id_servicio !== null),
         servicios: this.selectedPackage.servicios
-          .map((s: { tipo: any; }) => ({
+          .map((s: any) => ({
             id_servicio: this.getServiceId(s),
-            tipo_servicio: s.tipo
+            tipo_servicio: this.getServiceType(s),
+            subtipo_servicio: s.tipo_hs || s.tipo_actur
           }))
           .filter((s: { id_servicio: null; }) => s.id_servicio !== null)
       };
@@ -211,6 +212,16 @@ export class CrearItinerarioComponent implements OnInit {
     }
   }
 
+  getServiceTypeDisplay(servicio: any): string {
+    if (servicio.tipo === 'Hosteleria') {
+      return servicio.tipo_hs === 'Hotel' ? 'Hotel' : 'Restaurante';
+    }
+    if (servicio.tipo === 'AtracTuristico') {
+      return servicio.tipo_actur || 'Atractivo Turístico';
+    }
+    return servicio.tipo || 'Otro';
+  }
+
   getServiceId(servicio: any): number {
     if (!servicio) return -1;
     switch(servicio.tipo) {
@@ -220,16 +231,30 @@ export class CrearItinerarioComponent implements OnInit {
         return servicio.id_transportista || -1;
       case 'Guia':
         return servicio.id_guia || -1;
+      case 'AtracTuristico':
+        return servicio.id_atracTuris || -1;
       default:
         return servicio.id || -1;
     }
   }
   
   getServiceType(servicio: any): string {
-    if (!servicio) return 'Otro'; // Cambiamos 'desconocido' por 'Otro'
-    if (servicio.id_hosteleria) return 'Hotel';
+    if (!servicio) return 'Otro';
+    if (servicio.id_hosteleria) {
+      return servicio.tipo_hs === 'Hotel' ? 'Hotel' : 'Restaurante';
+    }
     if (servicio.id_transportista) return 'Transportista';
     if (servicio.id_guia) return 'Guia';
+    if (servicio.id_atracTuris) {
+      switch(servicio.tipo_actur) {
+        case 'Museo':
+          return 'Museo';
+        case 'Viñedo':
+          return 'Viñedo';
+        default:
+          return 'Atractivo Turístico';
+      }
+    }
     return 'Otro';
   }
   
@@ -249,9 +274,6 @@ export class CrearItinerarioComponent implements OnInit {
     this.packageName = '';
     this.packageType = 'Personalizado';
     this.packageCost = 0;
-    //this.id_guia = 1; 
-    //this.id_hotesteleria = 1; 
-    //this.id_trans = 1; 
     this.selectedPackage = null;
     this.packageDataService.clearItems(); // Limpiar los servicios seleccionados
   }

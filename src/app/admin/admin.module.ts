@@ -36,6 +36,7 @@ import { AcordeonPaqueteComponent } from './pages/crear-paquetes/acordeon-paquet
 import { CrearItinerarioComponent } from './pages/crear-paquetes/crear-itinerario/crear-itinerario.component';
 import { PasosNavegacionComponent } from './pages/crear-paquetes/pasos-navegacion/pasos-navegacion.component';
 import { CustomTimePipe } from './pages/paquetes/time.pipe';
+import { ConsultasComponent } from './pages/consultas/consultas.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CustomTimePipe } from './pages/paquetes/time.pipe';
     PaquetesComponent,
     AdminUsuarioComponent,
     CustomTimePipe,
+    ConsultasComponent,
   ],
   imports: [
     HttpClientModule,

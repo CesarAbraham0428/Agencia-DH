@@ -12,9 +12,14 @@ export class ConsultaService {
     private http: HttpClient
   ) {}
 
-  private consulta = `${environment.baseUrl}/usuario/consulta`
+  private consulta = `${environment.baseUrl}/usuario/consulta`;
+  private consultaAD = `${environment.baseUrl}/admin/consultas`;
 
   enviarConsulta(consultaEnvio: any): Observable<any>{
     return this.http.post(`${this.consulta}`, consultaEnvio)
+  }
+
+  recibirConsulta(): Observable<any>{
+    return this.http.get(`${this.consultaAD}`)
   }
 }

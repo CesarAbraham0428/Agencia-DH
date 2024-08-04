@@ -17,8 +17,8 @@ export class LayoutPageComponent {
     {label: 'Hosteleria', icon: 'home_work', url: './admin-hosteleria'},
     {label: 'Guias', icon: 'contacts', url:'./admin-guias'},
     {label: 'Atractivos', icon: 'temple_buddhist', url:'./admin-atractivos'},
-    {label: 'Inicio', icon: 'door_front', url:'/inicio'}
-
-  ]
+    {label: 'Consultas', icon: 'grading', url:'./consultas'},
+    {label: 'Inicio', icon: 'door_front', url:'/inicio'},
+    ]
 
 }

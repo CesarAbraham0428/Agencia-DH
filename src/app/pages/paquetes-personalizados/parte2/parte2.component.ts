@@ -60,10 +60,14 @@ export class Parte2Component implements OnInit {
         });
         this.consultaForm.reset();
         this.router.navigate(['/inicio']);
-      } catch (error) {
+      } catch (error: any) {
+        let errorMessage = "Error en el formulario";
+        if (error.status === 429) {
+          errorMessage = "Solo puedes enviar una consulta cada semana.";
+        }
         Swal.fire({
           title: "Error!",
-          text: "Error en el formulario",
+          text: errorMessage,
           icon: "error"
         });
       }
@@ -76,6 +80,7 @@ export class Parte2Component implements OnInit {
       this.consultaForm.markAllAsTouched();
     }
   }
+
 
   loadAgencias(): void {
     // Asumiendo que tienes un servicio que obtiene las agencias

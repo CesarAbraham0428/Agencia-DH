@@ -1,0 +1,30 @@
+<div class="consultas-container">
+  <div *ngFor="let consulta of consultas" class="consulta-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ consulta.nom_usr }} {{ consulta.app_usr }}</mat-card-title>
+        <mat-card-subtitle>{{ consulta.email_usr }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Nacionalidad:</strong> {{ consulta.nacionalidad_usr }}</p>
+        <p><strong>Sexo:</strong> {{ consulta.sexo_usr }}</p>
+        <p><strong>Edad:</strong> {{ consulta.edad_usr }}</p>
+        <p><strong>Ciudad:</strong> {{ consulta.ciudad_usr }}</p>
+        <p><strong>Llegada:</strong> {{ consulta.llegada_cons }}</p>
+        <p><strong>Salida:</strong> {{ consulta.salida_cons }}</p>
+        <p><strong>Adultos de 18 a 36:</strong> {{ consulta.adults_18_36 }}</p>
+        <p><strong>Adultos de 37 a 64:</strong> {{ consulta.adults_37_64 }}</p>
+        <p><strong>Niños de 0 a 8:</strong> {{ consulta.ninos_0_8 }}</p>
+        <p><strong>Niños de 9 a 17:</strong> {{ consulta.ninos_9_17 }}</p>
+        <p><strong>Viaja con:</strong> {{ consulta.travel_with }}</p>
+        <p><strong>Presupuesto:</strong> {{ consulta.budget }}</p>
+        <p><strong>Actividades:</strong> {{ consulta.actividades }}</p>
+        <p><strong>Lugar deseado:</strong> {{ consulta.lugar_deseado }}</p>
+        <p><strong>Hotel:</strong> {{ consulta.hotel }}</p>
+        <p><strong>Restaurante:</strong> {{ consulta.restaurante }}</p>
+        <p><strong>Experiencia:</strong> {{ consulta.experiencia }}</p>
+        <p><strong>Fecha de Creación:</strong> {{ consulta.fecha_creacion }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

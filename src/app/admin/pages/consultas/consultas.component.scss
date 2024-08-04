@@ -1,0 +1,15 @@
+.consultas-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.consulta-card {
+  width: 300px;
+  margin: 10px;
+}
+
+mat-card {
+  width: 100%;
+}

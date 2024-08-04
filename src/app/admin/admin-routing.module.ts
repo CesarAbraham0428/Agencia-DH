@@ -11,6 +11,7 @@ import { AdminUsuarioComponent } from './pages/admin-usuario/admin-usuario.compo
 
 import { CraerPaquetesComponent } from './pages/crear-paquetes/crear-paquetes.component';
 import { PaquetesComponent } from './pages/paquetes/paquetes.component';
+import { ConsultasComponent } from './pages/consultas/consultas.component';
 
 const routes: Routes = [
   { path: '', component:LayoutPageComponent,
@@ -22,7 +23,7 @@ const routes: Routes = [
     {path: 'admin-usuario',component:AdminUsuarioComponent},
     {path: 'crear-paquetes',component:CraerPaquetesComponent},
     {path:'adminPaquetes', component:PaquetesComponent},
-
+    {path: 'consultas', component:ConsultasComponent},
     {path:'**',redirectTo:'crear-paquetes'},
   ]}
 ];

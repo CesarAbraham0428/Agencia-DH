@@ -20,6 +20,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 //utilizar material
 import { MaterialModule } from './material/material.module';
+import { MatCardModule } from '@angular/material/card';
 
 //Parte del Dialogos de Registro
 import { MatDialogModule } from '@angular/material/dialog';
@@ -64,7 +65,8 @@ import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.c
     MatDialogModule,
     NgxMaterialTimepickerModule,
     FormsModule,
-    PredeterminadoModule
+    PredeterminadoModule,
+    MatCardModule,
   ],
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),

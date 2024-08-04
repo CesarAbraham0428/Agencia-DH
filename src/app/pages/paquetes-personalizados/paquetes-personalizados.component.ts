@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paquetes-personalizados',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
 })
 export class PaquetesPersonalizadosComponent {
 
+  constructor(
+    public router: Router
+  ){}
 }
 

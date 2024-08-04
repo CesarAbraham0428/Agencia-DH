@@ -1,5 +1,5 @@
 export interface Paquete{
-  usuariosAsignados: import("c:/Users/lopez/Desktop/Agencia-DH/src/app/core/services/usuarios.service").Usuario[];
+  usuariosAsignados: import("../../core/services/usuarios.service").Usuario[]; //ahora funciona sin tener una ruta local
   id_paquete: number;
   nom_paquete: string;
   tipo_paquete: string
@@ -16,7 +16,7 @@ export interface Hosteleleria { //Para la tabla Hotesteleria
     capacidad_hs: string;
     servicios: string;
   }
-  
+
   export interface Guia { //Para la tabla Guia
     id_guia: number;
     nom_guia: string;
@@ -27,7 +27,7 @@ export interface Hosteleleria { //Para la tabla Hotesteleria
     telefono_guia: string;
     costo_guia: number;
     email_guia: string;
-    
+
   }
 
   export interface Transportista { //Para la tabla Transportista
@@ -39,7 +39,7 @@ export interface Hosteleleria { //Para la tabla Hotesteleria
     tarifa_trans: string;
     servicios_trans: string;
     tel_trans: string;
-    
+
   }
-  
+
   // Pueden añadir más interfaces aquí según sea necesario

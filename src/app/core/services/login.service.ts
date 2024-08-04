@@ -14,6 +14,7 @@ export class LoginService {
   private agenciasUrl = `${environment.baseUrl}/usuario/agencias`;
   private hotelesUrl = `${environment.baseUrl}/usuario/hoteles`;
   private restaurantesURL = `${environment.baseUrl}/usuario/restaurantes`;
+  private experienciasURL = `${environment.baseUrl}/usuario/experiencias`;
 
 
   constructor(private http: HttpClient) {}
@@ -74,5 +75,9 @@ export class LoginService {
 
   getAllRestaurantes(): Observable<any>{
     return this.http.get<any>(`${this.restaurantesURL}`);
+  }
+
+  getAllExperiencias(): Observable<any>{
+    return this.http.get<any>(`${this.experienciasURL}`);
   }
 }

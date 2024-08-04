@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../core/services/login.service';
+import { firstValueFrom } from 'rxjs';
+import { ConsultaService } from '../../../core/services/consulta.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-parte2',
@@ -9,15 +14,67 @@ import { LoginService } from '../../../core/services/login.service';
 export class Parte2Component implements OnInit {
   agencias: any[] = [];
   hoteles: any[] = [];
-  resutaurantes: any[] = [];
+  restaurantes: any[] = [];
+  experiencias: any[] = [];
+  consultaForm!: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private adminService: LoginService,
-  ){}
+    private consultaService: ConsultaService,
+    public router: Router
+  ){
+    this.consultaForm = this.fb.group ({
+      nom_agencia:['', Validators.required],
+      llegada_cons:['', Validators.required],
+      salida_cons:['', Validators.required],
+      adults_18_36:[0],
+      adults_37_64:[0],
+      ninos_0_8:[0],
+      ninos_9_17:[0],
+      travel_with:['', Validators.required],
+      budget:['', Validators.required],
+      actividades:['', Validators.required],
+      lugar_deseado:['', Validators.required],
+      hotel:['', Validators.required],
+      restaurante:['', Validators.required],
+      experiencia:['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
-    this.loadAgencias(); // Cargar agencias para el select
-    this.loadHoteles()
+    this.loadAgencias();
+    this.loadHoteles();
+    this.loadRestaurantes();
+    this.loadExperiencias();
+  }
+
+  async enviarConsulta(): Promise<void> {
+    if (this.consultaForm.valid) {
+      try {
+        await firstValueFrom(this.consultaService.enviarConsulta(this.consultaForm.value));
+        Swal.fire({
+          title: "!Hecho!",
+          text: "Información enviada",
+          icon: "success"
+        });
+        this.consultaForm.reset();
+        this.router.navigate(['/inicio']);
+      } catch (error) {
+        Swal.fire({
+          title: "Error!",
+          text: "Error en el formulario",
+          icon: "error"
+        });
+      }
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Formulario inválido. Revise los campos.",
+        icon: "error"
+      });
+      this.consultaForm.markAllAsTouched();
+    }
   }
 
   loadAgencias(): void {
@@ -35,7 +92,13 @@ export class Parte2Component implements OnInit {
 
   loadRestaurantes(): void {
     this.adminService.getAllRestaurantes().subscribe(data => {
-      this.resutaurantes = data;
+      this.restaurantes = data;
     })
+  }
+
+  loadExperiencias(): void {
+    this.adminService.getAllExperiencias().subscribe(data => {
+      this.experiencias = data;
+    });
   }
 }

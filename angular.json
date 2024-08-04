@@ -24,6 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "externalDependencies":[""],
             "outputPath": "dist/agencia-dh",
             "index": "src/index.html",
             "browser": "src/main.ts",

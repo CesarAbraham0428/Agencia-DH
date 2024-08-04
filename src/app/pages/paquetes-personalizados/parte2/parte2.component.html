@@ -1,30 +1,31 @@
 <div class="body-container">
   <div class="content">
     <h2>Crea tu paquete</h2>
-    <form >
+    <form [formGroup]="consultaForm" (ngSubmit)="enviarConsulta()">
 
       <!-- Selección de agencia -->
       <div class="form-group">
-        <label for="nom_ag">Agencia</label>
-        <select id="nom_ag" name="nom_ag" required>
-          <option value="" disabled selected>Seleccione una opción</option>
+        <label for="nom_agencia">Agencia</label>
+        <select id="nom_agencia" formControlName="nom_agencia" required>
+          <option value="" disabled>Seleccione una opción</option>
           <option *ngFor="let agencia of agencias" [value]="agencia.nom_ag">{{ agencia.nom_ag }}</option>
         </select>
-        <div id="agency-error" class="error-message"></div>
+        <div *ngIf="consultaForm.get('nom_agencia')?.invalid && consultaForm.get('nom_agencia')?.touched" class="error-message">
+        </div>
       </div>
 
       <!-- Fechas -->
       <div class="form-group">
-        <label for="arrival">Llegada</label>
+        <label for="llegada_cons">Llegada</label>
         <div class="input-icon">
-          <input type="date" id="arrival" name="arrival" required />
+          <input type="date" id="llegada_cons" formControlName="llegada_cons" required />
           <i class="fa fa-calendar-alt"></i>
         </div>
       </div>
       <div class="form-group">
-        <label for="departure">Salida</label>
+        <label for="salida_cons">Salida</label>
         <div class="input-icon">
-          <input type="date" id="departure" name="departure" required />
+          <input type="date" id="salida_cons" formControlName="salida_cons" required />
           <i class="fa fa-calendar-alt"></i>
         </div>
       </div>
@@ -32,97 +33,88 @@
       <!-- Adultos y niños -->
       <div class="form-group">
         <div class="half-width">
-          <label for="adults-female">Adultos 18 a 36</label>
-          <input type="number" id="adults-female" name="adults-female" required />
+          <label for="adults_18_36">Adultos 18 a 36</label>
+          <input type="number" id="adults_18_36" formControlName="adults_18_36" required min="0"/>
         </div>
         <div class="half-width">
-          <label for="adults-male">Adultos 37 a 64</label>
-          <input type="number" id="adults-male" name="adults-male" required />
+          <label for="adults_37_64">Adultos 37 a 64</label>
+          <input type="number" id="adults_37_64" formControlName="adults_37_64" required min="0"/>
         </div>
       </div>
       <div class="form-group">
         <div class="half-width">
-          <label for="children-female">Niños 0 a 8</label>
-          <input type="number" id="children-female" name="children-female" required />
+          <label for="ninos_0_8">Niños 0 a 8</label>
+          <input type="number" id="ninos_0_8" formControlName="ninos_0_8" required min="0"/>
         </div>
         <div class="half-width">
-          <label for="children-male">Niños 9 a 17</label>
-          <input type="number" id="children-male" name="children-male" required />
+          <label for="ninos_9_17">Niños 9 a 17</label>
+          <input type="number" id="ninos_9_17" formControlName="ninos_9_17" required min="0"/>
         </div>
       </div>
 
       <!-- Detalles adicionales -->
       <div class="form-row">
         <div class="form-group">
-          <label for="travel-with">Con quien viaja</label>
-          <select id="travel-with" name="travel-with" required>
+          <label for="travel_with">Con quien viaja</label>
+          <select id="travel_with" formControlName="travel_with" required>
             <option value="">Selecciona una opción</option>
-            <option value="alone">Solo</option>
-            <option value="with-family">Con Familia</option>
-            <option value="with-partner">Con pareja</option>
+            <option value="Solo">Solo</option>
+            <option value="Con familia">Con Familia</option>
+            <option value="Con pareja">Con pareja</option>
           </select>
-          <div id="travel-with-error" class="error-message"></div>
         </div>
         <div class="form-group">
           <label for="budget">Tu presupuesto</label>
-          <select id="budget" name="budget" required>
+          <select id="budget" formControlName="budget" required>
             <option value="">Selecciona una opción</option>
             <option value="4000-6000">$4000 - $6000</option>
             <option value="6000-8000">$6000 - $8000</option>
             <option value="8000-10000">$8000 - $10000</option>
             <option value="10000-14000">$10000 - $14000</option>
           </select>
-          <div id="budget-error" class="error-message"></div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="activities">¿Qué tipo de actividades te gustan?</label>
-        <input type="text" id="activities" name="activities">
+        <label for="actividades">¿Qué tipo de actividades te gustan?</label>
+        <input type="text" id="actividades" formControlName="actividades">
       </div>
 
       <div class="form-group">
-        <label for="specific-place">¿Hay algún lugar o fecha en específico que desees visitar?</label>
-        <input type="text" id="specific-place" name="specific-place">
+        <label for="lugar_deseado">¿Hay algún lugar o fecha en específico que desees visitar?</label>
+        <input type="text" id="lugar_deseado" formControlName="lugar_deseado">
       </div>
 
       <!-- Selección de hoteles -->
       <div class="form-group">
         <label for="hotel">Selecciona tu hotel</label>
-        <select id="hotel" name="hotel" required>
-          <option value="" disabled selected>Seleccione una opción</option>
+        <select id="hotel" formControlName="hotel" required>
+          <option value="" disabled>Seleccione una opción</option>
           <option *ngFor="let hotel of hoteles" [value]="hotel.nom_hs">{{ hotel.nom_hs }}</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="restaurant">Selecciona tu restaurante</label>
-        <select id="restaurant" name="restaurant" required>
-          <option value="" disabled selected>Seleccione una opción</option>
-          <option *ngFor="let resutaurante of resutaurantes" [value]="resutaurante.nom_ag">{{ resutaurante.nom_ag }}</option>
+        <label for="restaurante">Selecciona tu restaurante</label>
+        <select id="restaurante" formControlName="restaurante" required>
+          <option value="" disabled>Seleccione una opción</option>
+          <option *ngFor="let restaurante of restaurantes" [value]="restaurante.nom_hs">{{ restaurante.nom_hs }}</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="experience">Selecciona tu experiencia</label>
-        <select id="experience" name="experience" required>
-          <option value="" disabled selected>Seleccione una opción</option>
-          <option value="experience1">Experiencia 1</option>
-          <option value="experience2">Experiencia 2</option>
-          <option value="experience3">Experiencia 3</option>
-          <option value="experience4">Experiencia 4</option>
-          <option value="experience5">Experiencia 5</option>
-          <option value="experience6">Experiencia 6</option>
-          <option value="experience7">Experiencia 7</option>
-          <option value="experience8">Experiencia 8</option>
-          <option value="experience9">Experiencia 9</option>
+        <label for="experiencia">Selecciona tu experiencia</label>
+        <select id="experiencia" formControlName="experiencia" required>
+          <option value="" disabled>Seleccione una opción</option>
+          <option *ngFor="let experiencia of experiencias" [value]="experiencia.nom_actur">{{ experiencia.nom_actur }}</option>
         </select>
       </div>
 
+
       <!-- Botones -->
       <div class="form-actions">
-        <button type="button" onclick="window.location.href='/parte5'">ATRÁS</button>
-        <button type="submit" id="nextButton">Siguiente</button>
+        <button type="button" (click)="router.navigate(['/parte5'])">ATRÁS</button>
+        <button type="submit">Siguiente</button>
       </div>
 
     </form>

@@ -37,7 +37,6 @@ import { PasosNavegacionComponent } from './pages/crear-paquetes/pasos-navegacio
 import { CustomTimePipe } from './pages/paquetes/time.pipe';
 
 
-
 @NgModule({
   declarations: [
     LayoutPageComponent,
@@ -52,7 +51,7 @@ import { CustomTimePipe } from './pages/paquetes/time.pipe';
     AdminAtractivosTuristComponent,
     PaquetesComponent,
     AdminUsuarioComponent,
-    CustomTimePipe
+    CustomTimePipe,
   ],
   imports: [
     CommonModule,
@@ -66,7 +65,7 @@ import { CustomTimePipe } from './pages/paquetes/time.pipe';
     MatButtonModule,
     MatSelectModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule
   ]
 })
 export class AdminModule { }

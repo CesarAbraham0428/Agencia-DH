@@ -20,7 +20,6 @@ const routes: Routes = [
     {path: 'admin-guias',component:AdminGuiasComponent},
     {path: 'admin-hosteleria',component:AdminHosteleriaComponent},
     {path: 'admin-usuario',component:AdminUsuarioComponent},
-
     {path: 'crear-paquetes',component:CraerPaquetesComponent},
     {path:'adminPaquetes', component:PaquetesComponent},
 

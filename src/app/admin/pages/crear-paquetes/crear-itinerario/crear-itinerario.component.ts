@@ -181,13 +181,15 @@ export class CrearItinerarioComponent implements OnInit {
             (act.servicioAsociado.tipo_hs || act.servicioAsociado.tipo_actur) : null
         }))).filter(act => act.id_servicio !== null),
         servicios: this.selectedPackage.servicios
-          .map((s: any) => ({
-            id_servicio: this.getServiceId(s),
-            tipo_servicio: this.getServiceType(s),
-            subtipo_servicio: s.tipo_hs || s.tipo_actur
-          }))
-          .filter((s: { id_servicio: null; }) => s.id_servicio !== null)
-      };
+        .map((s: any) => ({
+          id_servicio: this.getServiceId(s),
+          tipo_servicio: this.getServiceType(s),
+          subtipo_servicio: s.tipo_hs || s.tipo_actur
+        }))
+        .filter((s: { id_servicio: number; tipo_servicio: string }) => 
+          s.id_servicio !== -1 && s.tipo_servicio !== 'Otro'
+        )
+    };
   
       console.log('Datos del paquete a enviar:', packageData);
       
@@ -222,28 +224,28 @@ export class CrearItinerarioComponent implements OnInit {
     return servicio.tipo || 'Otro';
   }
 
-  getServiceId(servicio: any): number {
-    if (!servicio) return -1;
+  getServiceId(servicio: any): number | null {
+    if (!servicio) return null;
     switch(servicio.tipo) {
       case 'Hosteleria':
-        return servicio.id_hosteleria || -1;
+        return servicio.id_hosteleria || null;
       case 'Transportista':
-        return servicio.id_transportista || -1;
+        return servicio.id_trans || null;
       case 'Guia':
-        return servicio.id_guia || -1;
+        return servicio.id_guia || null;
       case 'AtracTuristico':
-        return servicio.id_atracTuris || -1;
+        return servicio.id_atracTuris || null;
       default:
-        return servicio.id || -1;
+        return servicio.id || null;
     }
-  }
+  } 
   
   getServiceType(servicio: any): string {
-    if (!servicio) return 'Otro';
+    if (!servicio) return '';
     if (servicio.id_hosteleria) {
       return servicio.tipo_hs === 'Hotel' ? 'Hotel' : 'Restaurante';
     }
-    if (servicio.id_transportista) return 'Transportista';
+    if (servicio.id_trans) return 'Transportista';
     if (servicio.id_guia) return 'Guia';
     if (servicio.id_atracTuris) {
       switch(servicio.tipo_actur) {
@@ -255,7 +257,7 @@ export class CrearItinerarioComponent implements OnInit {
           return 'Atractivo Turístico';
       }
     }
-    return 'Otro';
+    return '';
   }
   
   getDuration() {

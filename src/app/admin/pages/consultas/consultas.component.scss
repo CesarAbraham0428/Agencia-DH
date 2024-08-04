@@ -1,8 +1,9 @@
 .consultas-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
+  justify-content: center; /* Centra las tarjetas */
+  gap: 20px;
+  padding: 20px;
 }
 
 .consulta-card {
@@ -12,4 +13,27 @@
 
 mat-card {
   width: 100%;
+  background-color: #f0f0f0; /* Fondo gris claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-header {
+  background-color: #007bff; /* Fondo azul */
+  color: white; /* Texto blanco */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+mat-card-subtitle {
+  color: white; /* Hace que el correo esté en blanco */
+}
+
+mat-card-content p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+mat-card-content p strong {
+  color: #007bff; /* Texto azul */
 }

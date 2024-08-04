@@ -2,28 +2,51 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-        aria-expanded="false" aria-controls="collapseOne">
-        Hosteleria
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHoteles"
+        aria-expanded="false" aria-controls="collapseHoteles">
+        Hoteles
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseHoteles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <div class="hotel" *ngFor="let hosteleria of hostelerias">
-          <h2>{{ hosteleria.nom_hs }}</h2>
-          <p><strong>Nombre:</strong> {{ hosteleria.nom_hs }}</p>
-          <p><strong>Capacidad:</strong> {{ hosteleria.capacidad_hs }}</p>
-          <p><strong>Descripción:</strong> {{ hosteleria.descripcion_hs }}</p>
-          <p><strong>Costo:</strong> {{ hosteleria.costo_hs }}</p>
-          <p><strong>Servicios:</strong> {{ hosteleria.servicios }}</p>
-          <p><strong>Típologia:</strong> {{ hosteleria.tipologia_hs }}</p>
-          <button type="button" class="select-btn" (click)="selectItem(hosteleria, 'Hosteleria')">Seleccionar</button>
+        <div class="hotel" *ngFor="let hotel of hoteles">
+          <h2>{{ hotel.nom_hs }}</h2>
+          <p><strong>Nombre:</strong> {{ hotel.nom_hs }}</p>
+          <p><strong>Capacidad:</strong> {{ hotel.capacidad_hs }}</p>
+          <p><strong>Descripción:</strong> {{ hotel.descripcion_hs }}</p>
+          <p><strong>Costo:</strong> {{ hotel.costo_hs }}</p>
+          <p><strong>Servicios:</strong> {{ hotel.servicios }}</p>
+          <p><strong>Tipología:</strong> {{ hotel.tipologia_hs }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(hotel, 'Hosteleria')">Seleccionar</button>
           <hr>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRestaurantes"
+        aria-expanded="false" aria-controls="collapseRestaurantes">
+        Restaurantes
+      </button>
+    </h2>
+    <div id="collapseRestaurantes" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="restaurante" *ngFor="let restaurante of restaurantes">
+          <h2>{{ restaurante.nom_hs }}</h2>
+          <p><strong>Nombre:</strong> {{ restaurante.nom_hs }}</p>
+          <p><strong>Capacidad:</strong> {{ restaurante.capacidad_hs }}</p>
+          <p><strong>Descripción:</strong> {{ restaurante.descripcion_hs }}</p>
+          <p><strong>Costo:</strong> {{ restaurante.costo_hs }}</p>
+          <p><strong>Servicios:</strong> {{ restaurante.servicios }}</p>
+          <p><strong>Tipología:</strong> {{ restaurante.tipologia_hs }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(restaurante, 'Hosteleria')">Seleccionar</button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
@@ -74,7 +97,6 @@
     </div>
   </div>
 
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
@@ -84,12 +106,19 @@
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-
+        <div class="museo" *ngFor="let museo of museos">
+          <h2>{{ museo.nom_actur }}</h2>
+          <p><strong>Nombre:</strong> {{ museo.nom_actur }}</p>
+          <p><strong>Descripción:</strong> {{ museo.descripcion_actur }}</p>
+          <p><strong>Costo:</strong> {{ museo.costo_actur }}</p>
+          <p><strong>Servicios:</strong> {{ museo.servicios_actur }}</p>
+          <p><strong>Tipología:</strong> {{ museo.tipologia_actur }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(museo, 'AtracTuristico')">Seleccionar</button>
+          <hr>
+        </div>
       </div>
     </div>
   </div>
-
-
 
   <div class="accordion-item">
     <h2 class="accordion-header">
@@ -100,26 +129,41 @@
     </h2>
     <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-
+        <div class="vinedo" *ngFor="let vinedo of vinedos">
+          <h2>{{ vinedo.nom_actur }}</h2>
+          <p><strong>Nombre:</strong> {{ vinedo.nom_actur }}</p>
+          <p><strong>Descripción:</strong> {{ vinedo.descripcion_actur }}</p>
+          <p><strong>Costo:</strong> {{ vinedo.costo_actur }}</p>
+          <p><strong>Servicios:</strong> {{ vinedo.servicios_actur }}</p>
+          <p><strong>Tipología:</strong> {{ vinedo.tipologia_actur }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(vinedo, 'AtracTuristico')">Seleccionar</button>
+          <hr>
+        </div>
       </div>
     </div>
   </div>
-
-
 
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"
         aria-expanded="false" aria-controls="collapseSix">
-        Lugares Turisticos
+        Lugares Turísticos
       </button>
     </h2>
     <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-
+        <div class="lugar-turistico" *ngFor="let lugar of lugaresTuristicos">
+          <h2>{{ lugar.nom_actur }}</h2>
+          <p><strong>Nombre:</strong> {{ lugar.nom_actur }}</p>
+          <p><strong>Descripción:</strong> {{ lugar.descripcion_actur }}</p>
+          <p><strong>Costo:</strong> {{ lugar.costo_actur }}</p>
+          <p><strong>Servicios:</strong> {{ lugar.servicios_actur }}</p>
+          <p><strong>Tipología:</strong> {{ lugar.tipologia_actur }}</p>
+          <button type="button" class="select-btn" (click)="selectItem(lugar, 'AtracTuristico')">Seleccionar</button>
+          <hr>
+        </div>
       </div>
     </div>
   </div>
-
 
 </div>

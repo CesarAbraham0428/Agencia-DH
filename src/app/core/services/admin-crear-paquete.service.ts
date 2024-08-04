@@ -50,6 +50,7 @@ export class PackageDataService {
     if ('id_hosteleria' in servicio) return servicio.id_hosteleria;
     if ('id_trans' in servicio) return servicio.id_trans;
     if ('id_guia' in servicio) return servicio.id_guia;
+    if ('id_atracTuris' in servicio) return servicio.id_atracTuris;
     return servicio.id;
   }
 
@@ -57,6 +58,7 @@ export class PackageDataService {
     if ('id_hosteleria' in servicio) return 'hosteleria';
     if ('id_trans' in servicio) return 'transportista';
     if ('id_guia' in servicio) return 'guia';
+    if ('id_atracTuris' in servicio) return 'atracTuristico';
     return 'generic';
   }
 
@@ -64,13 +66,8 @@ export class PackageDataService {
     if ('id_hosteleria' in item) return item.id_hosteleria;
     if ('id_trans' in item) return item.id_trans;
     if ('id_guia' in item) return item.id_guia;
+    if ('id_atracTuris' in item) return item.id_atracTuris;
     return item.id;
   }
 
-  private getItemTipo(item: any): string {
-    if ('id_hosteleria' in item) return 'hosteleria';
-    if ('id_trans' in item) return 'transportista';
-    if ('id_guia' in item) return 'guia';
-    return 'generic';
-  }
 }

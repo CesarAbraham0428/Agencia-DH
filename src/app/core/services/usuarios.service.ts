@@ -21,11 +21,11 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
- /*  getAllUsuarios(): Observable<any> {
+   getTodosUsuarios(): Observable<any> {
     return this.http.get(`${this.apiUrl}s`);
-  } */
+  }
 
-/*   getUsuarioById(id_usr: number): Observable<any> {  
+/*   getUsuarioById(id_usr: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id_usr}`);
   } */
 
@@ -37,14 +37,14 @@ export class UsuariosService {
         })
       );
     }
-  
+
     getUsuarioById(id_usr: number): Observable<Usuario> {
       return this.http.get<Usuario>(`${this.apiUrl}/${id_usr}`);
     }
-  
+
     buscarUsuarios(termino: string): Observable<Usuario[]> {
       return this.getAllUsuarios().pipe(
-        map(usuarios => usuarios.filter(usuario => 
+        map(usuarios => usuarios.filter(usuario =>
           usuario.nom_usr.toLowerCase().includes(termino.toLowerCase()) ||
           usuario.app_usr.toLowerCase().includes(termino.toLowerCase())
         ))

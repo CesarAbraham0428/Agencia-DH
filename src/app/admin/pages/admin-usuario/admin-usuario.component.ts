@@ -16,7 +16,7 @@ export class AdminUsuarioComponent implements OnInit {
   }
 
   loadUsuarios(): void {
-    this.usuariosService.getAllUsuarios().subscribe((data) => {
+    this.usuariosService.getTodosUsuarios().subscribe((data) => {
       this.usuarios = data;
     })
   }

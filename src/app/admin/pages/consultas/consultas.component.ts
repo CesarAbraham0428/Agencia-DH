@@ -24,7 +24,6 @@ export class ConsultasComponent implements OnInit{
     this.consultaService.recibirConsulta().subscribe((data) => {
       this.consultas = data;
     })
-    console.log(this.consultas)
   }
 
   formatDate(date: string): string {

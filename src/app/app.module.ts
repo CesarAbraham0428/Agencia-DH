@@ -38,6 +38,7 @@ import { Parte3Component } from './pages/paquetes-personalizados/parte3/parte3.c
 import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.component';
 import { Parte5Component } from './pages/paquetes-personalizados/parte5/parte5.component';
 import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.component';
+import { PaquetesPersonalizadosComponent } from './pages/paquetes-personalizados/paquetes-personalizados.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { Parte2Component } from './pages/paquetes-personalizados/parte2/parte2.c
     Parte3Component,
     Parte4Component,
     Parte5Component,
-
+    PaquetesPersonalizadosComponent
   ],
   imports: [
     BrowserModule,

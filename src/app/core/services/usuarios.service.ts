@@ -19,10 +19,12 @@ export interface Usuario {
 export class UsuariosService {
   private apiUrl = `${environment.baseUrl}/admin/usuario`;
 
+  private apiUrlMarco = `${environment.baseUrl}/admin/usuario`;
+
   constructor(private http: HttpClient) { }
 
    getTodosUsuarios(): Observable<any> {
-    return this.http.get(`${this.apiUrl}s`);
+    return this.http.get(`${this.apiUrlMarco}`);
   }
 
 /*   getUsuarioById(id_usr: number): Observable<any> {

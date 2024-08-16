@@ -3,10 +3,37 @@ import { NavigationStart, Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
-import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
+//import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
 
+interface Actividad {
+  id_actividad: number;
+  fecha_actividad: string;
+  hora_actividad: string;
+  descripcion_actividad: string;
+}
+
+interface Servicio {
+  id_servicio: number;
+  tipo_servicio: string;
+  actividades: Actividad[];
+}
+
+interface Paquete {
+  id_paquete: number;
+  nom_paquete: string;
+  tipo_paquete: string;
+  costo_paquete: number;
+  servicios: Servicio[];
+}
+
+interface AgenciaPaquetes {
+  id_agencia: number;
+  paquetes: Paquete[];
+}
 
 declare var paypal: any;
+
+
 
 @Component({
   selector: 'app-predeterminado',
@@ -67,7 +94,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
 
   cargarPaquetes() {
     this.genericService.getPaquetesCompletosByAgencia().subscribe(
-      (data: { id_agencia: number; paquetes: Paquete[] }[]) => {
+      (data: AgenciaPaquetes[]) => {
         this.paquetesPorAgencia = data;
         console.log('Paquetes cargados:', this.paquetesPorAgencia);
         
@@ -82,8 +109,6 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
       },
       error => {
         console.error('Error al obtener paquetes por agencia:', error);
-        console.error('URL intentada:', error.url);
-        console.error('Mensaje de error:', error.message);
       }
     );
   }

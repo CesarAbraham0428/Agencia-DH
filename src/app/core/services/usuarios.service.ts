@@ -27,10 +27,6 @@ export class UsuariosService {
     return this.http.get(`${this.apiUrlMarco}`);
   }
 
-/*   getUsuarioById(id_usr: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id_usr}`);
-  } */
-
     getAllUsuarios(): Observable<Usuario[]> {
       return this.http.get<Usuario[]>(`${this.apiUrl}s`).pipe(
         catchError(error => {

@@ -22,6 +22,8 @@ interface AsignacionResponse {
 export class ServicioGenericoCRUD {
   private apiUrl = `${environment.baseUrl}/admin/paquete`;
 
+  private agenciaUrl = `${environment.baseUrl}/admin`; // Nueva URL base para rutas de agencia
+
   constructor(private http: HttpClient) { }
 
   getAll<T>(p0: string): Observable<T[]> {
@@ -64,5 +66,10 @@ export class ServicioGenericoCRUD {
   getUsuariosAsignados(idPaquete: number): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/${idPaquete}/usuarios-asignados`);
   }
+
+    // Nuevo método para obtener paquetes completos por agencia
+    getPaquetesCompletosByAgencia(): Observable<any> {
+      return this.http.get<any>(`${this.agenciaUrl}/agencia/paquetes-completos`);
+    }
   
 }

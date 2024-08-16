@@ -14,8 +14,11 @@ declare var paypal: any;
   styleUrls: ['./predeterminado.component.scss']
 })
 export class PredeterminadoComponent implements OnInit, AfterViewInit {
-  paquetes: any[] = [];
-  showPayPalButton: { [key: string]: boolean } = {
+
+  paquetesPorAgencia: { id_agencia: number; paquetes: Paquete[] }[] = [];
+
+
+/*   showPayPalButton: { [key: string]: boolean } = {
     enoturismo: false,
     maikati: false,
     sierraBrava: false,
@@ -38,7 +41,10 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     enoturismoDro: false,
     maikatiDro: false,
     sierraBravaDro: false,
-  };
+  }; */
+
+  showPayPalButton: { [key: string]: boolean } = {};
+  isButtonClicked: { [key: string]: boolean } = {};
 
   constructor(
     private loginService: LoginService,
@@ -46,7 +52,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private genericService: ServicioGenericoCRUD
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -60,31 +66,33 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
   }
 
   cargarPaquetes() {
-    this.genericService.getAll<Paquete>('Paquete').subscribe(
-      data => {
-        this.paquetes = data;
-        this.paquetes.forEach(paquete => {
-          this.genericService.getPaqueteCompleto(paquete.id_paquete).subscribe(
-            paqueteCompleto => {
-              Object.assign(paquete, paqueteCompleto);
-              console.log('Paquete completo cargado:', paquete);
-            },
-            error => {
-              console.error('Error al obtener paquete completo:', error);
-            }
-          );
+    this.genericService.getPaquetesCompletosByAgencia().subscribe(
+      (data: { id_agencia: number; paquetes: Paquete[] }[]) => {
+        this.paquetesPorAgencia = data;
+        console.log('Paquetes cargados:', this.paquetesPorAgencia);
+        
+        // Inicializar showPayPalButton e isButtonClicked para cada paquete
+        this.paquetesPorAgencia.forEach(agencia => {
+          agencia.paquetes.forEach(paquete => {
+            const key = `${agencia.id_agencia}_${paquete.id_paquete}`;
+            this.showPayPalButton[key] = false;
+            this.isButtonClicked[key] = false;
+          });
         });
+      },
+      error => {
+        console.error('Error al obtener paquetes por agencia:', error);
+        console.error('URL intentada:', error.url);
+        console.error('Mensaje de error:', error.message);
       }
     );
   }
-
-
 
   ngAfterViewInit(): void {
     this.loadPayPalScript();
   }
 
-  obtenerPaquete(paquete: string) {
+/*   obtenerPaquete(paquete: string) {
     if (this.isButtonClicked[paquete]) {
       return; // Prevent multiple executions
     }
@@ -103,16 +111,38 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
       });
       this.isButtonClicked[paquete] = false; // Reset the flag if the user is not logged in
     }
-  }
+  }*/
 
   private removeModalBackdrop(): void {
     const backdrops = document.getElementsByClassName('modal-backdrop');
     while (backdrops.length > 0) {
       backdrops[0].parentNode?.removeChild(backdrops[0]);
     }
-  }
+  } 
 
-  renderPayPalButton(paquete: string): void {
+    obtenerPaquete(agenciaId: number, paqueteId: number) {
+      const key = `${agenciaId}_${paqueteId}`;
+      if (this.isButtonClicked[key]) {
+        return; // Prevent multiple executions
+      }
+      this.isButtonClicked[key] = true;
+  
+      if (this.loginService.isLogged()) {
+        this.showPayPalButton[key] = true;
+        this.renderPayPalButton(key);
+      } else {
+        Swal.fire({
+          title: "Inicia sesión",
+          text: "¡Necesitas iniciar sesión!",
+          icon: "info"
+        }).then(() => {
+          this.router.navigate(['/login']);
+        });
+        this.isButtonClicked[key] = false; // Reset the flag if the user is not logged in
+      }
+    } 
+
+  /* renderPayPalButton(paquete: string): void {
     const interval = setInterval(() => {
       const container = document.getElementById(`paypal-button-container-${paquete}`);
       if (container) {
@@ -145,7 +175,41 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
         }).render(`#paypal-button-container-${paquete}`);
       }
     }, 100);
-  }
+  } */
+
+    renderPayPalButton(key: string): void {
+      const interval = setInterval(() => {
+        const container = document.getElementById(`paypal-button-container-${key}`);
+        if (container) {
+          clearInterval(interval);
+          paypal.Buttons({
+            onApprove: (data: any, actions: any) => {
+              Swal.fire({
+                title: "¡Gracias por su compra!.",
+                width: 600,
+                padding: "3em",
+                color: "#716add",
+                background: "#fff url(../../../../../../assets/trees.png)",
+                backdrop: `
+                  rgba(0,0,123,0.4)
+                  url("../../../../assets/nyan-cat.gif")
+                  left top
+                  no-repeat
+                `
+              });
+            },
+            onError: (error: any) => {
+              Swal.fire({
+                title: "Error!",
+                text: error,
+                icon: "error"
+              });
+              this.isButtonClicked[key] = false; // Reset the flag if there is an error
+            }
+          }).render(`#paypal-button-container-${key}`);
+        }
+      }, 100);
+    }
 
   loadPayPalScript(): void {
     const script = this.renderer.createElement('script');

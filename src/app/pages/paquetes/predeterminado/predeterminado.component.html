@@ -1,18 +1,36 @@
-<!-- Titulo -->
+<!-- 
 <div class="title">
   <br>
   <h1 class="main-title">Paquetes preestablecidos</h1>
 </div>
 
-<div class="agencia ">
+<div class="agencia 1">
 
 </div>
 
-<div class="agencia ">
+<div class="agencia 2">
 
 </div>
 
-<div class="agencia ">
+<div class="agencia 3">
 
+</div> -->
+
+<div class="title">
+  <br>
+  <h1 class="main-title">Paquetes preestablecidos</h1>
 </div>
 
+<div *ngFor="let agencia of paquetesPorAgencia">
+  <h2>Agencia ID: {{agencia.id_agencia}}</h2>
+  <div *ngFor="let paquete of agencia.paquetes">
+    <h3>{{paquete.nom_paquete}}</h3>
+    <p>Costo: {{paquete.costo_paquete}}</p>
+    <button (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
+      Obtener Paquete
+    </button>
+    <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]" 
+         [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
+    </div>
+  </div>
+</div>

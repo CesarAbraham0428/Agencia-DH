@@ -28,6 +28,7 @@ interface Paquete {
 
 interface AgenciaPaquetes {
   id_agencia: number;
+  nom_ag: string;
   paquetes: Paquete[];
 }
 
@@ -42,7 +43,7 @@ declare var paypal: any;
 })
 export class PredeterminadoComponent implements OnInit, AfterViewInit {
 
-  paquetesPorAgencia: { id_agencia: number; paquetes: Paquete[] }[] = [];
+  paquetesPorAgencia: AgenciaPaquetes[] = [];
 
 
 /*   showPayPalButton: { [key: string]: boolean } = {
@@ -97,7 +98,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
       (data: AgenciaPaquetes[]) => {
         this.paquetesPorAgencia = data;
         console.log('Paquetes cargados:', this.paquetesPorAgencia);
-        
+
         // Inicializar showPayPalButton e isButtonClicked para cada paquete
         this.paquetesPorAgencia.forEach(agencia => {
           agencia.paquetes.forEach(paquete => {
@@ -143,7 +144,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     while (backdrops.length > 0) {
       backdrops[0].parentNode?.removeChild(backdrops[0]);
     }
-  } 
+  }
 
     obtenerPaquete(agenciaId: number, paqueteId: number) {
       const key = `${agenciaId}_${paqueteId}`;
@@ -151,7 +152,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
         return; // Prevent multiple executions
       }
       this.isButtonClicked[key] = true;
-  
+
       if (this.loginService.isLogged()) {
         this.showPayPalButton[key] = true;
         this.renderPayPalButton(key);
@@ -165,7 +166,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
         });
         this.isButtonClicked[key] = false; // Reset the flag if the user is not logged in
       }
-    } 
+    }
 
   /* renderPayPalButton(paquete: string): void {
     const interval = setInterval(() => {

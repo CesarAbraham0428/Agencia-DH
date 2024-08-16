@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of paquetesFiltrados">
       <div class="card paquete-card p-3">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary">
           <h2 class="card-title">{{paquete.nom_paquete}}</h2>
         </div>
         <div class="card-body paquete-card-body">
@@ -33,7 +33,7 @@
           <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
           <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
           <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
-  
+
           <!-- Añadimos esta sección para mostrar los usuarios asignados -->
           <ng-container *ngIf="paquete.tipo_paquete === 'Personalizado'">
             <h3 class="mt-4">Usuarios Asignados</h3>
@@ -46,14 +46,14 @@
               No hay usuarios asignados a este paquete.
             </p>
           </ng-container>
-  
+
           <h3 class="mt-4">Servicios incluidos</h3>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
               {{servicio.tipo_servicio}}
             </li>
           </ul>
-  
+
           <h3 class="mt-4">Servicios con actividades</h3>
           <div *ngFor="let servicio of paquete.servicios">
             <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card-footer text-center">
           <button class="btn btn-warning mr-2" (click)="editarPaquete(paquete)">Editar</button>
           <button class="btn btn-danger mr-2" (click)="eliminarPaquete(paquete)">Eliminar</button>

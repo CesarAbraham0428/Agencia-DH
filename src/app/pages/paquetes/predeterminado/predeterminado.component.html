@@ -23,7 +23,7 @@
     <button (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
       Obtener Paquete
     </button>
-    <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]" 
+    <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]"
          [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
     </div>
   </div>
@@ -31,11 +31,11 @@
 
 <div class="row">
   <div class="col-12 mb-4" *ngFor="let agencia of paquetesPorAgencia">
-    <h2>Agencia ID: {{agencia.id_agencia}}</h2>
+    <h2>Agencia : {{agencia.nom_ag}}</h2>
     <div class="row">
       <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of agencia.paquetes">
         <div class="card paquete-card p-3">
-          <div class="card-header bg-primary text-white">
+          <div class="card-header bg-primary ">
             <h2 class="card-title">{{paquete.nom_paquete}}</h2>
           </div>
           <div class="card-body paquete-card-body">
@@ -79,7 +79,7 @@
             <button class="btn btn-primary mt-3" (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
               Obtener Paquete
             </button>
-            <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]" 
+            <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]"
                  [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
             </div>
           </div>

@@ -81,3 +81,28 @@ h3{
 ul li{
   list-style: none;
 }
+
+.card-title
+{
+  background-color: #0000;
+}
+
+.close {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+
+.modal-title{
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+}

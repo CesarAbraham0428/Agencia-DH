@@ -18,6 +18,7 @@ import { Parte4Component } from './pages/paquetes-personalizados/parte4/parte4.c
 import { gestorGuard } from './guard/gestor.guard';
 import { RecuperarPComponent } from './pages/correoRec/recuperarP.component';
 import { ContraRecComponent } from './pages/contraRec/contraRec.component';
+import { MisPaquetesComponent } from './pages/mis-paquetes/mis-paquetes.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'registro', component:RegistroComponent},
   {path:'login', component:LoginComponent},
   {path:'paquetes', component:PredeterminadoComponent},
+  {path:'mis-paquetes', component:MisPaquetesComponent},
   {path:'enviar-correo-recuperacion', component:RecuperarPComponent},
   {path:'reestablecer-contraseña', component:ContraRecComponent},
 

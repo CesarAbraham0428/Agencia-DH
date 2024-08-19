@@ -23,6 +23,7 @@ interface Paquete {
   nom_paquete: string;
   tipo_paquete: string;
   costo_paquete: number;
+  img_paquete: string;
   servicios: Servicio[];
 }
 
@@ -41,38 +42,12 @@ declare var paypal: any;
   templateUrl: './predeterminado.component.html',
   styleUrls: ['./predeterminado.component.scss']
 })
-export class PredeterminadoComponent implements OnInit, AfterViewInit {
+export class PredeterminadoComponent implements OnInit {
 
-  paquetesPorAgencia: AgenciaPaquetes[] = [];
-
-
-/*   showPayPalButton: { [key: string]: boolean } = {
-    enoturismo: false,
-    maikati: false,
-    sierraBrava: false,
-    enoturismoEsk: false,
-    maikatiEsk: false,
-    sierraBravaEsk: false,
-    enoturismoDro: false,
-    maikatiDro: false,
-    sierraBravaDro: false,
-
-  };
-
-  isButtonClicked: { [key: string]: boolean } = {
-    enoturismo: false,
-    maikati: false,
-    sierraBrava: false,
-    enoturismoEsk: false,
-    maikatiEsk: false,
-    sierraBravaEsk: false,
-    enoturismoDro: false,
-    maikatiDro: false,
-    sierraBravaDro: false,
-  }; */
-
+  paquetesPorAgencia: { id_agencia: number; nom_ag: string; paquetes: Paquete[] }[] = [];
   showPayPalButton: { [key: string]: boolean } = {};
   isButtonClicked: { [key: string]: boolean } = {};
+  openPaqueteKey: string | null = null; // Para controlar el paquete abierto
 
   constructor(
     private loginService: LoginService,
@@ -82,14 +57,8 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     private genericService: ServicioGenericoCRUD
   ) { }
 
-  ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        Swal.close();
-        this.removeModalBackdrop();
-      }
-    });
 
+  ngOnInit() {
     this.cargarPaquetes();
   }
 
@@ -102,7 +71,7 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
         // Inicializar showPayPalButton e isButtonClicked para cada paquete
         this.paquetesPorAgencia.forEach(agencia => {
           agencia.paquetes.forEach(paquete => {
-            const key = `${agencia.id_agencia}_${paquete.id_paquete}`;
+            const key = `${agencia.id_agencia}_${agencia.nom_ag}_${paquete.id_paquete}`;
             this.showPayPalButton[key] = false;
             this.isButtonClicked[key] = false;
           });
@@ -114,19 +83,29 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngAfterViewInit(): void {
-    this.loadPayPalScript();
+  togglePaquete(agenciaId: number, paqueteId: number) {
+    const key = `${agenciaId}_${paqueteId}`;
+    if (this.openPaqueteKey === key) {
+      this.openPaqueteKey = null; // Cierra el paquete si ya está abierto
+    } else {
+      this.openPaqueteKey = key; // Abre el nuevo paquete
+    }
   }
 
-/*   obtenerPaquete(paquete: string) {
-    if (this.isButtonClicked[paquete]) {
+  isPaqueteOpen(agenciaId: number, paqueteId: number): boolean {
+    return this.openPaqueteKey === `${agenciaId}_${paqueteId}`;
+  }
+
+  obtenerPaquete(agenciaId: number, paqueteId: number) {
+    const key = `${agenciaId}_${paqueteId}`;
+    if (this.isButtonClicked[key]) {
       return; // Prevent multiple executions
     }
-    this.isButtonClicked[paquete] = true;
+    this.isButtonClicked[key] = true;
 
     if (this.loginService.isLogged()) {
-      this.showPayPalButton[paquete] = true;
-      this.renderPayPalButton(paquete);
+      this.showPayPalButton[key] = true;
+      this.renderPayPalButton(key);
     } else {
       Swal.fire({
         title: "Inicia sesión",
@@ -135,47 +114,17 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
       }).then(() => {
         this.router.navigate(['/login']);
       });
-      this.isButtonClicked[paquete] = false; // Reset the flag if the user is not logged in
-    }
-  }*/
-
-  private removeModalBackdrop(): void {
-    const backdrops = document.getElementsByClassName('modal-backdrop');
-    while (backdrops.length > 0) {
-      backdrops[0].parentNode?.removeChild(backdrops[0]);
+      this.isButtonClicked[key] = false; // Reset the flag if the user is not logged in
     }
   }
 
-    obtenerPaquete(agenciaId: number, paqueteId: number) {
-      const key = `${agenciaId}_${paqueteId}`;
-      if (this.isButtonClicked[key]) {
-        return; // Prevent multiple executions
-      }
-      this.isButtonClicked[key] = true;
-
-      if (this.loginService.isLogged()) {
-        this.showPayPalButton[key] = true;
-        this.renderPayPalButton(key);
-      } else {
-        Swal.fire({
-          title: "Inicia sesión",
-          text: "¡Necesitas iniciar sesión!",
-          icon: "info"
-        }).then(() => {
-          this.router.navigate(['/login']);
-        });
-        this.isButtonClicked[key] = false; // Reset the flag if the user is not logged in
-      }
-    }
-
-  /* renderPayPalButton(paquete: string): void {
+  renderPayPalButton(key: string): void {
     const interval = setInterval(() => {
-      const container = document.getElementById(`paypal-button-container-${paquete}`);
+      const container = document.getElementById(`paypal-button-container-${key}`);
       if (container) {
         clearInterval(interval);
         paypal.Buttons({
           onApprove: (data: any, actions: any) => {
-            // Muestra un mensaje de éxito al usuario
             Swal.fire({
               title: "¡Gracias por su compra!.",
               width: 600,
@@ -196,46 +145,12 @@ export class PredeterminadoComponent implements OnInit, AfterViewInit {
               text: error,
               icon: "error"
             });
-            this.isButtonClicked[paquete] = false; // Reset the flag if there is an error
+            this.isButtonClicked[key] = false; // Reset the flag if there is an error
           }
-        }).render(`#paypal-button-container-${paquete}`);
+        }).render(`#paypal-button-container-${key}`);
       }
     }, 100);
-  } */
-
-    renderPayPalButton(key: string): void {
-      const interval = setInterval(() => {
-        const container = document.getElementById(`paypal-button-container-${key}`);
-        if (container) {
-          clearInterval(interval);
-          paypal.Buttons({
-            onApprove: (data: any, actions: any) => {
-              Swal.fire({
-                title: "¡Gracias por su compra!.",
-                width: 600,
-                padding: "3em",
-                color: "#716add",
-                background: "#fff url(../../../../../../assets/trees.png)",
-                backdrop: `
-                  rgba(0,0,123,0.4)
-                  url("../../../../assets/nyan-cat.gif")
-                  left top
-                  no-repeat
-                `
-              });
-            },
-            onError: (error: any) => {
-              Swal.fire({
-                title: "Error!",
-                text: error,
-                icon: "error"
-              });
-              this.isButtonClicked[key] = false; // Reset the flag if there is an error
-            }
-          }).render(`#paypal-button-container-${key}`);
-        }
-      }, 100);
-    }
+  }
 
   loadPayPalScript(): void {
     const script = this.renderer.createElement('script');

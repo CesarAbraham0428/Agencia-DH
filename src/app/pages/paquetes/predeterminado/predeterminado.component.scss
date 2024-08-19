@@ -137,36 +137,37 @@ hr {
 }
 
 /* Main Title and Subtitles */
-.main-title {
-  width: 100%;
-  color: transparent;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 30px;
-  font-weight: bolder;
-  letter-spacing: 5px;
-  background-image: url('./imagenes/montanas-de-chile-compressor.jpg');
-  background-size: cover;
-  background-position: bottom;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textAnimation 3s ease infinite, colorChange 5s linear infinite;
+.title {
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-size: 5vw;
+    display: inline-block;
+    margin: 2em 0 1.2em;
+    padding: 0.5em;
+    color: #000;
+    border-radius: 15px;
+    font-weight: bold;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #2c0d0a, #ba3d31, #a06151);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
-/* Sub Title */
-.sub-title {
-  font-size: 2em;
-  color: #000000;
-  text-align: center;
-  margin-top: 10px;
-  font-weight: 600;
-  // animation: colorChange 5s linear infinite;
+@media (max-width: 768px) {
+  h1 {
+      font-size: 20px; /* Para tablets */
+  }
 }
 
-
-
-
+@media (max-width: 480px) {
+  h1 {
+      font-size: 16px; /* Para móviles */
+  }
+}
 
 .card {
   background-color: #ffffff;
@@ -444,3 +445,53 @@ a:hover {
   50% { background-color: #6470ef; }
   100% { background-color: #376be6; }
 }
+
+.container-fluid {
+  padding: 0;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.card-custom {
+  max-width: 800px;
+  width: 100%;
+  transition: max-height 0.3s ease;
+}
+
+.additional-info {
+  margin-top: 1rem;
+}
+
+.card-custom.expanded {
+  max-height: 800px; /* Ajusta según sea necesario */
+}
+
+.img-container {
+  display: flex; /* Center the image horizontally if needed */
+}
+
+.img-fluid {
+  width: 100%; /* Adjust as needed */
+  max-width: 150px; /* Set a maximum width */
+}
+
+
+
+.paquete-card {
+  margin-right: 10px; /* Ajusta el valor según lo que necesites */
+  margin-left: 10px; /* También puedes ajustar el margen izquierdo */
+
+}
+
+.sub-title {
+  font-size: 2em;
+  color: #000000;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  // animation: colorChange 5s linear infinite;
+}
+

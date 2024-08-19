@@ -20,12 +20,12 @@ export class AdminAtractivosTuristComponent implements OnInit {
     public dialog: MatDialog) {
     this.atraccionForm = this.fb.group({
       nom_actur: ['', Validators.required],
-      tipo_actur: ['', Validators.required],
+      tipo_actur: [''],
       accesbilidad_actur: [''],
-      descripcion_actur: ['', Validators.required],
+      descripcion_actur: [''],
       nom_calle_actur: [''],
       num_calle_actur: [''],
-      localidad_actur: ['', Validators.required],
+      localidad_actur: [''],
       tipologia_actur: [''],
       num_visitantes_actur: [''],
       categoria_actur: [''],

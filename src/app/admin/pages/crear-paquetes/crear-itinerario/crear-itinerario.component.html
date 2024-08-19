@@ -5,7 +5,7 @@
       <label for="packageName">Nombre del Paquete:</label>
       <input id="packageName" type="text" class="form-control" [(ngModel)]="packageName">
     </div>
-    
+
     <div class="form-group mb-2">
       <label for="packageType">Tipo de Paquete:</label>
       <select id="packageType" class="form-control" [(ngModel)]="packageType">
@@ -13,32 +13,32 @@
         <option value="Personalizado" selected>Personalizado</option>
       </select>
     </div>
-    
+
     <div class="form-group mb-2">
       <label for="packageCost">Costo del Paquete:</label>
-      <input id="packageCost" 
-             type="number" 
-             class="form-control" 
-             [(ngModel)]="packageCost" 
-             min="0" 
+      <input id="packageCost"
+             type="number"
+             class="form-control"
+             [(ngModel)]="packageCost"
+             min="0"
              (input)="onPackageCostChange($event)"
              (focus)="onCostFocus()">
       <small class="text-danger" *ngIf="packageCostError">{{ packageCostError }}</small>
     </div>
-    
-    
+
+
     <div class="form-group mb-2">
       <label for="startDate">Fecha de Inicio:</label>
       <input id="startDate" type="date" class="form-control" [(ngModel)]="startDate">
     </div>
-    
+
     <div class="form-group mb-2">
       <label for="numberOfDays">Número de días que se quedará el Turista:</label>
-      <input id="numberOfDays" 
-             type="number" 
-             class="form-control" 
-             [(ngModel)]="numberOfDays" 
-             min="1" 
+      <input id="numberOfDays"
+             type="number"
+             class="form-control"
+             [(ngModel)]="numberOfDays"
+             min="1"
              placeholder="Mínimo 1 día"
              (input)="onNumberOfDaysChange($event)">
       <small class="text-danger" *ngIf="numberOfDaysError">{{ numberOfDaysError }}</small>
@@ -59,22 +59,22 @@
             <select id="servicio{{i}}{{j}}" class="form-control" [(ngModel)]="activity.servicioAsociado">
               <option [ngValue]="null">Seleccione un servicio</option>
               <option *ngFor="let servicio of selectedPackage.servicios" [ngValue]="servicio">
-                {{ servicio.nom_hosteleria || servicio.nom_guia || servicio.nom_trans || servicio.nom_actur }} 
+                {{ servicio.nom_hosteleria || servicio.nom_guia || servicio.nom_trans || servicio.nom_actur }}
                 ({{ getServiceTypeDisplay(servicio) }})
               </option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="hora{{i}}{{j}}">Hora:</label>
             <ngx-timepicker-field id="hora{{i}}{{j}}" [(ngModel)]="activity.time"></ngx-timepicker-field>
           </div>
-          
+
           <div class="form-group">
             <label for="descripcion{{i}}{{j}}">Descripción:</label>
             <textarea id="descripcion{{i}}{{j}}" class="form-control" rows="3" [(ngModel)]="activity.description"></textarea>
           </div>
-          
+
           <button class="btn btn-danger mt-2" (click)="removeActivity(i, j)">Eliminar</button>
         </div>
         <div class="agregar">

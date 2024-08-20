@@ -3,7 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
-//import { Paquete } from '../../../interfaces/CRUDS/tablas.interface';
+
 
 interface Actividad {
   id_actividad: number;

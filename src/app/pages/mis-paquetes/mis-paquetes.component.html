@@ -1,52 +1,75 @@
-<div class="row">
-    <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of paquetesFiltrados">
-      <div class="card paquete-card p-3">
-        <div class="card-header bg-primary text-white">
-          <h2 class="card-title">{{paquete.nom_paquete}}</h2>
-        </div>
-        <div class="card-body paquete-card-body">
-          <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
-          <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
-          <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
-  
-          <h3 class="mt-4">Servicios incluidos</h3>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
-              {{servicio.tipo_servicio}}
-              <span class="badge bg-primary float-end">ID: {{servicio.id_servicio}}</span>
-            </li>
-          </ul>
-  
-          <h3 class="mt-4">Servicios con actividades</h3>
-          <div *ngFor="let servicio of paquete.servicios">
-            <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
-              <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Fecha</th>
-                      <th>Hora</th>
-                      <th>Descripción</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let actividad of servicio.actividades">
-                      <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
-                      <td>{{actividad.hora_actividad}}</td>
-                      <td>{{actividad.descripcion_actividad}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+        <div class="container mt-5">
+          <h1 class="mb-4">Mis Paquetes</h1>
+        
+          <div *ngIf="cargando" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+          </div>
+        
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+        
+          <div *ngIf="!cargando && !error">
+            <ng-template #noPaquetes>
+              <div class="text-center mt-5">
+                <img src="../../../assets/img/no-packages.svg" alt="No hay paquetes" class="img-fluid mb-4" style="max-width: 300px;">
+                <h2 class="mb-3" style="font-size: 1.5rem;">¡Aún no tienes paquetes asignados!</h2>
+                <p class="lead" style="font-size: 1rem;">Parece que todavía no tienes ningún paquete.</p>
+                <p style="font-size: 0.9rem;">¿Qué tal si exploras nuestras increíbles ofertas y comienzas a planear tu próxima aventura?</p>
+                <button class="btn btn-primary btn-lg mt-3" routerLink="/paquetes-personalizados">Explorar Paquetes</button>
+              </div>
+            </ng-template>
+        
+            <div *ngIf="paquetes.length > 0; else noPaquetes">
+              <div class="row">
+                <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of paquetes">
+                  <div class="card paquete-card p-3">
+                    <div class="card-header bg-primary text-white">
+                      <h2 class="card-title">{{paquete.nom_paquete}}</h2>
+                    </div>
+                    <div class="card-body paquete-card-body">
+                      <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
+                      <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
+                      <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
+        
+                      <h3 class="mt-4">Servicios incluidos</h3>
+                      <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
+                          {{servicio.tipo_servicio}}
+                        </li>
+                      </ul>
+        
+                      <h3 class="mt-4">Servicios con actividades</h3>
+                      <div *ngFor="let servicio of paquete.servicios">
+                        <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
+                          <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
+                          <div class="table-responsive">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Fecha</th>
+                                  <th>Hora</th>
+                                  <th>Descripción</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let actividad of servicio.actividades">
+                                  <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
+                                  <td>{{actividad.hora_actividad}}</td>
+                                  <td>{{actividad.descripcion_actividad}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-  
-          <!-- Mensaje si no hay actividades -->
-          <p *ngIf="!paqueteTieneActividades(paquete)" class="text-muted">
-            Este paquete no tiene actividades programadas.
-          </p>
         </div>
-      </div>
-    </div>
-  </div>
+        

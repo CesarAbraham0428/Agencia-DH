@@ -1,0 +1,17 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <circle cx="250" cy="250" r="240" fill="#f0f0f0"/>
+  <path d="M180 170h140v160H180z" fill="#fff"/>
+  <path d="M180 170h140v30H180z" fill="#007bff"/>
+  <path d="M200 220h100v20H200zM200 260h100v20H200zM200 300h60v20h-60z" fill="#ccc"/>
+  <circle cx="250" cy="250" r="238" fill="none" stroke="#007bff" stroke-width="4"/>
+  <path d="M320 330l50 50M380 330l-50 50" fill="none" stroke="#007bff" stroke-width="10" stroke-linecap="round"/>
+</svg> -->
+
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="width: 100%; height: auto; max-width: 300px;">
+    <circle cx="250" cy="250" r="240" fill="#f0f0f0"/>
+    <path d="M180 170h140v160H180z" fill="#fff"/>
+    <path d="M180 170h140v30H180z" fill="#007bff"/>
+    <path d="M200 220h100v20H200zM200 260h100v20H200zM200 300h60v20h-60z" fill="#ccc"/>
+    <circle cx="250" cy="250" r="238" fill="none" stroke="#007bff" stroke-width="4"/>
+    <path d="M320 330l50 50M380 330l-50 50" fill="none" stroke="#007bff" stroke-width="10" stroke-linecap="round"/>
+  </svg>

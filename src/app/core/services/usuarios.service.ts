@@ -21,6 +21,8 @@ export class UsuariosService {
 
   private apiUrlMarco = `${environment.baseUrl}/admin/usuario`;
 
+  private apiUrlPaqueteUusario = `${environment.baseUrl}/usuario`;
+
   constructor(private http: HttpClient) { }
 
    getTodosUsuarios(): Observable<any> {
@@ -47,5 +49,9 @@ export class UsuariosService {
           usuario.app_usr.toLowerCase().includes(termino.toLowerCase())
         ))
       );
+    }
+
+    getMisPaquetes(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrlPaqueteUusario}/mispaquetes`);
     }
 }

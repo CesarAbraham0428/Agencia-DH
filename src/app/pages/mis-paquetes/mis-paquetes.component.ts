@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioGenericoCRUD } from '../../core/services/CRUDS/crud-servicio.service';
+import { UsuariosService } from '../../core/services/usuarios.service';
 
 interface Actividad {
   id_actividad: number;
@@ -28,45 +28,32 @@ interface Paquete {
   styleUrls: ['./mis-paquetes.component.scss']
 })
 export class MisPaquetesComponent implements OnInit {
-  paquetes: Paquete[] = [];
-  paquetesFiltrados: Paquete[] = [];
-  filtroTipo: string = '';
+  paquetes: any[] = [];
+  cargando: boolean = true;
+  error: string | null = null;
 
-  constructor(private paqueteService: ServicioGenericoCRUD) { }
+  constructor(private paqueteService: UsuariosService) { }
 
   ngOnInit(): void {
     this.cargarPaquetes();
   }
 
   cargarPaquetes(): void {
+    this.cargando = true;
     this.paqueteService.getMisPaquetes().subscribe(
-      (data: Paquete[]) => {
+      (data) => {
         this.paquetes = data;
-        this.aplicarFiltros();
+        this.cargando = false;
       },
       (error) => {
         console.error('Error al cargar los paquetes', error);
+        this.error = 'Hubo un problema al cargar tus paquetes. Por favor, intenta de nuevo más tarde.';
+        this.cargando = false;
       }
     );
   }
 
-  aplicarFiltros(): void {
-    this.paquetesFiltrados = this.paquetes.filter(paquete => 
-      this.filtroTipo ? paquete.tipo_paquete === this.filtroTipo : true
-    );
-  }
-
-  filtrarPorTipo(tipo: string): void {
-    this.filtroTipo = tipo;
-    this.aplicarFiltros();
-  }
-
-  limpiarFiltros(): void {
-    this.filtroTipo = '';
-    this.aplicarFiltros();
-  }
-
-  // Nuevo método para verificar si un paquete tiene actividades
+  // Método para verificar si un paquete tiene actividades
   paqueteTieneActividades(paquete: Paquete): boolean {
     return paquete.servicios?.some(servicio => 
       servicio.actividades && servicio.actividades.length > 0

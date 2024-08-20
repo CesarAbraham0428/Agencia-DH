@@ -67,16 +67,9 @@ export class ServicioGenericoCRUD {
     return this.http.get<Usuario[]>(`${this.apiUrl}/${idPaquete}/usuarios-asignados`);
   }
 
-    // Nuevo método para obtener paquetes completos por agencia
+    // Método para obtener paquetes completos por agencia
     getPaquetesCompletosByAgencia(): Observable<any> {
       return this.http.get<any>(`${this.agenciaUrl}/agencia/paquetes-completos`);
     }
 
-    getMisPaquetes(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.agenciaUrl}/mispaquetes`);
-    }
-
-    getMiPaqueteCompleto(id: number): Observable<any> {
-      return this.http.get<any>(`${this.agenciaUrl}/mipaquete/${id}`);
-    }
 }

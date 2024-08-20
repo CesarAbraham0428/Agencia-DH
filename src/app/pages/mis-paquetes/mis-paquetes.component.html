@@ -1,1 +1,52 @@
-<p>mis-paquetes works!</p>
+<div class="row">
+    <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of paquetesFiltrados">
+      <div class="card paquete-card p-3">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title">{{paquete.nom_paquete}}</h2>
+        </div>
+        <div class="card-body paquete-card-body">
+          <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
+          <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
+          <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
+  
+          <h3 class="mt-4">Servicios incluidos</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let servicio of paquete.servicios">
+              {{servicio.tipo_servicio}}
+              <span class="badge bg-primary float-end">ID: {{servicio.id_servicio}}</span>
+            </li>
+          </ul>
+  
+          <h3 class="mt-4">Servicios con actividades</h3>
+          <div *ngFor="let servicio of paquete.servicios">
+            <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
+              <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                      <th>Descripción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let actividad of servicio.actividades">
+                      <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
+                      <td>{{actividad.hora_actividad}}</td>
+                      <td>{{actividad.descripcion_actividad}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Mensaje si no hay actividades -->
+          <p *ngIf="!paqueteTieneActividades(paquete)" class="text-muted">
+            Este paquete no tiene actividades programadas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

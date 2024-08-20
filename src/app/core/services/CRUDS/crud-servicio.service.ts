@@ -71,5 +71,12 @@ export class ServicioGenericoCRUD {
     getPaquetesCompletosByAgencia(): Observable<any> {
       return this.http.get<any>(`${this.agenciaUrl}/agencia/paquetes-completos`);
     }
-  
+
+    getMisPaquetes(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.agenciaUrl}/mispaquetes`);
+    }
+
+    getMiPaqueteCompleto(id: number): Observable<any> {
+      return this.http.get<any>(`${this.agenciaUrl}/mipaquete/${id}`);
+    }
 }

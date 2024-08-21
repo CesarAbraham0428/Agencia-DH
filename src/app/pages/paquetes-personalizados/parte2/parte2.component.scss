@@ -50,11 +50,13 @@ body {
   height: 100%; /* Ajusta la altura de la imagen para que ocupe todo el espacio del contenedor */
   object-fit: cover; /* Ajusta la imagen para que cubra el contenedor sin distorsionarse */
   border-radius: 6px;
-  transition: transform 0.5s ease-in-out; /* Animación de transformación */
+  /* Elimina la transición */
+  /* transition: transform 0.5s ease-in-out; */
 }
 
 .img-container img:hover {
-  transform: scale(1.05); /* Escala la imagen al pasar el ratón sobre ella */
+  /* Elimina la transformación de escala al pasar el ratón */
+  /* transform: scale(1.05); */
 }
 
 h2 {

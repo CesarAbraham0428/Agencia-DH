@@ -8,6 +8,7 @@ body {
   background-size: 400% 400%;
   animation: gradientChange 15s ease infinite;
   overflow: hidden;
+  position: relative; /* Ensure ::before covers the entire viewport */
 }
 
 @keyframes gradientChange {
@@ -36,19 +37,14 @@ body::before {
   animation: sparkle 3s infinite;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-}
-
+/* Header Styles */
 header {
-  background-color: #3d230190;
+  background-color: #3d2301;
   color: #fff;
-  padding: 1rem 0;
+  padding: 1rem;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
   border-radius: 10px;
 }
 
@@ -58,6 +54,7 @@ header h1 {
   font-weight: 600;
 }
 
+/* Navigation Menu Link Styles */
 nav {
   margin: 1rem 0;
 }
@@ -70,7 +67,7 @@ nav {
   border-radius: 5px;
   margin: 0 0.5rem;
   background: #685e30;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .nav_menu_link:hover {
@@ -79,11 +76,21 @@ nav {
   transform: scale(1.05);
 }
 
+/* Container Styles */
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  padding: 1rem; /* Adjusted padding for consistent spacing */
+}
+
+/* Section Styles */
 section {
   padding: 2rem 0;
   text-align: center;
 }
 
+/* Attractions Styles */
 .attractions {
   display: flex;
   flex-wrap: wrap;
@@ -118,7 +125,7 @@ section {
   border: 5px solid transparent;
   border-radius: 10px;
   box-sizing: border-box;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease;
   z-index: 1;
 }
 
@@ -133,26 +140,20 @@ section {
 }
 
 @keyframes pulse {
-  0% {
+  0%, 100% {
     border-color: rgba(139, 69, 19, 0.8);
   }
   50% {
     border-color: rgba(139, 69, 19, 0.4);
   }
-  100% {
-    border-color: rgba(139, 69, 19, 0.8);
-  }
 }
 
 @keyframes color-change {
-  0% {
+  0%, 100% {
     border-color: rgba(139, 69, 19, 0.8);
   }
   50% {
     border-color: rgba(160, 82, 45, 0.8);
-  }
-  100% {
-    border-color: rgba(139, 69, 19, 0.8);
   }
 }
 
@@ -168,19 +169,19 @@ section {
   margin: 0.5rem 0;
   position: relative;
   z-index: 2;
-  text-align: justify; /* Texto justificado */
+  text-align: justify; /* Justify text for better readability */
 }
 
+/* Footer Styles */
 footer {
+  background-color: #3d2301;
   color: #fff;
   text-align: center;
-  padding: 1rem 0;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  padding: 1rem;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .attractions {
     flex-direction: column;

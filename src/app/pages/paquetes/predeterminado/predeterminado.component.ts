@@ -1,9 +1,8 @@
-import { Component, Renderer2, ElementRef, AfterViewInit, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
-
 
 interface Actividad {
   id_actividad: number;
@@ -35,8 +34,6 @@ interface AgenciaPaquetes {
 
 declare var paypal: any;
 
-
-
 @Component({
   selector: 'app-predeterminado',
   templateUrl: './predeterminado.component.html',
@@ -47,7 +44,7 @@ export class PredeterminadoComponent implements OnInit {
   paquetesPorAgencia: { id_agencia: number; nom_ag: string; paquetes: Paquete[] }[] = [];
   showPayPalButton: { [key: string]: boolean } = {};
   isButtonClicked: { [key: string]: boolean } = {};
-  openPaqueteKey: string | null = null; // Para controlar el paquete abierto
+  openPaqueteKey: string | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -55,23 +52,20 @@ export class PredeterminadoComponent implements OnInit {
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private genericService: ServicioGenericoCRUD
-  ) { }
-
+  ) {}
 
   ngOnInit() {
     this.cargarPaquetes();
+    this.loadPayPalScript();
   }
 
   cargarPaquetes() {
     this.genericService.getPaquetesCompletosByAgencia().subscribe(
       (data: AgenciaPaquetes[]) => {
         this.paquetesPorAgencia = data;
-        console.log('Paquetes cargados:', this.paquetesPorAgencia);
-
-        // Inicializar showPayPalButton e isButtonClicked para cada paquete
         this.paquetesPorAgencia.forEach(agencia => {
           agencia.paquetes.forEach(paquete => {
-            const key = `${agencia.id_agencia}_${agencia.nom_ag}_${paquete.id_paquete}`;
+            const key = `${agencia.id_agencia}_${paquete.id_paquete}`;
             this.showPayPalButton[key] = false;
             this.isButtonClicked[key] = false;
           });
@@ -83,29 +77,23 @@ export class PredeterminadoComponent implements OnInit {
     );
   }
 
-  togglePaquete(agenciaId: number, paqueteId: number) {
-    const key = `${agenciaId}_${paqueteId}`;
-    if (this.openPaqueteKey === key) {
-      this.openPaqueteKey = null; // Cierra el paquete si ya está abierto
-    } else {
-      this.openPaqueteKey = key; // Abre el nuevo paquete
-    }
-  }
-
   isPaqueteOpen(agenciaId: number, paqueteId: number): boolean {
     return this.openPaqueteKey === `${agenciaId}_${paqueteId}`;
   }
 
   obtenerPaquete(agenciaId: number, paqueteId: number) {
     const key = `${agenciaId}_${paqueteId}`;
-    if (this.isButtonClicked[key]) {
-      return; // Prevent multiple executions
+
+    if (this.isButtonClicked[key] && this.isPaqueteOpen(agenciaId, paqueteId)) {
+      return;
     }
+
     this.isButtonClicked[key] = true;
 
     if (this.loginService.isLogged()) {
       this.showPayPalButton[key] = true;
-      this.renderPayPalButton(key);
+      this.openPaqueteKey = key;
+      setTimeout(() => this.renderPayPalButton(key), 0);
     } else {
       Swal.fire({
         title: "Inicia sesión",
@@ -114,53 +102,65 @@ export class PredeterminadoComponent implements OnInit {
       }).then(() => {
         this.router.navigate(['/login']);
       });
-      this.isButtonClicked[key] = false; // Reset the flag if the user is not logged in
+      this.isButtonClicked[key] = false;
+    }
+  }
+
+  togglePaquete(agenciaId: number, paqueteId: number) {
+    const key = `${agenciaId}_${paqueteId}`;
+
+    if (this.isPaqueteOpen(agenciaId, paqueteId)) {
+      this.openPaqueteKey = null;
+    } else {
+      this.openPaqueteKey = key;
+      if (this.showPayPalButton[key]) {
+        setTimeout(() => this.renderPayPalButton(key), 0);
+      }
     }
   }
 
   renderPayPalButton(key: string): void {
-    const interval = setInterval(() => {
-      const container = document.getElementById(`paypal-button-container-${key}`);
-      if (container) {
-        clearInterval(interval);
-        paypal.Buttons({
-          onApprove: (data: any, actions: any) => {
-            Swal.fire({
-              title: "¡Gracias por su compra!.",
-              width: 600,
-              padding: "3em",
-              color: "#716add",
-              background: "#fff url(../../../../../../assets/trees.png)",
-              backdrop: `
-                rgba(0,0,123,0.4)
-                url("../../../../assets/nyan-cat.gif")
-                left top
-                no-repeat
-              `
-            });
-          },
-          onError: (error: any) => {
-            Swal.fire({
-              title: "Error!",
-              text: error,
-              icon: "error"
-            });
-            this.isButtonClicked[key] = false; // Reset the flag if there is an error
-          }
-        }).render(`#paypal-button-container-${key}`);
+    const containerId = `paypal-button-container-${key}`;
+    const container = document.getElementById(containerId);
+
+    // Limpiar el contenedor antes de renderizar el botón de PayPal
+    if (container) {
+      container.innerHTML = '';
+    }
+
+    paypal.Buttons({
+      onApprove: (data: any, actions: any) => {
+        Swal.fire({
+          title: "¡Gracias por su compra!.",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(../../../../../../assets/trees.png)",
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("../../../../assets/nyan-cat.gif")
+            left top
+            no-repeat
+          `
+        });
+      },
+      onError: (error: any) => {
+        Swal.fire({
+          title: "Error!",
+          text: error,
+          icon: "error"
+        });
+        this.isButtonClicked[key] = false; // Restablecer la bandera si hay un error
       }
-    }, 100);
+    }).render(`#${containerId}`);
   }
+
 
   loadPayPalScript(): void {
     const script = this.renderer.createElement('script');
     script.src = 'https://www.paypal.com/sdk/js?client-id=AV2jLZ7GXiCjZZmqeYS2i0rHrbX9JRY9eipSrxK9XxtCTv0D4qtmrhSy2VMxHqibuVzzk2ykXP7p9-Jd&components=buttons';
     script.onload = () => {
-      for (const paquete in this.showPayPalButton) {
-        if (this.showPayPalButton[paquete]) {
-          this.renderPayPalButton(paquete);
-        }
-      }
+      console.log("PayPal SDK cargado correctamente");
     };
     script.onerror = (error: Event | string) => {
       console.error('Error loading PayPal SDK:', error);

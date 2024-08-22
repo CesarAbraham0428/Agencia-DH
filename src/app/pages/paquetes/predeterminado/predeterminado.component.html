@@ -207,6 +207,7 @@
             <button class="btn btn-primary mt-3" (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
               Obtener Paquete
             </button>
+
             <!-- Collapsible Section -->
             <div [id]="'collapse-' + agencia.id_agencia + '-' + paquete.id_paquete" class="collapse mt-3"
                  [class.show]="isPaqueteOpen(agencia.id_agencia, paquete.id_paquete)">

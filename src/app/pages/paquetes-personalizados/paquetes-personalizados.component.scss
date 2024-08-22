@@ -27,8 +27,9 @@ header h1 {
 
 /* Container Styles */
 .container {
-  width: 85%;
-  margin: auto;
+  width: 100%;
+  max-width: 1200px; /* Adjust this value according to your design */
+  margin: 0 auto; /* Center the container */
   overflow: hidden;
   position: relative; /* Position relative for border animation */
 }
@@ -53,12 +54,17 @@ header h1 {
 .content {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Center horizontally */
   gap: 20px;
   padding: 20px 0;
 }
 
 /* Hotel and Restaurant Styles */
 .item {
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center text */
   flex: 1;
   min-width: 280px;
   max-width: 300px; /* Adjust this value to fit more items in a row */

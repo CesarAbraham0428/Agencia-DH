@@ -3,188 +3,6 @@
   <h1 class="main-title">Paquetes preestablecidos</h1>
 </div>
 
-<!-- <div *ngFor="let agencia of paquetesPorAgencia">
-  <h2>Agencia ID: {{agencia.id_agencia}}</h2>
-  <div *ngFor="let paquete of agencia.paquetes">
-    <h3>{{paquete.nom_paquete}}</h3>
-    <p>Tipo: {{paquete.tipo_paquete}}</p>
-    <p>Costo: {{paquete.costo_paquete | currency}}</p>
-    <h4>Servicios:</h4>
-    <ul>
-      <li *ngFor="let servicio of paquete.servicios">
-        {{servicio.tipo_servicio}}
-        <ul>
-          <li *ngFor="let actividad of servicio.actividades">
-            {{actividad.descripcion_actividad}} - {{actividad.fecha_actividad | date}} {{actividad.hora_actividad}}
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <button (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
-      Obtener Paquete
-    </button>
-    <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]"
-         [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
-    </div>
-  </div>
-</div> -->
-<!--
-<div class="row">
-  <div class="col-12 mb-4" *ngFor="let agencia of paquetesPorAgencia">
-    <h2>Agencia : {{agencia.id_agencia}}</h2>
-    <div class="row">
-      <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of agencia.paquetes">
-        <div class="card paquete-card p-3">
-          <div class="card-header bg-primary ">
-            <h2 class="card-title">{{paquete.nom_paquete}}</h2>
-          </div>
-          <div class="card-body paquete-card-body">
-            <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
-            <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
-            <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
-
-            <h3 class="mt-4">Servicios con actividades</h3>
-            <div *ngFor="let servicio of paquete.servicios">
-              <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
-                <h4 class="mt-3">{{servicio.tipo_servicio}}</h4>
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Descripción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let actividad of servicio.actividades">
-                        <td>{{actividad.fecha_actividad | date:'dd/MM/yyyy'}}</td>
-                        <td>{{actividad.hora_actividad | customTime}}</td>
-                        <td>{{actividad.descripcion_actividad}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <button class="btn btn-primary mt-3" (click)="obtenerPaquete(agencia.id_agencia, paquete.id_paquete)">
-              Obtener Paquete
-            </button>
-            <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]"
-                 [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-<!-- <div class="row">
-  <div class="col-12 mb-4" *ngFor="let agencia of paquetesPorAgencia">
-    <h2>Agencia: {{agencia.id_agencia}}</h2>
-    <div class="row">
-      <div class="col-md-6 col-xl-4 mb-4 px-3" *ngFor="let paquete of agencia.paquetes">
-        <div class="card paquete-card p-3">
-          <div class="card-header bg-primary">
-            <h2 class="card-title">{{paquete.nom_paquete}}</h2>
-          </div>
-          <div class="card-body paquete-card-body">
-
-            <img src="..." alt="Imagen del Paquete" class="card-img-top mb-3">
-
-
-            <p><strong>Nombre:</strong> {{paquete.nom_paquete}}</p>
-            <p><strong>Tipo:</strong> {{paquete.tipo_paquete}}</p>
-            <p><strong>Costo:</strong> {{paquete.costo_paquete | currency}}</p>
-
-
-            <button class="btn btn-primary mt-3" (click)="openPaqueteModal(paquete)">
-              Ingresar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
- Modal
-<div class="modal fade" id="paqueteModal" tabindex="-1" aria-labelledby="paqueteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="paqueteModalLabel">{{ selectedPaquete?.nom_paquete }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h3 class="card-subtitle mb-2 text-muted">Información del paquete</h3>
-        <p><strong>Nombre:</strong> {{ selectedPaquete?.nom_paquete }}</p>
-        <p><strong>Tipo:</strong> {{ selectedPaquete?.tipo_paquete }}</p>
-        <p><strong>Costo:</strong> {{ selectedPaquete?.costo_paquete | currency }}</p>
-
-        <h3 class="mt-4">Servicios con actividades</h3>
-        <div *ngFor="let servicio of selectedPaquete?.servicios">
-          <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
-            <h4 class="mt-3">{{ servicio.tipo_servicio }}</h4>
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Descripción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let actividad of servicio.actividades">
-                    <td>{{ actividad.fecha_actividad | date:'dd/MM/yyyy' }}</td>
-                    <td>{{ actividad.hora_actividad | customTime }}</td>
-                    <td>{{ actividad.descripcion_actividad }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary mt-3" (click)="obtenerPaquete(selectedPaquete?.id_agencia, selectedPaquete?.id_paquete)">
-          Obtener Paquete
-        </button>
-        <div *ngIf="showPayPalButton[selectedPaquete?.id_agencia + '_' + selectedPaquete?.id_paquete]"
-             [id]="'paypal-button-container-' + selectedPaquete?.id_agencia + '_' + selectedPaquete?.id_paquete">
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="card">
-  <img src="https://via.placeholder.com/640x200" class="card-img-top" alt="Caribbean Resort Myrtle Beach">
-  <div class="card-body">
-    <h5 class="card-title">Caribbean Resort Myrtle Beach</h5>
-    <p class="card-text">Myrtle Beach, a 3.3 miles de Ocean Reef Resort</p>
-    <p><strong>7.6 - Bueno</strong> (6347 puntuaciones)</p>
-    <button class="btn btn-primary" (click)="toggleDetails()">Ver detalles</button>
-  </div>
-
-  <div *ngIf="showDetails" class="card-footer">
-    <div class="alert alert-success" role="alert">
-      <strong>Expedia</strong><br>
-      <span>Cancelación gratuita antes del 26 ago</span><br>
-      <span>Pago en el alojamiento</span><br>
-      <strong>$89</strong>
-    </div>
-    <div>
-      <button class="btn btn-success">Ver oferta</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="row">
   <div class="col-12 mb-4" *ngFor="let agencia of paquetesPorAgencia">
     <h2 class="title sub-title">{{agencia.nom_ag}}</h2>
@@ -210,7 +28,7 @@
 
             <!-- Collapsible Section -->
             <div [id]="'collapse-' + agencia.id_agencia + '-' + paquete.id_paquete" class="collapse mt-3"
-                 [class.show]="isPaqueteOpen(agencia.id_agencia, paquete.id_paquete)">
+              [class.show]="isPaqueteOpen(agencia.id_agencia, paquete.id_paquete)">
               <h3 class="mt-4">Servicios con actividades</h3>
               <div *ngFor="let servicio of paquete.servicios">
                 <div *ngIf="servicio.actividades && servicio.actividades.length > 0">
@@ -237,7 +55,7 @@
               </div>
 
               <div *ngIf="showPayPalButton[agencia.id_agencia + '_' + paquete.id_paquete]"
-                   [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
+                [id]="'paypal-button-container-' + agencia.id_agencia + '_' + paquete.id_paquete">
               </div>
             </div>
           </div>
@@ -246,3 +64,140 @@
     </div>
   </div>
 </div>
+
+
+<br>
+<div>
+  <h2 class="sub-title">Contactanos!</h2>
+</div>
+
+<!-- Paquetes -->
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Paquete 1 -->
+    <div class="col">
+      <div class="card h-100 fondo letras">
+        <h3 class="color--white mb-5 grandet">Turismo Gilca!</h3>
+        <ul class="contact-info__list list-style--none position-relative z-index-101">
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            <a href="https://www.facebook.com/tgilca">Facebook</a>
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> (418)-182-2986
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> (418)-184-5804
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> Yucatán 20 centro
+            <br> Dolores Hidalgo, CIN, Gto
+            <br>
+            <div class="mt-3">
+              <a href="https://www.google.com/maps" target="blank" class="text-link link--right-icon text-white">Obtener
+                direcciones <i class="link_icon fa fa-directions"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paquete 2 -->
+    <div class="col">
+      <div class="card h-100 fondo letras">
+        <h3 class="color--white mb-5 grandet">Corporativo Viajero!</h3>
+        <ul class="contact-info__list list-style--none position-relative z-index-101">
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span> eskapatecorporativo&#64;hotmail.com
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            <a href="https://www.facebook.com/tgilca">Facebook</a>
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> (444)-317-2663
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> coronel romero 2100
+            instalaciones de CANACO.
+            <br> San Luis potosi, S.L.P
+            <div class="mt-3">
+              <a href="https://www.google.com/maps" target="blank" class="text-link link--right-icon text-white">Obtener
+                direcciones <i class="link_icon fa fa-directions"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paquete 3 -->
+    <div class="col">
+      <div class="card h-100 fondo letras">
+        <h3 class="color--white mb-5 grandet">Dromomanía Experience!</h3>
+        <ul class="contact-info__list list-style--none position-relative z-index-101">
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            dromomania.experience&#64;gmail.com
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            <a href="https://www.facebook.com/p/Dromomania-Experience-100063453166358/">Facebook</a>
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> 418 137 1446
+          </li>
+        </ul>
+      </div>
+    </div>
+
+     <!-- Paquete 4 -->
+     <div class="col">
+      <div class="card h-100 fondo letras">
+        <h3 class="color--white mb-5 grandet">Viajes con Encanto!</h3>
+        <ul class="contact-info__list list-style--none position-relative z-index-101">
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            viajesconencanto&#64;gmail.com
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> (418)-101-1015
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> San Luis Potosí 13, Zona centro
+            <br> Dolores Hidalgo, CIN. Gto.
+            <div class="mt-3">
+              <a href="https://maps.app.goo.gl/gM7obvo9J8QeXvcx7" target="blank" class="text-link link--right-icon text-white">Obtener
+                direcciones <i class="link_icon fa fa-directions"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+     <!-- Paquete 6 -->
+     <div class="col">
+      <div class="card h-100 fondo letras">
+        <h3 class="color--white mb-5 grandet">Amor en ruta!</h3>
+        <ul class="contact-info__list list-style--none position-relative z-index-101">
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-envelope"></i></span>
+            amorenrutadh&#64;gmail.com
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-phone"></i></span> (418)-139-4746
+          </li>
+          <li class="mb-4 pl-4">
+            <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span>Av. Norte #16 entre Aguascalientes y Baja California Norte
+            <br> Dolores Hidalgo, CIN. Gto.
+            <div class="mt-3">
+              <a href="https://maps.app.goo.gl/qZ4rdbKxm344Mpva9" target="blank" class="text-link link--right-icon text-white">Obtener
+                direcciones <i class="link_icon fa fa-directions"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br>

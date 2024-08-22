@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
+import { HttpClient } from '@angular/common/http';
 
 interface Actividad {
   id_actividad: number;
@@ -51,12 +52,13 @@ export class PredeterminadoComponent implements OnInit {
     private router: Router,
     private renderer: Renderer2,
     private elementRef: ElementRef,
+    private http: HttpClient,
     private genericService: ServicioGenericoCRUD
   ) {}
 
   ngOnInit() {
     this.cargarPaquetes();
-    this.loadPayPalScript();
+    this.loadPayPalScript();  // No pasa argumentos aquí
   }
 
   cargarPaquetes() {
@@ -106,6 +108,7 @@ export class PredeterminadoComponent implements OnInit {
     }
   }
 
+
   togglePaquete(agenciaId: number, paqueteId: number) {
     const key = `${agenciaId}_${paqueteId}`;
 
@@ -123,51 +126,67 @@ export class PredeterminadoComponent implements OnInit {
     const containerId = `paypal-button-container-${key}`;
     const container = document.getElementById(containerId);
 
-    // Limpiar el contenedor antes de renderizar el botón de PayPal
     if (container) {
-      container.innerHTML = '';
+      container.innerHTML = '';  // Limpia el contenedor
+      console.log('Rendering PayPal button in:', containerId);  // Verificación de renderizado
+
+      paypal.Buttons({
+        onApprove: (data: any, actions: any) => {
+          Swal.fire({
+            title: "¡Gracias por su compra!.",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(../../../../../../assets/trees.png)",
+            backdrop: `
+              rgba(0,0,123,0.4)
+              url("../../../../assets/nyan-cat.gif")
+              left top
+              no-repeat
+            `
+          });
+        },
+        onError: (error: any) => {
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            icon: "error"
+          });
+          this.isButtonClicked[key] = false;
+        }
+      }).render(`#${containerId}`);
+    } else {
+      console.error('PayPal button container not found:', containerId);
     }
-
-    paypal.Buttons({
-      onApprove: (data: any, actions: any) => {
-        Swal.fire({
-          title: "¡Gracias por su compra!.",
-          width: 600,
-          padding: "3em",
-          color: "#716add",
-          background: "#fff url(../../../../../../assets/trees.png)",
-          backdrop: `
-            rgba(0,0,123,0.4)
-            url("../../../../assets/nyan-cat.gif")
-            left top
-            no-repeat
-          `
-        });
-      },
-      onError: (error: any) => {
-        Swal.fire({
-          title: "Error!",
-          text: error,
-          icon: "error"
-        });
-        this.isButtonClicked[key] = false; // Restablecer la bandera si hay un error
-      }
-    }).render(`#${containerId}`);
   }
-
 
   loadPayPalScript(): void {
-    const script = this.renderer.createElement('script');
-    script.src = 'https://www.paypal.com/sdk/js?client-id=AV2jLZ7GXiCjZZmqeYS2i0rHrbX9JRY9eipSrxK9XxtCTv0D4qtmrhSy2VMxHqibuVzzk2ykXP7p9-Jd&components=buttons';
-    script.onload = () => {
-      console.log("PayPal SDK cargado correctamente");
-    };
-    script.onerror = (error: Event | string) => {
-      console.error('Error loading PayPal SDK:', error);
-      for (const paquete in this.isButtonClicked) {
-        this.isButtonClicked[paquete] = false;
+    this.http.get<{ clientId: string }>('http://localhost:8090/api/paypal-client-id').subscribe(
+      response => {
+        // Verifica que clientId esté presente en la respuesta
+        if (response.clientId) {
+          const script = this.renderer.createElement('script');
+          script.src = `https://www.paypal.com/sdk/js?client-id=${response.clientId}&components=buttons`;
+
+          script.onload = () => {
+            console.log('PayPal SDK loaded successfully');
+            // Llama a renderPayPalButton aquí si es necesario
+          };
+
+          script.onerror = (error: Event | string) => {
+            console.error('Error loading PayPal SDK:', error);
+          };
+
+          this.renderer.appendChild(this.elementRef.nativeElement, script);
+        } else {
+          console.error('Client ID is missing in the response');
+        }
+      },
+      error => {
+        console.error('Error fetching PayPal client ID:', error);
       }
-    };
-    this.renderer.appendChild(this.elementRef.nativeElement, script);
+    );
   }
+
+
 }

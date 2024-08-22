@@ -4,6 +4,7 @@ import { LoginService } from '../../../core/services/login.service';
 import Swal from 'sweetalert2';
 import { ServicioGenericoCRUD } from '../../../core/services/CRUDS/crud-servicio.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environments';
 
 interface Actividad {
   id_actividad: number;
@@ -161,7 +162,7 @@ export class PredeterminadoComponent implements OnInit {
   }
 
   loadPayPalScript(): void {
-    this.http.get<{ clientId: string }>('http://localhost:8090/api/paypal-client-id').subscribe(
+    this.http.get<{ clientId: string }>( `${environment.baseUrl}/api/paypal-client-id`).subscribe(
       response => {
         // Verifica que clientId esté presente en la respuesta
         if (response.clientId) {

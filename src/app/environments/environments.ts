@@ -1,5 +1,5 @@
 //pruebas
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8090'
+  baseUrl: 'https://backenddhagencias-production-f839.up.railway.app'
 }

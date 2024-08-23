@@ -3,6 +3,6 @@
   baseUrl: 'http://agencia-viajes'
 } */
 export const environment = {
-  production: true,
+  production: false,
   baseUrl: 'https://backenddhagencias-production-f839.up.railway.app'
 }

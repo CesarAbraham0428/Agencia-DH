@@ -27,7 +27,8 @@ header h1 {
 
 /* Navigation Menu Link Styles */
 nav {
-  margin-top: 10px; /* Space between header and nav links */
+  margin-top: 20px; /* Increased space between header and nav links */
+  margin-bottom: 20px; /* Space below the navigation menu */
 }
 .nav_menu_link {
   display: inline-block;
@@ -90,6 +91,7 @@ nav {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
   gap: 20px;
   justify-content: center; /* Center the grid items */
+  margin-top: 20px; /* Space between nav and attractions */
 }
 .attraction {
   display: flex;

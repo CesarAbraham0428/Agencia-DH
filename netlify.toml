@@ -4,3 +4,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-angular-universal"
+
+  [plugins.inputs]
+    projectName = "agencia-dh"

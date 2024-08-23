@@ -1,4 +1,5 @@
 //produccion
 export const environment = {
-  baseUrl: 'http://agencia-viajes'
+  production: true,
+  baseUrl: '${process.env.BACKEND_URL}'
 }
